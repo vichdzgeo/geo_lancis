@@ -1,0 +1,357 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="es" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="es" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Analisis de sensibilidad2 &mdash; documentación de Geoprocesamiento en python y qgis - 1.0</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="prev" title="Geoprocesamiento en python y qgis’s" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Geoprocesamiento en python y qgis
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contenido:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Analisis de sensibilidad2</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#autores-fidel-serrano-victor-hernandez">Autores: Fidel Serrano,Victor Hernandez</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Geoprocesamiento en python y qgis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Analisis de sensibilidad2</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/analisis.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-sensibilidad">
+<span id="analisis-de-sensibilidad2"></span><h1>Analisis de sensibilidad2<a class="headerlink" href="#module-sensibilidad" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Análisis de Sensibilidad</p>
+<div class="section" id="autores-fidel-serrano-victor-hernandez">
+<h2>Autores: Fidel Serrano,Victor Hernandez<a class="headerlink" href="#autores-fidel-serrano-victor-hernandez" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Qgis 3.6 o superior</p>
+<dl class="function">
+<dt id="sensibilidad.crea_capa">
+<code class="descclassname">sensibilidad.</code><code class="descname">crea_capa</code><span class="sig-paren">(</span><em>ecuacion</em>, <em>rasters_input</em>, <em>salida</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sensibilidad.html#crea_capa"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sensibilidad.crea_capa" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Esta función crea una capa mediante la calculadora raster
+de GDAL, esta función esta limitada hasta 8 variables en la ecuación.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
+<li><strong>ecuacion</strong> (<em>String</em>) – ecuación expresada en formato gdal, es este caso es la salida de la funcion <em>ecuacion_clp</em></li>
+<li><strong>rasters_input</strong> (<em>lista</em>) – lista de los paths de los archivos rasters, salida de la función <a href="#id1"><span class="problematic" id="id2">`</span></a><em>separa_ruta_pesos</em></li>
+<li><strong>salida</strong> (<em>String</em>) – ruta con extensión tiff de la salida</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="sensibilidad.ecuacion_clp">
+<code class="descclassname">sensibilidad.</code><code class="descname">ecuacion_clp</code><span class="sig-paren">(</span><em>pesos</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sensibilidad.html#ecuacion_clp"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sensibilidad.ecuacion_clp" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Esta función recibe una lista de pesos para regresar la ecuación
+en la estructura requerida por gdal para la combinación lineal ponderada.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><strong>pesos</strong> (<em>lista</em>) – lista de los pesos de las capas, salida de la función <em>separa_ruta_pesos</em></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="sensibilidad.ecuacion_vulnerabilidad">
+<code class="descclassname">sensibilidad.</code><code class="descname">ecuacion_vulnerabilidad</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sensibilidad.html#ecuacion_vulnerabilidad"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sensibilidad.ecuacion_vulnerabilidad" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Esta función expresa la ecuación para el cálculo de la vulnerabilidad</p>
+<div class="math notranslate nohighlight">
+\[vulnerabilidad = \ (exp^(1 - sus)) ^ (1 + ca)\]</div>
+<div class="line-block">
+<div class="line">exp = Exposición</div>
+<div class="line">sus = Susceptibilidad</div>
+<div class="line">ca = Capacidad adaptativa</div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="sensibilidad.lista_criterios">
+<code class="descclassname">sensibilidad.</code><code class="descname">lista_criterios</code><span class="sig-paren">(</span><em>dicc</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sensibilidad.html#lista_criterios"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sensibilidad.lista_criterios" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Esta función regresa una lista de los criterios de un diccionario</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><strong>dicc</strong> – Diccionario que contiene nombres, rutas y pesos para el</td>
+</tr>
+</tbody>
+</table>
+<p>análisis de vulnerabilidad / sensibilidad
+:type dicc: diccionario python</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="sensibilidad.lista_pesos_ruta">
+<code class="descclassname">sensibilidad.</code><code class="descname">lista_pesos_ruta</code><span class="sig-paren">(</span><em>dicc</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sensibilidad.html#lista_pesos_ruta"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sensibilidad.lista_pesos_ruta" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Funcion para sacar listas por subcriterio</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="sensibilidad.media_raster">
+<code class="descclassname">sensibilidad.</code><code class="descname">media_raster</code><span class="sig-paren">(</span><em>path_raster</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sensibilidad.html#media_raster"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sensibilidad.media_raster" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Esta función regresa el promedio de todos los pixeles válidos
+de un archivo raster</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><strong>path_raster</strong> (<em>String</em>) – Ruta del archivo raster</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="sensibilidad.quita">
+<code class="descclassname">sensibilidad.</code><code class="descname">quita</code><span class="sig-paren">(</span><em>dicc</em>, <em>key</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sensibilidad.html#quita"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sensibilidad.quita" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Esta función retira un elemento del diccionario y regresa un nuevo diccionario 
+sin dicho elemento &lt;&lt;dicc_q&gt;&gt;.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
+<li><strong>dicc</strong> (<em>diccionario</em>) – Diccionario con la estructura requerida</li>
+<li><strong>key</strong> (<em>String</em>) – nombre de la variable a quitar</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="sensibilidad.quita_reescala">
+<code class="descclassname">sensibilidad.</code><code class="descname">quita_reescala</code><span class="sig-paren">(</span><em>dicc</em>, <em>key</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sensibilidad.html#quita_reescala"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sensibilidad.quita_reescala" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Función que integra las funciones quita y reescala y regresa
+un diccionario sin la variable y con los pesos reescalados.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
+<li><strong>dicc</strong> (<em>diccionario</em>) – Diccionario con la estructura requerida</li>
+<li><strong>key</strong> (<em>String</em>) – nombre de la variable a quitar</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="sensibilidad.reescala">
+<code class="descclassname">sensibilidad.</code><code class="descname">reescala</code><span class="sig-paren">(</span><em>dicc_q</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sensibilidad.html#reescala"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sensibilidad.reescala" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Esta función rescala un diccionario que se le a quitado un criterio
+y regresa el diccionario con los pesos rescalados</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><strong>dicc_q</strong> – salida de la función <em>quita</em></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="sensibilidad.rutas_pesos_globales">
+<code class="descclassname">sensibilidad.</code><code class="descname">rutas_pesos_globales</code><span class="sig-paren">(</span><em>dicc</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sensibilidad.html#rutas_pesos_globales"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sensibilidad.rutas_pesos_globales" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Esta funcion recibe un diccionario de la siguiente estructura …</p>
+<p>regresa listas individuales de los criterios principales (Exposicion,
+susceptibilidad y capacidad adatativa.
+Estas listas llevan la ruta y el peso separadados por el carácter «|»</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Geoprocesamiento en python y qgis’s" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Víctor Hernández
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
