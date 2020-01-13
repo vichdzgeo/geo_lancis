@@ -9,6 +9,10 @@ Geoprocesamiento en python y qgis's
 .. toctree::
    :maxdepth: 2
    :caption: Contenido:
+    
+   analisis
+
+
 
 
 

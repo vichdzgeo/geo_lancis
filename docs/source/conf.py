@@ -14,10 +14,56 @@
 #
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../../'))
+sys.path.insert(0, os.path.abspath('../'))
+
+sys.path.insert(0, 'C:/OSGEO4~1/apps/gdal2/share/gdal')
+sys.path.insert(0, 'C:/OSGEO4~1/apps/gdal2/bin/gdalplugins')
+sys.path.insert(0, 'C:/OSGEO4~1/share/epsg_csv')
+sys.path.insert(0, 'C:/OSGEO4~1')
+sys.path.insert(0, 'C:/OSGEO4~1/apps/qgis-ltr/bin')
+sys.path.insert(0, 'C:/OSGEO4~1/apps/gdal2/pymod3/scripts')
+sys.path.insert(0, 'C:/OSGEO4~1/apps/Python37')
+sys.path.insert(0, 'C:/OSGEO4~1/apps/Python37/Scripts')
+sys.path.insert(0, 'C:/OSGEO4~1/apps/gdal2/bin')
+sys.path.insert(0, 'C:/Program Files/MiKTeX 2.9/miktex/bin')
+sys.path.insert(0, 'C:/OSGEO4~1/apps/Python27/Scripts')
+sys.path.insert(0, 'C:/OSGEO4~1/bin;C:/WINDOWS/system32')
+sys.path.insert(0, 'C:/WINDOWS')
+sys.path.insert(0, 'C:/WINDOWS/system32/WBem')
+sys.path.insert(0, 'C:/Program Files/R/R-3.6.0/bin/x64')
+sys.path.insert(0, 'C:/OSGEO4~1/apps/Python37/lib/site-packages/pywin32_system32')
+sys.path.insert(0, 'C:/OSGEO4~1/apps/Python37/lib/site-packages/numpy/.libs')
+sys.path.insert(0, 'C:/OSGEO4~1/share/proj')
+sys.path.insert(0, 'C:/OSGEO4~1/apps/Python37')
+sys.path.insert(0, 'C:/OSGEO4~1/apps/gdal2/pymod3/scripts')
+sys.path.insert(0, 'C:/OSGEO4~1/apps/gdal2/pymod3/lib/site-packages')
+sys.path.insert(0, 'C:/OSGEO4~1/apps/Python37')
+sys.path.insert(0, 'C:/OSGEO4~1/apps/Python37/Scripts')
 
 
 
+
+sys.path.insert(0, 'C:/OSGEO4~1/share/gdal')
+sys.path.insert(0, 'C:/OSGEO4~1/bin')
+sys.path.insert(0, 'C:/OSGEO4~1/bin/gdalplugins')
+sys.path.insert(0, 'C:/OSGEO4~1/apps/qgis/bin')
+sys.path.insert(0, 'C:/OSGEO4~1/apps/Python37')
+sys.path.insert(0, 'C:/OSGEO4~1/apps/Python37/DLLs')
+sys.path.insert(0, 'C:/OSGEO4~1/apps/gdal2/pymod3/Lib/site-packages/osgeo')
+sys.path.insert(0, 'C:/OSGEO4~1/apps/Python37/lib/site-packages')
+sys.path.insert(0, 'C:/OSGEO4~1/apps/Python37/lib/site-packages/win32')
+sys.path.insert(0, 'C:/OSGEO4~1/apps/Python37/lib/site-packages/win32/lib')
+sys.path.insert(0, 'C:/OSGEO4~1/apps/Python37/lib/site-packages/pythonwin')
+sys.path.insert(0, 'C:/OSGEO4~1/apps/Python37/lib/site-packages/numpy')
+sys.path.insert(0, 'C:/OSGEO4~1/apps/Python37/Scripts')
+sys.path.insert(0, 'C:/OSGEO4~1/apps/qgis/python/plugins')
+sys.path.insert(0, 'C:/OSGEO4~1/apps/qgis-dev/python')
+sys.path.insert(0, 'C:/OSGEO4~1/apps/qgis-dev/python/plugins')
+sys.path.insert(0, 'C:/OSGEO4~1/apps/gdal2/pymod3/scripts')
+sys.path.insert(0, 'C:/OSGEO4~1/apps/gdal2/pymod3/Lib/site-packages')
+sys.path.insert(0, 'C:/OSGeo4W64/apps/gdal2/pymod3/Lib/site-packages')
+sys.path.insert(0, 'C:/OSGeo4W64/apps/gdal2/pymod3/Lib/site-packages/osgeo')
+sys.path.insert(0, 'C:/OSGeo4W64/apps/gdal2/pymod3/scripts/')
 # -- Project information -----------------------------------------------------
 
 project = 'Geoprocesamiento en python y qgis'
