@@ -51,6 +51,7 @@ import sys
 
 import qgis 
 import qgis.core
+from qgis.core import *
 def saludo():
     '''esta funcion imprime hola
     '''
@@ -67,7 +68,7 @@ def vector(path_raster):
     :type path_raster: String
 
     '''
-    layer = qgis.core.QgsVectorLayer(path_raster,"","ogr")
+    layer = QgsVectorLayer(path_raster,"","ogr")
     return layer
 
 vector = vector("C:/Dropbox (LANCIS)/SIG/desarrollo/sig_megadapt/procesamiento/agebs_coordendas_paralelas/agebs_cdmx.shp")

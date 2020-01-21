@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Analisis de sensibilidad2 &mdash; documentación de Geoprocesamiento en python y qgis - 1.0</title>
+  <title>Analisis de sensibilidad &mdash; documentación de Geoprocesamiento en python y qgis - 1.0</title>
   
 
   
@@ -37,7 +37,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Índice" href="genindex.html" />
     <link rel="search" title="Búsqueda" href="search.html" />
-    <link rel="prev" title="Geoprocesamiento en python y qgis’s" href="index.html" /> 
+    <link rel="prev" title="¿Cómo ejecutar un código en Qgis?" href="ejecucion.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -81,10 +81,15 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contenido:</span></p>
+              <p class="caption"><span class="caption-text">Guias de uso:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ejecucion.html">¿Cómo ejecutar un código en Qgis?</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Códigos:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Analisis de sensibilidad2</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#autores-fidel-serrano-victor-hernandez">Autores: Fidel Serrano,Victor Hernandez</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Analisis de sensibilidad</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#entrada-de-datos">Entrada de datos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#salida-de-datos">Salida de datos</a></li>
 </ul>
 </li>
 </ul>
@@ -132,7 +137,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Analisis de sensibilidad2</li>
+      <li>Analisis de sensibilidad</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -151,12 +156,49 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-sensibilidad">
-<span id="analisis-de-sensibilidad2"></span><h1>Analisis de sensibilidad2<a class="headerlink" href="#module-sensibilidad" title="Enlazar permanentemente con este título">¶</a></h1>
-<p>Análisis de Sensibilidad</p>
-<div class="section" id="autores-fidel-serrano-victor-hernandez">
-<h2>Autores: Fidel Serrano,Victor Hernandez<a class="headerlink" href="#autores-fidel-serrano-victor-hernandez" title="Enlazar permanentemente con este título">¶</a></h2>
-<p>Qgis 3.6 o superior</p>
+  <div class="section" id="analisis-de-sensibilidad">
+<h1>Analisis de sensibilidad<a class="headerlink" href="#analisis-de-sensibilidad" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Aliquam at turpis lacus. Pellentesque vitae efficitur lacus.
+Proin eu lectus ultrices mauris viverra vehicula. Proin ante justo,
+ultrices eu leo ac, vulputate tristique sapien. Aenean vel enim a elit mollis commodo.
+Proin laoreet quis quam quis auctor. Vestibulum nec nisl pretium, bibendum ligula in,
+suscipit neque. Nunc placerat ac ipsum vel pellentesque. Phasellus lacinia cursus porttitor.
+Donec viverra faucibus nisl, non vestibulum quam posuere sit amet. Nulla a sodales urna.
+Donec vestibulum purus purus, iaculis pellentesque eros cursus quis. Maecenas ac maximus sem.</p>
+<div class="section" id="entrada-de-datos">
+<h2>Entrada de datos<a class="headerlink" href="#entrada-de-datos" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>El usuario debe reemplazar en el código las variables como pesos <strong>w</strong>,
+nombre de los criterios, y  la <strong>ruta</strong> de donde se encuentran las capas
+raster.</p>
+</div>
+<div class="section" id="salida-de-datos">
+<h2>Salida de datos<a class="headerlink" href="#salida-de-datos" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>la variable <strong>p_procesamiento</strong> indica la ruta donde se escribirán las
+capas integradas y el archivo csv que contendrá el análisis de sensibilidad</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dicc</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;criterio_A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.5</span><span class="p">,</span>
+                        <span class="s1">&#39;criterios&#39;</span><span class="p">:{</span><span class="s1">&#39;biologico&#39;</span><span class="p">:{</span><span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.50</span><span class="p">,</span>
+                                                        <span class="s1">&#39;criterios&#39;</span><span class="p">:{</span><span class="s1">&#39;v_acuatica&#39;</span><span class="p">:{</span><span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.16</span><span class="p">,</span><span class="s1">&#39;ruta&#39;</span><span class="p">:</span><span class="s1">&#39;&#39;</span><span class="p">},</span>
+                                                                        <span class="s1">&#39;v_costera&#39;</span><span class="p">:{</span> <span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.84</span><span class="p">,</span><span class="s1">&#39;ruta&#39;</span><span class="p">:</span><span class="s1">&#39;&#39;</span><span class="p">}}},</span>
+                                        <span class="s1">&#39;fisico&#39;</span><span class="p">:{</span><span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.50</span><span class="p">,</span>
+                                                    <span class="s1">&#39;criterios&#39;</span><span class="p">:{</span><span class="s1">&#39;elevacion&#39;</span><span class="p">:{</span> <span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.87</span><span class="p">,</span><span class="s1">&#39;ruta&#39;</span><span class="p">:</span><span class="s1">&#39;&#39;</span><span class="p">},</span>
+                                                                    <span class="s1">&#39;ancho_playa&#39;</span><span class="p">:{</span><span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.13</span><span class="p">,</span><span class="s1">&#39;ruta&#39;</span><span class="p">:</span><span class="s1">&#39;&#39;</span><span class="p">}</span>
+    <span class="p">}}}},</span>
+    <span class="s1">&#39;susceptibilidad&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.5</span><span class="p">,</span>
+                            <span class="s1">&#39;criterios&#39;</span><span class="p">:{</span><span class="s1">&#39;biologico&#39;</span><span class="p">:{</span><span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.50</span> <span class="p">,</span>
+                                                            <span class="s1">&#39;criterios&#39;</span><span class="p">:{</span><span class="s1">&#39;v_costera&#39;</span><span class="p">:{</span> <span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">1.0</span><span class="p">,</span><span class="s1">&#39;ruta&#39;</span><span class="p">:</span><span class="s1">&#39;&#39;</span><span class="p">}}},</span>
+                                            <span class="s1">&#39;fisico&#39;</span><span class="p">:{</span><span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.50</span><span class="p">,</span>
+                                                        <span class="s1">&#39;criterios&#39;</span><span class="p">:{</span><span class="s1">&#39;elevacion&#39;</span><span class="p">:{</span> <span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.26</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="n">ruta</span><span class="s1">&#39;:&#39;&#39; },</span>
+                                                                        <span class="s1">&#39;duna_costera&#39;</span><span class="p">:{</span><span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.10</span><span class="p">,</span><span class="s1">&#39;ruta&#39;</span><span class="p">:</span><span class="s1">&#39;&#39;</span><span class="p">},</span>
+                                                                        <span class="s1">&#39;tipo_litoral&#39;</span><span class="p">:{</span><span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.64</span><span class="p">,</span><span class="s1">&#39;ruta&#39;</span><span class="p">:</span><span class="s1">&#39;&#39;</span><span class="p">},</span>
+    <span class="p">}}}}</span>
+
+    <span class="p">}</span>
+</pre></div>
+</div>
+<span class="target" id="module-sensibilidad"></span><p>Autores: Fidel Serrano,Victor Hernandez</p>
+<p>Qgis 3.4 o superior</p>
 <dl class="function">
 <dt id="sensibilidad.crea_capa">
 <code class="descclassname">sensibilidad.</code><code class="descname">crea_capa</code><span class="sig-paren">(</span><em>ecuacion</em>, <em>rasters_input</em>, <em>salida</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sensibilidad.html#crea_capa"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sensibilidad.crea_capa" title="Enlazar permanentemente con esta definición">¶</a></dt>
@@ -167,8 +209,8 @@ de GDAL, esta función esta limitada hasta 8 variables en la ecuación.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
-<li><strong>ecuacion</strong> (<em>String</em>) – ecuación expresada en formato gdal, es este caso es la salida de la funcion <em>ecuacion_clp</em></li>
-<li><strong>rasters_input</strong> (<em>lista</em>) – lista de los paths de los archivos rasters, salida de la función <a href="#id1"><span class="problematic" id="id2">`</span></a><em>separa_ruta_pesos</em></li>
+<li><strong>ecuacion</strong> (<em>String</em>) – ecuación expresada en formato gdal,                    es este caso es la salida de la funcion <em>ecuacion_clp</em></li>
+<li><strong>rasters_input</strong> (<em>lista</em>) – lista de los paths de los archivos rasters, salida de la función <em>separa_ruta_pesos</em></li>
 <li><strong>salida</strong> (<em>String</em>) – ruta con extensión tiff de la salida</li>
 </ul>
 </td>
@@ -197,12 +239,7 @@ en la estructura requerida por gdal para la combinación lineal ponderada.</p>
 <code class="descclassname">sensibilidad.</code><code class="descname">ecuacion_vulnerabilidad</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sensibilidad.html#ecuacion_vulnerabilidad"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sensibilidad.ecuacion_vulnerabilidad" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Esta función expresa la ecuación para el cálculo de la vulnerabilidad</p>
 <div class="math notranslate nohighlight">
-\[vulnerabilidad = \ (exp^(1 - sus)) ^ (1 + ca)\]</div>
-<div class="line-block">
-<div class="line">exp = Exposición</div>
-<div class="line">sus = Susceptibilidad</div>
-<div class="line">ca = Capacidad adaptativa</div>
-</div>
+\[ \begin{align}\begin{aligned}vulnerabilidad = \exp^{( 1 - sus)^{(1 + ca)}}\\| exp = Exposición\\| sus = Susceptibilidad\\| ca = Capacidad adaptativa\end{aligned}\end{align} \]</div>
 </dd></dl>
 
 <dl class="function">
@@ -316,7 +353,7 @@ Estas listas llevan la ruta y el peso separadados por el carácter «|»</p>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
       
-        <a href="index.html" class="btn btn-neutral float-left" title="Geoprocesamiento en python y qgis’s" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="ejecucion.html" class="btn btn-neutral float-left" title="¿Cómo ejecutar un código en Qgis?" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

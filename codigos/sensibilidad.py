@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
 
 '''
-Análisis de Sensibilidad
-
 Autores: Fidel Serrano,Victor Hernandez
-****************************************
 
-Qgis 3.6 o superior
+
+Qgis 3.4 o superior
 
 '''
 
@@ -23,19 +21,20 @@ def ecuacion_vulnerabilidad(n):
     Esta función expresa la ecuación para el cálculo de la vulnerabilidad
 
     .. math::
-        vulnerabilidad = \ (exp^(1 - sus)) ^ (1 + ca)
+        vulnerabilidad = \exp^{( 1 - sus)^{(1 + ca)}}
 
 
+        | exp = Exposición
 
-    | exp = Exposición
-    | sus = Susceptibilidad
-    | ca = Capacidad adaptativa
+        | sus = Susceptibilidad
+
+        | ca = Capacidad adaptativa
 
     '''
     if n==1:
         ecuacion = 'pow(A,(1-B))'
     if n==2:
-        ecuacion = 'pow(pow(A,(1-B),(1+C))'
+        ecuacion = 'pow(pow(A,(1-B)),(1+C))'
     return ecuacion
 def media_raster(path_raster):
     '''
@@ -74,9 +73,10 @@ def crea_capa(ecuacion,rasters_input,salida):
     Esta función crea una capa mediante la calculadora raster
     de GDAL, esta función esta limitada hasta 8 variables en la ecuación.
 
-    :param ecuacion: ecuación expresada en formato gdal, es este caso es la salida de la funcion *ecuacion_clp*
+    :param ecuacion: ecuación expresada en formato gdal,\
+                    es este caso es la salida de la funcion *ecuacion_clp*
     :type ecuacion: String
-    :param rasters_input: lista de los paths de los archivos rasters, salida de la función `*separa_ruta_pesos*
+    :param rasters_input: lista de los paths de los archivos rasters, salida de la función *separa_ruta_pesos*
     :type rasters_input: lista
     :param salida: ruta con extensión tiff de la salida
     :type salida: String
@@ -456,17 +456,14 @@ for criterio in criterios:
             
     ecuacion_vul_01 =ecuacion_vulnerabilidad(1)
     crea_capa(ecuacion_vul_01,lista_c,salida_vulnerabilidad)
+    
     vulnerabilidad_media = media_raster(salida_vulnerabilidad)
-    sensibilidad_calculada = round((abs((vulnerabilidad_total_media-vulnerabilidad_media))/vulnerabilidad_total_media),3)
-    
-    
-    
     exp_media = media_raster(salida_exposicion)
     sus_media = media_raster(salida_susceptibilidad)
-    #print(exp_media,sus_media)
+    
     sensibilidad_exp_calculada = round((abs((exp_media_total-exp_media))/exp_media_total),3)
     sensibilidad_sus_calculada = round((abs((sus_media_total-sus_media))/sus_media_total),3)
-    #print (criterio,round(exp_media,3),sensibilidad_exp_calculada,round(sus_media,3),sensibilidad_sus_calculada)
+    sensibilidad_calculada = round((abs((vulnerabilidad_total_media-vulnerabilidad_media))/vulnerabilidad_total_media),3)
     archivo2.write(criterio+","+str(exp_media)+","+str(sensibilidad_exp_calculada)+","+str(round(sus_media,3))+","+str(sensibilidad_sus_calculada)+","+str(round(vulnerabilidad_media,3))+","+str(sensibilidad_calculada)+"\n")
     
 
