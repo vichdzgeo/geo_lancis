@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Índice de Módulos Python &mdash; documentación de Geoprocesamiento en python y qgis - 1.0</title>
+  <title>¿Cómo ejecutar un código en Qgis? &mdash; documentación de Geoprocesamiento en python y qgis - 1.0</title>
   
 
   
@@ -26,7 +26,6 @@
         <script type="text/javascript" src="_static/doctools.js"></script>
         <script type="text/javascript" src="_static/language_data.js"></script>
         <script type="text/javascript" src="_static/translations.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -37,13 +36,8 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Índice" href="genindex.html" />
     <link rel="search" title="Búsqueda" href="search.html" />
- 
-
-    <script type="text/javascript">
-      DOCUMENTATION_OPTIONS.COLLAPSE_INDEX = true;
-    </script>
-
-
+    <link rel="next" title="Analisis de sensibilidad" href="analisis.html" />
+    <link rel="prev" title="Geoprocesamiento en python y qgis’s" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -87,12 +81,16 @@
               
             
             
-              <p class="caption"><span class="caption-text">Guias de uso:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="ejecucion.html">¿Cómo ejecutar un código en Qgis?</a></li>
+              <p class="caption"><span class="caption-text">Contenido:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">¿Cómo ejecutar un código en Qgis?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#paso-1">Paso #1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#paso-2">paso #2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#paso-3">paso #3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#paso-4">paso #4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#paso-5">paso #5</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Códigos:</span></p>
-<ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="analisis.html">Analisis de sensibilidad</a></li>
 </ul>
 
@@ -139,10 +137,14 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Índice de Módulos Python</li>
+      <li>¿Cómo ejecutar un código en Qgis?</li>
     
     
       <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/ejecucion.rst.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
     
@@ -154,29 +156,55 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-
-   <h1>Índice de Módulos Python</h1>
-
-   <div class="modindex-jumpbox">
-   <a href="#cap-s"><strong>s</strong></a>
-   </div>
-
-   <table class="indextable modindextable">
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-s"><td></td><td>
-       <strong>s</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="analisis.html#module-sensibilidad"><code class="xref">sensibilidad</code></a></td><td>
-       <em></em></td></tr>
-   </table>
+  <div class="section" id="como-ejecutar-un-codigo-en-qgis">
+<h1>¿Cómo ejecutar un código en Qgis?<a class="headerlink" href="#como-ejecutar-un-codigo-en-qgis" title="Enlazar permanentemente con este título">¶</a></h1>
+<div class="section" id="paso-1">
+<h2>Paso #1<a class="headerlink" href="#paso-1" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Ejecutar Qgis Desktop 3.XX, la ventana que se muestra es la que
+corresponde a la interfaz gráfica del programa, en la barra de tareas
+hacer clic en el ícono correspondiente a <strong>python</strong> para abrir la consola</p>
+<img alt="_images/qgis_interfaz.png" src="_images/qgis_interfaz.png" />
+</div>
+<div class="section" id="paso-2">
+<h2>paso #2<a class="headerlink" href="#paso-2" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>En la parte inferior de la ventana se mostrará la consola de python</p>
+<img alt="_images/consola_pyqgis.png" src="_images/consola_pyqgis.png" />
+</div>
+<div class="section" id="paso-3">
+<h2>paso #3<a class="headerlink" href="#paso-3" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Hacer clic en el ícono de <strong>Editor</strong></p>
+<img alt="_images/consola_editor.png" src="_images/consola_editor.png" />
+</div>
+<div class="section" id="paso-4">
+<h2>paso #4<a class="headerlink" href="#paso-4" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Se despliega en el lado izquierdo un panel, el cual es el editor
+de código, cuenta con una barra de tareas, para abrir un script
+dar clic en el ícono de <strong>abrir archivo</strong></p>
+<img alt="_images/consola_editor_interfaz.png" src="_images/consola_editor_interfaz.png" />
+</div>
+<div class="section" id="paso-5">
+<h2>paso #5<a class="headerlink" href="#paso-5" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Se abrirá una ventana que te permite usar el explorador de archivos
+para navegar y encontrar el archivo <strong>.py</strong>, elegir el script deseado y
+dar clic en abrir.</p>
+<img alt="_images/abrir_script.PNG" src="_images/abrir_script.PNG" />
+</div>
+</div>
 
 
            </div>
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="analisis.html" class="btn btn-neutral float-right" title="Analisis de sensibilidad" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Geoprocesamiento en python y qgis’s" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
