@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Analisis de sensibilidad &mdash; documentación de Geoprocesamiento en python y qgis - 1.0</title>
+  <title>Análisis de sensibilidad &mdash; documentación de Geoprocesamiento en python y qgis - 1.0</title>
   
 
   
@@ -87,9 +87,14 @@
 </ul>
 <p class="caption"><span class="caption-text">Códigos:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Analisis de sensibilidad</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Análisis de sensibilidad</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#entrada-de-datos">Entrada de datos</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#salida-de-datos">Salida de datos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ejemplo">Ejemplo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#insumos">Insumos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#procedimiento">Procedimiento</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -137,7 +142,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Analisis de sensibilidad</li>
+      <li>Análisis de sensibilidad</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -157,7 +162,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="analisis-de-sensibilidad">
-<h1>Analisis de sensibilidad<a class="headerlink" href="#analisis-de-sensibilidad" title="Enlazar permanentemente con este título">¶</a></h1>
+<h1>Análisis de sensibilidad<a class="headerlink" href="#analisis-de-sensibilidad" title="Enlazar permanentemente con este título">¶</a></h1>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 Aliquam at turpis lacus. Pellentesque vitae efficitur lacus.
 Proin eu lectus ultrices mauris viverra vehicula. Proin ante justo,
@@ -166,18 +171,16 @@ Proin laoreet quis quam quis auctor. Vestibulum nec nisl pretium, bibendum ligul
 suscipit neque. Nunc placerat ac ipsum vel pellentesque. Phasellus lacinia cursus porttitor.
 Donec viverra faucibus nisl, non vestibulum quam posuere sit amet. Nulla a sodales urna.
 Donec vestibulum purus purus, iaculis pellentesque eros cursus quis. Maecenas ac maximus sem.</p>
+<p>descarga el código de ejemplo</p>
+<p><a class="reference download internal" download="" href="_downloads/4872728f7eac43319b35383a75c90dcf/sensibilidad.py"><code class="xref download docutils literal notranslate"><span class="pre">sensibilidad.py</span></code></a>.</p>
 <div class="section" id="entrada-de-datos">
 <h2>Entrada de datos<a class="headerlink" href="#entrada-de-datos" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>El usuario debe reemplazar en el código las variables como pesos <strong>w</strong>,
 nombre de los criterios, y  la <strong>ruta</strong> de donde se encuentran las capas
 raster.</p>
-</div>
-<div class="section" id="salida-de-datos">
-<h2>Salida de datos<a class="headerlink" href="#salida-de-datos" title="Enlazar permanentemente con este título">¶</a></h2>
-<p>la variable <strong>p_procesamiento</strong> indica la ruta donde se escribirán las
-capas integradas y el archivo csv que contendrá el análisis de sensibilidad</p>
+<p>ver a partir de la línea 364 en el código de ejemplo</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dicc</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;criterio_A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="s1">&#39;exposicion&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.5</span><span class="p">,</span>
                         <span class="s1">&#39;criterios&#39;</span><span class="p">:{</span><span class="s1">&#39;biologico&#39;</span><span class="p">:{</span><span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.50</span><span class="p">,</span>
                                                         <span class="s1">&#39;criterios&#39;</span><span class="p">:{</span><span class="s1">&#39;v_acuatica&#39;</span><span class="p">:{</span><span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.16</span><span class="p">,</span><span class="s1">&#39;ruta&#39;</span><span class="p">:</span><span class="s1">&#39;&#39;</span><span class="p">},</span>
                                                                         <span class="s1">&#39;v_costera&#39;</span><span class="p">:{</span> <span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.84</span><span class="p">,</span><span class="s1">&#39;ruta&#39;</span><span class="p">:</span><span class="s1">&#39;&#39;</span><span class="p">}}},</span>
@@ -197,6 +200,22 @@ capas integradas y el archivo csv que contendrá el análisis de sensibilidad</p
     <span class="p">}</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="salida-de-datos">
+<h2>Salida de datos<a class="headerlink" href="#salida-de-datos" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>la variable <strong>p_procesamiento</strong> indica la ruta donde se escribirán las
+capas integradas y el archivo csv que contendrá el análisis de sensibilidad</p>
+</div>
+<div class="section" id="ejemplo">
+<h2>Ejemplo<a class="headerlink" href="#ejemplo" title="Enlazar permanentemente con este título">¶</a></h2>
+<div class="section" id="insumos">
+<h3>Insumos<a class="headerlink" href="#insumos" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Descarga los insumos para este ejemplo  <a class="reference download internal" download="" href="_downloads/ff9bbfb1ac01138a89eafeefa05b5d27/insumos.zip"><code class="xref download docutils literal notranslate"><span class="pre">aqui</span></code></a></p>
+</div>
+<div class="section" id="procedimiento">
+<h3>Procedimiento<a class="headerlink" href="#procedimiento" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Abre el código <strong>sensibilidad.py</strong> en Qgis 3.14 o superior,
+Si tienes dudas de como hacerlo visualiza la <a class="reference external" href="https://vichdzgeo.github.io/geo_lancis/ejecucion.html">guia</a></p>
 <span class="target" id="module-sensibilidad"></span><p>Autores: Fidel Serrano,Victor Hernandez</p>
 <p>Qgis 3.4 o superior</p>
 <dl class="function">
@@ -240,6 +259,14 @@ en la estructura requerida por gdal para la combinación lineal ponderada.</p>
 <dd><p>Esta función expresa la ecuación para el cálculo de la vulnerabilidad</p>
 <div class="math notranslate nohighlight">
 \[ \begin{align}\begin{aligned}vulnerabilidad = \exp^{( 1 - sus)^{(1 + ca)}}\\| exp = Exposición\\| sus = Susceptibilidad\\| ca = Capacidad adaptativa\end{aligned}\end{align} \]</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Devuelve:</th><td class="field-body">str ecuacion</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
@@ -341,6 +368,7 @@ susceptibilidad y capacidad adatativa.
 Estas listas llevan la ruta y el peso separadados por el carácter «|»</p>
 </dd></dl>
 
+</div>
 </div>
 </div>
 
