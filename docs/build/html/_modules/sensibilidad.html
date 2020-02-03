@@ -86,7 +86,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Códigos:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../analisis.html">Analisis de sensibilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../analisis.html">Análisis de sensibilidad</a></li>
 </ul>
 
             
@@ -182,6 +182,7 @@
 
 <span class="sd">        | ca = Capacidad adaptativa</span>
 
+<span class="sd">    :returns: str ecuacion</span>
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="k">if</span> <span class="n">n</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
         <span class="n">ecuacion</span> <span class="o">=</span> <span class="s1">&#39;pow(A,(1-B))&#39;</span>
@@ -409,6 +410,7 @@
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="n">exposicion</span><span class="o">=</span><span class="p">[]</span>
     <span class="n">susceptibilidad</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">resiliencia</span><span class="o">=</span><span class="p">[]</span>
     <span class="k">for</span> <span class="n">k1</span><span class="p">,</span> <span class="n">v1</span> <span class="ow">in</span> <span class="n">dicc</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="k">for</span> <span class="n">k2</span><span class="p">,</span> <span class="n">v2</span> <span class="ow">in</span> <span class="n">v1</span><span class="p">[</span><span class="s1">&#39;criterios&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">for</span> <span class="n">k3</span><span class="p">,</span> <span class="n">v3</span> <span class="ow">in</span> <span class="n">v2</span><span class="p">[</span><span class="s1">&#39;criterios&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -418,7 +420,10 @@
                 <span class="k">elif</span> <span class="n">k1</span><span class="o">==</span><span class="s1">&#39;susceptibilidad&#39;</span><span class="p">:</span>
                     <span class="n">susceptibilidad</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v3</span><span class="p">[</span><span class="s1">&#39;ruta&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;|&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">v2</span><span class="p">[</span><span class="s1">&#39;w&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">v3</span><span class="p">[</span><span class="s1">&#39;w&#39;</span><span class="p">]))</span>
                     <span class="c1">#print (k1,k2,v2[&#39;w&#39;],k3,v3[&#39;w&#39;],v3[&#39;ruta&#39;])</span>
-    <span class="k">return</span> <span class="n">exposicion</span><span class="p">,</span><span class="n">susceptibilidad</span></div>
+                <span class="k">elif</span> <span class="n">k1</span><span class="o">==</span><span class="s1">&#39;resiliencia&#39;</span><span class="p">:</span>
+                    <span class="n">resiliencia</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v3</span><span class="p">[</span><span class="s1">&#39;ruta&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;|&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">v2</span><span class="p">[</span><span class="s1">&#39;w&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">v3</span><span class="p">[</span><span class="s1">&#39;w&#39;</span><span class="p">]))</span>
+                    <span class="c1">#print (k1,k2,v2[&#39;w&#39;],k3,v3[&#39;w&#39;],v3[&#39;ruta&#39;])</span>
+    <span class="k">return</span> <span class="n">exposicion</span><span class="p">,</span><span class="n">susceptibilidad</span><span class="p">,</span><span class="n">resiliencia</span></div>
 <div class="viewcode-block" id="quita"><a class="viewcode-back" href="../analisis.html#sensibilidad.quita">[documentos]</a><span class="k">def</span> <span class="nf">quita</span><span class="p">(</span><span class="n">dicc</span><span class="p">,</span><span class="n">key</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Esta función retira un elemento del diccionario y regresa un nuevo diccionario </span>
@@ -508,119 +513,154 @@
         <span class="c1">#print (k1,v1[&#39;w&#39;])</span>
         <span class="n">pesos</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">k1</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span><span class="n">v1</span><span class="p">[</span><span class="s1">&#39;w&#39;</span><span class="p">])])</span>
     <span class="k">return</span> <span class="n">pesos</span> 
-<span class="n">p_sig_exp</span><span class="o">=</span> <span class="s1">&#39;C:/Dropbox (LANCIS)/SIG/desarrollo/sig_papiit/entregables/</span><span class="se">\</span>
-<span class="s1">exposicion/&#39;</span>
-<span class="n">p_sig_sens</span><span class="o">=</span> <span class="s1">&#39;C:/Dropbox (LANCIS)/SIG/desarrollo/sig_papiit/entregables/</span><span class="se">\</span>
-<span class="s1">sensibilidad/&#39;</span>
-<span class="n">p_procesamiento</span> <span class="o">=</span> <span class="s1">&#39;C:/Dropbox (LANCIS)/SIG/desarrollo/sig_papiit/entregables/merida_241019/&#39;</span>
-<span class="n">dicc</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;exposicion&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.5</span><span class="p">,</span>
-                        <span class="s1">&#39;criterios&#39;</span><span class="p">:{</span><span class="s1">&#39;biologico&#39;</span><span class="p">:{</span><span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.50</span><span class="p">,</span>
-                                                        <span class="s1">&#39;criterios&#39;</span><span class="p">:{</span><span class="s1">&#39;v_acuatica&#39;</span><span class="p">:{</span><span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.16</span><span class="p">,</span><span class="s1">&#39;ruta&#39;</span><span class="p">:</span><span class="n">p_sig_exp</span><span class="o">+</span><span class="s1">&#39;biologica/v_acuatica_yuc/fv_v_acuatica_yuc.tif&#39;</span><span class="p">},</span>
-                                                                        <span class="s1">&#39;v_costera&#39;</span><span class="p">:{</span> <span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.84</span><span class="p">,</span><span class="s1">&#39;ruta&#39;</span><span class="p">:</span><span class="n">p_sig_exp</span> <span class="o">+</span> <span class="s1">&#39;biologica/v_costera_yuc/fv_v_costera_distancia_yuc.tif&#39;</span><span class="p">}}},</span>
-                                        <span class="s1">&#39;fisico&#39;</span><span class="p">:{</span><span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.50</span><span class="p">,</span>
-                                                    <span class="s1">&#39;criterios&#39;</span><span class="p">:{</span><span class="s1">&#39;elevacion&#39;</span><span class="p">:{</span> <span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.87</span><span class="p">,</span><span class="s1">&#39;ruta&#39;</span><span class="p">:</span><span class="n">p_sig_exp</span><span class="o">+</span> <span class="s1">&#39;fisica/elev_yuc/fv_elevacion_yuc_v2.tif&#39;</span><span class="p">},</span>
-                                                                    <span class="s1">&#39;ancho_playa&#39;</span><span class="p">:{</span><span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.13</span><span class="p">,</span><span class="s1">&#39;ruta&#39;</span><span class="p">:</span><span class="n">p_sig_exp</span><span class="o">+</span> <span class="s1">&#39;fisica/ancho_playa_yuc/fv_distancia_playa_yuc.tif&#39;</span><span class="p">}</span>
-    <span class="p">}}}},</span>
-    <span class="s1">&#39;susceptibilidad&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.5</span><span class="p">,</span>
-                            <span class="s1">&#39;criterios&#39;</span><span class="p">:{</span><span class="s1">&#39;biologico&#39;</span><span class="p">:{</span><span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.50</span> <span class="p">,</span>
-                                                            <span class="s1">&#39;criterios&#39;</span><span class="p">:{</span><span class="s1">&#39;v_costera&#39;</span><span class="p">:{</span> <span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">1.0</span><span class="p">,</span><span class="s1">&#39;ruta&#39;</span><span class="p">:</span><span class="n">p_sig_sens</span> <span class="o">+</span> <span class="s1">&#39;biologica/v_costera_yuc/fv_v_costera_presencia_yuc.tif&#39;</span><span class="p">}}},</span>
-                                            <span class="s1">&#39;fisico&#39;</span><span class="p">:{</span><span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.50</span><span class="p">,</span>
-                                                        <span class="s1">&#39;criterios&#39;</span><span class="p">:{</span><span class="s1">&#39;elevacion&#39;</span><span class="p">:{</span> <span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.26</span><span class="p">,</span><span class="s1">&#39;ruta&#39;</span><span class="p">:</span><span class="n">p_sig_sens</span> <span class="o">+</span> <span class="s1">&#39;fisica/elev_yuc/fv_elevacion_yuc_v2.tif&#39;</span> <span class="p">},</span>
-                                                                        <span class="s1">&#39;duna_costera&#39;</span><span class="p">:{</span><span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.10</span><span class="p">,</span><span class="s1">&#39;ruta&#39;</span><span class="p">:</span><span class="n">p_sig_sens</span> <span class="o">+</span> <span class="s1">&#39;fisica/duna_yuc/fv_duna_yuc.tif&#39;</span><span class="p">},</span>
-                                                                        <span class="s1">&#39;tipo_litoral&#39;</span><span class="p">:{</span><span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.64</span><span class="p">,</span><span class="s1">&#39;ruta&#39;</span><span class="p">:</span><span class="n">p_sig_sens</span> <span class="o">+</span> <span class="s1">&#39;fisica/t_litoral_yuc/fv_tipo_litoral_yuc.tif&#39;</span><span class="p">},</span>
-    <span class="p">}}}}</span>
-    
-    <span class="p">}</span>
-<span class="c1"># ----- GENERACIÓN DE LAS CAPAS CONSIDERANDO TODOS LOS ELEMENTOS ----- #</span>
-<span class="c1">#pprint.pprint(dicc)</span>
-<span class="n">exposicion_total</span><span class="p">,</span><span class="n">susceptibilidad_total</span> <span class="o">=</span> <span class="n">rutas_pesos_globales</span><span class="p">(</span><span class="n">dicc</span><span class="p">)</span>
-<span class="n">path_exp_t</span><span class="p">,</span><span class="n">w_exp_t</span> <span class="o">=</span> <span class="n">separa_ruta_pesos</span><span class="p">(</span><span class="n">exposicion_total</span><span class="p">)</span>
-<span class="n">path_sus_t</span><span class="p">,</span><span class="n">w_sus_t</span> <span class="o">=</span> <span class="n">separa_ruta_pesos</span><span class="p">(</span><span class="n">susceptibilidad_total</span><span class="p">)</span>
-<span class="n">ecuacion_exp_t</span> <span class="o">=</span> <span class="n">ecuacion_clp</span><span class="p">(</span><span class="n">w_exp_t</span><span class="p">)</span>
-<span class="n">ecuacion_sus_t</span> <span class="o">=</span> <span class="n">ecuacion_clp</span><span class="p">(</span><span class="n">w_sus_t</span><span class="p">)</span>
-<span class="n">salida_exposicion_t</span> <span class="o">=</span> <span class="n">p_procesamiento</span><span class="o">+</span><span class="s2">&quot;tp_exposicion_total.tif&quot;</span>
-<span class="n">salida_susceptibilidad_t</span> <span class="o">=</span> <span class="n">p_procesamiento</span><span class="o">+</span><span class="s2">&quot;tp_susceptibilidad_total.tif&quot;</span>
-<span class="n">salida_vulnerabilidad_t</span><span class="o">=</span> <span class="n">p_procesamiento</span><span class="o">+</span><span class="s2">&quot;tp_vulnerabilidad_total.tif&quot;</span>
-<span class="n">crea_capa</span><span class="p">(</span><span class="n">ecuacion_exp_t</span><span class="p">,</span><span class="n">path_exp_t</span><span class="p">,</span><span class="n">salida_exposicion_t</span><span class="p">)</span>
-<span class="n">crea_capa</span><span class="p">(</span><span class="n">ecuacion_sus_t</span><span class="p">,</span><span class="n">path_sus_t</span><span class="p">,</span><span class="n">salida_susceptibilidad_t</span><span class="p">)</span>
-<span class="n">criterios_sup_t</span> <span class="o">=</span> <span class="n">pesos_superiores</span><span class="p">(</span><span class="n">dicc</span><span class="p">)</span>
-<span class="n">lista_c</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">pesos</span> <span class="o">=</span> <span class="p">[]</span>
 
-<span class="k">for</span> <span class="n">superior</span> <span class="ow">in</span> <span class="n">criterios_sup_t</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">superior</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span><span class="s1">&#39;exposicion&#39;</span><span class="p">:</span>
-        <span class="n">lista_c</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">salida_exposicion_t</span><span class="p">)</span>
-        <span class="n">pesos</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">superior</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-    <span class="k">elif</span> <span class="n">superior</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span><span class="s1">&#39;susceptibilidad&#39;</span><span class="p">:</span>
-        <span class="n">lista_c</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">salida_susceptibilidad_t</span><span class="p">)</span>
-        <span class="n">pesos</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">superior</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">ecuacion_vul_t</span> <span class="o">=</span><span class="n">ecuacion_vulnerabilidad</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">crea_capa</span><span class="p">(</span><span class="n">ecuacion_vul_t</span><span class="p">,</span><span class="n">lista_c</span><span class="p">,</span><span class="n">salida_vulnerabilidad_t</span><span class="p">)</span>
-<span class="n">vulnerabilidad_total_media</span> <span class="o">=</span> <span class="n">media_raster</span><span class="p">(</span><span class="n">salida_vulnerabilidad_t</span><span class="p">)</span>
-<span class="n">exp_media_total</span> <span class="o">=</span> <span class="n">media_raster</span><span class="p">(</span><span class="n">salida_exposicion_t</span><span class="p">)</span>
-<span class="n">sus_media_total</span> <span class="o">=</span> <span class="n">media_raster</span><span class="p">(</span><span class="n">salida_susceptibilidad_t</span><span class="p">)</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">### rutas de entrada y salida</span>
 
+<span class="sd">p_sig_exp= &#39;C:/Dropbox (LANCIS)/CARPETAS_TRABAJO/vhernandez/geo_lancis/analisis_sensibilidad/insumos/\</span>
+<span class="sd">exposicion/&#39;</span>
+<span class="sd">p_sig_sens= &#39;C:/Dropbox (LANCIS)/CARPETAS_TRABAJO/vhernandez/geo_lancis/analisis_sensibilidad/insumos/\</span>
+<span class="sd">sensibilidad/&#39;</span>
+<span class="sd">p_sig_res= &#39;C:/Dropbox (LANCIS)/CARPETAS_TRABAJO/vhernandez/geo_lancis/analisis_sensibilidad/insumos/\</span>
+<span class="sd">resiliencia/&#39;</span>
+<span class="sd">p_procesamiento = &#39;C:/Dropbox (LANCIS)/CARPETAS_TRABAJO/vhernandez/geo_lancis/analisis_sensibilidad/salida/&#39;</span>
+<span class="sd">dicc = {</span>
+<span class="sd">    &#39;exposicion&#39;: {&#39;w&#39;:0.33,</span>
+<span class="sd">                        &#39;criterios&#39;:{&#39;biologico&#39;:{&#39;w&#39;:0.50,</span>
+<span class="sd">                                                        &#39;criterios&#39;:{&#39;v_acuatica&#39;:{&#39;w&#39;:0.16,&#39;ruta&#39;:p_sig_exp+&#39;biologica/v_acuatica_yuc/fv_v_acuatica_yuc.tif&#39;},</span>
+<span class="sd">                                                                        &#39;v_costera&#39;:{ &#39;w&#39;:0.84,&#39;ruta&#39;:p_sig_exp + &#39;biologica/v_costera_yuc/fv_v_costera_distancia_yuc.tif&#39;}}},</span>
+<span class="sd">                                        &#39;fisico&#39;:{&#39;w&#39;:0.50,</span>
+<span class="sd">                                                    &#39;criterios&#39;:{&#39;elevacion&#39;:{ &#39;w&#39;:0.87,&#39;ruta&#39;:p_sig_exp+ &#39;fisica/elev_yuc/fv_elevacion_yuc.tif&#39;},</span>
+<span class="sd">                                                                    &#39;ancho_playa&#39;:{&#39;w&#39;:0.13,&#39;ruta&#39;:p_sig_exp+ &#39;fisica/ancho_playa_yuc/fv_distancia_playa_yuc.tif&#39;}</span>
+<span class="sd">    }}}},</span>
+<span class="sd">    &#39;susceptibilidad&#39;: {&#39;w&#39;:0.33,</span>
+<span class="sd">                            &#39;criterios&#39;:{&#39;biologico&#39;:{&#39;w&#39;:0.50 ,</span>
+<span class="sd">                                                            &#39;criterios&#39;:{&#39;v_costera&#39;:{ &#39;w&#39;:1.0,&#39;ruta&#39;:p_sig_sens + &#39;biologica/v_costera_yuc/fv_v_costera_presencia_yuc.tif&#39;}}},</span>
+<span class="sd">                                            &#39;fisico&#39;:{&#39;w&#39;:0.50,</span>
+<span class="sd">                                                        &#39;criterios&#39;:{&#39;elevacion&#39;:{ &#39;w&#39;:0.26,&#39;ruta&#39;:p_sig_sens + &#39;fisica/elev_yuc/fv_elevacion_yuc_v2.tif&#39; },</span>
+<span class="sd">                                                                        &#39;duna_costera&#39;:{&#39;w&#39;:0.10,&#39;ruta&#39;:p_sig_sens + &#39;fisica/duna_yuc/fv_duna_yuc.tif&#39;},</span>
+<span class="sd">                                                                        &#39;tipo_litoral&#39;:{&#39;w&#39;:0.64,&#39;ruta&#39;:p_sig_sens + &#39;fisica/t_litoral_yuc/fv_tipo_litoral_yuc.tif&#39;}</span>
+<span class="sd">    }}}},</span>
+<span class="sd">    &#39;resiliencia&#39;: {&#39;w&#39;:0.33,</span>
+<span class="sd">                            &#39;criterios&#39;:{&#39;biologico&#39;:{&#39;w&#39;:0.50 ,</span>
+<span class="sd">                                                            &#39;criterios&#39;:{&#39;biodiversidad&#39;:{&#39;w&#39;:0.50,&#39;ruta&#39;:p_sig_res + &#39;biologica/biodiversidad/fv_biodiversidad_yuc.tif&#39;},</span>
+<span class="sd">                                                                            &#39;servicios_ambientales&#39;:{&#39;w&#39;:0.50,&#39;ruta&#39;:p_sig_res + &#39;biologica/serv_ambientales/fv_servicios_ambientales_yuc.tif&#39;}}},</span>
+<span class="sd">                                        &#39;fisico&#39;:{&#39;w&#39;:0.50,</span>
+<span class="sd">                                                        &#39;criterios&#39;:{&#39;ancho_playa&#39;:{&#39;w&#39;:0.62,&#39;ruta&#39;:p_sig_res + &#39;fisica/ancho_playa_yuc/fv_ancho_playa_yuc.tif&#39;},</span>
+<span class="sd">                                                                    &#39;duna_costera&#39;:{&#39;w&#39;:0.27,&#39;ruta&#39;:p_sig_res + &#39;fisica/duna_yuc/fv_duna_yuc.tif&#39;},</span>
+<span class="sd">                                                                    &#39;elevacion&#39;:{&#39;w&#39;:0.06,&#39;ruta&#39;:p_sig_res + &#39;fisica/elev_yuc/fv_elev_yuc.tif&#39;},</span>
+<span class="sd">                                                                    &#39;tipo_litoral&#39;:{&#39;w&#39;:0.05,&#39;ruta&#39;:p_sig_res + &#39;fisica/t_litoral_yuc/fv_tipo_litoral_yuc.tif&#39;}</span>
+<span class="sd">    }}}}</span>
 
+<span class="sd">    }</span>
+<span class="sd"># ----- GENERACIÓN DE LAS CAPAS CONSIDERANDO TODOS LOS ELEMENTOS ----- #</span>
 
-<span class="c1">#---- TERMINA ---#</span>
+<span class="sd">exposicion_total,susceptibilidad_total,resiliencia_total = rutas_pesos_globales(dicc)</span>
+<span class="sd">path_exp_t,w_exp_t = separa_ruta_pesos(exposicion_total)</span>
+<span class="sd">path_sus_t,w_sus_t = separa_ruta_pesos(susceptibilidad_total)</span>
+<span class="sd">path_res_t,w_res_t = separa_ruta_pesos(resiliencia_total)</span>
 
-<span class="c1">#--- ANALISIS DE SENSIBILIDAD ----#</span>
+<span class="sd">ecuacion_exp_t = ecuacion_clp(w_exp_t)</span>
+<span class="sd">ecuacion_sus_t = ecuacion_clp(w_sus_t)</span>
+<span class="sd">ecuacion_res_t = ecuacion_clp(w_res_t)</span>
+
+<span class="sd">salida_exposicion_t = p_procesamiento+&quot;tp_exposicion_total.tif&quot;</span>
+<span class="sd">salida_susceptibilidad_t = p_procesamiento+&quot;tp_susceptibilidad_total.tif&quot;</span>
+<span class="sd">salida_resiliencia_t = p_procesamiento+&quot;tp_resiliencia_total.tif&quot;</span>
 
 
-<span class="n">archivo2</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">p_procesamiento</span><span class="o">+</span><span class="s2">&quot;sensibilidad_criterio_v3.csv&quot;</span><span class="p">,</span><span class="s2">&quot;w&quot;</span><span class="p">)</span>
-<span class="n">archivo2</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;criterio,exp_media,sensibilidad_exp,sus_media,sensibilidad_sus,vulnerabilidad,sensibilidad_vul</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="n">archivo2</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;total,&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">exp_media_total</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span><span class="o">+</span><span class="s2">&quot;,,&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">sus_media_total</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span><span class="o">+</span><span class="s2">&quot;,,&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">vulnerabilidad_total_media</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-    
-<span class="n">criterios</span> <span class="o">=</span> <span class="n">lista_criterios</span><span class="p">(</span><span class="n">dicc</span><span class="p">)</span> <span class="c1">#obtiene criterios del diccionario principal</span>
-<span class="n">cont</span><span class="o">=</span><span class="mi">0</span>
-<span class="k">for</span> <span class="n">criterio</span> <span class="ow">in</span> <span class="n">criterios</span><span class="p">:</span>
-    <span class="n">cont</span> <span class="o">+=</span><span class="mi">1</span>
-    <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;procensado criterio: &quot;</span><span class="p">,</span><span class="n">criterio</span><span class="p">,</span><span class="s2">&quot;  &quot;</span><span class="p">,</span><span class="n">cont</span><span class="p">,</span><span class="s2">&quot;de&quot;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">criterios</span><span class="p">))</span>
-    <span class="n">dicc2</span>  <span class="o">=</span> <span class="n">quita_reescala</span><span class="p">(</span><span class="n">dicc</span><span class="p">,</span><span class="n">criterio</span><span class="p">)</span>
-       
+<span class="sd">crea_capa(ecuacion_exp_t,path_exp_t,salida_exposicion_t)</span>
+<span class="sd">crea_capa(ecuacion_sus_t,path_sus_t,salida_susceptibilidad_t)</span>
+<span class="sd">crea_capa(ecuacion_res_t,path_res_t,salida_resiliencia_t)</span>
 
-    <span class="n">exposicion</span><span class="p">,</span><span class="n">susceptibilidad</span> <span class="o">=</span> <span class="n">rutas_pesos_globales</span><span class="p">(</span><span class="n">dicc2</span><span class="p">)</span> <span class="c1">#separa los subcriterios por criterios</span>
+<span class="sd">## --- Creación de la capa de vulnerabilidad ---##</span>
 
-    <span class="n">path_exp</span><span class="p">,</span><span class="n">w_exp</span> <span class="o">=</span> <span class="n">separa_ruta_pesos</span><span class="p">(</span><span class="n">exposicion</span><span class="p">)</span>
-    <span class="n">path_sus</span><span class="p">,</span><span class="n">w_sus</span> <span class="o">=</span> <span class="n">separa_ruta_pesos</span><span class="p">(</span><span class="n">susceptibilidad</span><span class="p">)</span>
-    <span class="n">ecuacion_exp</span> <span class="o">=</span> <span class="n">ecuacion_clp</span><span class="p">(</span><span class="n">w_exp</span><span class="p">)</span>
-    <span class="n">ecuacion_sus</span> <span class="o">=</span> <span class="n">ecuacion_clp</span><span class="p">(</span><span class="n">w_sus</span><span class="p">)</span>
+<span class="sd">salida_vulnerabilidad_exp_sus= p_procesamiento+&quot;tp_vulnerabilidad_exp_sus.tif&quot;</span>
+<span class="sd">salida_vulnerabilidad_exp_sus_res= p_procesamiento+&quot;tp_vulnerabilidad_exp_sus_res.tif&quot;</span>
 
-    <span class="n">salida_exposicion</span> <span class="o">=</span> <span class="n">p_procesamiento</span><span class="o">+</span><span class="s2">&quot;tp_exposicion_sin_&quot;</span><span class="o">+</span><span class="n">criterio</span><span class="o">+</span><span class="s2">&quot;.tif&quot;</span>
-    <span class="n">salida_susceptibilidad</span> <span class="o">=</span> <span class="n">p_procesamiento</span><span class="o">+</span><span class="s2">&quot;tp_suscep_sin_&quot;</span><span class="o">+</span><span class="n">criterio</span><span class="o">+</span><span class="s2">&quot;.tif&quot;</span>
-    <span class="n">salida_vulnerabilidad</span> <span class="o">=</span> <span class="n">p_procesamiento</span><span class="o">+</span><span class="s2">&quot;tp_vulnerabilidad_sin_&quot;</span><span class="o">+</span><span class="n">criterio</span><span class="o">+</span><span class="s2">&quot;.tif&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">salida_exposicion</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">:],</span><span class="s2">&quot;|&quot;</span><span class="p">,</span><span class="n">salida_susceptibilidad</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">:])</span>
-    <span class="n">crea_capa</span><span class="p">(</span><span class="n">ecuacion_exp</span><span class="p">,</span><span class="n">path_exp</span><span class="p">,</span><span class="n">salida_exposicion</span><span class="p">)</span>
-    <span class="n">crea_capa</span><span class="p">(</span><span class="n">ecuacion_sus</span><span class="p">,</span><span class="n">path_sus</span><span class="p">,</span><span class="n">salida_susceptibilidad</span><span class="p">)</span>
-    
-    <span class="n">criterios_sup</span> <span class="o">=</span> <span class="n">pesos_superiores</span><span class="p">(</span><span class="n">dicc2</span><span class="p">)</span>
-    <span class="n">lista_c</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">pesos</span> <span class="o">=</span> <span class="p">[]</span>
-    
-    <span class="k">for</span> <span class="n">superior</span> <span class="ow">in</span> <span class="n">criterios_sup</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">superior</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span><span class="s1">&#39;exposicion&#39;</span><span class="p">:</span>
-            <span class="n">lista_c</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">salida_exposicion</span><span class="p">)</span>
-            <span class="n">pesos</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">superior</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-        <span class="k">elif</span> <span class="n">superior</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span><span class="s1">&#39;susceptibilidad&#39;</span><span class="p">:</span>
-            <span class="n">lista_c</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">salida_susceptibilidad</span><span class="p">)</span>
-            <span class="n">pesos</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">superior</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-            
-    <span class="n">ecuacion_vul_01</span> <span class="o">=</span><span class="n">ecuacion_vulnerabilidad</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">crea_capa</span><span class="p">(</span><span class="n">ecuacion_vul_01</span><span class="p">,</span><span class="n">lista_c</span><span class="p">,</span><span class="n">salida_vulnerabilidad</span><span class="p">)</span>
-    
-    <span class="n">vulnerabilidad_media</span> <span class="o">=</span> <span class="n">media_raster</span><span class="p">(</span><span class="n">salida_vulnerabilidad</span><span class="p">)</span>
-    <span class="n">exp_media</span> <span class="o">=</span> <span class="n">media_raster</span><span class="p">(</span><span class="n">salida_exposicion</span><span class="p">)</span>
-    <span class="n">sus_media</span> <span class="o">=</span> <span class="n">media_raster</span><span class="p">(</span><span class="n">salida_susceptibilidad</span><span class="p">)</span>
-    
-    <span class="n">sensibilidad_exp_calculada</span> <span class="o">=</span> <span class="nb">round</span><span class="p">((</span><span class="nb">abs</span><span class="p">((</span><span class="n">exp_media_total</span><span class="o">-</span><span class="n">exp_media</span><span class="p">))</span><span class="o">/</span><span class="n">exp_media_total</span><span class="p">),</span><span class="mi">3</span><span class="p">)</span>
-    <span class="n">sensibilidad_sus_calculada</span> <span class="o">=</span> <span class="nb">round</span><span class="p">((</span><span class="nb">abs</span><span class="p">((</span><span class="n">sus_media_total</span><span class="o">-</span><span class="n">sus_media</span><span class="p">))</span><span class="o">/</span><span class="n">sus_media_total</span><span class="p">),</span><span class="mi">3</span><span class="p">)</span>
-    <span class="n">sensibilidad_calculada</span> <span class="o">=</span> <span class="nb">round</span><span class="p">((</span><span class="nb">abs</span><span class="p">((</span><span class="n">vulnerabilidad_total_media</span><span class="o">-</span><span class="n">vulnerabilidad_media</span><span class="p">))</span><span class="o">/</span><span class="n">vulnerabilidad_total_media</span><span class="p">),</span><span class="mi">3</span><span class="p">)</span>
-    <span class="n">archivo2</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">criterio</span><span class="o">+</span><span class="s2">&quot;,&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">exp_media</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;,&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">sensibilidad_exp_calculada</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;,&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">sus_media</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span><span class="o">+</span><span class="s2">&quot;,&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">sensibilidad_sus_calculada</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;,&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">vulnerabilidad_media</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span><span class="o">+</span><span class="s2">&quot;,&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">sensibilidad_calculada</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-    
+<span class="sd">lista_exp_sus = [salida_exposicion_t,salida_susceptibilidad_t]</span>
+<span class="sd">lista_exp_sus_res = [salida_exposicion_t,salida_susceptibilidad_t,salida_resiliencia_t]</span>
+<span class="sd">ecuacion_exp_sus =ecuacion_vulnerabilidad(1)</span>
+<span class="sd">ecuacion_exp_sus_res =ecuacion_vulnerabilidad(2)</span>
+
+<span class="sd">crea_capa(ecuacion_exp_sus,lista_exp_sus,salida_vulnerabilidad_exp_sus)</span>
+<span class="sd">crea_capa(ecuacion_exp_sus_res,lista_exp_sus_res,salida_vulnerabilidad_exp_sus_res)</span>
+
+<span class="sd">vulnerabilidad_total_media = media_raster(salida_vulnerabilidad_exp_sus_res)</span>
+<span class="sd">exp_media_total = media_raster(salida_exposicion_t)</span>
+<span class="sd">sus_media_total = media_raster(salida_susceptibilidad_t)</span>
+<span class="sd">res_media_total = media_raster(salida_resiliencia_t)</span>
 
 
-<span class="n">archivo2</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="sd">#---- TERMINA ---#</span>
+
+<span class="sd">#--- ANALISIS DE SENSIBILIDAD ----#</span>
+
+
+<span class="sd">archivo = open(p_procesamiento+&quot;sensibilidad_por_criterio.csv&quot;,&quot;w&quot;)</span>
+<span class="sd">archivo.write(&quot;criterio,exp_media,sensibilidad_exp,sus_media,sensibilidad_sus,res_media,sensibilidad_res,vulnerabilidad,sensibilidad_vul\n&quot;)</span>
+<span class="sd">archivo.write(&quot;total,&quot;+str(round(exp_media_total,3))+&quot;,,&quot;+str(round(sus_media_total,3))+&quot;,,&quot;+str(round(res_media_total,3))+&quot;,,&quot;+str(round(vulnerabilidad_total_media,3))+&quot;\n&quot;)</span>
+<span class="sd">    </span>
+<span class="sd">criterios = lista_criterios(dicc) #obtiene criterios del diccionario principal</span>
+<span class="sd">cont=0</span>
+<span class="sd">for criterio in criterios:</span>
+<span class="sd">    cont +=1</span>
+<span class="sd">    print (&quot;procensado criterio: &quot;,criterio,&quot;  &quot;,cont,&quot;de&quot;,len(criterios))</span>
+<span class="sd">    dicc2  = quita_reescala(dicc,criterio)</span>
+<span class="sd">       </span>
+
+<span class="sd">    exposicion,susceptibilidad,resiliencia = rutas_pesos_globales(dicc2) #separa los subcriterios por criterios</span>
+
+<span class="sd">    path_exp,w_exp = separa_ruta_pesos(exposicion)</span>
+<span class="sd">    path_sus,w_sus = separa_ruta_pesos(susceptibilidad)</span>
+<span class="sd">    path_res,w_res = separa_ruta_pesos(resiliencia)</span>
+
+<span class="sd">    ecuacion_exp = ecuacion_clp(w_exp)</span>
+<span class="sd">    ecuacion_sus = ecuacion_clp(w_sus)</span>
+<span class="sd">    ecuacion_res = ecuacion_clp(w_res)</span>
+
+<span class="sd">    salida_exposicion = p_procesamiento+&quot;tp_exposicion_sin_&quot;+criterio+&quot;.tif&quot;</span>
+<span class="sd">    salida_susceptibilidad = p_procesamiento+&quot;tp_suscep_sin_&quot;+criterio+&quot;.tif&quot;</span>
+<span class="sd">    salida_resiliencia = p_procesamiento+&quot;tp_resilencia_sin_&quot;+criterio+&quot;.tif&quot;</span>
+
+<span class="sd">    salida_vulnerabilidad = p_procesamiento+&quot;tp_vulnerabilidad_sin_&quot;+criterio+&quot;.tif&quot;</span>
+<span class="sd">    print(salida_exposicion.split(&quot;/&quot;)[-1:],&quot;|&quot;,salida_susceptibilidad.split(&quot;/&quot;)[-1:])</span>
+<span class="sd">    crea_capa(ecuacion_exp,path_exp,salida_exposicion)</span>
+<span class="sd">    crea_capa(ecuacion_sus,path_sus,salida_susceptibilidad)</span>
+<span class="sd">    crea_capa(ecuacion_res,path_res,salida_resiliencia)</span>
+<span class="sd">        </span>
+<span class="sd">    ## --- Creación de la capa de vulnerabilidad --- ##</span>
+
+<span class="sd">    lista_c = [salida_exposicion,salida_susceptibilidad,salida_resiliencia]</span>
+<span class="sd">    ecuacion_vul_01 =ecuacion_vulnerabilidad(2)</span>
+<span class="sd">    crea_capa(ecuacion_vul_01,lista_c,salida_vulnerabilidad)</span>
+
+<span class="sd">    ## --- Promedios de los productos ---- ## </span>
+<span class="sd">    vulnerabilidad_media = media_raster(salida_vulnerabilidad)</span>
+<span class="sd">    exp_media = media_raster(salida_exposicion)</span>
+<span class="sd">    sus_media = media_raster(salida_susceptibilidad)</span>
+<span class="sd">    res_media = media_raster(salida_resiliencia)</span>
+<span class="sd">    </span>
+<span class="sd">    ##---  Cálculo de la sensibilidad ---##</span>
+<span class="sd">    sensibilidad_exp_calculada = round((abs((exp_media_total-exp_media))/exp_media_total),3)</span>
+<span class="sd">    sensibilidad_sus_calculada = round((abs((sus_media_total-sus_media))/sus_media_total),3)</span>
+<span class="sd">    sensibilidad_res_calculada = round((abs((res_media_total-res_media))/res_media_total),3)</span>
+<span class="sd">    sensibilidad_calculada = round((abs((vulnerabilidad_total_media-vulnerabilidad_media))/vulnerabilidad_total_media),3)</span>
+<span class="sd">    archivo.write(criterio+&quot;,&quot;+\</span>
+<span class="sd">                    str(exp_media)+&quot;,&quot;+\</span>
+<span class="sd">                    str(sensibilidad_exp_calculada)+&quot;,&quot;+\</span>
+<span class="sd">                    str(round(sus_media,3))+&quot;,&quot;+\</span>
+<span class="sd">                    str(sensibilidad_sus_calculada)+&quot;,&quot;+\</span>
+<span class="sd">                    str(round(res_media,3))+&quot;,&quot;+\</span>
+<span class="sd">                    str(sensibilidad_res_calculada)+&quot;,&quot;+\</span>
+<span class="sd">                    str(round(vulnerabilidad_media,3))+&quot;,&quot;+\</span>
+<span class="sd">                    str(sensibilidad_calculada)+&quot;\n&quot;)</span>
+<span class="sd">    </span>
+
+
+<span class="sd">archivo.close()</span>
+<span class="sd">&#39;&#39;&#39;</span>
 </pre></div>
 
            </div>

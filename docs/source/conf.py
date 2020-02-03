@@ -23,13 +23,13 @@ sys.path.insert(0, 'C:/OSGEO4~1/apps/qgis/bin')
 sys.path.insert(0, 'C:/OSGEO4~1/apps/Python37/lib/site-packages') # en esta se ecuenta pyqt5.core
 sys.path.insert(0, 'C:/OSGEO4~1/apps/qgis-dev/python')   #en esta se encuentra el modulo qgis
 sys.path.insert(0, 'C:/OSGEO4~1/apps/qgis-dev/python/plugins')
-
+sys.path.insert(0, 'C:/OSGEO4~1/share/proj')
 #*************comentadas pero no eliminadas *****************
 # sys.path.insert(0, 'C:/OSGEO4~1')
 # sys.path.insert(0, 'C:/OSGEO4~1/apps/Python37')
 # sys.path.insert(0, 'C:/Program Files/MiKTeX 2.9/miktex/bin')
 # sys.path.insert(0, 'C:/OSGEO4~1/apps/Python37/lib/site-packages/numpy/.libs')
-# sys.path.insert(0, 'C:/OSGEO4~1/share/proj')
+
 # sys.path.insert(0, 'C:/OSGEO4~1/share/gdal')
 # sys.path.insert(0, 'C:/OSGEO4~1/bin')
 # sys.path.insert(0, 'C:/OSGEO4~1/apps/Python37/lib/site-packages/pythonwin')

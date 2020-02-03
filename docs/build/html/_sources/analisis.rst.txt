@@ -1,4 +1,4 @@
-Analisis de sensibilidad
+Análisis de sensibilidad
 #############################
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
@@ -10,6 +10,9 @@ suscipit neque. Nunc placerat ac ipsum vel pellentesque. Phasellus lacinia cursu
 Donec viverra faucibus nisl, non vestibulum quam posuere sit amet. Nulla a sodales urna. 
 Donec vestibulum purus purus, iaculis pellentesque eros cursus quis. Maecenas ac maximus sem.
 
+descarga el código de ejemplo 
+
+:download:`sensibilidad.py <../../codigos/sensibilidad.py>`.
 
 Entrada de datos
 *******************
@@ -19,16 +22,12 @@ nombre de los criterios, y  la **ruta** de donde se encuentran las capas
 raster.
 
 
-Salida de datos
-******************
-
-la variable **p_procesamiento** indica la ruta donde se escribirán las 
-capas integradas y el archivo csv que contendrá el análisis de sensibilidad
+ver a partir de la línea 364 en el código de ejemplo
 
 .. code-block:: python
 
     dicc = {
-        'criterio_A': {'w':0.5,
+        'exposicion': {'w':0.5,
                             'criterios':{'biologico':{'w':0.50,
                                                             'criterios':{'v_acuatica':{'w':0.16,'ruta':''},
                                                                             'v_costera':{ 'w':0.84,'ruta':''}}},
@@ -46,6 +45,36 @@ capas integradas y el archivo csv que contendrá el análisis de sensibilidad
         }}}}
         
         }
+
+Salida de datos
+******************
+
+la variable **p_procesamiento** indica la ruta donde se escribirán las 
+capas integradas y el archivo csv que contendrá el análisis de sensibilidad
+
+
+Ejemplo
+*********
+
+
+Insumos 
+========
+
+Descarga los insumos para este ejemplo  :download:`aqui <../../analisis_sensibilidad/insumos/insumos.zip>`
+
+
+Procedimiento
+================
+
+Abre el código **sensibilidad.py** en Qgis 3.14 o superior, 
+Si tienes dudas de como hacerlo visualiza la guia_
+
+.. _guia: https://vichdzgeo.github.io/geo_lancis/ejecucion.html
+
+
+
+
+
 
 
 .. automodule:: sensibilidad
