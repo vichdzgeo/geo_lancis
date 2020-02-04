@@ -362,7 +362,7 @@ def pesos_superiores(dicc):
         pesos.append([k1,str(v1['w'])])
     return pesos 
 
-
+'''
 ### rutas de entrada y salida
 
 p_sig_exp= 'C:/Dropbox (LANCIS)/SIG/desarrollo/sig_papiit/entregables/\
@@ -508,3 +508,4 @@ for criterio in criterios:
 
 
 archivo.close()
+'''
