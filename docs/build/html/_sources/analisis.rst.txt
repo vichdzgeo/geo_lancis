@@ -72,10 +72,28 @@ Si tienes dudas de como hacerlo visualiza la guia_
 .. _guia: https://vichdzgeo.github.io/geo_lancis/ejecucion.html
 
 
+Modificar las rutas donde se encuentran los insumos y 
+elegir una carpeta en donde se escribiran los resultados 
+
+.. image:: ../../analisis_sensibilidad/images/modificar_paths.PNG
 
 
 
+El tiempo de ejecución del código en este ejemplo es de 10 minutos. 
+al finalizar se mostrará la consola de la siguiente manera:
 
+.. image:: ../../analisis_sensibilidad/images/fin_ejecucion.PNG
+
+
+el archivo csv de salida que contiene los datos es el siguiente:
+
+  .. csv-table:: Tabla de prueba
+      :file: ../../analisis_sensibilidad/salida/sensibilidad_por_criterio.csv
+      :header-rows: 1
+
+
+Documentación del código
+**************************
 
 .. automodule:: sensibilidad
     :members:

@@ -362,16 +362,16 @@ def pesos_superiores(dicc):
         pesos.append([k1,str(v1['w'])])
     return pesos 
 
-'''
+
 ### rutas de entrada y salida
 
-p_sig_exp= 'C:/Dropbox (LANCIS)/CARPETAS_TRABAJO/vhernandez/geo_lancis/analisis_sensibilidad/insumos/\
+p_sig_exp= 'C:/Dropbox (LANCIS)/SIG/desarrollo/sig_papiit/entregables/\
 exposicion/'
-p_sig_sens= 'C:/Dropbox (LANCIS)/CARPETAS_TRABAJO/vhernandez/geo_lancis/analisis_sensibilidad/insumos/\
+p_sig_sens= 'C:/Dropbox (LANCIS)/SIG/desarrollo/sig_papiit/entregables/\
 sensibilidad/'
-p_sig_res= 'C:/Dropbox (LANCIS)/CARPETAS_TRABAJO/vhernandez/geo_lancis/analisis_sensibilidad/insumos/\
+p_sig_res= 'C:/Dropbox (LANCIS)/SIG/desarrollo/sig_papiit/entregables/\
 resiliencia/'
-p_procesamiento = 'C:/Dropbox (LANCIS)/CARPETAS_TRABAJO/vhernandez/geo_lancis/analisis_sensibilidad/salida/'
+p_procesamiento = 'C:/Dropbox (LANCIS)/SIG/desarrollo/sig_papiit/entregables/finales/'
 dicc = {
     'exposicion': {'w':0.33,
                         'criterios':{'biologico':{'w':0.50,
@@ -385,7 +385,7 @@ dicc = {
                             'criterios':{'biologico':{'w':0.50 ,
                                                             'criterios':{'v_costera':{ 'w':1.0,'ruta':p_sig_sens + 'biologica/v_costera_yuc/fv_v_costera_presencia_yuc.tif'}}},
                                             'fisico':{'w':0.50,
-                                                        'criterios':{'elevacion':{ 'w':0.26,'ruta':p_sig_sens + 'fisica/elev_yuc/fv_elevacion_yuc_v2.tif' },
+                                                        'criterios':{'elevacion':{ 'w':0.26,'ruta':p_sig_sens + 'fisica/elev_yuc/fv_elevacion_yuc.tif' },
                                                                         'duna_costera':{'w':0.10,'ruta':p_sig_sens + 'fisica/duna_yuc/fv_duna_yuc.tif'},
                                                                         'tipo_litoral':{'w':0.64,'ruta':p_sig_sens + 'fisica/t_litoral_yuc/fv_tipo_litoral_yuc.tif'}
     }}}},
@@ -508,4 +508,3 @@ for criterio in criterios:
 
 
 archivo.close()
-'''

@@ -95,6 +95,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#procedimiento">Procedimiento</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#module-sensibilidad">Documentación del código</a></li>
 </ul>
 </li>
 </ul>
@@ -216,7 +217,198 @@ capas integradas y el archivo csv que contendrá el análisis de sensibilidad</p
 <h3>Procedimiento<a class="headerlink" href="#procedimiento" title="Enlazar permanentemente con este título">¶</a></h3>
 <p>Abre el código <strong>sensibilidad.py</strong> en Qgis 3.14 o superior,
 Si tienes dudas de como hacerlo visualiza la <a class="reference external" href="https://vichdzgeo.github.io/geo_lancis/ejecucion.html">guia</a></p>
-<span class="target" id="module-sensibilidad"></span><p>Autores: Fidel Serrano,Victor Hernandez</p>
+<p>Modificar las rutas donde se encuentran los insumos y
+elegir una carpeta en donde se escribiran los resultados</p>
+<img alt="_images/modificar_paths.PNG" src="_images/modificar_paths.PNG" />
+<p>El tiempo de ejecución del código en este ejemplo es de 10 minutos.
+al finalizar se mostrará la consola de la siguiente manera:</p>
+<img alt="_images/fin_ejecucion.PNG" src="_images/fin_ejecucion.PNG" />
+<p>el archivo csv de salida que contiene los datos es el siguiente:</p>
+<blockquote>
+<div><table border="1" class="docutils" id="id1">
+<caption><span class="caption-text">Tabla de prueba</span><a class="headerlink" href="#id1" title="Enlace permanente a esta tabla">¶</a></caption>
+<colgroup>
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">criterio</th>
+<th class="head">exp_media</th>
+<th class="head">sensibilidad_exp</th>
+<th class="head">sus_media</th>
+<th class="head">sensibilidad_sus</th>
+<th class="head">res_media</th>
+<th class="head">sensibilidad_res</th>
+<th class="head">vulnerabilidad</th>
+<th class="head">sensibilidad_vul</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>total</td>
+<td>0.791</td>
+<td>&#160;</td>
+<td>0.212</td>
+<td>&#160;</td>
+<td>0.224</td>
+<td>&#160;</td>
+<td>0.789</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>v_acuatica</td>
+<td>0.769</td>
+<td>0.028</td>
+<td>0.212</td>
+<td>0.0</td>
+<td>0.224</td>
+<td>0.0</td>
+<td>0.766</td>
+<td>0.029</td>
+</tr>
+<tr class="row-even"><td>v_costera</td>
+<td>0.907</td>
+<td>0.147</td>
+<td>0.282</td>
+<td>0.33</td>
+<td>0.224</td>
+<td>0.0</td>
+<td>0.909</td>
+<td>0.152</td>
+</tr>
+<tr class="row-odd"><td>elevacion</td>
+<td>0.76</td>
+<td>0.039</td>
+<td>0.255</td>
+<td>0.203</td>
+<td>0.217</td>
+<td>0.031</td>
+<td>0.773</td>
+<td>0.02</td>
+</tr>
+<tr class="row-even"><td>ancho_playa</td>
+<td>0.796</td>
+<td>0.006</td>
+<td>0.212</td>
+<td>0.0</td>
+<td>0.265</td>
+<td>0.183</td>
+<td>0.786</td>
+<td>0.004</td>
+</tr>
+<tr class="row-odd"><td>v_costera</td>
+<td>0.907</td>
+<td>0.147</td>
+<td>0.282</td>
+<td>0.33</td>
+<td>0.224</td>
+<td>0.0</td>
+<td>0.909</td>
+<td>0.152</td>
+</tr>
+<tr class="row-even"><td>elevacion</td>
+<td>0.76</td>
+<td>0.039</td>
+<td>0.255</td>
+<td>0.203</td>
+<td>0.217</td>
+<td>0.031</td>
+<td>0.773</td>
+<td>0.02</td>
+</tr>
+<tr class="row-odd"><td>duna_costera</td>
+<td>0.791</td>
+<td>0.0</td>
+<td>0.227</td>
+<td>0.071</td>
+<td>0.233</td>
+<td>0.04</td>
+<td>0.79</td>
+<td>0.001</td>
+</tr>
+<tr class="row-even"><td>tipo_litoral</td>
+<td>0.791</td>
+<td>0.0</td>
+<td>0.084</td>
+<td>0.604</td>
+<td>0.207</td>
+<td>0.076</td>
+<td>0.769</td>
+<td>0.025</td>
+</tr>
+<tr class="row-odd"><td>biodiversidad</td>
+<td>0.791</td>
+<td>0.0</td>
+<td>0.212</td>
+<td>0.0</td>
+<td>0.224</td>
+<td>0.0</td>
+<td>0.79</td>
+<td>0.001</td>
+</tr>
+<tr class="row-even"><td>servicios_ambientales</td>
+<td>0.791</td>
+<td>0.0</td>
+<td>0.212</td>
+<td>0.0</td>
+<td>0.224</td>
+<td>0.0</td>
+<td>0.787</td>
+<td>0.003</td>
+</tr>
+<tr class="row-odd"><td>ancho_playa</td>
+<td>0.796</td>
+<td>0.006</td>
+<td>0.212</td>
+<td>0.0</td>
+<td>0.265</td>
+<td>0.183</td>
+<td>0.786</td>
+<td>0.004</td>
+</tr>
+<tr class="row-even"><td>duna_costera</td>
+<td>0.791</td>
+<td>0.0</td>
+<td>0.227</td>
+<td>0.071</td>
+<td>0.233</td>
+<td>0.04</td>
+<td>0.79</td>
+<td>0.001</td>
+</tr>
+<tr class="row-odd"><td>elevacion</td>
+<td>0.76</td>
+<td>0.039</td>
+<td>0.255</td>
+<td>0.203</td>
+<td>0.217</td>
+<td>0.031</td>
+<td>0.773</td>
+<td>0.02</td>
+</tr>
+<tr class="row-even"><td>tipo_litoral</td>
+<td>0.791</td>
+<td>0.0</td>
+<td>0.084</td>
+<td>0.604</td>
+<td>0.207</td>
+<td>0.076</td>
+<td>0.769</td>
+<td>0.025</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="module-sensibilidad">
+<span id="documentacion-del-codigo"></span><h2>Documentación del código<a class="headerlink" href="#module-sensibilidad" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Autores: Fidel Serrano,Victor Hernandez</p>
 <p>Qgis 3.4 o superior</p>
 <dl class="function">
 <dt id="sensibilidad.crea_capa">
@@ -368,7 +560,6 @@ susceptibilidad y capacidad adatativa.
 Estas listas llevan la ruta y el peso separadados por el carácter «|»</p>
 </dd></dl>
 
-</div>
 </div>
 </div>
 
