@@ -87,9 +87,9 @@ al finalizar se mostrará la consola de la siguiente manera:
 
 el archivo csv de salida que contiene los datos es el siguiente:
 
-  .. csv-table:: Tabla de prueba
-      :file: ../../analisis_sensibilidad/salida/sensibilidad_por_criterio.csv
-      :header-rows: 1
+.. csv-table:: Analisis de sensibilidad
+    :file: ../../analisis_sensibilidad/salida/sensibilidad_por_criterio.csv
+    :header-rows: 1
 
 
 Documentación del código
