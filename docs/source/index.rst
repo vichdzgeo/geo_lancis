@@ -7,13 +7,13 @@ Geoprocesamiento en python y qgis's
 =============================================================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Guias de uso:
     
    ejecucion
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Códigos:
     
    analisis
@@ -21,9 +21,9 @@ Geoprocesamiento en python y qgis's
 
 
 
-Indices and tables
-==================
+.. Indices and tables
+.. ==================
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+.. * :ref:`genindex`
+.. * :ref:`modindex`
+.. * :ref:`search`
