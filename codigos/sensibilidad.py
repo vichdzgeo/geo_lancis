@@ -25,9 +25,7 @@ def ecuacion_vulnerabilidad(n):
 
 
         | exp = Exposición
-
         | sus = Susceptibilidad
-
         | ca = Capacidad adaptativa
 
     :returns: str ecuacion
