@@ -95,5 +95,5 @@ el archivo csv de salida que contiene los datos es el siguiente:
 Documentación del código
 **************************
 
-.. automodule:: sensibilidad
-    :members:
+.. .. automodule:: sensibilidad
+..     :members:
