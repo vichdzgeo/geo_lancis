@@ -24,6 +24,7 @@ sys.path.insert(0, 'C:/OSGEO4~1/apps/Python37/lib/site-packages') # en esta se e
 sys.path.insert(0, 'C:/OSGEO4~1/apps/qgis-dev/python')   #en esta se encuentra el modulo qgis
 sys.path.insert(0, 'C:/OSGEO4~1/apps/qgis-dev/python/plugins')
 sys.path.insert(0, 'C:/OSGEO4~1/share/proj')
+sys.path.insert(0, 'C:/osgeo4~1/apps/python37/lib/site-packages/pyqt5')
 #*************comentadas pero no eliminadas *****************
 # sys.path.insert(0, 'C:/OSGEO4~1')
 # sys.path.insert(0, 'C:/OSGEO4~1/apps/Python37')

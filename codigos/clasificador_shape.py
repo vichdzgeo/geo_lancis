@@ -123,6 +123,8 @@ def asignar_estilo(campo, l, cortes=[0, 0.062, 0.125, 0.25, 0.5, 1.0]):
     l.setRenderer(myRenderer)
     #QgsProject.instance().addMapLayer(layer)
     l.triggerRepaint()
+    
+
 def valores(areas):
     valores = []
     for k,v in areas.items():
@@ -134,30 +136,33 @@ def valores(areas):
 layer = iface.activeLayer()
 
 campos = [field.name() for field in layer.fields()][2:13]
-campos = ['FP10', 'FP11', 'FP12', 'FP13', 'FP14', 'FP15', 'FP16', 'FP17', 'FP18', 'FP19', 'FP20']
-lista_fp = [1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2.0]
-n=0
-archivo=open("C:/Dropbox (LANCIS)/CARPETAS_TRABAJO/vhernandez/geo_lancis/clasificacion_significancia/salida/areas_ha_neutral_v3.csv","w")
-categorias_txt = ['MB','B','M','A','E']
-archivo.write("campo,"+",".join(categorias_txt)+"\n")
-for campo in campos:
-    print ("procesando campo:  ",campo)
-#print (campo,lista_fp[n])
-    n_campo = "cat_"+ campo
-    rango_wf = webber2(lista_fp[n])
-    
-    clasificar_campo(layer,rango_wf,campo,n_campo)
-    areas = areas_categorias(layer,n_campo)
-    value =valores(areas)
-    archivo.write(campo+","+value+"\n")
-    print (rango_wf,lista_fp[n])
-    n+=1
-    
-archivo.close()
+campos = ['fp11', 'fp12', 'fp13', 'fp14', 'fp15', 'fp16', 'fp17', 'fp18', 'fp19', 'fp20']
+lista_fp = [1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2.0]
+#n=0
+#archivo=open("C:/Dropbox (LANCIS)/CARPETAS_TRABAJO/vhernandez/geo_lancis/clasificacion_significancia/salida/w/areas_ha_matrizSliderO.csv","w")
+#categorias_txt = ['MB','B','M','A','E']
+#archivo.write("campo,"+",".join(categorias_txt)+"\n")
+#for campo in campos:
+#    print ("procesando campo:  ",campo)
+##print (campo,lista_fp[n])
+#    n_campo = "cat_"+ campo
+#    rango_wf = weber_fechner(lista_fp[n])
+#    
+#    clasificar_campo(layer,rango_wf,campo,n_campo)
+#    areas = areas_categorias(layer,n_campo)
+#    value =valores(areas)
+#    archivo.write(campo+","+value+"\n")
+#    print (rango_wf,lista_fp[n])
+#    n+=1
+#    
+#archivo.close()
 
 # para asignar el estilo de color 
-#rango_wf = webber2(1)
-#asignar_estilo('fp20',layer,rango_wf)
+fp =1.5
+rango_wf = weber_fechner(fp)
+#campo_s = 'fp'+str(fp).replace(".","")
+campo_s = '_vul'
+asignar_estilo(campo_s,layer,rango_wf)
 #
 #
 

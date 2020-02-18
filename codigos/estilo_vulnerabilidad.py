@@ -157,7 +157,7 @@ def rampa_raster_fv(layer):
 
 layer =qgis.utils.iface.activeLayer()    
 ## para vulnerabilidad o capas integradas
-fp=1.8
+fp=1.1
 categorias=5
 minimo,maximo=raster_min_max(layer)
 lista_val = wf(fp)
