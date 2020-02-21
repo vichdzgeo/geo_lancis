@@ -1,4 +1,9 @@
+import numpy as np 
 import pandas as pd 
+import time 
+from functools import reduce
+from osgeo import gdal
+from osgeo import gdal_array
 
 
 def owa(df,a,w,alpha=1):
@@ -26,7 +31,7 @@ def owa(df,a,w,alpha=1):
                     #print (c,k)
                     rango.append(k)
     
-#    print (rango)
+
     ### Cálculo de OWA 
     df_o = df.sort_values(a,ascending=False).copy()
     u= [] #lista de pesos ordenados
@@ -37,10 +42,7 @@ def owa(df,a,w,alpha=1):
     for index, row in df_o.iterrows():
         u.append(row[w])
         z.append(row[a])
-#    print("pesos ordenados")
-#    print (u)
-#    print("valores ordenados")
-#    print(z)
+
     for i in range(len(u)):
         sumauk = 0
         sumauk1= 0 
@@ -91,19 +93,11 @@ def owa(df,a,w,alpha=1):
         for no in rango:
            vj.append(1/len(rango))
            
-        
-    
-    
+
     
     ## Calculo de Orness
-    
-    
-    
+        
     v_orness=[]
-    #print('matriz vj')
-    #print(vj)
-    #print(sum(vj))
-
     for a,b in zip(rango,vj):
         #print (a,b)
         o = ((len(rango)- a) / (len(rango)-1))*b
@@ -122,24 +116,88 @@ def owa(df,a,w,alpha=1):
     
     return v_owa#,orness, tradeoff
 
-df = pd.DataFrame({'j':[1,2,3,4,5],
-                    'a':[0.1,0.0,0.6,0.8,0.3],
-                    'w':[0.07,0.27,0.33,0.13,0.20]},
-                    columns=['j','a','w'])                      
-#df = pd.DataFrame({'j':[1,2,3,4],
-#                    'a':[0.6,0.3,0.2,0.9],
-#                    'w':[0.1,0.5,0.3,0.1]},
-#                    columns=['j','a','w']) 
-#
-#w=[0.08,0.42,0.065,0.435]
-#a= [0.016439,0.989936,0.000396,1.0]
-#df = pd.DataFrame({'j':[1,2,3,4],
-#                    'a':a,
-#                    'w':w},
-#                    columns=['j','a','w'])    
+def owa_df(v,w,alpha=1):
+    no_criterios =len(w)
+    j = [x for x in range(1,no_criterios+1)]
+    df = pd.DataFrame({'j':j,
+                    'a':v,
+                    'w':w},
+                    columns=['j','a','w']) 
+    
+    valor = owa(df,'a','w',alpha)
+    return valor
+
+
+
+def juntar(left, right):
+  return pd.merge(left, right, on='id', how='outer')
+
+
+def raster_to_df(path_r):
+
+    raster = gdal.Open(path_r)
+    band1 =raster.GetRasterBand(1).ReadAsArray()
+    dimesion = band1.shape
+    nodata_r = band1.min()
+    band1 = np.ma.masked_equal(band1, nodata_r)
+    ind = ['r'+str(x) for x in range(dimesion[0])]
+    col = ['c'+str(x) for x in range(dimesion[1])]
+
+    df_r = pd.DataFrame(band1,index=ind,columns=col)
+    print(df_r)
 
 
 
 
-valor_owa = owa(df,'a','w',alpha=1000)
-print (valor_owa)
+path_r = "C:/Dropbox (LANCIS)/SIG/desarrollo/sig_papiit/entregables/exposicion/biologica/v_acuatica_yuc/fv_v_acuatica_yuc.tif"
+
+#raster_to_matrix(path_r)
+raster = gdal.Open(path_r)
+proyeccion = raster.GetProjection()
+geotransform = raster.GetGeoTransform()
+origenxy=(geotransform[0], geotransform[3])
+pixel = (geotransform[1], geotransform[5])
+
+band1 =raster.GetRasterBand(1).ReadAsArray()
+dimension = band1.shape
+nodata_r = band1.min()
+band1 = np.ma.masked_equal(band1, nodata_r)
+ind = [x for x in range(dimesion[0])]
+col = [x for x in range(dimesion[1])]
+
+
+
+df_r = pd.DataFrame(band1,index=ind,columns=col)
+
+# print(df_r)
+dr_r_long = df_r.unstack().reset_index()
+dim_long = len(dr_r_long)
+dr_r_long['id']=[x for x in range(dim_long)]
+dr_r_long.rename(columns={0:'r1'}, inplace=True)
+dr_r_long.rename(columns={'level_0':'col_r1'}, inplace=True)
+dr_r_long.rename(columns={'level_1':'ren_r1'}, inplace=True)
+
+## Esto es para voltear la capa
+dr_r_wide = dr_r_long.pivot(index='ren_r1',columns='col_r1',values='r1')
+
+arra = dr_r_wide.to_numpy()
+## Esto es para escribir la capa 
+
+from osgeo import osr
+dst_filename="C:/CursoDjango/export.tif"
+
+
+fileformat = "GTiff"
+driver = gdal.GetDriverByName(fileformat)
+dst_ds = driver.Create(dst_filename, xsize=dimension[1], ysize=dimension[0],
+                    bands=1, eType=gdal.GDT_Float32)
+                    
+dst_ds.SetGeoTransform(geotransform)
+srs = osr.SpatialReference()
+srs.SetUTM(16, 1)
+srs.SetWellKnownGeogCS("WGS84")
+dst_ds.SetProjection(srs.ExportToWkt())
+
+dst_ds.GetRasterBand(1).WriteArray(arra)
+# Once we're done, close properly the dataset
+dst_ds = None
