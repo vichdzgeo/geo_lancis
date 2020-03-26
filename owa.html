@@ -1,0 +1,588 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="es" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="es" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>OWA &mdash; documentación de Geoprocesamiento en python y qgis - 1.0</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="prev" title="Índice Lee-Sallee" href="leesallee.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Geoprocesamiento en python y qgis
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Guias de uso:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ejecucion.html">¿Cómo ejecutar un código en Qgis?</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Códigos:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="analisis.html">Análisis de sensibilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="leesallee.html">Índice Lee-Sallee</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">OWA</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#requerimientos-generales">Requerimientos generales</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#requerimientos-generales-de-los-insumos">Requerimientos generales de los insumos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ejemplo">Ejemplo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#insumos">Insumos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#procedimiento">Procedimiento</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#abre-el-codigo">1. Abre el código</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rellena-el-diccionario">2. Rellena el diccionario</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#indica-la-capa-maestra">3. Indica la capa maestra</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#declara-el-epgs">4. Declara el EPGS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#indica-el-direcctorio-de-salida">5. Indica el direcctorio de salida</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#verifica-las-variables-asociadas-a-la-funcion-insumos-base">6. Verifica las variables asociadas a la funcion <strong>insumos_base</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#indica-los-valores-de-alpha">7. Indica los valores de alpha</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#verificar-que-todo-este-correcto-en-la-funcion-genera-owa">8. Verificar que todo este correcto en la función genera_owa</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-owa_raster">Documentación dentro del código</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Geoprocesamiento en python y qgis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>OWA</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/owa.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="owa">
+<h1>OWA<a class="headerlink" href="#owa" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>descarga el código de ejemplo</p>
+<p><a class="reference download internal" download="" href="_downloads/05d169dc5c8ec67d6ee750a2274071e4/owa_raster.py"><code class="xref download docutils literal notranslate"><span class="pre">owa_raster.py</span></code></a>.</p>
+<div class="section" id="requerimientos-generales">
+<h2>Requerimientos generales<a class="headerlink" href="#requerimientos-generales" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Para asegurar la ejeución correcta del código es importante
+garantizar la instalación y funcionamiento de los siguientes elementos:</p>
+<ul class="simple">
+<li>Qgis y librerias de Osgeo4W 3.4 o superior</li>
+<li>librerias python:</li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li>Numpy</li>
+<li>Pandas</li>
+<li>GDAL</li>
+<li>reduce</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="requerimientos-generales-de-los-insumos">
+<h2>Requerimientos generales de los insumos<a class="headerlink" href="#requerimientos-generales-de-los-insumos" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Es importante que todas las capas raster cumplan con las siguientes condiciones</p>
+<ul class="simple">
+<li>Misma proyección cartográfica</li>
+<li>Mismo tamaño de pixel</li>
+<li>Misma extensión de capa</li>
+</ul>
+</div>
+<div class="section" id="ejemplo">
+<h2>Ejemplo<a class="headerlink" href="#ejemplo" title="Enlazar permanentemente con este título">¶</a></h2>
+<div class="section" id="insumos">
+<h3>Insumos<a class="headerlink" href="#insumos" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Descarga los insumos para este ejemplo <a class="reference download internal" download="" href="_downloads/1f2f2f36cdbf1a9af7eff96a0c743b45/"><code class="xref download docutils literal notranslate"><span class="pre">aqui</span></code></a></p>
+</div>
+<div class="section" id="procedimiento">
+<h3>Procedimiento<a class="headerlink" href="#procedimiento" title="Enlazar permanentemente con este título">¶</a></h3>
+<div class="section" id="abre-el-codigo">
+<h4>1. Abre el código<a class="headerlink" href="#abre-el-codigo" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>Abre el código <strong>owa_raster.py</strong> en Qgis 3.4 o superior,
+Si tienes dudas de como hacerlo visualiza la <a class="reference external" href="https://vichdzgeo.github.io/geo_lancis/ejecucion.html">guia</a></p>
+<img alt="_images/codigo.PNG" src="_images/codigo.PNG" />
+</div>
+<div class="section" id="rellena-el-diccionario">
+<h4>2. Rellena el diccionario<a class="headerlink" href="#rellena-el-diccionario" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>Las capas raster de entrada y sus respectivos pesos son ingresados
+a la función mediante un diccionario, es importante seguir la
+estructura como el siguiente ejemplo:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dicc_capas</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;capa_1&#39;</span><span class="p">:{</span><span class="s1">&#39;ruta&#39;</span><span class="p">:</span><span class="n">path_insumos</span> <span class="o">+</span><span class="s2">&quot;biologica/v_acuatica_yuc/fv_v_acuatica_yuc.tif&quot;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.08</span><span class="p">},</span>
+        <span class="s1">&#39;capa_2&#39;</span><span class="p">:{</span><span class="s1">&#39;ruta&#39;</span><span class="p">:</span><span class="n">path_insumos</span> <span class="o">+</span><span class="s2">&quot;biologica/v_costera_yuc/fv_v_costera_distancia_yuc.tif&quot;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.42</span><span class="p">},</span>
+        <span class="s1">&#39;capa_3&#39;</span><span class="p">:{</span><span class="s1">&#39;ruta&#39;</span><span class="p">:</span><span class="n">path_insumos</span> <span class="o">+</span><span class="s2">&quot;fisica/ancho_playa_yuc/fv_distancia_playa_yuc.tif&quot;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.065</span><span class="p">},</span>
+        <span class="s1">&#39;capa_4&#39;</span><span class="p">:{</span><span class="s1">&#39;ruta&#39;</span><span class="p">:</span><span class="n">path_insumos</span> <span class="o">+</span><span class="s2">&quot;fisica/elev_yuc/fv_elevacion_yuc.tif&quot;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.435</span><span class="p">},</span>
+        <span class="p">}</span>
+</pre></div>
+</div>
+<p>Dónde:</p>
+<ul class="simple">
+<li><strong>capa_#</strong>:  corresponde a la capa conforme van agregandose al diccionario,</li>
+<li><strong>ruta</strong> : Corresponde a la ruta o path del la capa raster</li>
+<li><strong>w</strong> : Corresponde al peso asociado a esa capa o criterio</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p>Si desea agregar una capa adicional la línea quedaria de la siguiente forma,
+donde se tiene que agregar el consecutivo a la llave de la capa, en este caso
+capa_5.</p>
+<p class="last">“capa_5”:{“ruta”:path_tiff,”w”:#.###},
+}</p>
+</div>
+</div>
+<div class="section" id="indica-la-capa-maestra">
+<h4>3. Indica la capa maestra<a class="headerlink" href="#indica-la-capa-maestra" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>El código transforma los datos tiff en arreglos matriciales
+es por ello que se requiere asociar cualquier capa de los insumos
+a la variable <strong>path_capa_maestra</strong>, una vez calculado
+owa para cierto alpha, el arreglo matricial tiene que transformarse
+en un archivo tiff</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">path_capa_maestra</span> <span class="o">=</span> <span class="s2">&quot;../../*.tif&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="declara-el-epgs">
+<h4>4. Declara el EPGS<a class="headerlink" href="#declara-el-epgs" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>Es el código de referencia geoespacial que Indica
+la proyección y el datum asociados a la capa, este código
+tiene que ser el mismo de los insumos, declara el código
+en la variable <strong>EPSG</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">EPSG</span> <span class="o">=</span> <span class="mi">32616</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="indica-el-direcctorio-de-salida">
+<h4>5. Indica el direcctorio de salida<a class="headerlink" href="#indica-el-direcctorio-de-salida" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>El código genera una capa para cada alpha dado, estos
+son nombrados automaticamente con el valor del alpha,
+es por ello que solo se tiene que indicar el directorio de
+salida.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">path_salida</span> <span class="o">=</span> <span class="s2">&quot;../../&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="verifica-las-variables-asociadas-a-la-funcion-insumos-base">
+<h4>6. Verifica las variables asociadas a la funcion <strong>insumos_base</strong><a class="headerlink" href="#verifica-las-variables-asociadas-a-la-funcion-insumos-base" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>la función <strong>insumos_base</strong> recibe como parametro el diccionario
+de capas y pesos, es por ello que tienes que asegurarte de que el
+nombre del diccionario coincida con el que recibe la función.</p>
+<p>Esta función regresa una lista de dataframes de las capas y una lista
+de pesos, por default se llaman <strong>capas</strong> y <strong>w</strong> respectivamente</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">capas</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">insumos_base</span><span class="p">(</span><span class="n">dicc_capas</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="indica-los-valores-de-alpha">
+<h4>7. Indica los valores de alpha<a class="headerlink" href="#indica-los-valores-de-alpha" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>El código esta programado para recibir una
+lista de valores de alpha y con ella, generar
+un mapa por cada alpha declarado en dicha lista.
+los valores de alpha son declarados en la variable
+<strong>owa_alphas</strong>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">owa_alphas</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0001</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">10.0</span><span class="p">,</span><span class="mf">1000.0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="verificar-que-todo-este-correcto-en-la-funcion-genera-owa">
+<h4>8. Verificar que todo este correcto en la función genera_owa<a class="headerlink" href="#verificar-que-todo-este-correcto-en-la-funcion-genera-owa" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>La función <strong>genera_owa</strong> es la encargada de recibir
+las variables declaradas</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">genera_owa</span><span class="p">(</span><span class="n">capas</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">owa_alphas</span><span class="p">,</span><span class="n">path_capa_maestra</span><span class="p">,</span><span class="n">EPSG</span><span class="p">,</span><span class="n">path_salida</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="module-owa_raster">
+<span id="documentacion-dentro-del-codigo"></span><h2>Documentación dentro del código<a class="headerlink" href="#module-owa_raster" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="function">
+<dt id="owa_raster.array_to_raster">
+<code class="descclassname">owa_raster.</code><code class="descname">array_to_raster</code><span class="sig-paren">(</span><em>array</em>, <em>path_salida</em>, <em>dimension</em>, <em>geotransform</em>, <em>EPSG</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/owa_raster.html#array_to_raster"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#owa_raster.array_to_raster" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Esta función transforma una arreglo matricial en un archivo 
+tiff</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
+<li><strong>array</strong> (<em>numpy array</em>) – arreglo matricial</li>
+<li><strong>path_salida</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(en Python versión 3.8)"><em>str</em></a>) – ruta con nombre salida del archivo tiff</li>
+<li><strong>dimension</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(en Python versión 3.8)"><em>list</em></a>) – lista con valores de numero de columnas y renglones</li>
+<li><strong>geotransform</strong> (<em>gdal object</em>) – datos de rotación, coordenadas y tamaño de pixel</li>
+<li><strong>EPSG</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(en Python versión 3.8)"><em>int</em></a>) – Identificador de Referencia Espacial</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="owa_raster.calculo_owa">
+<code class="descclassname">owa_raster.</code><code class="descname">calculo_owa</code><span class="sig-paren">(</span><em>df</em>, <em>w</em>, <em>alpha=0.5</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/owa_raster.html#calculo_owa"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#owa_raster.calculo_owa" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Esta función aplica al dataframe de salida de la función 
+insumo_owa la función owa_df, dada una lista de valores,
+lista de pesos y un valor de alpha.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>df</strong> (<em>pandas dataframe</em>) – dataframe de salida de la función insumo_owa</li>
+<li><strong>w</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(en Python versión 3.8)"><em>list</em></a>) – Lista de pesos</li>
+<li><strong>alpha</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(en Python versión 3.8)"><em>float</em></a>) – Valor de alpha</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Devuelve:</th><td class="field-body"><p class="first">nombre del campo, dataframe que contiene el valor de owa para el alpha dado</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Tipo del valor devuelto:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(en Python versión 3.8)">str</a>, pandas data frame</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="owa_raster.genera_owa">
+<code class="descclassname">owa_raster.</code><code class="descname">genera_owa</code><span class="sig-paren">(</span><em>capas</em>, <em>w</em>, <em>owa_alpha</em>, <em>path_capa_maestra</em>, <em>EPSG</em>, <em>ruta_salida</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/owa_raster.html#genera_owa"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#owa_raster.genera_owa" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Esta función calcula OWA, dada una lista de capas, pesos y lista de valores de
+alpha, para cada alpha dada generará una capa.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
+<li><strong>capas</strong> (<em>pandas.core.frame.DataFrame</em>) – lista de dataframes, salida de la funcion insumos_base</li>
+<li><strong>w</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(en Python versión 3.8)"><em>list</em></a>) – lista de pesos, salida de la función insumos_base</li>
+<li><strong>owa_alpha</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(en Python versión 3.8)"><em>list</em></a>) – lista de valores de alpha</li>
+<li><strong>path_capa_maestra</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(en Python versión 3.8)"><em>str</em></a>) – path de la capa en formato tiff</li>
+<li><strong>EPSG</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(en Python versión 3.8)"><em>int</em></a>) – Identificador de Referencia Espacial</li>
+<li><strong>ruta_salida</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(en Python versión 3.8)"><em>str</em></a>) – Directorio de salida de las capas</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="owa_raster.insumo_owa">
+<code class="descclassname">owa_raster.</code><code class="descname">insumo_owa</code><span class="sig-paren">(</span><em>capas</em>, <em>pesos</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/owa_raster.html#insumo_owa"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#owa_raster.insumo_owa" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Esta función junta todas las capas en un solo dataframe
+,la salida de esta función tiene asociado un id que conserva desde el origen
+y una columna v que contiene una lista de los valores de capa pixel.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>capas</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(en Python versión 3.8)"><em>list</em></a>) – lista de dataframes</li>
+<li><strong>pesos</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(en Python versión 3.8)"><em>list</em></a>) – lista de pesos</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Devuelve:</th><td class="field-body"><p class="first">data frame que contiene los valores de los pixeles en una lista</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Tipo del valor devuelto:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><p class="first last">pandas data frame</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="owa_raster.insumos_base">
+<code class="descclassname">owa_raster.</code><code class="descname">insumos_base</code><span class="sig-paren">(</span><em>dicc</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/owa_raster.html#insumos_base"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#owa_raster.insumos_base" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Esta función recibe un diccionario y regresa una
+lista de data frames y una lista de pesos</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><strong>dicc</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(en Python versión 3.8)"><em>dict</em></a>) – Diccionario con la estructura solicitada</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Devuelve:</th><td class="field-body">un lista de dataframes (capas) y una lista de pesos (w)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Tipo del valor devuelto:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(en Python versión 3.8)">list</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="owa_raster.juntar">
+<code class="descclassname">owa_raster.</code><code class="descname">juntar</code><span class="sig-paren">(</span><em>left</em>, <em>right</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/owa_raster.html#juntar"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#owa_raster.juntar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Función que junda dos dataframes a partir de la columna “id”</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>left</strong> (<em>pandas dataframe</em>) – Dataframe A</li>
+<li><strong>right</strong> (<em>pandas dataframe</em>) – Dataframe B</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Devuelve:</th><td class="field-body"><p class="first">df unido</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Tipo del valor devuelto:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><p class="first last">pandas dataframe</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="owa_raster.owa">
+<code class="descclassname">owa_raster.</code><code class="descname">owa</code><span class="sig-paren">(</span><em>df</em>, <em>a</em>, <em>w</em>, <em>alpha=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/owa_raster.html#owa"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#owa_raster.owa" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Esta función calcula OWA dado un dataframe y un valor de alpha</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>df</strong> (<em>Pandas data frame</em>) – Data frame que contiene una columna de valores (a) y otra de pesos (w)</li>
+<li><strong>a</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(en Python versión 3.8)"><em>str</em></a>) – Nombre de la columna de los valores</li>
+<li><strong>w</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(en Python versión 3.8)"><em>str</em></a>) – Nombre de la columna de los pesos</li>
+<li><strong>alpha</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(en Python versión 3.8)"><em>float</em></a>) – Valor de alpha</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Devuelve:</th><td class="field-body"><p class="first">valor de owa</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Tipo del valor devuelto:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(en Python versión 3.8)">float</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="owa_raster.owa_df">
+<code class="descclassname">owa_raster.</code><code class="descname">owa_df</code><span class="sig-paren">(</span><em>v</em>, <em>w</em>, <em>alpha=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/owa_raster.html#owa_df"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#owa_raster.owa_df" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Esta función recibe una lista de valores, pesos y valor de alfa, los agrega 
+a un dataframe que es ingresado a la función owa para calcular el valor</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>v</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(en Python versión 3.8)"><em>list</em></a>) – lista de valores</li>
+<li><strong>w</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(en Python versión 3.8)"><em>list</em></a>) – lista de pesos</li>
+<li><strong>alpha</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(en Python versión 3.8)"><em>float</em></a>) – valor de alpha</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Devuelve:</th><td class="field-body"><p class="first">valor de OWA</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Tipo del valor devuelto:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(en Python versión 3.8)">float</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="owa_raster.raster_to_df">
+<code class="descclassname">owa_raster.</code><code class="descname">raster_to_df</code><span class="sig-paren">(</span><em>path_r</em>, <em>no_capa=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/owa_raster.html#raster_to_df"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#owa_raster.raster_to_df" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Esta función tranfoma una capa raster de formato tiff a
+un  pandas dataframe</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>path_r</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(en Python versión 3.8)"><em>str</em></a>) – ruta del archivo .tiff</li>
+<li><strong>no_capa</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(en Python versión 3.8)"><em>int</em></a>) – numero de capa ascendiente en el diccionario</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Devuelve:</th><td class="field-body"><p class="first">pandas dataframe con un id asociado</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Tipo del valor devuelto:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><p class="first last">pandas.core.frame.DataFrame</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="leesallee.html" class="btn btn-neutral float-left" title="Índice Lee-Sallee" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Víctor Hernández
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

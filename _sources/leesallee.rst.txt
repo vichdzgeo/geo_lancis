@@ -26,7 +26,7 @@ Descarga los insumos para este ejemplo :download:`aqui <../../lee_sallee/insumos
 
 Procedimiento
 ==============
-Abre el código **indice_lee_sallee.py** en Qgis 3.14 o superior, 
+Abre el código **indice_lee_sallee.py** en Qgis 3.4 o superior, 
 Si tienes dudas de como hacerlo visualiza la guia_
 
 .. _guia: https://vichdzgeo.github.io/geo_lancis/ejecucion.html

@@ -37,6 +37,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Índice" href="genindex.html" />
     <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="OWA" href="owa.html" />
     <link rel="prev" title="Análisis de sensibilidad" href="analisis.html" /> 
 </head>
 
@@ -96,6 +97,7 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="owa.html">OWA</a></li>
 </ul>
 
             
@@ -178,7 +180,7 @@ ultrices eu leo ac, vulputate tristique sapien. Aenean vel enim a elit mollis co
 </div>
 <div class="section" id="procedimiento">
 <h3>Procedimiento<a class="headerlink" href="#procedimiento" title="Enlazar permanentemente con este título">¶</a></h3>
-<p>Abre el código <strong>indice_lee_sallee.py</strong> en Qgis 3.14 o superior,
+<p>Abre el código <strong>indice_lee_sallee.py</strong> en Qgis 3.4 o superior,
 Si tienes dudas de como hacerlo visualiza la <a class="reference external" href="https://vichdzgeo.github.io/geo_lancis/ejecucion.html">guia</a></p>
 <p>Modifica las rutas donde se encuentran los insumos</p>
 <ul class="simple">
@@ -196,17 +198,53 @@ Si tienes dudas de como hacerlo visualiza la <a class="reference external" href=
 </div></blockquote>
 <p>rac{Acap B}{Acup B}</p>
 <blockquote>
-<div><p>param vlayer_base: vector base
-type vlayer_base: QgsVectorLayer</p>
-<p>param vlayer_model: Vector modelo 
-type vlayer_model: QgsVectorLayer</p>
-<p>param campo_categoria: Nombre del campo que tiene las categorias
-type campo_categoria: String</p>
-<p>param categoria: Número de categoria
-type categoria: int</p>
-<p>param id: nombre del campo identificador
-type id: String</p>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">param vlayer_base:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">vector base</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">type vlayer_base:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">QgsVectorLayer</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">param vlayer_model:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Vector modelo</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">type vlayer_model:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">QgsVectorLayer</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">param campo_categoria:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Nombre del campo que tiene las categorias</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">type campo_categoria:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">String</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">param categoria:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Número de categoria</td>
+</tr>
+<tr class="field-even field"><th class="field-name">type categoria:</th><td class="field-body">int</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">param id:</th><td class="field-body">nombre del campo identificador</td>
+</tr>
+<tr class="field-even field"><th class="field-name">type id:</th><td class="field-body">String</td>
+</tr>
+</tbody>
+</table>
 </div></blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="indice_lee_sallee.lista_shp">
+<code class="descclassname">indice_lee_sallee.</code><code class="descname">lista_shp</code><span class="sig-paren">(</span><em>path_carpeta</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/indice_lee_sallee.html#lista_shp"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#indice_lee_sallee.lista_shp" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><strong>path_carpeta</strong> (<em>String</em>) – ruta que contiene los archivos shape a procesar</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>
@@ -220,6 +258,8 @@ type id: String</p>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="owa.html" class="btn btn-neutral float-right" title="OWA" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="analisis.html" class="btn btn-neutral float-left" title="Análisis de sensibilidad" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
