@@ -1,3 +1,4 @@
 {
-    "restructuredtext.confPath": "${workspaceFolder}"
+    "restructuredtext.confPath": "${workspaceFolder}",
+    "python.pythonPath": "C:\\Miniconda3\\envs\\parallel\\python.exe"
 }

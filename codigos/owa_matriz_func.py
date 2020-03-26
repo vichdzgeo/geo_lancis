@@ -3,7 +3,8 @@ import pandas as pd
 import time 
 from functools import reduce
 from osgeo import gdal
-from osgeo import gdal_array
+from osgeo import osr
+
 
 def matrix_base(path_r):
     no_capa=1
@@ -27,28 +28,28 @@ def matrix_base(path_r):
 
 def owa(df,a,w,alpha=1):
     ## calculo del rango 
-    wj=[]
-    for index, row in df.iterrows():
-        wj.append(row[w])
+    # wj=[]
+    # for index, row in df.iterrows():
+    #     wj.append(row[w])
     
-    rango_i =sorted(wj) #los pesos ordenados de menor a mayor 
-    #print(rango_i)
-    rango_dicc ={} # diccionario de pesos 
-    total = len(rango_i) #total de elementos en la lista de rango_i
-    rango=[] #lista donde se almacena el orden segun su importancia  donde 1 es más importante y n el menos importante 
-    for r in rango_i:
-        rango_dicc[total]=r
-        total-=1
+    # rango_i =sorted(wj) #los pesos ordenados de menor a mayor 
+    # #print(rango_i)
+    # rango_dicc ={} # diccionario de pesos 
+    # total = len(rango_i) #total de elementos en la lista de rango_i
+    # rango=[] #lista donde se almacena el orden segun su importancia  donde 1 es más importante y n el menos importante 
+    # for r in rango_i:
+    #     rango_dicc[total]=r
+    #     total-=1
   
-    for c in wj:
-        condicion =0
-        for k,v in rango_dicc.items():
+    # for c in wj:
+    #     condicion =0
+    #     for k,v in rango_dicc.items():
             
-            if not condicion==1 and k not in rango:
-                if c==v:
-                    condicion+=1
-                    #print (c,k)
-                    rango.append(k)
+    #         if not condicion==1 and k not in rango:
+    #             if c==v:
+    #                 condicion+=1
+    #                 #print (c,k)
+    #                 rango.append(k)
     
 
     ### Cálculo de OWA 
@@ -84,56 +85,60 @@ def owa(df,a,w,alpha=1):
     for i in range(len(u)):
         vj.append((uk[i]-uk1[i])) #peso de orden 
         pre_owa.append(round((uk[i]-uk1[i])*z[i],3))
-    v_owa =round(sum(pre_owa),3)
+    v_owa =sum(pre_owa)
 
-    #### Temporal para seleccion de escenarios 
+    # #### Temporal para seleccion de escenarios 
     
-    minimo = min(rango)
-    maximo = max(rango)
+    # # minimo = min(rango)
+    # # maximo = max(rango)
+    # minimo = 1
+    # maximo = len(rango)
+
+
+    # if alpha < 0.0002:
+    #     vj=[]
+    #     for no in rango:
+    #         if no==minimo:
+    #             vj.append(1)
+    #         else:
+    #             vj.append(0)
+
+    # if alpha > 25:
+    #     vj=[]
+    #     for no in rango:
+    #         if no==maximo:
+    #             vj.append(1)
+    #         else:
+    #             vj.append(0)
+
+    # if alpha == 1:
+    #     vj=[]
+    #     for no in rango:
+    #        vj.append(1/len(rango))
     
-    if alpha < 0.0002:
-        vj=[]
-        for no in rango:
-            if no==minimo:
-                vj.append(1)
-            else:
-                vj.append(0)
-
-    if alpha > 25:
-        vj=[]
-        for no in rango:
-            if no==maximo:
-                vj.append(1)
-            else:
-                vj.append(0)
-
-    if alpha == 1:
-        vj=[]
-        for no in rango:
-           vj.append(1/len(rango))
-           
+    # Funciona pero por ahora no se ocupa   
 
     
-    ## Calculo de Orness
+    # ## Calculo de Orness
         
-    v_orness=[]
-    for a,b in zip(rango,vj):
-        #print (a,b)
-        o = ((len(rango)- a) / (len(rango)-1))*b
-        v_orness.append(o)
-    orness = round(sum(v_orness),3)
+    # v_orness=[]
+    # for a,b in zip(rango,vj):
+    #     #print (a,b)
+    #     o = ((len(rango)- a) / (len(rango)-1))*b
+    #     v_orness.append(o)
+    # orness = round(sum(v_orness),3)
     
-    ## Cálculo de tradeoff
-    v_tradeoff=[]
+    # ## Cálculo de tradeoff
+    # v_tradeoff=[]
    
-    for a in vj:
-        t = pow((a - ( 1 / len(rango) )) , 2) / (len(rango)-1)
-        v_tradeoff.append(t)
+    # for a in vj:
+    #     t = pow((a - ( 1 / len(rango) )) , 2) / (len(rango)-1)
+    #     v_tradeoff.append(t)
         
-    tradeoff = round((1 - pow(len(rango) * sum(v_tradeoff),0.5)),3)
+    # tradeoff = round((1 - pow(len(rango) * sum(v_tradeoff),0.5)),3)
 
     
-    return v_owa#,orness, tradeoff
+    return v_owa #,orness, tradeoff
 
 def owa_df(v,w,alpha=1):
     no_criterios =len(w)
@@ -206,63 +211,32 @@ def insumo_owa(capas,pesos):
 
 def calculo_owa(df,pesos,owa=0.5):
     campo_owa = 'owa_'+str(owa).replace(".","")
-    df[campo_owa] = df.apply(lambda x: owa_df(x['v'],w,owa),axis=1)
+    df[campo_owa] = df.v.apply(lambda x: owa_df(x,w,owa))
 
     df_owa=df.filter(['id',campo_owa])
     
     return campo_owa,df_owa
     
-    
-
-
-path_r = "C:/Dropbox (LANCIS)/SIG/desarrollo/sig_papiit/entregables/exposicion/biologica/v_acuatica_yuc/fv_v_acuatica_yuc.tif"
-path_r2 ="C:/Dropbox (LANCIS)/SIG/desarrollo/sig_papiit/entregables/exposicion/biologica/v_costera_yuc/fv_v_costera_distancia_yuc.tif"
-path_r3 ="C:/Dropbox (LANCIS)/SIG/desarrollo/sig_papiit/entregables/exposicion/fisica/ancho_playa_yuc/fv_distancia_playa_yuc.tif"
-path_r4 ="C:/Dropbox (LANCIS)/SIG/desarrollo/sig_papiit/entregables/exposicion/fisica/elev_yuc/fv_elevacion_yuc.tif"
-print (time.strftime("%H:%M:%S"))
-
-### datos para formar al último la capa
-raster = gdal.Open(path_r)
-band1 =raster.GetRasterBand(1).ReadAsArray()
-dimension = band1.shape
-#proyeccion = raster.GetProjection()
-geotransform = raster.GetGeoTransform()
-
-
-capa_1,capa_2,capa_3,capa_4 = raster_to_df(path_r,1),raster_to_df(path_r2,2),raster_to_df(path_r3,3),raster_to_df(path_r4,4)
-capas=[capa_1,capa_2,capa_3,capa_4]
-w=[0.08,0.42,0.065,0.435]
-
-
-def genera_owa(capas,pesos,path_r,ruta_salida):
+def genera_owa(capas,pesos,owa_alpha,path_capa_maestra,utm,ruta_salida):
     ## datos de capa master 
-    raster = gdal.Open(path_r)
+    raster = gdal.Open(path_capa_maestra)
     band1 =raster.GetRasterBand(1).ReadAsArray()
     dimension = band1.shape
     geotransform = raster.GetGeoTransform()
 
-
-    m_base = matrix_base(path_r)
+    m_base = matrix_base(path_capa_maestra)
     matrix = insumo_owa(capas,w)
-    owa_values = [0.0001,0.1,0.5,1.0,2.0,10.0,1000.0]
-
-    for owa_val in owa_values:
-        campo, matrix_owa =calculo_owa(matrix,w,owa_val)
+    
+    for alpha in owa_alpha:
+        campo, matrix_owa =calculo_owa(matrix,w,alpha)
         df_matrix_owa = pd.merge(m_base, matrix_owa, on='id', how='outer')
-        arreglo = dr_r_wide.to_numpy()
+        df_matrix_array = df_matrix_owa.pivot(index='ren_r1',columns='col_r1',values=campo)
+
+        arreglo = df_matrix_array.to_numpy()
+        array_to_raster(arreglo,ruta_salida + campo + ".tif",dimension,geotransform,utm)
 
 
-
-#### - OWA PARA 0.0001 --- ###
-
-campo_0001,owa_0001 =calculo_owa(matrix,w,0.0001)
-df_owa0001 = pd.merge(m_base, owa_0001, on='id', how='outer')
-dr_r_owa0001 = df_owa0001.pivot(index='ren_r1',columns='col_r1',values=campo_0001)
-arra0001 = dr_r_wide.to_numpy()  
-
-##### - PROCESO PARA GUARDAR LA CAPA -######
-
-def array_to_raster(array,path_salida,dimension,zona_utm):
+def array_to_raster(array,path_salida,dimension,geotransform,zona_utm):
     dst_filename=path_salida
     fileformat = "GTiff"
     driver = gdal.GetDriverByName(fileformat)
@@ -277,178 +251,29 @@ def array_to_raster(array,path_salida,dimension,zona_utm):
     dst_ds.GetRasterBand(1).WriteArray(array)
     dst_ds = None
 
+path_r = "C:/Dropbox (LANCIS)/SIG/desarrollo/sig_papiit/entregables/exposicion/biologica/v_acuatica_yuc/fv_v_acuatica_yuc.tif"
+path_r2 ="C:/Dropbox (LANCIS)/SIG/desarrollo/sig_papiit/entregables/exposicion/biologica/v_costera_yuc/fv_v_costera_distancia_yuc.tif"
+path_r3 ="C:/Dropbox (LANCIS)/SIG/desarrollo/sig_papiit/entregables/exposicion/fisica/ancho_playa_yuc/fv_distancia_playa_yuc.tif"
+path_r4 ="C:/Dropbox (LANCIS)/SIG/desarrollo/sig_papiit/entregables/exposicion/fisica/elev_yuc/fv_elevacion_yuc.tif"
 print (time.strftime("%H:%M:%S"))
 
-'''
-from osgeo import osr
-dst_filename="C:/CursoDjango/owa0001.tif"
-fileformat = "GTiff"
-driver = gdal.GetDriverByName(fileformat)
-dst_ds = driver.Create(dst_filename, xsize=dimension[1], ysize=dimension[0],
-                    bands=1, eType=gdal.GDT_Float32)
-                    
-dst_ds.SetGeoTransform(geotransform)
-srs = osr.SpatialReference()
-srs.SetUTM(16, 1)
-srs.SetWellKnownGeogCS("WGS84")
-dst_ds.SetProjection(srs.ExportToWkt())
+### datos para formar al último la capa
+raster = gdal.Open(path_r)
+band1 =raster.GetRasterBand(1).ReadAsArray()
+dimension = band1.shape
+#proyeccion = raster.GetProjection()
+geotransform = raster.GetGeoTransform()
 
-dst_ds.GetRasterBand(1).WriteArray(arra0001)
-# Once we're done, close properly the dataset
-dst_ds = None
-### - TERMINA PROCESO - #######
+path_capa_maestra=path_r
+path_salida = "C:/Dropbox (LANCIS)/SIG/desarrollo/sig_papiit/procesamiento/owa/"
 
+capa_1,capa_2,capa_3,capa_4,capa_5 = raster_to_df(path_r,1),raster_to_df(path_r2,2),raster_to_df(path_r3,3),raster_to_df(path_r4,4),aster_to_df(path_r5,5)
+capas=[capa_1,capa_2,capa_3,capa_4]
+w=[0.08,0.42,0.065,0.435]
+#owa_alphas = [0.0001,0.1,0.5,1.0,2.0,10.0,1000.0]
+owa_alphas = [0.1,1.0]
 
-### OWA PARA 0.1 ##
+print ("procesando owa",time.strftime("%H:%M:%S"))
+genera_owa(capas,w,owa_alphas,path_capa_maestra,16,path_salida)
 
-campo_01,owa_01 =calculo_owa(matrix,w,0.1)
-df_owa01 = pd.merge(m_base, owa_01, on='id', how='outer')
-dr_r_owa01 = df_owa01.pivot(index='ren_r1',columns='col_r1',values=campo_01)
-arra01 = dr_r_owa01.to_numpy()  
-
-##### - PROCESO PARA GUARDAR LA CAPA -######
-
-
-from osgeo import osr
-dst_filename="C:/CursoDjango/owa01.tif"
-fileformat = "GTiff"
-driver = gdal.GetDriverByName(fileformat)
-dst_ds = driver.Create(dst_filename, xsize=dimension[1], ysize=dimension[0],
-                    bands=1, eType=gdal.GDT_Float32)
-                    
-dst_ds.SetGeoTransform(geotransform)
-srs = osr.SpatialReference()
-srs.SetUTM(16, 1)
-srs.SetWellKnownGeogCS("WGS84")
-dst_ds.SetProjection(srs.ExportToWkt())
-
-dst_ds.GetRasterBand(1).WriteArray(arra01)
-# Once we're done, close properly the dataset
-dst_ds = None
-### - TERMINA PROCESO - #######
-
-
-### OWA PARA 1 ##
-
-campo_1,owa_1 =calculo_owa(matrix,w,1.0)
-df_owa1 = pd.merge(m_base, owa_1, on='id', how='outer')
-dr_r_owa1 = df_owa1.pivot(index='ren_r1',columns='col_r1',values=campo_1)
-arra1 = dr_r_owa1.to_numpy()  
-
-##### - PROCESO PARA GUARDAR LA CAPA -######
-
-
-from osgeo import osr
-dst_filename="C:/CursoDjango/owa1.tif"
-fileformat = "GTiff"
-driver = gdal.GetDriverByName(fileformat)
-dst_ds = driver.Create(dst_filename, xsize=dimension[1], ysize=dimension[0],
-                    bands=1, eType=gdal.GDT_Float32)
-                    
-dst_ds.SetGeoTransform(geotransform)
-srs = osr.SpatialReference()
-srs.SetUTM(16, 1)
-srs.SetWellKnownGeogCS("WGS84")
-dst_ds.SetProjection(srs.ExportToWkt())
-
-dst_ds.GetRasterBand(1).WriteArray(arra1)
-# Once we're done, close properly the dataset
-dst_ds = None
-### - TERMINA PROCESO - #######
-
-
-
-
-### OWA PARA 2 ##
-
-campo_2,owa_2 =calculo_owa(matrix,w,2.0)
-df_owa2 = pd.merge(m_base, owa_2, on='id', how='outer')
-dr_r_owa2 = df_owa2.pivot(index='ren_r1',columns='col_r1',values=campo_2)
-arra2 = dr_r_owa2.to_numpy()  
-
-##### - PROCESO PARA GUARDAR LA CAPA -######
-
-
-from osgeo import osr
-dst_filename="C:/CursoDjango/owa2.tif"
-fileformat = "GTiff"
-driver = gdal.GetDriverByName(fileformat)
-dst_ds = driver.Create(dst_filename, xsize=dimension[1], ysize=dimension[0],
-                    bands=1, eType=gdal.GDT_Float32)
-                    
-dst_ds.SetGeoTransform(geotransform)
-srs = osr.SpatialReference()
-srs.SetUTM(16, 1)
-srs.SetWellKnownGeogCS("WGS84")
-dst_ds.SetProjection(srs.ExportToWkt())
-
-dst_ds.GetRasterBand(1).WriteArray(arra2)
-# Once we're done, close properly the dataset
-dst_ds = None
-### - TERMINA PROCESO - #######
-
-
-
-### OWA PARA 10 ##
-
-campo_10,owa_10 =calculo_owa(matrix,w,10.0)
-df_owa10 = pd.merge(m_base, owa_10, on='id', how='outer')
-dr_r_owa10 = df_owa10.pivot(index='ren_r1',columns='col_r1',values=campo_10)
-arra10 = dr_r_owa10.to_numpy()  
-
-##### - PROCESO PARA GUARDAR LA CAPA -######
-
-
-from osgeo import osr
-dst_filename="C:/CursoDjango/owa10.tif"
-fileformat = "GTiff"
-driver = gdal.GetDriverByName(fileformat)
-dst_ds = driver.Create(dst_filename, xsize=dimension[1], ysize=dimension[0],
-                    bands=1, eType=gdal.GDT_Float32)
-                    
-dst_ds.SetGeoTransform(geotransform)
-srs = osr.SpatialReference()
-srs.SetUTM(16, 1)
-srs.SetWellKnownGeogCS("WGS84")
-dst_ds.SetProjection(srs.ExportToWkt())
-
-dst_ds.GetRasterBand(1).WriteArray(arra10)
-# Once we're done, close properly the dataset
-dst_ds = None
-### - TERMINA PROCESO - #######
-
-
-### OWA PARA 1000 ##
-
-campo_1000,owa_1000 =calculo_owa(matrix,w,1000.0)
-df_owa1000 = pd.merge(m_base, owa_1000, on='id', how='outer')
-dr_r_owa1000 = df_owa1000.pivot(index='ren_r1',columns='col_r1',values=campo_1000)
-arra1000 = dr_r_owa1000.to_numpy()  
-
-##### - PROCESO PARA GUARDAR LA CAPA -######
-
-
-from osgeo import osr
-dst_filename="C:/CursoDjango/owa1000.tif"
-fileformat = "GTiff"
-driver = gdal.GetDriverByName(fileformat)
-dst_ds = driver.Create(dst_filename, xsize=dimension[1], ysize=dimension[0],
-                    bands=1, eType=gdal.GDT_Float32)
-                    
-dst_ds.SetGeoTransform(geotransform)
-srs = osr.SpatialReference()
-srs.SetUTM(16, 1)
-srs.SetWellKnownGeogCS("WGS84")
-dst_ds.SetProjection(srs.ExportToWkt())
-
-dst_ds.GetRasterBand(1).WriteArray(arra1000)
-# Once we're done, close properly the dataset
-dst_ds = None
-### - TERMINA PROCESO - #######
-
-
-
-
-
-
-'''
+print (time.strftime("%H:%M:%S"))

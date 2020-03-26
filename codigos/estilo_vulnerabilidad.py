@@ -105,7 +105,7 @@ def rampa_raster(lista_val,raster,ind=1):
         QgsColorRampShader.ColorRampItem(lista_val[2], QColor(colDic['B']),'B:'+str(round(lista_val[1],3))+'-'+str(round(lista_val[2],3))), \
         QgsColorRampShader.ColorRampItem(lista_val[3], QColor(colDic['M']),'M:'+str(round(lista_val[2],3))+'-'+str(round(lista_val[3],3))), \
         QgsColorRampShader.ColorRampItem(lista_val[4], QColor(colDic['A']),'A:'+str(round(lista_val[3],3))+'-'+str(round(lista_val[4],3))), \
-        QgsColorRampShader.ColorRampItem(lista_val[5], QColor(colDic['E']),'E:'+str(round(lista_val[4],3))+'-'+str(round(lista_val[5],3)))]
+        QgsColorRampShader.ColorRampItem(lista_val[5]+0.005, QColor(colDic['E']),'E:'+str(round(lista_val[4],3))+'-'+str(round(lista_val[5],3)))]
      
     myRasterShader = QgsRasterShader()
     myColorRamp = QgsColorRampShader()
@@ -157,11 +157,11 @@ def rampa_raster_fv(layer):
 
 layer =qgis.utils.iface.activeLayer()    
 ## para vulnerabilidad o capas integradas
-fp=1.1
+fp=1
 categorias=5
 minimo,maximo=raster_min_max(layer)
-lista_val = wf(fp)
-#lista_val = webber2(fp)
+#lista_val = wf(fp)
+lista_val = webber2(fp)
 print (minimo,maximo)
 rampa_raster(lista_val,layer)
 
