@@ -1,7 +1,36 @@
 OWA
 #############################
 
-descarga el código de ejemplo 
+OWA (Ordered Weighted Average) es un análisis de aptitud territorial basado en procedimientos de 
+Sistemas de Información Geográfica (SIG) y evaluación multicriterio (Malczewski, 2006). 
+El análisis OWA genera un amplio rango de escenarios de aptitud territorial cambiando únicamente un 
+parámetro lingüístico (alpha), relacionado con la rigidez en el cumplimiento de criterios preestablecidos. 
+
+OWA está definido por la siguiente ecuación: 
+
+.. math:: 
+
+    OWA=\sum_{j=1}^{n}\left (\left( \sum_{k=1}^{j}u_{k}\right )^{\alpha} - \left ( \sum_{k=1}^{j-1}u_{k}\right )^{\alpha} \right )z_{ij}
+
+
+Donde: 
+
+j: Criterio 
+
+u_{k}: Peso ordenado del criterio j
+
+k: Orden asignado al peso del criterio j (renglón)
+
+i: Pixel
+
+z_ij: Valor ordenado del criterio j en el pixel i
+
+\alpha: Cuantificador lingüístico 
+
+
+
+
+Descargar el código de ejemplo 
 
 :download:`owa_raster.py <../../codigos/owa_raster.py>`.
 
@@ -9,21 +38,23 @@ descarga el código de ejemplo
 Requerimientos generales 
 --------------------------
 
-Para asegurar la ejeución correcta del código es importante 
+Para asegurar la ejecución correcta del código es importante 
 garantizar la instalación y funcionamiento de los siguientes elementos:
 
 
-- Qgis y librerias de Osgeo4W 3.4 o superior
-- librerias python:
+- Qgis 3.4 o superior y librerías de Osgeo4W
+- Librerías python:
+
  - Numpy
  - Pandas
  - GDAL
  - reduce
 
+
 Requerimientos generales de los insumos
 ----------------------------------------
 
-Es importante que todas las capas raster cumplan con las siguientes condiciones
+Es importante que todas las capas raster cumplan con las siguientes condiciones:
 
 
 - Misma proyección cartográfica
@@ -38,27 +69,27 @@ Ejemplo
 Insumos 
 ========
 
-Descarga los insumos para este ejemplo :download:`aqui <>`
+Descargar los insumos para este ejemplo :download:`aqui <>`
 
 Procedimiento
 ==============
 
-1. Abre el código
-*****************
+1. Abrir el código
+********************
 
-Abre el código **owa_raster.py** en Qgis 3.4 o superior, 
-Si tienes dudas de como hacerlo visualiza la guia_
+Abrir el código **owa_raster.py** en Qgis 3.4 o superior, 
+Para resolver algun duda al respecto, visualizar la guia_
 
 .. _guia: https://vichdzgeo.github.io/geo_lancis/ejecucion.html
 
 .. image:: ../../owa/images/codigo.PNG
 
-2. Rellena el diccionario
+2. Rellenar el diccionario
 ********************************
 
-Las capas raster de entrada y sus respectivos pesos son ingresados
-a la función mediante un diccionario, es importante seguir la 
-estructura como el siguiente ejemplo:
+Ingresar las capas raster de entrada con sus respectivos pesos
+a la función mediante un diccionario. Es importante seguir la 
+estructura del siguiente ejemplo:
 
 .. code-block:: python
 
@@ -68,82 +99,81 @@ estructura como el siguiente ejemplo:
              'capa_4':{'ruta':path_insumos +"fisica/elev_yuc/fv_elevacion_yuc.tif",'w':0.435},
              }
 
-Dónde:
+Donde:
 
-- **capa_#**:  corresponde a la capa conforme van agregandose al diccionario,
+- **capa_#**:  Corresponde a la capa en el orden en que se agregó al diccionario,
 
-- **ruta** : Corresponde a la ruta o path del la capa raster
+- **ruta** : Corresponde a la ruta o path de la capa 
 
-- **w** : Corresponde al peso asociado a esa capa o criterio
+- **w** : Corresponde al peso asociado a esa capa o criterio 
 
 .. note::
 
-    Si desea agregar una capa adicional la línea quedaria de la siguiente forma,
-    donde se tiene que agregar el consecutivo a la llave de la capa, en este caso
-    capa_5.
+    Para adicionar una capa, agregar el consecutivo 
+    a la llave de la capa (en este caso capa_5). 
+    La línea quedaría de la siguiente forma:
 
     'capa_5':{'ruta':path_tiff,'w':#.###},
     }
 
-3. Indica la capa maestra
+
+3. Indicar la capa maestra
 ***************************
 
-El código transforma los datos tiff en arreglos matriciales
-es por ello que se requiere asociar cualquier capa de los insumos
-a la variable **path_capa_maestra**, una vez calculado 
-owa para cierto alpha, el arreglo matricial tiene que transformarse
-en un archivo tiff
+El código transforma los datos tiff en arreglos matriciales.
+Es indispensable asociar cualquier capa de los insumos
+a la variable **path_capa_maestra**. 
 
 .. code-block:: python
 
     path_capa_maestra = "../../*.tif"
 
 
-4. Declara el EPGS
+4. Declarar el EPGS
 ***********************
 
-Es el código de referencia geoespacial que Indica
-la proyección y el datum asociados a la capa, este código
-tiene que ser el mismo de los insumos, declara el código 
-en la variable **EPSG** 
+El EPGS es el código de referencia geoespacial que indica
+la proyección y el datum asociados a cada capa. Ingresar el código
+EPGS correspondiente a los insumos. 
+Declarar el código en la variable **EPSG** 
 
 .. code-block:: python
 
     EPSG = 32616
 
-5. Indica el direcctorio de salida
+5. Indicar el direcctorio de salida
 *************************************
 
-El código genera una capa para cada alpha dado, estos
-son nombrados automaticamente con el valor del alpha,
-es por ello que solo se tiene que indicar el directorio de
-salida.
+Indicar el directorio donde guardarán los mapas de salida. 
 
 .. code-block:: python
 
     path_salida = "../../"
 
-6. Verifica las variables asociadas a la funcion **insumos_base**
+6. Verificar las variables asociadas a la función **insumos_base**
 *******************************************************************
 
-la función **insumos_base** recibe como parametro el diccionario
-de capas y pesos, es por ello que tienes que asegurarte de que el
-nombre del diccionario coincida con el que recibe la función.
+La función **insumos_base** recibe como parámetro el diccionario
+de capas y pesos. Esta función regresa una lista de dataframes de las capas y una lista 
+de pesos, por default se llaman **capas** y **w**, respectivamente.
 
-Esta función regresa una lista de dataframes de las capas y una lista 
-de pesos, por default se llaman **capas** y **w** respectivamente
+.. note::
+    
+    El nombre del diccionario (establecido en el paso #2) debe coincidir 
+    con el que recibe la función **insumos_base**.
+
 
 .. code-block:: python
 
     capas, w = insumos_base(dicc_capas)
 
 
-7. Indica los valores de alpha
+7. Indicar los valores de alpha
 ******************************************
-El código esta programado para recibir una 
-lista de valores de alpha y con ella, generar 
+El código está programado para recibir una 
+lista de valores de alpha y generar 
 un mapa por cada alpha declarado en dicha lista.
-los valores de alpha son declarados en la variable
+Declarar los valores de alpha en la variable
 **owa_alphas**.
 
 .. code-block:: python
@@ -151,16 +181,22 @@ los valores de alpha son declarados en la variable
     owa_alphas = [0.0001,0.1,0.5,1.0,2.0,10.0,1000.0]
 
 
-8. Verificar que todo este correcto en la función genera_owa
+8. Verificar que todo esté correcto en la función genera_owa
 **************************************************************
 
-La función **genera_owa** es la encargada de recibir 
-las variables declaradas 
+La función **genera_owa** recibe las variables declaradas.
 
 
 .. code-block:: python
 
     genera_owa(capas,w,owa_alphas,path_capa_maestra,EPSG,path_salida)
+
+
+Bibliografía
+-----------------------------------
+Malczewski, J. (2006). Ordered weighted averaging with fuzzy quantifiers:
+GIS-based multicriteria evaluation for land-use suitability analysis. 
+International Journal of Applied Earth Observation and Geoin-formation, 8 ,270-277.
 
 
 Documentación dentro del código

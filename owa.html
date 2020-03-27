@@ -95,18 +95,19 @@
 <li class="toctree-l2"><a class="reference internal" href="#ejemplo">Ejemplo</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#insumos">Insumos</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#procedimiento">Procedimiento</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#abre-el-codigo">1. Abre el código</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#rellena-el-diccionario">2. Rellena el diccionario</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#indica-la-capa-maestra">3. Indica la capa maestra</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#declara-el-epgs">4. Declara el EPGS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#indica-el-direcctorio-de-salida">5. Indica el direcctorio de salida</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#verifica-las-variables-asociadas-a-la-funcion-insumos-base">6. Verifica las variables asociadas a la funcion <strong>insumos_base</strong></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#indica-los-valores-de-alpha">7. Indica los valores de alpha</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#verificar-que-todo-este-correcto-en-la-funcion-genera-owa">8. Verificar que todo este correcto en la función genera_owa</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#abrir-el-codigo">1. Abrir el código</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rellenar-el-diccionario">2. Rellenar el diccionario</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#indicar-la-capa-maestra">3. Indicar la capa maestra</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#declarar-el-epgs">4. Declarar el EPGS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#indicar-el-direcctorio-de-salida">5. Indicar el direcctorio de salida</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#verificar-las-variables-asociadas-a-la-funcion-insumos-base">6. Verificar las variables asociadas a la función <strong>insumos_base</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#indicar-los-valores-de-alpha">7. Indicar los valores de alpha</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#verificar-que-todo-este-correcto-en-la-funcion-genera-owa">8. Verificar que todo esté correcto en la función genera_owa</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#bibliografia">Bibliografía</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-owa_raster">Documentación dentro del código</a></li>
 </ul>
 </li>
@@ -176,15 +177,29 @@
             
   <div class="section" id="owa">
 <h1>OWA<a class="headerlink" href="#owa" title="Enlazar permanentemente con este título">¶</a></h1>
-<p>descarga el código de ejemplo</p>
+<p>OWA (Ordered Weighted Average) es un análisis de aptitud territorial basado en procedimientos de
+Sistemas de Información Geográfica (SIG) y evaluación multicriterio (Malczewski, 2006).
+El análisis OWA genera un amplio rango de escenarios de aptitud territorial cambiando únicamente un
+parámetro lingüístico (alpha), relacionado con la rigidez en el cumplimiento de criterios preestablecidos.</p>
+<p>OWA está definido por la siguiente ecuación:</p>
+<div class="math notranslate nohighlight">
+\[OWA=\sum_{j=1}^{n}\left (\left( \sum_{k=1}^{j}u_{k}\right )^{\alpha} - \left ( \sum_{k=1}^{j-1}u_{k}\right )^{\alpha} \right )z_{ij}\]</div>
+<p>Donde:</p>
+<p>j: Criterio</p>
+<p>u_{k}: Peso ordenado del criterio j</p>
+<p>k: Orden asignado al peso del criterio j (renglón)</p>
+<p>i: Pixel</p>
+<p>z_ij: Valor ordenado del criterio j en el pixel i</p>
+<p>alpha: Cuantificador lingüístico</p>
+<p>Descargar el código de ejemplo</p>
 <p><a class="reference download internal" download="" href="_downloads/05d169dc5c8ec67d6ee750a2274071e4/owa_raster.py"><code class="xref download docutils literal notranslate"><span class="pre">owa_raster.py</span></code></a>.</p>
 <div class="section" id="requerimientos-generales">
 <h2>Requerimientos generales<a class="headerlink" href="#requerimientos-generales" title="Enlazar permanentemente con este título">¶</a></h2>
-<p>Para asegurar la ejeución correcta del código es importante
+<p>Para asegurar la ejecución correcta del código es importante
 garantizar la instalación y funcionamiento de los siguientes elementos:</p>
 <ul class="simple">
-<li>Qgis y librerias de Osgeo4W 3.4 o superior</li>
-<li>librerias python:</li>
+<li>Qgis 3.4 o superior y librerías de Osgeo4W</li>
+<li>Librerías python:</li>
 </ul>
 <blockquote>
 <div><ul class="simple">
@@ -197,7 +212,7 @@ garantizar la instalación y funcionamiento de los siguientes elementos:</p>
 </div>
 <div class="section" id="requerimientos-generales-de-los-insumos">
 <h2>Requerimientos generales de los insumos<a class="headerlink" href="#requerimientos-generales-de-los-insumos" title="Enlazar permanentemente con este título">¶</a></h2>
-<p>Es importante que todas las capas raster cumplan con las siguientes condiciones</p>
+<p>Es importante que todas las capas raster cumplan con las siguientes condiciones:</p>
 <ul class="simple">
 <li>Misma proyección cartográfica</li>
 <li>Mismo tamaño de pixel</li>
@@ -208,21 +223,21 @@ garantizar la instalación y funcionamiento de los siguientes elementos:</p>
 <h2>Ejemplo<a class="headerlink" href="#ejemplo" title="Enlazar permanentemente con este título">¶</a></h2>
 <div class="section" id="insumos">
 <h3>Insumos<a class="headerlink" href="#insumos" title="Enlazar permanentemente con este título">¶</a></h3>
-<p>Descarga los insumos para este ejemplo <a class="reference download internal" download="" href="_downloads/1f2f2f36cdbf1a9af7eff96a0c743b45/"><code class="xref download docutils literal notranslate"><span class="pre">aqui</span></code></a></p>
+<p>Descargar los insumos para este ejemplo <a class="reference download internal" download="" href="_downloads/1f2f2f36cdbf1a9af7eff96a0c743b45/"><code class="xref download docutils literal notranslate"><span class="pre">aqui</span></code></a></p>
 </div>
 <div class="section" id="procedimiento">
 <h3>Procedimiento<a class="headerlink" href="#procedimiento" title="Enlazar permanentemente con este título">¶</a></h3>
-<div class="section" id="abre-el-codigo">
-<h4>1. Abre el código<a class="headerlink" href="#abre-el-codigo" title="Enlazar permanentemente con este título">¶</a></h4>
-<p>Abre el código <strong>owa_raster.py</strong> en Qgis 3.4 o superior,
-Si tienes dudas de como hacerlo visualiza la <a class="reference external" href="https://vichdzgeo.github.io/geo_lancis/ejecucion.html">guia</a></p>
+<div class="section" id="abrir-el-codigo">
+<h4>1. Abrir el código<a class="headerlink" href="#abrir-el-codigo" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>Abrir el código <strong>owa_raster.py</strong> en Qgis 3.4 o superior,
+Para resolver algun duda al respecto, visualizar la <a class="reference external" href="https://vichdzgeo.github.io/geo_lancis/ejecucion.html">guia</a></p>
 <img alt="_images/codigo.PNG" src="_images/codigo.PNG" />
 </div>
-<div class="section" id="rellena-el-diccionario">
-<h4>2. Rellena el diccionario<a class="headerlink" href="#rellena-el-diccionario" title="Enlazar permanentemente con este título">¶</a></h4>
-<p>Las capas raster de entrada y sus respectivos pesos son ingresados
-a la función mediante un diccionario, es importante seguir la
-estructura como el siguiente ejemplo:</p>
+<div class="section" id="rellenar-el-diccionario">
+<h4>2. Rellenar el diccionario<a class="headerlink" href="#rellenar-el-diccionario" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>Ingresar las capas raster de entrada con sus respectivos pesos
+a la función mediante un diccionario. Es importante seguir la
+estructura del siguiente ejemplo:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dicc_capas</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;capa_1&#39;</span><span class="p">:{</span><span class="s1">&#39;ruta&#39;</span><span class="p">:</span><span class="n">path_insumos</span> <span class="o">+</span><span class="s2">&quot;biologica/v_acuatica_yuc/fv_v_acuatica_yuc.tif&quot;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.08</span><span class="p">},</span>
         <span class="s1">&#39;capa_2&#39;</span><span class="p">:{</span><span class="s1">&#39;ruta&#39;</span><span class="p">:</span><span class="n">path_insumos</span> <span class="o">+</span><span class="s2">&quot;biologica/v_costera_yuc/fv_v_costera_distancia_yuc.tif&quot;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.42</span><span class="p">},</span>
         <span class="s1">&#39;capa_3&#39;</span><span class="p">:{</span><span class="s1">&#39;ruta&#39;</span><span class="p">:</span><span class="n">path_insumos</span> <span class="o">+</span><span class="s2">&quot;fisica/ancho_playa_yuc/fv_distancia_playa_yuc.tif&quot;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.065</span><span class="p">},</span>
@@ -230,83 +245,86 @@ estructura como el siguiente ejemplo:</p>
         <span class="p">}</span>
 </pre></div>
 </div>
-<p>Dónde:</p>
+<p>Donde:</p>
 <ul class="simple">
-<li><strong>capa_#</strong>:  corresponde a la capa conforme van agregandose al diccionario,</li>
-<li><strong>ruta</strong> : Corresponde a la ruta o path del la capa raster</li>
+<li><strong>capa_#</strong>:  Corresponde a la capa en el orden en que se agregó al diccionario,</li>
+<li><strong>ruta</strong> : Corresponde a la ruta o path de la capa</li>
 <li><strong>w</strong> : Corresponde al peso asociado a esa capa o criterio</li>
 </ul>
 <div class="admonition note">
 <p class="first admonition-title">Nota</p>
-<p>Si desea agregar una capa adicional la línea quedaria de la siguiente forma,
-donde se tiene que agregar el consecutivo a la llave de la capa, en este caso
-capa_5.</p>
+<p>Para adicionar una capa, agregar el consecutivo
+a la llave de la capa (en este caso capa_5).
+La línea quedaría de la siguiente forma:</p>
 <p class="last">“capa_5”:{“ruta”:path_tiff,”w”:#.###},
 }</p>
 </div>
 </div>
-<div class="section" id="indica-la-capa-maestra">
-<h4>3. Indica la capa maestra<a class="headerlink" href="#indica-la-capa-maestra" title="Enlazar permanentemente con este título">¶</a></h4>
-<p>El código transforma los datos tiff en arreglos matriciales
-es por ello que se requiere asociar cualquier capa de los insumos
-a la variable <strong>path_capa_maestra</strong>, una vez calculado
-owa para cierto alpha, el arreglo matricial tiene que transformarse
-en un archivo tiff</p>
+<div class="section" id="indicar-la-capa-maestra">
+<h4>3. Indicar la capa maestra<a class="headerlink" href="#indicar-la-capa-maestra" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>El código transforma los datos tiff en arreglos matriciales.
+Es indispensable asociar cualquier capa de los insumos
+a la variable <strong>path_capa_maestra</strong>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">path_capa_maestra</span> <span class="o">=</span> <span class="s2">&quot;../../*.tif&quot;</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="declara-el-epgs">
-<h4>4. Declara el EPGS<a class="headerlink" href="#declara-el-epgs" title="Enlazar permanentemente con este título">¶</a></h4>
-<p>Es el código de referencia geoespacial que Indica
-la proyección y el datum asociados a la capa, este código
-tiene que ser el mismo de los insumos, declara el código
-en la variable <strong>EPSG</strong></p>
+<div class="section" id="declarar-el-epgs">
+<h4>4. Declarar el EPGS<a class="headerlink" href="#declarar-el-epgs" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>El EPGS es el código de referencia geoespacial que indica
+la proyección y el datum asociados a cada capa. Ingresar el código
+EPGS correspondiente a los insumos.
+Declarar el código en la variable <strong>EPSG</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">EPSG</span> <span class="o">=</span> <span class="mi">32616</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="indica-el-direcctorio-de-salida">
-<h4>5. Indica el direcctorio de salida<a class="headerlink" href="#indica-el-direcctorio-de-salida" title="Enlazar permanentemente con este título">¶</a></h4>
-<p>El código genera una capa para cada alpha dado, estos
-son nombrados automaticamente con el valor del alpha,
-es por ello que solo se tiene que indicar el directorio de
-salida.</p>
+<div class="section" id="indicar-el-direcctorio-de-salida">
+<h4>5. Indicar el direcctorio de salida<a class="headerlink" href="#indicar-el-direcctorio-de-salida" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>Indicar el directorio donde guardarán los mapas de salida.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">path_salida</span> <span class="o">=</span> <span class="s2">&quot;../../&quot;</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="verifica-las-variables-asociadas-a-la-funcion-insumos-base">
-<h4>6. Verifica las variables asociadas a la funcion <strong>insumos_base</strong><a class="headerlink" href="#verifica-las-variables-asociadas-a-la-funcion-insumos-base" title="Enlazar permanentemente con este título">¶</a></h4>
-<p>la función <strong>insumos_base</strong> recibe como parametro el diccionario
-de capas y pesos, es por ello que tienes que asegurarte de que el
-nombre del diccionario coincida con el que recibe la función.</p>
-<p>Esta función regresa una lista de dataframes de las capas y una lista
-de pesos, por default se llaman <strong>capas</strong> y <strong>w</strong> respectivamente</p>
+<div class="section" id="verificar-las-variables-asociadas-a-la-funcion-insumos-base">
+<h4>6. Verificar las variables asociadas a la función <strong>insumos_base</strong><a class="headerlink" href="#verificar-las-variables-asociadas-a-la-funcion-insumos-base" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>La función <strong>insumos_base</strong> recibe como parámetro el diccionario
+de capas y pesos. Esta función regresa una lista de dataframes de las capas y una lista
+de pesos, por default se llaman <strong>capas</strong> y <strong>w</strong>, respectivamente.</p>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">El nombre del diccionario (establecido en el paso #2) debe coincidir
+con el que recibe la función <strong>insumos_base</strong>.</p>
+</div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">capas</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">insumos_base</span><span class="p">(</span><span class="n">dicc_capas</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="indica-los-valores-de-alpha">
-<h4>7. Indica los valores de alpha<a class="headerlink" href="#indica-los-valores-de-alpha" title="Enlazar permanentemente con este título">¶</a></h4>
-<p>El código esta programado para recibir una
-lista de valores de alpha y con ella, generar
+<div class="section" id="indicar-los-valores-de-alpha">
+<h4>7. Indicar los valores de alpha<a class="headerlink" href="#indicar-los-valores-de-alpha" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>El código está programado para recibir una
+lista de valores de alpha y generar
 un mapa por cada alpha declarado en dicha lista.
-los valores de alpha son declarados en la variable
+Declarar los valores de alpha en la variable
 <strong>owa_alphas</strong>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">owa_alphas</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0001</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">10.0</span><span class="p">,</span><span class="mf">1000.0</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="verificar-que-todo-este-correcto-en-la-funcion-genera-owa">
-<h4>8. Verificar que todo este correcto en la función genera_owa<a class="headerlink" href="#verificar-que-todo-este-correcto-en-la-funcion-genera-owa" title="Enlazar permanentemente con este título">¶</a></h4>
-<p>La función <strong>genera_owa</strong> es la encargada de recibir
-las variables declaradas</p>
+<h4>8. Verificar que todo esté correcto en la función genera_owa<a class="headerlink" href="#verificar-que-todo-este-correcto-en-la-funcion-genera-owa" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>La función <strong>genera_owa</strong> recibe las variables declaradas.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">genera_owa</span><span class="p">(</span><span class="n">capas</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">owa_alphas</span><span class="p">,</span><span class="n">path_capa_maestra</span><span class="p">,</span><span class="n">EPSG</span><span class="p">,</span><span class="n">path_salida</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="bibliografia">
+<h2>Bibliografía<a class="headerlink" href="#bibliografia" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Malczewski, J. (2006). Ordered weighted averaging with fuzzy quantifiers:
+GIS-based multicriteria evaluation for land-use suitability analysis.
+International Journal of Applied Earth Observation and Geoin-formation, 8 ,270-277.</p>
 </div>
 <div class="section" id="module-owa_raster">
 <span id="documentacion-dentro-del-codigo"></span><h2>Documentación dentro del código<a class="headerlink" href="#module-owa_raster" title="Enlazar permanentemente con este título">¶</a></h2>
