@@ -447,7 +447,17 @@
     <span class="n">dst_ds</span> <span class="o">=</span> <span class="kc">None</span></div>
 
 
-<div class="viewcode-block" id="genera_owa"><a class="viewcode-back" href="../owa.html#owa_raster.genera_owa">[documentos]</a><span class="k">def</span> <span class="nf">genera_owa</span><span class="p">(</span><span class="n">capas</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">owa_alpha</span><span class="p">,</span><span class="n">path_capa_maestra</span><span class="p">,</span><span class="n">EPSG</span><span class="p">,</span><span class="n">ruta_salida</span><span class="p">):</span> <span class="c1">#funcion integradora</span>
+<span class="k">def</span> <span class="nf">extrae_epsg</span><span class="p">(</span><span class="n">path_r</span><span class="p">):</span>
+    <span class="n">ds</span><span class="o">=</span><span class="n">gdal</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="n">path_r</span><span class="p">)</span>
+    <span class="n">prj</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">GetProjection</span><span class="p">()</span>
+    <span class="n">srs</span><span class="o">=</span><span class="n">osr</span><span class="o">.</span><span class="n">SpatialReference</span><span class="p">(</span><span class="n">wkt</span><span class="o">=</span><span class="n">prj</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">srs</span><span class="o">.</span><span class="n">IsProjected</span><span class="p">:</span>
+        <span class="n">epsg</span><span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">srs</span><span class="o">.</span><span class="n">GetAttrValue</span><span class="p">(</span><span class="s1">&#39;AUTHORITY&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+    <span class="c1">#epsg= srs.GetAttrValue(&#39;AUTHORITY&#39;,1)</span>
+    <span class="k">return</span> <span class="n">epsg</span>
+
+
+<div class="viewcode-block" id="genera_owa"><a class="viewcode-back" href="../owa.html#owa_raster.genera_owa">[documentos]</a><span class="k">def</span> <span class="nf">genera_owa</span><span class="p">(</span><span class="n">capas</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">owa_alpha</span><span class="p">,</span><span class="n">path_capa_maestra</span><span class="p">,</span><span class="n">ruta_salida</span><span class="p">):</span> <span class="c1">#funcion integradora</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Esta función calcula OWA, dada una lista de capas, pesos y lista de valores de</span>
 <span class="sd">    alpha, para cada alpha dada generará una capa.</span>
@@ -464,9 +474,6 @@
 <span class="sd">    :param path_capa_maestra: path de la capa en formato tiff </span>
 <span class="sd">    :type path_capa_maestra: str </span>
 
-<span class="sd">    :param EPSG: Identificador de Referencia Espacial</span>
-<span class="sd">    :type EPSG: int</span>
-
 <span class="sd">    :param ruta_salida: Directorio de salida de las capas </span>
 <span class="sd">    :type ruta_salida: str </span>
 
@@ -474,11 +481,11 @@
 <span class="sd">    &#39;&#39;&#39;</span>
     
     <span class="c1">## datos de capa master </span>
+    <span class="n">EPSG</span><span class="o">=</span><span class="n">extrae_epsg</span><span class="p">(</span><span class="n">path_capa_maestra</span><span class="p">)</span>
     <span class="n">raster</span> <span class="o">=</span> <span class="n">gdal</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="n">path_capa_maestra</span><span class="p">)</span>
     <span class="n">band1</span> <span class="o">=</span><span class="n">raster</span><span class="o">.</span><span class="n">GetRasterBand</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">ReadAsArray</span><span class="p">()</span>
     <span class="n">dimension</span> <span class="o">=</span> <span class="n">band1</span><span class="o">.</span><span class="n">shape</span>
     <span class="n">geotransform</span> <span class="o">=</span> <span class="n">raster</span><span class="o">.</span><span class="n">GetGeoTransform</span><span class="p">()</span>
-
     <span class="n">m_base</span> <span class="o">=</span> <span class="n">matrix_base</span><span class="p">(</span><span class="n">path_capa_maestra</span><span class="p">)</span>
     <span class="n">matrix</span> <span class="o">=</span> <span class="n">insumo_owa</span><span class="p">(</span><span class="n">capas</span><span class="p">,</span><span class="n">w</span><span class="p">)</span>
     
@@ -507,7 +514,6 @@
 
 <span class="c1">### Ruta de capa maestra, puede ser cualquiera de los insumos ###</span>
 <span class="n">path_capa_maestra</span><span class="o">=</span><span class="n">path_insumos</span><span class="o">+</span><span class="s2">&quot;biologica/v_acuatica_yuc/fv_v_acuatica_yuc.tif&quot;</span>
-<span class="n">EPSG</span> <span class="o">=</span> <span class="mi">32616</span>
 <span class="c1">## Ruta del directorio donde se almacenarán las salidas </span>
 <span class="n">path_salida</span> <span class="o">=</span> <span class="s2">&quot;C:/Dropbox (LANCIS)/SIG/desarrollo/sig_papiit/procesamiento/owa/&quot;</span>
 
@@ -517,7 +523,7 @@
 
 <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;procesando owa&quot;</span><span class="p">,</span><span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%H:%M:%S&quot;</span><span class="p">))</span>  <span class="c1">#imprime la hora que inicia el proceso</span>
 
-<span class="c1">#genera_owa(capas,w,owa_alphas,path_capa_maestra,EPSG,path_salida)</span>
+<span class="c1">#genera_owa(capas,w,owa_alphas,path_capa_maestra,path_salida)</span>
 
 <span class="nb">print</span> <span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%H:%M:%S&quot;</span><span class="p">))</span>  <span class="c1"># imprime la hora una vez terminada la ejecución</span>
 </pre></div>
