@@ -40,7 +40,7 @@ Requerimientos generales
 --------------------------
 
 Para asegurar la ejecución correcta del código es importante 
-garantizar la instalación y funcionamiento de los siguientes elementos:
+verificar la instalación y funcionamiento de los siguientes elementos:
 
 
 - Qgis 3.4 o superior y librerías de Osgeo4W
@@ -80,7 +80,7 @@ Procedimiento
 ********************
 
 Abrir el código **owa_raster.py** en Qgis 3.4 o superior, 
-Para resolver algun duda al respecto, visualizar la guia_
+Para resolver cualquier duda al respecto, consultar la guia_
 
 .. _guia: https://vichdzgeo.github.io/geo_lancis/ejecucion.html
 
