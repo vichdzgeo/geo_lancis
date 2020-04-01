@@ -70,7 +70,7 @@ def crea_capa(ecuacion,rasters_input,salida):
 
     '''
     Esta función crea una capa mediante la calculadora raster
-    de GDAL, esta función esta limitada hasta 8 variables en la ecuación.
+    de GDAL, esta función esta limitada hasta 14 variables en la ecuación.
 
     :param ecuacion: ecuación expresada en formato gdal,\
                     es este caso es la salida de la funcion *ecuacion_clp*
@@ -87,7 +87,15 @@ def crea_capa(ecuacion,rasters_input,salida):
     path_E=''
     path_F=''
     path_G=''
-    path_H=''
+    path_H=''  
+    path_I=''
+    path_J=''
+    path_K=''
+    path_L=''
+    path_M=''
+    path_N=''
+
+
     total_raster = len(rasters_input)
     
     for a,b in zip(range(total_raster), rasters_input):
@@ -107,6 +115,22 @@ def crea_capa(ecuacion,rasters_input,salida):
             path_G=b
         elif a == 7:
             path_H=b
+        elif a == 8:
+            path_I=b
+        elif a == 9:
+            path_J=b
+        elif a == 10:
+            path_K=b
+        elif a == 11:
+            path_L=b
+        elif a == 12:
+            path_M=b
+        elif a == 13:
+            path_N=b
+
+
+
+            
     if total_raster == 1:
         gdal_calc.Calc(calc=ecuacion, 
                             A=path_A, 
@@ -190,7 +214,113 @@ def crea_capa(ecuacion,rasters_input,salida):
                         outfile=salida,
                         NoDataValue=-3.40282e+38,
                         quiet=True)
-    
+        
+    if total_raster == 9:
+        gdal_calc.Calc(calc=ecuacion, 
+                        A=path_A, 
+                        B=path_B,
+                        C=path_C, 
+                        D=path_D,
+                        E=path_E, 
+                        F=path_F,
+                        G=path_G, 
+                        H=path_H,
+                        I=path_I,
+                        outfile=salida,
+                        NoDataValue=-3.40282e+38,
+                        quiet=True)
+
+    if total_raster == 10:
+        gdal_calc.Calc(calc=ecuacion, 
+                        A=path_A, 
+                        B=path_B,
+                        C=path_C, 
+                        D=path_D,
+                        E=path_E, 
+                        F=path_F,
+                        G=path_G, 
+                        H=path_H,
+                        I=path_I,
+                        J=path_J,
+                        outfile=salida,
+                        NoDataValue=-3.40282e+38,
+                        quiet=True)
+
+    if total_raster == 11:
+        gdal_calc.Calc(calc=ecuacion, 
+                        A=path_A, 
+                        B=path_B,
+                        C=path_C, 
+                        D=path_D,
+                        E=path_E, 
+                        F=path_F,
+                        G=path_G, 
+                        H=path_H,
+                        I=path_I,
+                        J=path_J,
+                        K=path_K,
+                        outfile=salida,
+                        NoDataValue=-3.40282e+38,
+                        quiet=True)
+
+    if total_raster == 12:
+        gdal_calc.Calc(calc=ecuacion, 
+                        A=path_A, 
+                        B=path_B,
+                        C=path_C, 
+                        D=path_D,
+                        E=path_E, 
+                        F=path_F,
+                        G=path_G, 
+                        H=path_H,
+                        I=path_I,
+                        J=path_J,
+                        K=path_K,
+                        L=path_L,
+                        outfile=salida,
+                        NoDataValue=-3.40282e+38,
+                        quiet=True)
+
+    if total_raster == 13:
+        gdal_calc.Calc(calc=ecuacion, 
+                        A=path_A, 
+                        B=path_B,
+                        C=path_C, 
+                        D=path_D,
+                        E=path_E, 
+                        F=path_F,
+                        G=path_G, 
+                        H=path_H,
+                        I=path_I,
+                        J=path_J,
+                        K=path_K,
+                        L=path_L,
+                        M=path_M,
+                        outfile=salida,
+                        NoDataValue=-3.40282e+38,
+                        quiet=True)
+
+    if total_raster == 14:
+        gdal_calc.Calc(calc=ecuacion, 
+                        A=path_A, 
+                        B=path_B,
+                        C=path_C, 
+                        D=path_D,
+                        E=path_E, 
+                        F=path_F,
+                        G=path_G, 
+                        H=path_H,
+                        I=path_I,
+                        J=path_J,
+                        K=path_K,
+                        L=path_L,
+                        M=path_M,
+                        N=path_N,
+                        outfile=salida,
+                        NoDataValue=-3.40282e+38,
+                        quiet=True)
+
+
 def ecuacion_clp(pesos):
 
     '''

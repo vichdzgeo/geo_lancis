@@ -293,7 +293,17 @@ def array_to_raster(array,path_salida,dimension,geotransform,EPSG): # 9 de 9:
     dst_ds = None
 
 
-def genera_owa(capas,w,owa_alpha,path_capa_maestra,EPSG,ruta_salida): #funcion integradora
+def extrae_epsg(path_r):
+    ds=gdal.Open(path_r)
+    prj=ds.GetProjection()
+    srs=osr.SpatialReference(wkt=prj)
+    if srs.IsProjected:
+        epsg= int(srs.GetAttrValue('AUTHORITY',1))
+    #epsg= srs.GetAttrValue('AUTHORITY',1)
+    return epsg
+
+
+def genera_owa(capas,w,owa_alpha,path_capa_maestra,ruta_salida): #funcion integradora
     '''
     Esta función calcula OWA, dada una lista de capas, pesos y lista de valores de
     alpha, para cada alpha dada generará una capa.
@@ -310,9 +320,6 @@ def genera_owa(capas,w,owa_alpha,path_capa_maestra,EPSG,ruta_salida): #funcion i
     :param path_capa_maestra: path de la capa en formato tiff 
     :type path_capa_maestra: str 
 
-    :param EPSG: Identificador de Referencia Espacial
-    :type EPSG: int
-
     :param ruta_salida: Directorio de salida de las capas 
     :type ruta_salida: str 
 
@@ -320,11 +327,11 @@ def genera_owa(capas,w,owa_alpha,path_capa_maestra,EPSG,ruta_salida): #funcion i
     '''
     
     ## datos de capa master 
+    EPSG=extrae_epsg(path_capa_maestra)
     raster = gdal.Open(path_capa_maestra)
     band1 =raster.GetRasterBand(1).ReadAsArray()
     dimension = band1.shape
     geotransform = raster.GetGeoTransform()
-
     m_base = matrix_base(path_capa_maestra)
     matrix = insumo_owa(capas,w)
     
@@ -353,7 +360,6 @@ dicc_capas = {'capa_1':{'ruta':path_insumos +"biologica/v_acuatica_yuc/fv_v_acua
 
 ### Ruta de capa maestra, puede ser cualquiera de los insumos ###
 path_capa_maestra=path_insumos+"biologica/v_acuatica_yuc/fv_v_acuatica_yuc.tif"
-EPSG = 32616
 ## Ruta del directorio donde se almacenarán las salidas 
 path_salida = "C:/Dropbox (LANCIS)/SIG/desarrollo/sig_papiit/procesamiento/owa/"
 
@@ -363,6 +369,6 @@ owa_alphas = [0.0001,0.1,0.5,1.0,2.0,10.0,1000.0]
 
 print ("procesando owa",time.strftime("%H:%M:%S"))  #imprime la hora que inicia el proceso
 
-#genera_owa(capas,w,owa_alphas,path_capa_maestra,EPSG,path_salida)
+#genera_owa(capas,w,owa_alphas,path_capa_maestra,path_salida)
 
 print (time.strftime("%H:%M:%S"))  # imprime la hora una vez terminada la ejecución

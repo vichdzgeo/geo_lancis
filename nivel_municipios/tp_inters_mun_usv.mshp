@@ -4,12 +4,12 @@
     <MODULE library="shapes_polygons" id="14" name="Intersect">
       <OPTION type="boolean" id="SPLIT" name="Split Parts">TRUE</OPTION>
       <INPUT type="shapes" id="A" name="Layer A">
-        <FILE>C:/Dropbox (LANCIS)/SIG/desarrollo/sig_fomix/insumos/limites/inegi/div_pol_mpio_2018/muni_2018_utm16.shp</FILE>
+        <FILE>C:/Dropbox (LANCIS)/CARPETAS_TRABAJO/vhernandez/geo_lancis/nivel_municipios/mun_usv.shp</FILE>
       </INPUT>
       <INPUT type="shapes" id="B" name="Layer B">
         <FILE>C:/Dropbox (LANCIS)/SIG/desarrollo/sig_fomix/procesamiento/usv_partes_sencillas/usv_serie6_v2.shp</FILE>
       </INPUT>
-      <OUTPUT type="shapes" id="RESULT" name="Intersect">Intersect [muni_2018_utm16]-[usv_serie6_v2]</OUTPUT>
+      <OUTPUT type="shapes" id="RESULT" name="Intersect">Intersect [mun_usv]-[usv_serie6_v2]</OUTPUT>
     </MODULE>
   </HISTORY>
   <SOURCE>
@@ -25,6 +25,22 @@
         <FIELD TYPE="STRING">nom_mun</FIELD>
         <FIELD TYPE="LONGINT">cov_</FIELD>
         <FIELD TYPE="LONGINT">cov_id</FIELD>
+        <FIELD TYPE="DOUBLE">clase_1</FIELD>
+        <FIELD TYPE="DOUBLE">clase_2</FIELD>
+        <FIELD TYPE="DOUBLE">clase_3</FIELD>
+        <FIELD TYPE="DOUBLE">clase_4</FIELD>
+        <FIELD TYPE="DOUBLE">clase_5</FIELD>
+        <FIELD TYPE="DOUBLE">clase_6</FIELD>
+        <FIELD TYPE="DOUBLE">clase_7</FIELD>
+        <FIELD TYPE="DOUBLE">clase_8</FIELD>
+        <FIELD TYPE="DOUBLE">clase_9</FIELD>
+        <FIELD TYPE="DOUBLE">clase_10</FIELD>
+        <FIELD TYPE="DOUBLE">clase_11</FIELD>
+        <FIELD TYPE="DOUBLE">clase_12</FIELD>
+        <FIELD TYPE="DOUBLE">clase_13</FIELD>
+        <FIELD TYPE="DOUBLE">clase_14</FIELD>
+        <FIELD TYPE="DOUBLE">clase_15</FIELD>
+        <FIELD TYPE="DOUBLE">clase_16</FIELD>
         <FIELD TYPE="LONGINT">OBJECTID</FIELD>
         <FIELD TYPE="STRING">CVE_UNION</FIELD>
         <FIELD TYPE="STRING">DESCRIPCIO</FIELD>

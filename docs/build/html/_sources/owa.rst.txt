@@ -15,20 +15,21 @@ OWA está definido por la siguiente ecuación:
 
 Donde: 
 
-j: Criterio 
+j = Criterio 
 
-u_{k}: Peso ordenado del criterio j
+uk = Peso ordenado del criterio j
 
-k: Orden asignado al peso del criterio j (renglón)
+k= Orden asignado al peso del criterio j (renglón)
 
-i: Pixel
+i = Pixel
 
-z_ij: Valor ordenado del criterio j en el pixel i
+z_ij = Valor ordenado del criterio j en el pixel i
 
-\alpha: Cuantificador lingüístico 
+α = Cuantificador lingüístico 
 
 
-
+.. replace |uk|::
+   u_{k}: 
 
 Descargar el código de ejemplo 
 
@@ -60,6 +61,7 @@ Es importante que todas las capas raster cumplan con las siguientes condiciones:
 - Misma proyección cartográfica
 - Mismo tamaño de pixel
 - Misma extensión de capa
+- Mismo valor de NoData
 
 
 
@@ -84,7 +86,7 @@ Para resolver algun duda al respecto, visualizar la guia_
 
 .. image:: ../../owa/images/codigo.PNG
 
-2. Rellenar el diccionario
+2. Actualizar el diccionario
 ********************************
 
 Ingresar las capas raster de entrada con sus respectivos pesos
@@ -93,10 +95,10 @@ estructura del siguiente ejemplo:
 
 .. code-block:: python
 
-     dicc_capas = {'capa_1':{'ruta':path_insumos +"biologica/v_acuatica_yuc/fv_v_acuatica_yuc.tif",'w':0.08},
-             'capa_2':{'ruta':path_insumos +"biologica/v_costera_yuc/fv_v_costera_distancia_yuc.tif",'w':0.42},
-             'capa_3':{'ruta':path_insumos +"fisica/ancho_playa_yuc/fv_distancia_playa_yuc.tif",'w':0.065},
-             'capa_4':{'ruta':path_insumos +"fisica/elev_yuc/fv_elevacion_yuc.tif",'w':0.435},
+     dicc_capas = {'capa_1':{'ruta':"C:/Dropbox (LANCIS)/SIG/desarrollo/sig_papiit/entregables/exposicion/biologica/v_acuatica_yuc/fv_v_acuatica_yuc.tif",'w':0.08},
+             'capa_2':{'ruta':"C:/Dropbox (LANCIS)/SIG/desarrollo/sig_papiit/entregables/exposicion/biologica/v_costera_yuc/fv_v_costera_distancia_yuc.tif",'w':0.42},
+             'capa_3':{'ruta':"C:/Dropbox (LANCIS)/SIG/desarrollo/sig_papiit/entregables/exposicion/fisica/ancho_playa_yuc/fv_distancia_playa_yuc.tif",'w':0.065},
+             'capa_4':{'ruta':"C:/Dropbox (LANCIS)/SIG/desarrollo/sig_papiit/entregables/exposicion/fisica/elev_yuc/fv_elevacion_yuc.tif",'w':0.435},
              }
 
 Donde:
@@ -120,77 +122,73 @@ Donde:
 3. Indicar la capa maestra
 ***************************
 
-El código transforma los datos tiff en arreglos matriciales.
-Es indispensable asociar cualquier capa de los insumos
-a la variable **path_capa_maestra**. 
+Para generar la salida en formato tiff se requiere conocer aspectos
+técnicos como número de columnas y renglones, tamaño de pixel, coordenadas
+del extent, entre otros.
+
+Estos datos son extraidos por el código mediante la variable **path_capa_maestra**,
+en ella, se indica la ruta de **cualquier** capa raster ingresada en el diccionario del 
+paso #2.
+
+como ejemplo se toma la ruta de la **capa_1** 
 
 .. code-block:: python
 
-    path_capa_maestra = "../../*.tif"
+    path_capa_maestra = "C:/Dropbox (LANCIS)/SIG/desarrollo/sig_papiit/entregables/exposicion/biologica/v_acuatica_yuc/fv_v_acuatica_yuc.tif"
 
 
-4. Declarar el EPGS
-***********************
 
-El EPGS es el código de referencia geoespacial que indica
-la proyección y el datum asociados a cada capa. Ingresar el código
-EPGS correspondiente a los insumos. 
-Declarar el código en la variable **EPSG** 
 
-.. code-block:: python
-
-    EPSG = 32616
-
-5. Indicar el direcctorio de salida
+4. Indicar el direcctorio de salida
 *************************************
 
 Indicar el directorio donde guardarán los mapas de salida. 
 
+por ejemplo: 
+
 .. code-block:: python
 
-    path_salida = "../../"
+    path_salida = "C:/Dropbox (LANCIS)/SIG/desarrollo/sig_papiit/procesamiento/owa/"
 
-6. Verificar las variables asociadas a la función **insumos_base**
-*******************************************************************
 
-La función **insumos_base** recibe como parámetro el diccionario
-de capas y pesos. Esta función regresa una lista de dataframes de las capas y una lista 
-de pesos, por default se llaman **capas** y **w**, respectivamente.
+
+5. Los valores de alpha
+******************************************
+El código tiene valores  predeterminados de alpha 
 
 .. note::
-    
-    El nombre del diccionario (establecido en el paso #2) debe coincidir 
-    con el que recibe la función **insumos_base**.
 
+    Para más información respecto a los valores de alpha consulte la 
+    bibliografía
 
-.. code-block:: python
-
-    capas, w = insumos_base(dicc_capas)
-
-
-7. Indicar los valores de alpha
-******************************************
-El código está programado para recibir una 
-lista de valores de alpha y generar 
-un mapa por cada alpha declarado en dicha lista.
-Declarar los valores de alpha en la variable
-**owa_alphas**.
 
 .. code-block:: python
 
     owa_alphas = [0.0001,0.1,0.5,1.0,2.0,10.0,1000.0]
 
++--------+--------------------+
+|   α    |   Quantifier (Q)   |
++========+====================+
+| 0.0001 | At least one       |
++--------+--------------------+
+| 0.1    | At least a few a a |
++--------+--------------------+
+| 0.5    | A few              |
++--------+--------------------+
+| 1.0    | Half (identity)    |
++--------+--------------------+
+| 2.0    | Most               |
++--------+--------------------+
+| 10.0   | Almost all         |
++--------+--------------------+
+| 1000   | All                |
++--------+--------------------+
 
-8. Verificar que todo esté correcto en la función genera_owa
-**************************************************************
 
-La función **genera_owa** recibe las variables declaradas.
+para cada valor en la lista, el código generará un mapa en el directorio 
+de salida 
 
-
-.. code-block:: python
-
-    genera_owa(capas,w,owa_alphas,path_capa_maestra,EPSG,path_salida)
-
+.. image:: ../../owa/images/salida.PNG
 
 Bibliografía
 -----------------------------------
