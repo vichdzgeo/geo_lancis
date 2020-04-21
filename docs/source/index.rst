@@ -19,7 +19,8 @@ Geoprocesamiento en python y qgis's
    analisis
    leesallee
    owa
-
+   verificacion
+   usvmunicipal
 
 
 
