@@ -129,13 +129,16 @@ def crea_capa(ecuacion,rasters_input,salida):
             path_N=b
 
 
-
+    # raster = gdal.Open(path_A)
+    # band1 =raster.GetRasterBand(1).ReadAsArray()
+    # dimesion = band1.shape
+    # no_data=raster.GetRasterBand(1).GetNoDataValue()
             
     if total_raster == 1:
         gdal_calc.Calc(calc=ecuacion, 
                             A=path_A, 
                             outfile=salida,
-                            NoDataValue=-3.40282e+38,
+                            NoDataValue= -3.40282e+38,
                             quiet=True)
                             
     if total_raster == 2:
@@ -143,7 +146,7 @@ def crea_capa(ecuacion,rasters_input,salida):
                         A=path_A, 
                         B=path_B,
                         outfile=salida,
-                        NoDataValue=-3.40282e+38,
+                        NoDataValue= -3.40282e+38,
                         quiet=True)
 
     if total_raster == 3:
@@ -152,7 +155,7 @@ def crea_capa(ecuacion,rasters_input,salida):
                             B=path_B,
                             C=path_C, 
                             outfile=salida,
-                            NoDataValue=-3.40282e+38,
+                            NoDataValue= -3.40282e+38,
                             quiet=True)
                             
     if total_raster == 4:
@@ -162,7 +165,7 @@ def crea_capa(ecuacion,rasters_input,salida):
                         C=path_C, 
                         D=path_D,
                         outfile=salida,
-                        NoDataValue=-3.40282e+38,
+                        NoDataValue= -3.40282e+38,
                         quiet=True)
 
     if total_raster == 5:
@@ -173,7 +176,7 @@ def crea_capa(ecuacion,rasters_input,salida):
                             D=path_D,
                             E=path_E, 
                             outfile=salida,
-                            NoDataValue=-3.40282e+38,
+                            NoDataValue= -3.40282e+38,
                             quiet=True)
                             
     if total_raster == 6:
@@ -185,7 +188,7 @@ def crea_capa(ecuacion,rasters_input,salida):
                         E=path_E, 
                         F=path_F,
                         outfile=salida,
-                        NoDataValue=-3.40282e+38,
+                        NoDataValue= -3.40282e+38,
                         quiet=True)
 
     if total_raster == 7:
@@ -198,7 +201,7 @@ def crea_capa(ecuacion,rasters_input,salida):
                             F=path_F,
                             G=path_G, 
                             outfile=salida,
-                            NoDataValue=-3.40282e+38,
+                            NoDataValue= -3.40282e+38,
                             quiet=True)
                             
     if total_raster == 8:
@@ -212,7 +215,7 @@ def crea_capa(ecuacion,rasters_input,salida):
                         G=path_G, 
                         H=path_H,
                         outfile=salida,
-                        NoDataValue=-3.40282e+38,
+                        NoDataValue= -3.40282e+38,
                         quiet=True)
         
     if total_raster == 9:
@@ -227,7 +230,7 @@ def crea_capa(ecuacion,rasters_input,salida):
                         H=path_H,
                         I=path_I,
                         outfile=salida,
-                        NoDataValue=-3.40282e+38,
+                        NoDataValue= -3.40282e+38,
                         quiet=True)
 
     if total_raster == 10:
@@ -243,7 +246,7 @@ def crea_capa(ecuacion,rasters_input,salida):
                         I=path_I,
                         J=path_J,
                         outfile=salida,
-                        NoDataValue=-3.40282e+38,
+                        NoDataValue= -3.40282e+38,
                         quiet=True)
 
     if total_raster == 11:
@@ -260,7 +263,7 @@ def crea_capa(ecuacion,rasters_input,salida):
                         J=path_J,
                         K=path_K,
                         outfile=salida,
-                        NoDataValue=-3.40282e+38,
+                        NoDataValue= -3.40282e+38,
                         quiet=True)
 
     if total_raster == 12:
@@ -278,7 +281,7 @@ def crea_capa(ecuacion,rasters_input,salida):
                         K=path_K,
                         L=path_L,
                         outfile=salida,
-                        NoDataValue=-3.40282e+38,
+                        NoDataValue= -3.40282e+38,
                         quiet=True)
 
     if total_raster == 13:
@@ -297,7 +300,7 @@ def crea_capa(ecuacion,rasters_input,salida):
                         L=path_L,
                         M=path_M,
                         outfile=salida,
-                        NoDataValue=-3.40282e+38,
+                        NoDataValue= -3.40282e+38,
                         quiet=True)
 
     if total_raster == 14:
@@ -317,7 +320,7 @@ def crea_capa(ecuacion,rasters_input,salida):
                         M=path_M,
                         N=path_N,
                         outfile=salida,
-                        NoDataValue=-3.40282e+38,
+                        NoDataValue= -3.40282e+38,
                         quiet=True)
 
 
@@ -490,150 +493,159 @@ def pesos_superiores(dicc):
         pesos.append([k1,str(v1['w'])])
     return pesos 
 
-'''
+
+
+def analisis_sensibilidad(dicc,p_procesamiento):
+    # ----- GENERACIÓN DE LAS CAPAS CONSIDERANDO TODOS LOS ELEMENTOS ----- #
+    '''
+    :param dicc: diccionario con nombre de los criterios, rutas y ponderaciones ordenados por componente y subcomponente
+    :type dicc: dict
+
+    :param p_procesamiento: Directorio de salida para el procesamiento de los productos necesarios para el cálculo del analisis de sensibilidad
+    :type p_procesamiento: str 
+
+
+    '''
+    exposicion_total,susceptibilidad_total,resiliencia_total = rutas_pesos_globales(dicc)
+    path_exp_t,w_exp_t = separa_ruta_pesos(exposicion_total)
+    path_sus_t,w_sus_t = separa_ruta_pesos(susceptibilidad_total)
+    path_res_t,w_res_t = separa_ruta_pesos(resiliencia_total)
+
+    ecuacion_exp_t = ecuacion_clp(w_exp_t)
+    ecuacion_sus_t = ecuacion_clp(w_sus_t)
+    ecuacion_res_t = ecuacion_clp(w_res_t)
+
+    salida_exposicion_t = p_procesamiento+"exposicion.tif"
+    salida_susceptibilidad_t = p_procesamiento+"susceptibilidad.tif"
+    salida_resiliencia_t = p_procesamiento+"resiliencia.tif"
+
+
+    crea_capa(ecuacion_exp_t,path_exp_t,salida_exposicion_t)
+    crea_capa(ecuacion_sus_t,path_sus_t,salida_susceptibilidad_t)
+    crea_capa(ecuacion_res_t,path_res_t,salida_resiliencia_t)
+
+    ## --- Creación de la capa de vulnerabilidad ---##
+
+    salida_vulnerabilidad_exp_sus= p_procesamiento+"tp_vulnerabilidad_exp_sus.tif"
+    salida_vulnerabilidad_exp_sus_res= p_procesamiento+"vulnerabilidad.tif"
+
+    lista_exp_sus = [salida_exposicion_t,salida_susceptibilidad_t]
+    lista_exp_sus_res = [salida_exposicion_t,salida_susceptibilidad_t,salida_resiliencia_t]
+    ecuacion_exp_sus =ecuacion_vulnerabilidad(1)
+    ecuacion_exp_sus_res =ecuacion_vulnerabilidad(2)
+
+    crea_capa(ecuacion_exp_sus,lista_exp_sus,salida_vulnerabilidad_exp_sus)
+    crea_capa(ecuacion_exp_sus_res,lista_exp_sus_res,salida_vulnerabilidad_exp_sus_res)
+
+    vulnerabilidad_total_media = media_raster(salida_vulnerabilidad_exp_sus_res)
+    exp_media_total = media_raster(salida_exposicion_t)
+    sus_media_total = media_raster(salida_susceptibilidad_t)
+    res_media_total = media_raster(salida_resiliencia_t)
+
+
+
+    #---- TERMINA ---#
+
+    #--- ANALISIS DE SENSIBILIDAD ----#
+
+
+    archivo = open(p_procesamiento+"analisis_sensibilidad.csv","w")
+    archivo.write("criterio,exp_media,sensibilidad_exp,sus_media,sensibilidad_sus,res_media,sensibilidad_res,vulnerabilidad,sensibilidad_vul\n")
+    archivo.write("total,"+str(round(exp_media_total,3))+",,"+str(round(sus_media_total,3))+",,"+str(round(res_media_total,3))+",,"+str(round(vulnerabilidad_total_media,3))+"\n")
+        
+    criterios = lista_criterios(dicc) #obtiene criterios del diccionario principal
+    cont=0
+    for criterio in criterios:
+        cont +=1
+        print ("procensado criterio: ",criterio,"  ",cont,"de",len(criterios))
+        dicc2  = quita_reescala(dicc,criterio)
+        
+
+        exposicion,susceptibilidad,resiliencia = rutas_pesos_globales(dicc2) #separa los subcriterios por criterios
+
+        path_exp,w_exp = separa_ruta_pesos(exposicion)
+        path_sus,w_sus = separa_ruta_pesos(susceptibilidad)
+        path_res,w_res = separa_ruta_pesos(resiliencia)
+
+        ecuacion_exp = ecuacion_clp(w_exp)
+        ecuacion_sus = ecuacion_clp(w_sus)
+        ecuacion_res = ecuacion_clp(w_res)
+
+        salida_exposicion = p_procesamiento+"tp_exposicion_sin_"+criterio+".tif"
+        salida_susceptibilidad = p_procesamiento+"tp_suscep_sin_"+criterio+".tif"
+        salida_resiliencia = p_procesamiento+"tp_resilencia_sin_"+criterio+".tif"
+
+        salida_vulnerabilidad = p_procesamiento+"tp_vulnerabilidad_sin_"+criterio+".tif"
+        print(salida_exposicion.split("/")[-1:],"|",salida_susceptibilidad.split("/")[-1:])
+        crea_capa(ecuacion_exp,path_exp,salida_exposicion)
+        crea_capa(ecuacion_sus,path_sus,salida_susceptibilidad)
+        crea_capa(ecuacion_res,path_res,salida_resiliencia)
+            
+        ## --- Creación de la capa de vulnerabilidad --- ##
+
+        lista_c = [salida_exposicion,salida_susceptibilidad,salida_resiliencia]
+        ecuacion_vul_01 =ecuacion_vulnerabilidad(2)
+        crea_capa(ecuacion_vul_01,lista_c,salida_vulnerabilidad)
+
+        ## --- Promedios de los productos ---- ## 
+        vulnerabilidad_media = media_raster(salida_vulnerabilidad)
+        exp_media = media_raster(salida_exposicion)
+        sus_media = media_raster(salida_susceptibilidad)
+        res_media = media_raster(salida_resiliencia)
+        
+        ##---  Cálculo de la sensibilidad ---##
+        sensibilidad_exp_calculada = round((abs((exp_media_total-exp_media))/exp_media_total),3)
+        sensibilidad_sus_calculada = round((abs((sus_media_total-sus_media))/sus_media_total),3)
+        sensibilidad_res_calculada = round((abs((res_media_total-res_media))/res_media_total),3)
+        sensibilidad_calculada = round((abs((vulnerabilidad_total_media-vulnerabilidad_media))/vulnerabilidad_total_media),3)
+        archivo.write(criterio+","+\
+                        str(exp_media)+","+\
+                        str(sensibilidad_exp_calculada)+","+\
+                        str(round(sus_media,3))+","+\
+                        str(sensibilidad_sus_calculada)+","+\
+                        str(round(res_media,3))+","+\
+                        str(sensibilidad_res_calculada)+","+\
+                        str(round(vulnerabilidad_media,3))+","+\
+                        str(sensibilidad_calculada)+"\n")
+        
+    archivo.close()
+
+
+
+
 ### rutas de entrada y salida
 
-p_sig_exp= 'C:/Dropbox (LANCIS)/SIG/desarrollo/sig_papiit/entregables/\
-exposicion/'
-p_sig_sens= 'C:/Dropbox (LANCIS)/SIG/desarrollo/sig_papiit/entregables/\
-sensibilidad/'
-p_sig_res= 'C:/Dropbox (LANCIS)/SIG/desarrollo/sig_papiit/entregables/\
-resiliencia/'
-p_procesamiento = 'C:/Dropbox (LANCIS)/SIG/desarrollo/sig_papiit/entregables/finales/'
+
 dicc = {
     'exposicion': {'w':0.33,
                         'criterios':{'biologico':{'w':0.50,
-                                                        'criterios':{'v_acuatica':{'w':0.16,'ruta':p_sig_exp+'biologica/v_acuatica_yuc/fv_v_acuatica_yuc.tif'},
-                                                                        'v_costera':{ 'w':0.84,'ruta':p_sig_exp + 'biologica/v_costera_yuc/fv_v_costera_distancia_yuc.tif'}}},
+                                                        'criterios':{'v_acuatica':{'w':0.16,'ruta':'C:/analisis_sensibilidad/insumos/exposicion/biologica/v_acuatica_yuc/fv_v_acuatica_yuc.tif'},
+                                                                        'v_costera':{ 'w':0.84,'ruta':'C:/analisis_sensibilidad/insumos/exposicion/biologica/v_costera_yuc/fv_v_costera_distancia_yuc.tif'}}},
                                         'fisico':{'w':0.50,
-                                                    'criterios':{'elevacion':{ 'w':0.87,'ruta':p_sig_exp+ 'fisica/elev_yuc/fv_elevacion_yuc.tif'},
-                                                                    'ancho_playa':{'w':0.13,'ruta':p_sig_exp+ 'fisica/ancho_playa_yuc/fv_distancia_playa_yuc.tif'}
+                                                    'criterios':{'elevacion':{ 'w':0.87,'ruta':'C:/analisis_sensibilidad/insumos/exposicion/fisica/elev_yuc/fv_elevacion_yuc.tif'},
+                                                                    'ancho_playa':{'w':0.13,'ruta':'C:/analisis_sensibilidad/insumos/exposicion/fisica/ancho_playa_yuc/fv_distancia_playa_yuc.tif'}
     }}}},
     'susceptibilidad': {'w':0.33,
                             'criterios':{'biologico':{'w':0.50 ,
-                                                            'criterios':{'v_costera':{ 'w':1.0,'ruta':p_sig_sens + 'biologica/v_costera_yuc/fv_v_costera_presencia_yuc.tif'}}},
+                                                            'criterios':{'v_costera':{ 'w':1.0,'ruta':'C:/analisis_sensibilidad/insumos/sensibilidad/biologica/v_costera_yuc/fv_v_costera_presencia_yuc.tif'}}},
                                             'fisico':{'w':0.50,
-                                                        'criterios':{'elevacion':{ 'w':0.26,'ruta':p_sig_sens + 'fisica/elev_yuc/fv_elevacion_yuc.tif' },
-                                                                        'duna_costera':{'w':0.10,'ruta':p_sig_sens + 'fisica/duna_yuc/fv_duna_yuc.tif'},
-                                                                        'tipo_litoral':{'w':0.64,'ruta':p_sig_sens + 'fisica/t_litoral_yuc/fv_tipo_litoral_yuc.tif'}
+                                                        'criterios':{'elevacion':{ 'w':0.26,'ruta':'C:/analisis_sensibilidad/insumos/sensibilidad/fisica/elev_yuc/fv_elevacion_yuc.tif' },
+                                                                        'duna_costera':{'w':0.10,'ruta':'C:/analisis_sensibilidad/insumos/sensibilidad/fisica/duna_yuc/fv_duna_yuc.tif'},
+                                                                        'tipo_litoral':{'w':0.64,'ruta':'C:/analisis_sensibilidad/insumos/sensibilidad/fisica/t_litoral_yuc/fv_tipo_litoral_yuc.tif'}
     }}}},
     'resiliencia': {'w':0.33,
                             'criterios':{'biologico':{'w':0.50 ,
-                                                            'criterios':{'biodiversidad':{'w':0.50,'ruta':p_sig_res + 'biologica/biodiversidad/fv_biodiversidad_yuc.tif'},
-                                                                            'servicios_ambientales':{'w':0.50,'ruta':p_sig_res + 'biologica/serv_ambientales/fv_servicios_ambientales_yuc.tif'}}},
+                                                            'criterios':{'biodiversidad':{'w':0.50,'ruta':'C:/analisis_sensibilidad/insumos/resiliencia/biologica/biodiversidad/fv_biodiversidad_yuc.tif'},
+                                                                            'servicios_ambientales':{'w':0.50,'ruta':'C:/analisis_sensibilidad/insumos/resiliencia/biologica/serv_ambientales/fv_servicios_ambientales_yuc.tif'}}},
                                         'fisico':{'w':0.50,
-                                                        'criterios':{'ancho_playa':{'w':0.62,'ruta':p_sig_res + 'fisica/ancho_playa_yuc/fv_ancho_playa_yuc.tif'},
-                                                                    'duna_costera':{'w':0.27,'ruta':p_sig_res + 'fisica/duna_yuc/fv_duna_yuc.tif'},
-                                                                    'elevacion':{'w':0.06,'ruta':p_sig_res + 'fisica/elev_yuc/fv_elev_yuc.tif'},
-                                                                    'tipo_litoral':{'w':0.05,'ruta':p_sig_res + 'fisica/t_litoral_yuc/fv_tipo_litoral_yuc.tif'}
+                                                        'criterios':{'ancho_playa':{'w':0.62,'ruta':'C:/analisis_sensibilidad/insumos/resiliencia/fisica/ancho_playa_yuc/fv_ancho_playa_yuc.tif'},
+                                                                    'duna_costera':{'w':0.27,'ruta':'C:/analisis_sensibilidad/insumos/resiliencia/fisica/duna_yuc/fv_duna_yuc.tif'},
+                                                                    'elevacion':{'w':0.06,'ruta':'C:/analisis_sensibilidad/insumos/resiliencia/fisica/elev_yuc/fv_elev_yuc.tif'},
+                                                                    'tipo_litoral':{'w':0.05,'ruta':'C:/analisis_sensibilidad/insumos/resiliencia/fisica/t_litoral_yuc/fv_tipo_litoral_yuc.tif'}
     }}}}
 
     }
-# ----- GENERACIÓN DE LAS CAPAS CONSIDERANDO TODOS LOS ELEMENTOS ----- #
 
-exposicion_total,susceptibilidad_total,resiliencia_total = rutas_pesos_globales(dicc)
-path_exp_t,w_exp_t = separa_ruta_pesos(exposicion_total)
-path_sus_t,w_sus_t = separa_ruta_pesos(susceptibilidad_total)
-path_res_t,w_res_t = separa_ruta_pesos(resiliencia_total)
+p_procesamiento = 'C:/analisis_sensibilidad/salida/'
 
-ecuacion_exp_t = ecuacion_clp(w_exp_t)
-ecuacion_sus_t = ecuacion_clp(w_sus_t)
-ecuacion_res_t = ecuacion_clp(w_res_t)
-
-salida_exposicion_t = p_procesamiento+"tp_exposicion_total.tif"
-salida_susceptibilidad_t = p_procesamiento+"tp_susceptibilidad_total.tif"
-salida_resiliencia_t = p_procesamiento+"tp_resiliencia_total.tif"
-
-
-crea_capa(ecuacion_exp_t,path_exp_t,salida_exposicion_t)
-crea_capa(ecuacion_sus_t,path_sus_t,salida_susceptibilidad_t)
-crea_capa(ecuacion_res_t,path_res_t,salida_resiliencia_t)
-
-## --- Creación de la capa de vulnerabilidad ---##
-
-salida_vulnerabilidad_exp_sus= p_procesamiento+"tp_vulnerabilidad_exp_sus.tif"
-salida_vulnerabilidad_exp_sus_res= p_procesamiento+"tp_vulnerabilidad_exp_sus_res.tif"
-
-lista_exp_sus = [salida_exposicion_t,salida_susceptibilidad_t]
-lista_exp_sus_res = [salida_exposicion_t,salida_susceptibilidad_t,salida_resiliencia_t]
-ecuacion_exp_sus =ecuacion_vulnerabilidad(1)
-ecuacion_exp_sus_res =ecuacion_vulnerabilidad(2)
-
-crea_capa(ecuacion_exp_sus,lista_exp_sus,salida_vulnerabilidad_exp_sus)
-crea_capa(ecuacion_exp_sus_res,lista_exp_sus_res,salida_vulnerabilidad_exp_sus_res)
-
-vulnerabilidad_total_media = media_raster(salida_vulnerabilidad_exp_sus_res)
-exp_media_total = media_raster(salida_exposicion_t)
-sus_media_total = media_raster(salida_susceptibilidad_t)
-res_media_total = media_raster(salida_resiliencia_t)
-
-
-
-#---- TERMINA ---#
-
-#--- ANALISIS DE SENSIBILIDAD ----#
-
-
-archivo = open(p_procesamiento+"sensibilidad_por_criterio.csv","w")
-archivo.write("criterio,exp_media,sensibilidad_exp,sus_media,sensibilidad_sus,res_media,sensibilidad_res,vulnerabilidad,sensibilidad_vul\n")
-archivo.write("total,"+str(round(exp_media_total,3))+",,"+str(round(sus_media_total,3))+",,"+str(round(res_media_total,3))+",,"+str(round(vulnerabilidad_total_media,3))+"\n")
-    
-criterios = lista_criterios(dicc) #obtiene criterios del diccionario principal
-cont=0
-for criterio in criterios:
-    cont +=1
-    print ("procensado criterio: ",criterio,"  ",cont,"de",len(criterios))
-    dicc2  = quita_reescala(dicc,criterio)
-       
-
-    exposicion,susceptibilidad,resiliencia = rutas_pesos_globales(dicc2) #separa los subcriterios por criterios
-
-    path_exp,w_exp = separa_ruta_pesos(exposicion)
-    path_sus,w_sus = separa_ruta_pesos(susceptibilidad)
-    path_res,w_res = separa_ruta_pesos(resiliencia)
-
-    ecuacion_exp = ecuacion_clp(w_exp)
-    ecuacion_sus = ecuacion_clp(w_sus)
-    ecuacion_res = ecuacion_clp(w_res)
-
-    salida_exposicion = p_procesamiento+"tp_exposicion_sin_"+criterio+".tif"
-    salida_susceptibilidad = p_procesamiento+"tp_suscep_sin_"+criterio+".tif"
-    salida_resiliencia = p_procesamiento+"tp_resilencia_sin_"+criterio+".tif"
-
-    salida_vulnerabilidad = p_procesamiento+"tp_vulnerabilidad_sin_"+criterio+".tif"
-    print(salida_exposicion.split("/")[-1:],"|",salida_susceptibilidad.split("/")[-1:])
-    crea_capa(ecuacion_exp,path_exp,salida_exposicion)
-    crea_capa(ecuacion_sus,path_sus,salida_susceptibilidad)
-    crea_capa(ecuacion_res,path_res,salida_resiliencia)
-        
-    ## --- Creación de la capa de vulnerabilidad --- ##
-
-    lista_c = [salida_exposicion,salida_susceptibilidad,salida_resiliencia]
-    ecuacion_vul_01 =ecuacion_vulnerabilidad(2)
-    crea_capa(ecuacion_vul_01,lista_c,salida_vulnerabilidad)
-
-    ## --- Promedios de los productos ---- ## 
-    vulnerabilidad_media = media_raster(salida_vulnerabilidad)
-    exp_media = media_raster(salida_exposicion)
-    sus_media = media_raster(salida_susceptibilidad)
-    res_media = media_raster(salida_resiliencia)
-    
-    ##---  Cálculo de la sensibilidad ---##
-    sensibilidad_exp_calculada = round((abs((exp_media_total-exp_media))/exp_media_total),3)
-    sensibilidad_sus_calculada = round((abs((sus_media_total-sus_media))/sus_media_total),3)
-    sensibilidad_res_calculada = round((abs((res_media_total-res_media))/res_media_total),3)
-    sensibilidad_calculada = round((abs((vulnerabilidad_total_media-vulnerabilidad_media))/vulnerabilidad_total_media),3)
-    archivo.write(criterio+","+\
-                    str(exp_media)+","+\
-                    str(sensibilidad_exp_calculada)+","+\
-                    str(round(sus_media,3))+","+\
-                    str(sensibilidad_sus_calculada)+","+\
-                    str(round(res_media,3))+","+\
-                    str(sensibilidad_res_calculada)+","+\
-                    str(round(vulnerabilidad_media,3))+","+\
-                    str(sensibilidad_calculada)+"\n")
-    
-
-
-archivo.close()
-'''
+#analisis_sensibilidad(dicc,p_procesamiento)

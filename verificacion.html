@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Índice de Módulos Python &mdash; documentación de Geoprocesamiento en python y qgis - 1.0</title>
+  <title>Verificación de capas &mdash; documentación de Geoprocesamiento en python y qgis - 1.0</title>
   
 
   
@@ -36,14 +36,7 @@
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Índice" href="genindex.html" />
-    <link rel="search" title="Búsqueda" href="search.html" />
- 
-
-    <script type="text/javascript">
-      DOCUMENTATION_OPTIONS.COLLAPSE_INDEX = true;
-    </script>
-
-
+    <link rel="search" title="Búsqueda" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -141,10 +134,14 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Índice de Módulos Python</li>
+      <li>Verificación de capas</li>
     
     
       <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/verificacion.rst.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
     
@@ -156,23 +153,61 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-
-   <h1>Índice de Módulos Python</h1>
-
-   <div class="modindex-jumpbox">
-   <a href="#cap-i"><strong>i</strong></a>
-   </div>
-
-   <table class="indextable modindextable">
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-i"><td></td><td>
-       <strong>i</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="leesallee.html#module-indice_lee_sallee"><code class="xref">indice_lee_sallee</code></a></td><td>
-       <em></em></td></tr>
-   </table>
+  <div class="section" id="verificacion-de-capas">
+<h1>Verificación de capas<a class="headerlink" href="#verificacion-de-capas" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Los puntos a verificar son los siguientes:</p>
+<ol class="arabic simple">
+<li>Proyección Que exista el archivo prj asociado</li>
+<li>Geometría completa  Que exista los mismos elementos geométricos que los contenidos en la tabla de atributos</li>
+<li>Sobrelapados Que la capa no cuente con errores topológicos</li>
+<li>Nulos Que no existan campos vacios en la tabla de atributos</li>
+<li>Codificados Que no existan campos con caracteres espeaciales o extraños en su contenido o que datos numéricos esten declardos como texto</li>
+<li>Metadatos Que exista el archivo xml asociado a los metadatos geográficos</li>
+</ol>
+<p>Descargar el código de ejemplo</p>
+<p><a class="reference download internal" download="" href="_downloads/c63dc813820b1b07e0d2ab612f0ef1e0/verificacion_layers.py"><code class="xref download docutils literal notranslate"><span class="pre">verificacion_layers.py</span></code></a>.</p>
+<div class="section" id="requerimientos-generales">
+<h2>Requerimientos generales<a class="headerlink" href="#requerimientos-generales" title="Enlazar permanentemente con este título">¶</a></h2>
+</div>
+<div class="section" id="ejemplo">
+<h2>Ejemplo:<a class="headerlink" href="#ejemplo" title="Enlazar permanentemente con este título">¶</a></h2>
+<div class="section" id="abrir-el-codigo">
+<h3>1. Abrir el código<a class="headerlink" href="#abrir-el-codigo" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Abrir el código <strong>verificación_layers.py</strong> en Qgis 3.4 o superior,
+para resolver cualquier duda al respecto, consultar la <a class="reference external" href="https://vichdzgeo.github.io/geo_lancis/ejecucion.html">guia</a></p>
+<img alt="_images/codigo1.PNG" src="_images/codigo1.PNG" />
+</div>
+<div class="section" id="indicar-el-directorio">
+<h3>2. Indicar el directorio<a class="headerlink" href="#indicar-el-directorio" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>El código verifica todas las capas vectoriales contenidas en el directorio
+indicado en la variable <strong>path_dir</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">path_dir</span> <span class="o">=</span> <span class="s2">&quot;C:/Dropbox (LANCIS)/SIG/insumos/agricultura/conabio/vector/produccion_miel/&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="salidas">
+<h3>Salidas<a class="headerlink" href="#salidas" title="Enlazar permanentemente con este título">¶</a></h3>
+<div class="section" id="capas-de-topologia">
+<h4>Capas de topología<a class="headerlink" href="#capas-de-topologia" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>el código crea una carpeta llamada <strong>temp</strong>, dentro de ella otra carpeta llamada <strong>topologia</strong> en esta
+carpeta se guardan los 3 archivos shapefile  resultantes de la función <strong>topologia</strong></p>
+<p>estan nombrados de la siguiente manera:</p>
+<p>nombre_de_la_capa**_error**.shp</p>
+<p>Capa de puntos que índica la posición en donde 2 o más poligonos no colindan adecuadamente
+o que su geometría puede causar problemas en algún análisis espacial</p>
+<p>nombre_de_la_capa**_invalido**.shp</p>
+<p>Capa de poligonos que índica geométria inválida de la capa</p>
+<p>nombre_de_la_capa**_valido**.shp</p>
+<p>Capa de poligonos que indica la geometría válida de la capa</p>
+</div>
+<div class="section" id="imagen-de-la-capa">
+<h4>Imagen de la capa<a class="headerlink" href="#imagen-de-la-capa" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>El código genera una imagen de la capa con el mapa base de open street maps
+sí y solo sí la capa tiene un puntaje de 10 en el criterio de <strong>proyección</strong></p>
+</div>
+</div>
+</div>
+</div>
 
 
            </div>

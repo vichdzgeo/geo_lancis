@@ -1,0 +1,299 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="es" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="es" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Cobertura de uso y tipo de suelo a nivel municipal &mdash; documentación de Geoprocesamiento en python y qgis - 1.0</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Geoprocesamiento en python y qgis
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Guias de uso:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ejecucion.html">¿Cómo ejecutar un código en Qgis?</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Códigos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="analisis.html">Análisis de sensibilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="leesallee.html">Índice Lee-Sallee</a></li>
+<li class="toctree-l1"><a class="reference internal" href="owa.html">OWA</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Geoprocesamiento en python y qgis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Cobertura de uso y tipo de suelo a nivel municipal</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/usvmunicipal.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="cobertura-de-uso-y-tipo-de-suelo-a-nivel-municipal">
+<h1>Cobertura de uso y tipo de suelo a nivel municipal<a class="headerlink" href="#cobertura-de-uso-y-tipo-de-suelo-a-nivel-municipal" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Objetivo:</p>
+<p>Generar bases de datos  a nivel municipal que cuantiquen el área en hectaréas por clase
+de uso de suelo y vegetación</p>
+<p># Insumos</p>
+<ul class="simple">
+<li>Series I - VI de uso de suelo y vegetacíón INEGI</li>
+<li>Municipios del estado de Yucatán (2018)</li>
+</ul>
+<p>## Procedimiento</p>
+<p>Se unificarón las categorias para las seis series publicadas de la siguiente manera:
+(Solo aplica para el estado de Yúcatan)</p>
+<p>id_clase - Categoria
+1 - Agricultura de riego
+2 -Agricultura de temporal
+3 - Cuerpo de agua
+4 - Manglar
+5 - Pastizal
+6 - Selva baja
+7 - Selva mediana
+8 - Sin vegetación
+9 - Asentamiento humano
+10 - Vegetación de duna costera
+11 - Vegetación de petén
+12 - Vegetación secundaria de selva baja
+13 - Vegetación secundaria de selva mediana
+14 - Vegetación secundaria de manglar
+15 - Acuícola
+16 - Bosque cultivado/Palmar inducido
+17 - Tular
+18 - Vegetación halófila hidrófila
+19 - Sábana</p>
+<p>Se genera el script <strong>datos_nivel_municipio.py</strong> el cual genera
+realiza los siguientes pasos:</p>
+<ul class="simple">
+<li>Se declara <strong>path_mun</strong> la ruta de la capa de municipios</li>
+<li>se realiza un iterador (for) del 1 al 6 para procesar las 6 series de USV</li>
+<li>Se declara <strong>path_usv</strong> mediante el for la ruta de la capa usv_serie_i_yuc.shp (donde i, va del 1 al 6)</li>
+<li>Se declara <strong>path_mun_usv</strong>  mendiante el for la ruta del archivo que resultará de la intersección de municipios y USV  (agregados)</li>
+<li>Se declara <strong>path_mun_usv_csv</strong> mediante el for la ruta del archivo csv que contendrá las áreas (Ha) por clase por municipio</li>
+<li>se declara <strong>path_mun</strong> como la capa <strong>municipios</strong></li>
+<li>se declara <strong>path_usv</strong> como la cap <strong>usv</strong></li>
+<li>Se crea una copia de la capa de municipio</li>
+<li>Se declara <strong>path_interseccion</strong>, mendiante el for que  es la ruta y nombre del resultado de la intersección de municipios y USV</li>
+<li>Se crea una lista municipios mendiante el campo <strong>cve_mun</strong> de la capa <strong>municipios</strong></li>
+<li>Se crea una lista de las categorias mediante el campo <strong>id_clase</strong> de la capa <strong>usv</strong></li>
+<li>Se realiza la intersección <strong>path_mun_usv</strong> y <strong>path_usv</strong> se indica la ruta y nombre de salida con <strong>path_interseccion</strong></li>
+<li>se declara <strong>path_mun_usv</strong> como la capa <strong>mun_usv</strong></li>
+<li>Se llama a la funcion <strong>campos_clases</strong> pasando como parametros la cap  <strong>mun_usv</strong> y la lista_clases, esta función creará los campos en la capa vectorial</li>
+</ul>
+<p>como «clase_i» donde i es el número de id de la clase
+- se declara <strong>path_interseccion</strong> como la capa <strong>consulta_intersect</strong>
+- Se inicia la edición de la capa <strong>mun_usv</strong>
+- se realiza un iterador (for) de la lista_clases</p>
+<blockquote>
+<div><ul class="simple">
+<li>Se inicializa la variable area = 0</li>
+<li><dl class="first docutils">
+<dt>Se realiza un iterador (for) de la lista_mun</dt>
+<dd><ul class="first last">
+<li>se restablece la variable area = 0</li>
+<li>se realiza un filtro mediante una consulta por municipio y por numero de clase <strong>request_mun</strong></li>
+<li>se realiza un filtro mediante una consulta por municipio  <strong>request_mun_o</strong></li>
+<li><dl class="first docutils">
+<dt>Se realiza un iterador (for) de los elementos de la capa <strong>consulta_interect</strong> pasando la consulta <strong>request_mun</strong></dt>
+<dd><ul class="first last">
+<li>Se realiza la suma de los elmentos de la seleccion mediante la funcion geometry().area() y se va guardando en <strong>area</strong></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Se realiza un iterdor (for) de los elementos de la capa <strong>mun_usv</strong>  pasando la consulta <strong>request_mun</strong></dt>
+<dd><ul class="first last">
+<li>Se escribe en el campo <strong>clase_i</strong> (donde i es el id de la clase) el valor del área dividido entre 10,000 y redondeado a 2 dígitos</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li>Se actualizan los elementos de la capa <strong>mun_usv</strong></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li>al finalizar la serie de iteradores se guardan los cambios en <strong>mun_usv</strong></li>
+<li>Se manda a llamar a la función <strong>vector_to_usv</strong> donde se recibe como parametros la capa <strong>mun_usv</strong> y la variable <strong>path_mun_usv_csv</strong> que es la ruta y el nombre del archivo csv</li>
+</ul>
+<p>al finalizar se obtiene</p>
+<ul class="simple">
+<li>6 capas vectoriales a nivel municipal, una por serie <strong>mun_usv_si.shp</strong> (donde i va del 1 al 6)</li>
+<li>6 capas vectoriales resultado de las intersecciones <strong>tp_inters_mun_usv_si.shp**(donde i va del 1 al 6), una por serie **mun_usv_si.shp</strong> donde i va del 1 al 6)</li>
+</ul>
+<p>se entrega como producto final</p>
+<ul class="simple">
+<li>6 archivos csv a nivel municipal, uno por serie <strong>mun_usv_si.csv</strong> (donde i va del 1 al 6) que son copia de los atributos de la capa vectorial correspondiente</li>
+</ul>
+<p>ruta : SIGdesarrollosig_fomixentregablesmunicipios_usv</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Víctor Hernández
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

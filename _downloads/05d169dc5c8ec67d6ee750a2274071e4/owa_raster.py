@@ -363,12 +363,12 @@ path_capa_maestra=path_insumos+"biologica/v_acuatica_yuc/fv_v_acuatica_yuc.tif"
 ## Ruta del directorio donde se almacenarán las salidas 
 path_salida = "C:/Dropbox (LANCIS)/SIG/desarrollo/sig_papiit/procesamiento/owa/"
 
-#capas, w = insumos_base(dicc_capas)
+capas, w = insumos_base(dicc_capas)
 ## lista de valores que toma alpha, para cada valor genera una salida
 owa_alphas = [0.0001,0.1,0.5,1.0,2.0,10.0,1000.0]
 
 print ("procesando owa",time.strftime("%H:%M:%S"))  #imprime la hora que inicia el proceso
 
-#genera_owa(capas,w,owa_alphas,path_capa_maestra,path_salida)
+genera_owa(capas,w,owa_alphas,path_capa_maestra,path_salida)
 
 print (time.strftime("%H:%M:%S"))  # imprime la hora una vez terminada la ejecución

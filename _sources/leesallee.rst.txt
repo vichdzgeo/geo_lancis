@@ -1,7 +1,6 @@
 Índice Lee-Sallee
 #############################
 
-
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
 Aliquam at turpis lacus. Pellentesque vitae efficitur lacus. 
 Proin eu lectus ultrices mauris viverra vehicula. Proin ante justo, 
@@ -38,7 +37,6 @@ Modifica las rutas donde se encuentran los insumos
 * vlayer_model es la capa vectorial que se ocupa como modelo 
 
 .. image:: ../../lee_sallee/images/rutas.png
-
 
 
 .. automodule:: indice_lee_sallee

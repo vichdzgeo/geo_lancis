@@ -89,14 +89,21 @@
 <p class="caption"><span class="caption-text">Códigos:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Análisis de sensibilidad</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#entrada-de-datos">Entrada de datos</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#salida-de-datos">Salida de datos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#requerimientos-generales">Requerimientos generales</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#requerimientos-generales-de-los-insumos">Requerimientos generales de los insumos</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ejemplo">Ejemplo</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#insumos">Insumos</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#procedimiento">Procedimiento</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#procedimiento">Procedimiento</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#abrir-el-codigo">1. Abrir el código</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#actualizar-el-diccionario">2. Actualizar el diccionario</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#indicar-el-direcctorio-de-salida">3. Indicar el direcctorio de salida</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ejecutar-el-codigo">4. Ejecutar el código</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#documentacion-del-codigo">Documentación del código</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bibliografia">Bibliografía</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#documentacion-dentro-del-codigo">Documentación dentro del código</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="leesallee.html">Índice Lee-Sallee</a></li>
@@ -175,240 +182,85 @@ Proin laoreet quis quam quis auctor. Vestibulum nec nisl pretium, bibendum ligul
 suscipit neque. Nunc placerat ac ipsum vel pellentesque. Phasellus lacinia cursus porttitor.
 Donec viverra faucibus nisl, non vestibulum quam posuere sit amet. Nulla a sodales urna.
 Donec vestibulum purus purus, iaculis pellentesque eros cursus quis. Maecenas ac maximus sem.</p>
-<p>descarga el código de ejemplo</p>
+<p>Descargar el código de ejemplo</p>
 <p><a class="reference download internal" download="" href="_downloads/4872728f7eac43319b35383a75c90dcf/sensibilidad.py"><code class="xref download docutils literal notranslate"><span class="pre">sensibilidad.py</span></code></a>.</p>
-<div class="section" id="entrada-de-datos">
-<h2>Entrada de datos<a class="headerlink" href="#entrada-de-datos" title="Enlazar permanentemente con este título">¶</a></h2>
-<p>El usuario debe reemplazar en el código las variables como pesos <strong>w</strong>,
-nombre de los criterios, y  la <strong>ruta</strong> de donde se encuentran las capas
-raster.</p>
-<p>ver a partir de la línea 364 en el código de ejemplo</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dicc</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;exposicion&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.5</span><span class="p">,</span>
-                        <span class="s1">&#39;criterios&#39;</span><span class="p">:{</span><span class="s1">&#39;biologico&#39;</span><span class="p">:{</span><span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.50</span><span class="p">,</span>
-                                                        <span class="s1">&#39;criterios&#39;</span><span class="p">:{</span><span class="s1">&#39;v_acuatica&#39;</span><span class="p">:{</span><span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.16</span><span class="p">,</span><span class="s1">&#39;ruta&#39;</span><span class="p">:</span><span class="s1">&#39;&#39;</span><span class="p">},</span>
-                                                                        <span class="s1">&#39;v_costera&#39;</span><span class="p">:{</span> <span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.84</span><span class="p">,</span><span class="s1">&#39;ruta&#39;</span><span class="p">:</span><span class="s1">&#39;&#39;</span><span class="p">}}},</span>
-                                        <span class="s1">&#39;fisico&#39;</span><span class="p">:{</span><span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.50</span><span class="p">,</span>
-                                                    <span class="s1">&#39;criterios&#39;</span><span class="p">:{</span><span class="s1">&#39;elevacion&#39;</span><span class="p">:{</span> <span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.87</span><span class="p">,</span><span class="s1">&#39;ruta&#39;</span><span class="p">:</span><span class="s1">&#39;&#39;</span><span class="p">},</span>
-                                                                    <span class="s1">&#39;ancho_playa&#39;</span><span class="p">:{</span><span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.13</span><span class="p">,</span><span class="s1">&#39;ruta&#39;</span><span class="p">:</span><span class="s1">&#39;&#39;</span><span class="p">}</span>
-    <span class="p">}}}},</span>
-    <span class="s1">&#39;susceptibilidad&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.5</span><span class="p">,</span>
-                            <span class="s1">&#39;criterios&#39;</span><span class="p">:{</span><span class="s1">&#39;biologico&#39;</span><span class="p">:{</span><span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.50</span> <span class="p">,</span>
-                                                            <span class="s1">&#39;criterios&#39;</span><span class="p">:{</span><span class="s1">&#39;v_costera&#39;</span><span class="p">:{</span> <span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">1.0</span><span class="p">,</span><span class="s1">&#39;ruta&#39;</span><span class="p">:</span><span class="s1">&#39;&#39;</span><span class="p">}}},</span>
-                                            <span class="s1">&#39;fisico&#39;</span><span class="p">:{</span><span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.50</span><span class="p">,</span>
-                                                        <span class="s1">&#39;criterios&#39;</span><span class="p">:{</span><span class="s1">&#39;elevacion&#39;</span><span class="p">:{</span> <span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.26</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="n">ruta</span><span class="s1">&#39;:&#39;&#39; },</span>
-                                                                        <span class="s1">&#39;duna_costera&#39;</span><span class="p">:{</span><span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.10</span><span class="p">,</span><span class="s1">&#39;ruta&#39;</span><span class="p">:</span><span class="s1">&#39;&#39;</span><span class="p">},</span>
-                                                                        <span class="s1">&#39;tipo_litoral&#39;</span><span class="p">:{</span><span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">0.64</span><span class="p">,</span><span class="s1">&#39;ruta&#39;</span><span class="p">:</span><span class="s1">&#39;&#39;</span><span class="p">},</span>
-    <span class="p">}}}}</span>
-
-    <span class="p">}</span>
-</pre></div>
+<div class="section" id="requerimientos-generales">
+<h2>Requerimientos generales<a class="headerlink" href="#requerimientos-generales" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Para asegurar la ejecución correcta del código es importante
+verificar la instalación y funcionamiento de los siguientes elementos:</p>
+<ul class="simple">
+<li>Qgis 3.4 o superior y librerías de Osgeo4W</li>
+<li>Librerías python:</li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li>copy</li>
+<li>pprint</li>
+<li>string</li>
+<li>osgeo/gdal</li>
+<li>gdal_calc</li>
+<li>os</li>
+</ul>
+</div></blockquote>
 </div>
-</div>
-<div class="section" id="salida-de-datos">
-<h2>Salida de datos<a class="headerlink" href="#salida-de-datos" title="Enlazar permanentemente con este título">¶</a></h2>
-<p>la variable <strong>p_procesamiento</strong> indica la ruta donde se escribirán las
-capas integradas y el archivo csv que contendrá el análisis de sensibilidad</p>
+<div class="section" id="requerimientos-generales-de-los-insumos">
+<h2>Requerimientos generales de los insumos<a class="headerlink" href="#requerimientos-generales-de-los-insumos" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Es importante que todas las capas raster cumplan con las siguientes condiciones:</p>
+<ul class="simple">
+<li>Misma proyección cartográfica</li>
+<li>Mismo tamaño de pixel</li>
+<li>Misma extensión de capa</li>
+<li>Mismo valor de NoData</li>
+</ul>
 </div>
 <div class="section" id="ejemplo">
 <h2>Ejemplo<a class="headerlink" href="#ejemplo" title="Enlazar permanentemente con este título">¶</a></h2>
 <div class="section" id="insumos">
 <h3>Insumos<a class="headerlink" href="#insumos" title="Enlazar permanentemente con este título">¶</a></h3>
-<p>Descarga los insumos para este ejemplo  <a class="reference download internal" download="" href="_downloads/ff9bbfb1ac01138a89eafeefa05b5d27/insumos.zip"><code class="xref download docutils literal notranslate"><span class="pre">aqui</span></code></a></p>
+<p>Crear una (1)carpeta en el directorio raíz o en la unidad C que se llame <strong>analisis_sensibilidad</strong>,
+para descargar los insumos hacer clic <a class="reference download internal" download="" href="_downloads/ff9bbfb1ac01138a89eafeefa05b5d27/insumos.zip"><code class="xref download docutils literal notranslate"><span class="pre">aqui</span></code></a> (2)guarde el archivo <strong>insumos.zip</strong>
+en la carpeta <strong>analisis_sensibilidad</strong>, posteriormente hacer clic derecho sobre el archivo  y elegir la opción (3)Extract to insumos</p>
+<img alt="_images/crear_carpeta.JPG" src="_images/crear_carpeta.JPG" />
+<p>Una vez terminado el proceso, crear en la carpeta <strong>analisis_sensibilidad</strong> una (4)c arpeta con el nombre <strong>salida</strong></p>
+<img alt="_images/c_salida.JPG" src="_images/c_salida.JPG" />
 </div>
 <div class="section" id="procedimiento">
 <h3>Procedimiento<a class="headerlink" href="#procedimiento" title="Enlazar permanentemente con este título">¶</a></h3>
-<p>Abre el código <strong>sensibilidad.py</strong> en Qgis 3.14 o superior,
-Si tienes dudas de como hacerlo visualiza la <a class="reference external" href="https://vichdzgeo.github.io/geo_lancis/ejecucion.html">guia</a></p>
-<p>Modificar las rutas donde se encuentran los insumos y
-elegir una carpeta en donde se escribiran los resultados</p>
-<img alt="_images/modificar_paths.PNG" src="_images/modificar_paths.PNG" />
-<p>El tiempo de ejecución del código en este ejemplo es de 10 minutos.
-al finalizar se mostrará la consola de la siguiente manera:</p>
-<img alt="_images/fin_ejecucion.PNG" src="_images/fin_ejecucion.PNG" />
-<p>el archivo csv de salida que contiene los datos es el siguiente:</p>
-<table border="1" class="docutils" id="id1">
-<caption><span class="caption-text">Analisis de sensibilidad</span><a class="headerlink" href="#id1" title="Enlace permanente a esta tabla">¶</a></caption>
-<colgroup>
-<col width="11%" />
-<col width="11%" />
-<col width="11%" />
-<col width="11%" />
-<col width="11%" />
-<col width="11%" />
-<col width="11%" />
-<col width="11%" />
-<col width="11%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">criterio</th>
-<th class="head">exp_media</th>
-<th class="head">sensibilidad_exp</th>
-<th class="head">sus_media</th>
-<th class="head">sensibilidad_sus</th>
-<th class="head">res_media</th>
-<th class="head">sensibilidad_res</th>
-<th class="head">vulnerabilidad</th>
-<th class="head">sensibilidad_vul</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>total</td>
-<td>0.79</td>
-<td>&#160;</td>
-<td>0.21</td>
-<td>&#160;</td>
-<td>0.22</td>
-<td>&#160;</td>
-<td>0.79</td>
-<td>&#160;</td>
-</tr>
-<tr class="row-odd"><td>v_acuatica</td>
-<td>0.77</td>
-<td>0.03</td>
-<td>0.21</td>
-<td>0.00</td>
-<td>0.22</td>
-<td>0.00</td>
-<td>0.77</td>
-<td>0.03</td>
-</tr>
-<tr class="row-even"><td>v_costera</td>
-<td>0.91</td>
-<td>0.15</td>
-<td>0.28</td>
-<td>0.33</td>
-<td>0.22</td>
-<td>0.00</td>
-<td>0.91</td>
-<td>0.15</td>
-</tr>
-<tr class="row-odd"><td>elevacion</td>
-<td>0.76</td>
-<td>0.04</td>
-<td>0.26</td>
-<td>0.20</td>
-<td>0.22</td>
-<td>0.03</td>
-<td>0.77</td>
-<td>0.02</td>
-</tr>
-<tr class="row-even"><td>ancho_playa</td>
-<td>0.80</td>
-<td>0.01</td>
-<td>0.21</td>
-<td>0.00</td>
-<td>0.27</td>
-<td>0.18</td>
-<td>0.79</td>
-<td>0.00</td>
-</tr>
-<tr class="row-odd"><td>v_costera</td>
-<td>0.91</td>
-<td>0.15</td>
-<td>0.28</td>
-<td>0.33</td>
-<td>0.22</td>
-<td>0.00</td>
-<td>0.91</td>
-<td>0.15</td>
-</tr>
-<tr class="row-even"><td>elevacion</td>
-<td>0.76</td>
-<td>0.04</td>
-<td>0.26</td>
-<td>0.20</td>
-<td>0.22</td>
-<td>0.03</td>
-<td>0.77</td>
-<td>0.02</td>
-</tr>
-<tr class="row-odd"><td>duna_costera</td>
-<td>0.79</td>
-<td>0.00</td>
-<td>0.23</td>
-<td>0.07</td>
-<td>0.23</td>
-<td>0.04</td>
-<td>0.79</td>
-<td>0.00</td>
-</tr>
-<tr class="row-even"><td>tipo_litoral</td>
-<td>0.79</td>
-<td>0.00</td>
-<td>0.08</td>
-<td>0.60</td>
-<td>0.21</td>
-<td>0.08</td>
-<td>0.77</td>
-<td>0.03</td>
-</tr>
-<tr class="row-odd"><td>biodiversidad</td>
-<td>0.79</td>
-<td>0.00</td>
-<td>0.21</td>
-<td>0.00</td>
-<td>0.22</td>
-<td>0.00</td>
-<td>0.79</td>
-<td>0.00</td>
-</tr>
-<tr class="row-even"><td>servicios_ambientales</td>
-<td>0.79</td>
-<td>0.00</td>
-<td>0.21</td>
-<td>0.00</td>
-<td>0.22</td>
-<td>0.00</td>
-<td>0.79</td>
-<td>0.00</td>
-</tr>
-<tr class="row-odd"><td>ancho_playa</td>
-<td>0.80</td>
-<td>0.01</td>
-<td>0.21</td>
-<td>0.00</td>
-<td>0.27</td>
-<td>0.18</td>
-<td>0.79</td>
-<td>0.00</td>
-</tr>
-<tr class="row-even"><td>duna_costera</td>
-<td>0.79</td>
-<td>0.00</td>
-<td>0.23</td>
-<td>0.07</td>
-<td>0.23</td>
-<td>0.04</td>
-<td>0.79</td>
-<td>0.00</td>
-</tr>
-<tr class="row-odd"><td>elevacion</td>
-<td>0.76</td>
-<td>0.04</td>
-<td>0.26</td>
-<td>0.20</td>
-<td>0.22</td>
-<td>0.03</td>
-<td>0.77</td>
-<td>0.02</td>
-</tr>
-<tr class="row-even"><td>tipo_litoral</td>
-<td>0.79</td>
-<td>0.00</td>
-<td>0.08</td>
-<td>0.60</td>
-<td>0.21</td>
-<td>0.08</td>
-<td>0.77</td>
-<td>0.03</td>
-</tr>
-</tbody>
-</table>
+<div class="section" id="abrir-el-codigo">
+<h4>1. Abrir el código<a class="headerlink" href="#abrir-el-codigo" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>Abrir el código <strong>sensibilidad.py</strong> en Qgis 3.4 o superior,
+Para resolver cualquier duda al respecto, consultar la <a class="reference external" href="https://vichdzgeo.github.io/geo_lancis/ejecucion.html">guia</a></p>
+</div>
+<div class="section" id="actualizar-el-diccionario">
+<h4>2. Actualizar el diccionario<a class="headerlink" href="#actualizar-el-diccionario" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>Ingresar la (1) ponderación del compontente según corresponda (Exposición, Susceptibilidad, Resiliencia), posteriormente
+ingresar la (2)ponderación del subcomponente (biológico,físico),
+Ingresar el (3)nombre de la capa raster de entrada con su respectiva (4)ponderación y su (5)ruta
+repita los pasos siguiendo la estructura y hasta ingresar cada una de las capas.</p>
+<img alt="_images/diccionario.JPG" src="_images/diccionario.JPG" />
+</div>
+<div class="section" id="indicar-el-direcctorio-de-salida">
+<h4>3. Indicar el direcctorio de salida<a class="headerlink" href="#indicar-el-direcctorio-de-salida" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>Indicar el directorio donde guardarán los archivos necesarios para realizar el análisis de sensibilidad
+y el archivo  <strong>analisis_sensibilidad.csv</strong> que contendrá los resultados.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">p_procesamiento</span> <span class="o">=</span> <span class="s1">&#39;C:/analisis_sensibilidad/salida/&#39;</span>
+</pre></div>
 </div>
 </div>
-<div class="section" id="documentacion-del-codigo">
-<h2>Documentación del código<a class="headerlink" href="#documentacion-del-codigo" title="Enlazar permanentemente con este título">¶</a></h2>
+<div class="section" id="ejecutar-el-codigo">
+<h4>4. Ejecutar el código<a class="headerlink" href="#ejecutar-el-codigo" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>hacer clic en el (1) botón de ejecutar código, puede demorar 10 minutos o más dependiendo el procesador y
+memoria RAM que tenga el equipo en donde se ejecute, al concluir aparecerá en la (2) consola una lista que indica que
+ha procesado cada una de las capas.</p>
+<img alt="_images/ejecucion.JPG" src="_images/ejecucion.JPG" />
+</div>
+</div>
+<div class="section" id="bibliografia">
+<h3>Bibliografía<a class="headerlink" href="#bibliografia" title="Enlazar permanentemente con este título">¶</a></h3>
+</div>
+<div class="section" id="documentacion-dentro-del-codigo">
+<h3>Documentación dentro del código<a class="headerlink" href="#documentacion-dentro-del-codigo" title="Enlazar permanentemente con este título">¶</a></h3>
+</div>
 </div>
 </div>
 
