@@ -15,6 +15,7 @@
 import os
 import sys
 import pandas
+import plotly.express as px
 sys.path.insert(0, os.path.abspath('../../codigos/'))
 
 
@@ -26,6 +27,8 @@ sys.path.insert(0, 'C:/OSGEO4~1/apps/qgis-dev/python')   #en esta se encuentra e
 sys.path.insert(0, 'C:/OSGEO4~1/apps/qgis-dev/python/plugins')
 sys.path.insert(0, 'C:/OSGEO4~1/share/proj')
 sys.path.insert(0, 'C:/osgeo4~1/apps/python37/lib/site-packages/pyqt5')
+
+sys.path.insert(0,'C:/osgeo4~1/apps/qgis-ltr/python/plugins/processing/algs/qgis') #algoritmos de processing 
 #*************comentadas pero no eliminadas *****************
 # sys.path.insert(0, 'C:/OSGEO4~1')
 # sys.path.insert(0, 'C:/OSGEO4~1/apps/Python37')

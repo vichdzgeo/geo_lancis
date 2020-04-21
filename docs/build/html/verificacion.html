@@ -1,0 +1,252 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="es" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="es" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Verificación de capas &mdash; documentación de Geoprocesamiento en python y qgis - 1.0</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Geoprocesamiento en python y qgis
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Guias de uso:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ejecucion.html">¿Cómo ejecutar un código en Qgis?</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Códigos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="analisis.html">Análisis de sensibilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="leesallee.html">Índice Lee-Sallee</a></li>
+<li class="toctree-l1"><a class="reference internal" href="owa.html">OWA</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Geoprocesamiento en python y qgis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Verificación de capas</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/verificacion.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="verificacion-de-capas">
+<h1>Verificación de capas<a class="headerlink" href="#verificacion-de-capas" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Los puntos a verificar son los siguientes:</p>
+<ol class="arabic simple">
+<li>Proyección Que exista el archivo prj asociado</li>
+<li>Geometría completa  Que exista los mismos elementos geométricos que los contenidos en la tabla de atributos</li>
+<li>Sobrelapados Que la capa no cuente con errores topológicos</li>
+<li>Nulos Que no existan campos vacios en la tabla de atributos</li>
+<li>Codificados Que no existan campos con caracteres espeaciales o extraños en su contenido o que datos numéricos esten declardos como texto</li>
+<li>Metadatos Que exista el archivo xml asociado a los metadatos geográficos</li>
+</ol>
+<p>Descargar el código de ejemplo</p>
+<p><a class="reference download internal" download="" href="_downloads/c63dc813820b1b07e0d2ab612f0ef1e0/verificacion_layers.py"><code class="xref download docutils literal notranslate"><span class="pre">verificacion_layers.py</span></code></a>.</p>
+<div class="section" id="requerimientos-generales">
+<h2>Requerimientos generales<a class="headerlink" href="#requerimientos-generales" title="Enlazar permanentemente con este título">¶</a></h2>
+</div>
+<div class="section" id="ejemplo">
+<h2>Ejemplo:<a class="headerlink" href="#ejemplo" title="Enlazar permanentemente con este título">¶</a></h2>
+<div class="section" id="abrir-el-codigo">
+<h3>1. Abrir el código<a class="headerlink" href="#abrir-el-codigo" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Abrir el código <strong>verificación_layers.py</strong> en Qgis 3.4 o superior,
+para resolver cualquier duda al respecto, consultar la <a class="reference external" href="https://vichdzgeo.github.io/geo_lancis/ejecucion.html">guia</a></p>
+<img alt="_images/codigo1.PNG" src="_images/codigo1.PNG" />
+</div>
+<div class="section" id="indicar-el-directorio">
+<h3>2. Indicar el directorio<a class="headerlink" href="#indicar-el-directorio" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>El código verifica todas las capas vectoriales contenidas en el directorio
+indicado en la variable <strong>path_dir</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">path_dir</span> <span class="o">=</span> <span class="s2">&quot;C:/Dropbox (LANCIS)/SIG/insumos/agricultura/conabio/vector/produccion_miel/&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="salidas">
+<h3>Salidas<a class="headerlink" href="#salidas" title="Enlazar permanentemente con este título">¶</a></h3>
+<div class="section" id="capas-de-topologia">
+<h4>Capas de topología<a class="headerlink" href="#capas-de-topologia" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>el código crea una carpeta llamada <strong>temp</strong>, dentro de ella otra carpeta llamada <strong>topologia</strong> en esta
+carpeta se guardan los 3 archivos shapefile  resultantes de la función <strong>topologia</strong></p>
+<p>estan nombrados de la siguiente manera:</p>
+<p>nombre_de_la_capa**_error**.shp</p>
+<p>Capa de puntos que índica la posición en donde 2 o más poligonos no colindan adecuadamente
+o que su geometría puede causar problemas en algún análisis espacial</p>
+<p>nombre_de_la_capa**_invalido**.shp</p>
+<p>Capa de poligonos que índica geométria inválida de la capa</p>
+<p>nombre_de_la_capa**_valido**.shp</p>
+<p>Capa de poligonos que indica la geometría válida de la capa</p>
+</div>
+<div class="section" id="imagen-de-la-capa">
+<h4>Imagen de la capa<a class="headerlink" href="#imagen-de-la-capa" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>El código genera una imagen de la capa con el mapa base de open street maps
+sí y solo sí la capa tiene un puntaje de 10 en el criterio de <strong>proyección</strong></p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Víctor Hernández
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

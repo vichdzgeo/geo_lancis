@@ -1,4 +1,4 @@
 {
     "restructuredtext.confPath": "${workspaceFolder}",
-    "python.pythonPath": "C:\\Miniconda3\\envs\\parallel\\python.exe"
+    "python.pythonPath": "C:\\Miniconda3\\envs\\qgis_3\\python.exe"
 }

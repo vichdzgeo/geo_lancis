@@ -1,0 +1,66 @@
+			ACCURACY ASSESSMENT
+LOCATION: kappa_yuc				Mon Apr 13 11:12:08 2020
+MASK: none
+MAPS: MAP1 = (untitled) (usv_s6_int_ze@PERMANENT in PERMANENT)
+      MAP2 = (untitled) (usv_s1_int_ze@PERMANENT in PERMANENT)
+
+Error Matrix
+Panel #1 of 1
+			  MAP1
+     cat#	1	2	5	6	8	9	12	13	
+ M     1	0	76	0	0	0	0	50	0	
+ A     2	0	541	17	0	0	0	206	0	
+ P     5	0	95	18	1	0	0	61	0	
+ 2     6	0	0	0	0	0	0	0	0	
+       8	0	59	0	0	0	0	25	0	
+       9	0	1167	7	0	0	193	527	0	
+      12	0	1041	32	98	0	0	1116	0	
+      13	0	1438	18	0	0	0	1317	0	
+Col Sum		0	4417	92	99	0	193	3302	0	
+
+cat#	Row Sum
+u     1         0          76           0           0           0           0          50           0        126
+s     2         0         541          17           0           0           0         206           0       1016
+v     5         0          95          18           1           0           0          61           0       2081
+_     6         0           0           0           0           0           0           0           0       3146
+s     8         0          59           0           0           0           0          25           0       4295
+1     9         0        1167           7           0           0         193         527           0       7338
+_    12         0        1041          32          98           0           0        1116           0      12668
+i    13         0        1438          18           0           0           0        1317           0      20771
+    51441
+
+Cats	% Commission	% Ommission	Estimated Kappa
+1	100.000000	nan	-999.000000
+2	29.188482	87.751868	0.358344
+5	89.714286	80.434783	0.092554
+6	NA		NA		NA
+8	NA		NA		NA
+9	89.809926	0.000000	0.079988
+12	51.202449	66.202302	0.135819
+13	NA		NA		NA
+
+Kappa		Kappa Variance
+0.070441	0.000029
+
+Obs Correct	Total Obs	% Observed Correct
+1868		8103		23.053190
+
+MAP1 Category Description
+1:  (no description)
+2:  (no description)
+5:  (no description)
+6:  (no description)
+8:  (no description)
+9:  (no description)
+12:  (no description)
+13:  (no description)
+
+MAP2 Category Description
+1:  (no description)
+2:  (no description)
+5:  (no description)
+6:  (no description)
+8:  (no description)
+9:  (no description)
+12:  (no description)
+13:  (no description)

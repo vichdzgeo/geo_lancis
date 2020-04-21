@@ -28,8 +28,6 @@ z_ij = Valor ordenado del criterio j en el pixel i
 α = Cuantificador lingüístico 
 
 
-.. replace |uk|::
-   u_{k}: 
 
 Descargar el código de ejemplo 
 
@@ -201,5 +199,5 @@ Documentación dentro del código
 -----------------------------------
 
 
-.. automodule:: owa_raster
-    :members:
+.. .. automodule:: owa_raster
+..     :members:

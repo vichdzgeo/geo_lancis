@@ -56,74 +56,79 @@ def interseccion(vector_a,vector_b,vector_salida):
     '''
     dicc={'A':vector_a,
             'B':vector_b,
-            'SPLIT':1,
+            'SPLIT':'True',
             'RESULT':vector_salida}
     pr.run("saga:intersect",dicc)
 
 
 # Ruta de los insumos
-path_mun = 'C:/Dropbox (LANCIS)/SIG/desarrollo/sig_fomix/insumos/limites/inegi/div_pol_mpio_2018/muni_2018_utm16.shp'
-path_usv = "C:/Dropbox (LANCIS)/SIG/desarrollo/sig_fomix/procesamiento/usv_partes_sencillas/usv_serie6_v2.shp"
+path_mun = 'C:/Dropbox (LANCIS)/SIG/desarrollo/sig_fomix/entregables/mun_region/muni_2018_utm16.shp'
+for i in range(1,7):
+    print ("procesando serie %d"%i)
+    path_usv = "C:/Dropbox (LANCIS)/SIG/desarrollo/sig_fomix/entregables/usv_v2/usv_serie"+str(i)+"_yuc.shp"
+    serie = 'mun_usv_s'+str(i)
+    #Ruta de la capa vectorial que tendrá la información a nivel municipal
+    path_mun_usv= 'C:/Dropbox (LANCIS)/CARPETAS_TRABAJO/vhernandez/geo_lancis/nivel_municipios/'+serie+'.shp'
+    path_mun_usv_csv= 'C:/Dropbox (LANCIS)/CARPETAS_TRABAJO/vhernandez/geo_lancis/nivel_municipios/'+serie+'.csv'
+    #Se declaran las variables como capas vectoriales 
+    municipios = QgsVectorLayer(path_mun,"","ogr")
+    usv = QgsVectorLayer(path_usv,"","ogr")
 
-#Ruta de la capa vectorial que tendrá la información a nivel municipal
-path_mun_usv= 'C:/Dropbox (LANCIS)/CARPETAS_TRABAJO/vhernandez/geo_lancis/nivel_municipios/mun_usv.shp'
-path_mun_usv_csv= 'C:/Dropbox (LANCIS)/CARPETAS_TRABAJO/vhernandez/geo_lancis/nivel_municipios/mun_usv.csv'
-copia(municipios,path_mun_usv) #crea una copia de la capa oficial de municipios
-
-
-# Tambien se declara la ruta y nombre de la capa resultante
-path_interseccion = 'C:/Dropbox (LANCIS)/CARPETAS_TRABAJO/vhernandez/geo_lancis/nivel_municipios/tp_inters_mun_usv.shp'
-
-
-
-#Se declaran las variables como capas vectoriales 
-municipios = QgsVectorLayer(path_mun,"","ogr")
-usv = QgsVectorLayer(path_usv,"","ogr")
-
-#Se generan unas listas de valores unicos para municipios y para las clases
-lista_mun = []
-lista_clases = []
-
-request =  QgsFeatureRequest().setFlags(QgsFeatureRequest.NoGeometry)
-for municipio in municipios.getFeatures(request):
-    lista_mun.append(municipio['cve_mun'])
-
-for pol in usv.getFeatures(request):
-    lista_clases.append(pol['id_clases']) #id_clases es el nombre de la columna que tiene las clases
-lista_clases =list(set(lista_clases)) # esto es para ordenar de menor a mayor la clase
+    # Se crea una copia 
+    copia(municipios,path_mun_usv) #crea una copia de la capa oficial de municipios
 
 
-#Se realiza la intersección entre la copia de municipios y la capa de USV
-interseccion(path_mun_usv,path_usv,path_interseccion) 
-
-#a la copia de municipios se le agregan las columnas de categorias
-# para ello la función recibe la capa vectorial y la lista de clases
-mun_usv = QgsVectorLayer(path_mun_usv,"","ogr")
-# Esta función crea campos conforme el numero de clases
-campos_clases(mun_usv,lista_clases)
-
-#Se declara como capa vectorial la ruta de salida resultante de la interseccion
-consulta_interect = QgsVectorLayer(path_interseccion,"","ogr")
+    # Tambien se declara la ruta y nombre de la capa resultante
+    path_interseccion = 'C:/Dropbox (LANCIS)/CARPETAS_TRABAJO/vhernandez/geo_lancis/nivel_municipios/tp_inters_'+serie+'.shp'
 
 
-mun_usv.startEditing()
-for clase in lista_clases:
-    area=0
-    for municipio in lista_mun:
+
+
+
+    #Se generan unas listas de valores unicos para municipios y para las clases
+    lista_mun = []
+    lista_clases = []
+
+    request =  QgsFeatureRequest().setFlags(QgsFeatureRequest.NoGeometry)
+    for municipio in municipios.getFeatures(request):
+        lista_mun.append(municipio['cve_mun'])
+
+    for pol in usv.getFeatures(request):
+        lista_clases.append(pol['id_clase']) #id_clases es el nombre de la columna que tiene las clases
+    lista_clases =list(set(lista_clases)) # esto es para ordenar de menor a mayor la clase
+
+
+    #Se realiza la intersección entre la copia de municipios y la capa de USV
+    interseccion(path_mun_usv,path_usv,path_interseccion) 
+
+    #a la copia de municipios se le agregan las columnas de categorias
+    # para ello la función recibe la capa vectorial y la lista de clases
+    mun_usv = QgsVectorLayer(path_mun_usv,"","ogr")
+    # Esta función crea campos conforme el numero de clases
+    campos_clases(mun_usv,lista_clases)
+
+    #Se declara como capa vectorial la ruta de salida resultante de la interseccion
+    consulta_interect = QgsVectorLayer(path_interseccion,"","ogr")
+
+
+    mun_usv.startEditing()
+    for clase in lista_clases:
         area=0
-        request_mun = QgsFeatureRequest().setFilterExpression('"cve_mun" ='+str(municipio)+'and "id_clases" ='+str(clase))
-        request_mun_o = QgsFeatureRequest().setFilterExpression('"cve_mun" ='+str(municipio))
-        for m in consulta_interect.getFeatures(request_mun):
-            area+=m.geometry().area()
-        for mun in mun_usv.getFeatures(request_mun_o):
-            mun['clase_'+str(clase)]=round(area/10000.00,2) #area en hectareas
-        mun_usv.updateFeature(mun)
-        #print(municipio,clase,(round(area,3)))
+        for municipio in lista_mun:
+            area=0
+            request_mun = QgsFeatureRequest().setFilterExpression('"cve_mun" ='+str(municipio)+'and "id_clase" ='+str(clase))
+            request_mun_o = QgsFeatureRequest().setFilterExpression('"cve_mun" ='+str(municipio))
+            for m in consulta_interect.getFeatures(request_mun):
+                area+=m.geometry().area()
+            for mun in mun_usv.getFeatures(request_mun_o):
+                mun['clase_'+str(clase)]=round(area/10000.00,2) #area en hectareas
+            mun_usv.updateFeature(mun)
+            #print(municipio,clase,(round(area,3)))
 
-mun_usv.commitChanges()
+    mun_usv.commitChanges()
 
 
-vector_to_csv(mun_usv,path_mun_usv_csv)
+    vector_to_csv(mun_usv,path_mun_usv_csv)
 
 
 
