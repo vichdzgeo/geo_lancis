@@ -33,7 +33,7 @@ def wf(fp=2,min=0,max=1):
             lista_val.append(round(1 - dicc_e['e'+str(i)],3))
 
     return lista_val
-def webber2(fp=2,minimo=0,maximo=1):
+def progresiva(fp=2,minimo=0,maximo=1):
 
 
     ConjDifusos = ['MB', 'B', 'M', 'A', 'E']
@@ -119,50 +119,20 @@ def rampa_raster(lista_val,raster,ind=1):
     raster.setRenderer(myPseudoRenderer)
      
     raster.triggerRepaint()
-    print (myColorRamp.Type())
-
-def rampa_raster_fv(layer):
-    lista_val=[0,0.2,0.4,0.6,0.8,1.0]
-    colDic_inv={'E':'#691e91', 'A':'#c9008c','M':'#f35864','B':'#faaf3c','MB':'#ffee7e'}
-    colDic={'E':'#ffee7e', 'A':'#faaf3c','M':'#f35864','B':'#c9008c','MB':'#691e91'}
-       
-    lst = [ QgsColorRampShader.ColorRampItem(lista_val[1],QColor(colDic['MB']),'MB:'+str(round(lista_val[0],3))+'-'+str(round(lista_val[1],3))),\
-        QgsColorRampShader.ColorRampItem(lista_val[2], QColor(colDic['B']),'B:'+str(round(lista_val[1],3))+'-'+str(round(lista_val[2],3))), \
-        QgsColorRampShader.ColorRampItem(lista_val[3], QColor(colDic['M']),'M:'+str(round(lista_val[2],3))+'-'+str(round(lista_val[3],3))), \
-        QgsColorRampShader.ColorRampItem(lista_val[4], QColor(colDic['A']),'A:'+str(round(lista_val[3],3))+'-'+str(round(lista_val[4],3))), \
-        QgsColorRampShader.ColorRampItem(lista_val[5], QColor(colDic['E']),'E:'+str(round(lista_val[4],3))+'-'+str(round(lista_val[5],3)))]
-    
-    '''
-    lst = [ QgsColorRampShader.ColorRampItem(lista_val[0], QColor(colDic['E'])), \
-        QgsColorRampShader.ColorRampItem(lista_val[1], QColor(colDic['A'])), \
-        QgsColorRampShader.ColorRampItem(lista_val[2], QColor(colDic['M'])), \
-        QgsColorRampShader.ColorRampItem(lista_val[3], QColor(colDic['B'])), \
-        QgsColorRampShader.ColorRampItem(lista_val[4], QColor(colDic['MB']))]
-    '''
-    
-    myRasterShader = QgsRasterShader()
-    myColorRamp = QgsColorRampShader()
-    
-    myColorRamp.setColorRampItemList(lst)
-    #myColorRamp.setColorRampType(QgsColorRampShader.INTERPOLATED)
-    myRasterShader.setRasterShaderFunction(myColorRamp)
-    myColorRamp.setColorRampType("DISCRETE")
-    myPseudoRenderer = QgsSingleBandPseudoColorRenderer(\
-        layer.dataProvider(), layer.type(),  myRasterShader)
-     
-    layer.setRenderer(myPseudoRenderer)
-     
-    layer.triggerRepaint()
 
 
 layer =qgis.utils.iface.activeLayer()    
 ## para vulnerabilidad o capas integradas
-fp=2
+fp=1.7
 categorias=5
 minimo,maximo=raster_min_max(layer)
-#lista_val = wf(fp)
-lista_val = webber2(fp)
-#print (minimo,maximo)
+#lista_val = progresiva(fp)
+lista_val = wf(fp)
+#print (lista_val)
+for i in range(len(lista_val)):
+    if i < 5:
+        print ("categoria %d"%(i+1),round(lista_val[i],3)," - ",round(lista_val[i+1],3))
+
 rampa_raster(lista_val,layer)
 
 ## para funciones de valor

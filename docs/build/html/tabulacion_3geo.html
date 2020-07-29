@@ -1,0 +1,363 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="es" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="es" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Tabular intersección entre 3 geometrías &mdash; documentación de Geoprocesamiento en python y qgis - 1.0</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Geoprocesamiento en python y qgis
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Guias de uso:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ejecucion.html">¿Cómo ejecutar un código en Qgis?</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Códigos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="analisis.html">Análisis de sensibilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="leesallee.html">Índice Lee-Sallee</a></li>
+<li class="toctree-l1"><a class="reference internal" href="owa.html">OWA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="verificacion.html">Verificación de capas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nivel_geometrias.html">Cobertura por niveles areas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usvmunicipal.html">Cobertura de uso y tipo de suelo a nivel municipal</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Geoprocesamiento en python y qgis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Tabular intersección entre 3 geometrías</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/tabulacion_3geo.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="tabular-interseccion-entre-3-geometrias">
+<h1>Tabular intersección entre 3 geometrías<a class="headerlink" href="#tabular-interseccion-entre-3-geometrias" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Calcula la intersección de 3 capas y realiza una tabulación cruzada del área</p>
+<p>La capa A es al nivel geográfico que se reporta
+La capa B es el nivel geométrico intermedio del cual se cuantifica
+el área total perteneciente a la entidad A y se cuantifica el área  por clase de USV.
+La capa C es la serie de uso de suelo y vegetación de INEGI</p>
+<div class="section" id="requerimientos-generales">
+<h2>Requerimientos generales<a class="headerlink" href="#requerimientos-generales" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Para asegurar la ejecución correcta del código es importante
+verificar la instalación y funcionamiento de los siguientes elementos:</p>
+<ul class="simple">
+<li>Qgis 3.4 o superior</li>
+</ul>
+<p>Descargar el código de ejemplo</p>
+<p><a class="reference download internal" download="" href="_downloads/6807f025d2d74c69c789f603710c80c7/tabulacion_3geo.py"><code class="xref download docutils literal notranslate"><span class="pre">tabulacion_3geo.py</span></code></a>.</p>
+</div>
+<div class="section" id="requerimientos-generales-de-los-insumos">
+<h2>Requerimientos generales de los insumos<a class="headerlink" href="#requerimientos-generales-de-los-insumos" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Es importante que todas las capas vectoriales cumplan con las siguientes condiciones:</p>
+<ul class="simple">
+<li>Misma proyección cartográfica</li>
+<li>Sin problemas topológicos</li>
+</ul>
+<div class="section" id="entidad-a">
+<h3>Entidad A<a class="headerlink" href="#entidad-a" title="Enlazar permanentemente con este título">¶</a></h3>
+<ul class="simple">
+<li>Que cuente con un campo que contenga un identificador único para cada geométria</li>
+</ul>
+</div>
+<div class="section" id="entidad-b">
+<h3>Entidad B<a class="headerlink" href="#entidad-b" title="Enlazar permanentemente con este título">¶</a></h3>
+<ul class="simple">
+<li>Que cuente con un campo dónde se especifiquen las categorias o clases</li>
+</ul>
+</div>
+<div class="section" id="entidad-c">
+<h3>Entidad C<a class="headerlink" href="#entidad-c" title="Enlazar permanentemente con este título">¶</a></h3>
+<ul class="simple">
+<li>Que cuente con un campo que contenga el número de clase correspondiente</li>
+<li>Que el campo mencionado en el inciso anterior se llame igual para todas las series</li>
+</ul>
+</div>
+</div>
+<div class="section" id="ejemplo">
+<h2>Ejemplo<a class="headerlink" href="#ejemplo" title="Enlazar permanentemente con este título">¶</a></h2>
+<div class="section" id="datos-de-prueba">
+<h3>Datos de prueba<a class="headerlink" href="#datos-de-prueba" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Descargar los datos de prueba para este ejemplo <a class="reference download internal" download="" href="_downloads/c532633108dac44f1d1a47499e5ceedc/insumos_tabulacion3geo.zip"><code class="xref download docutils literal notranslate"><span class="pre">aqui</span></code></a></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="82%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">insumo</th>
+<th class="head">Descripción</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>muni_2018_utm16.shp</td>
+<td>Capa de municipios del estado de Yucatán, esta capa representa la entidad A</td>
+</tr>
+<tr class="row-odd"><td>degradacion_suelo_yuc.shp</td>
+<td>Capa de áreas de degradación del suelo clasificadas en ligero, moderado, alto y extremo, esta capa representa la entidad B</td>
+</tr>
+<tr class="row-even"><td>usv/</td>
+<td>Directorio que contiene capas de USV de las 6 series de INEGI para el estado de Yucatán, estas capas representan la entidad C</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="abrir-el-codigo">
+<h4>Abrir el código<a class="headerlink" href="#abrir-el-codigo" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>Abrir el código <strong>tabulacion_3geo.py</strong> en Qgis 3.4 o superior,
+Para resolver cualquier duda al respecto, consultar la <a class="reference external" href="https://vichdzgeo.github.io/geo_lancis/ejecucion.html">guia</a></p>
+<img alt="_images/codigo3.PNG" src="_images/codigo3.PNG" />
+</div>
+<div class="section" id="indicar-la-ruta-de-los-insumos">
+<h4>1. Indicar la ruta de los insumos<a class="headerlink" href="#indicar-la-ruta-de-los-insumos" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>Indicar la ruta completa de los insumos según corresponda:</p>
+<div class="admonition warning">
+<p class="first admonition-title">Advertencia</p>
+<p class="last">verifica que se use “/” como separadador de espacio en lugar de “”</p>
+</div>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">path_geometria_a</span> <span class="o">=</span> <span class="s1">&#39;C:/geo_lancis/tabulacion3geo/insumos/muni_2018_utm16.shp&#39;</span>
+<span class="n">path_geometria_b</span> <span class="o">=</span> <span class="s2">&quot;C:/geo_lancis/tabulacion3geo/insumos/degradacion_suelo_yuc.shp&quot;</span>
+<span class="n">path_dir_usv</span> <span class="o">=</span> <span class="s2">&quot;C:/geo_lancis/tabulacion3geo/insumos/usv/&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="indicar-los-nombres-de-los-campos-id">
+<h4>2. Indicar los nombres de los campos id<a class="headerlink" href="#indicar-los-nombres-de-los-campos-id" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>Para la geometría A se declara el nombre del campo identificador o clave</p>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">campo_id_geometria_a</span> <span class="o">=</span> <span class="s1">&#39;cve_mun&#39;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">El nombre del campo para la geometría B se preguntará más adelante
+por medio de una ventana emergente. ver paso 6</p>
+</div>
+<p>Para la geometría C se declara el nombre del campo el cúal contiene el identificador
+de clase para las series de USV</p>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">campo_clase_usv</span> <span class="o">=</span> <span class="s1">&#39;id_clase2&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="agrega-identificadores-segun-el-tipo-de-geometria">
+<h4>4. Agrega identificadores según el tipo de geometría<a class="headerlink" href="#agrega-identificadores-segun-el-tipo-de-geometria" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>En la variable <strong>clave_capas</strong> agragar un identificador  para cada una de las
+categorias de tres caracteres.</p>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">clave_capas</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;mun&#39;</span><span class="p">,</span><span class="s1">&#39;deg&#39;</span><span class="p">,</span><span class="s1">&#39;usv&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="indica-el-directorio-de-salida">
+<h4>4. Indica el directorio de salida<a class="headerlink" href="#indica-el-directorio-de-salida" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>En esta ruta se escribirá la tabla resultado de la cruza adicionalmente se  crea una carpeta llamada <strong>tmp</strong> en la cúal se almacenán
+las cruzas ralizadas en el proceso.</p>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">path_salida</span> <span class="o">=</span> <span class="s2">&quot;C:/geo_lancis/tabulacion3geo/&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="ejecuta-el-script">
+<h4>5. Ejecuta el script<a class="headerlink" href="#ejecuta-el-script" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>Hacer clic en el botón de ejecutar y permanece atento a la consola.</p>
+</div>
+<div class="section" id="ingresa-el-nombre-del-campo-identificador-de-la-geometria-b">
+<h4>6. Ingresa el nombre del campo identificador de la geometría B<a class="headerlink" href="#ingresa-el-nombre-del-campo-identificador-de-la-geometria-b" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>Se mostrará en la consola la siguiente instrucción:</p>
+<p><em>Ingrese el nombre del campo de las categorias a elegir en la geometría B</em></p>
+<p>enseguida del nombre de todos los campos que tiene la capa, escriba en la
+ventana de texto el nombre del campo tal cual se muestra en la consola,
+para este ejemplo el campo que sirve como identificador es <strong>GRADO</strong>  una vez escrito
+hacer clic en <strong>OK</strong></p>
+<img alt="_images/campob.PNG" src="_images/campob.PNG" />
+</div>
+<div class="section" id="ingresar-el-numero-de-las-categorias-a-considerar">
+<h4>7. Ingresar el número de las categorías a considerar<a class="headerlink" href="#ingresar-el-numero-de-las-categorias-a-considerar" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>El script permite ingresar todas las categorías o solo algunas, las categorias
+indicadas serán reclasificadas como binario donde 1 es que fue considerada y 0 cero que no,
+posteriormente realiza una limpieza de la capa eliminando las geométrias con la categoria 0,
+una vez finalizado ese proceso, realiza la cruza solo con las categorias consideredas.</p>
+<p>Ingrese las categorias que desea considerar conforme se muestra en la consola, para
+este ejemplo solo consideramos las categorias “Moderado”, “Fuerte” y “Extremo”, por lo
+cual en la ventana que se muestra se escribe: 1,2,4, una vez escrito dar clic en <strong>OK</strong></p>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p>puede ingresar solo una categoria escribendo por ejemplo: 1,</p>
+<p class="last">Puede ingresar todas las categorias escribiendo la palabra «TODAS»</p>
+</div>
+<img alt="_images/categorias.PNG" src="_images/categorias.PNG" />
+</div>
+<div class="section" id="elegir-entre-area-o-porcentaje">
+<h4>8.- Elegir entre área o porcentaje<a class="headerlink" href="#elegir-entre-area-o-porcentaje" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>La cuantificación de las categorias de USV en el área de la geometría B perteneciente
+a una identidad de la geometría A, puede expresarse en área (hectáreas) o en porcentaje.
+para este ejemplo se elige “area”</p>
+<img alt="_images/area.PNG" src="_images/area.PNG" />
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Víctor Hernández
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

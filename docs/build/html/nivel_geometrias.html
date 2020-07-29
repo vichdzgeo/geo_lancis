@@ -1,0 +1,378 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="es" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="es" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Cobertura por niveles areas &mdash; documentación de Geoprocesamiento en python y qgis - 1.0</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="Cobertura de uso y tipo de suelo a nivel municipal" href="usvmunicipal.html" />
+    <link rel="prev" title="Tabular intersección entre 3 geometrías" href="tabulacion_3geo.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Geoprocesamiento en python y qgis
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Guias de uso:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ejecucion.html">¿Cómo ejecutar un código en Qgis?</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Códigos:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="analisis.html">Análisis de sensibilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="leesallee.html">Índice Lee-Sallee</a></li>
+<li class="toctree-l1"><a class="reference internal" href="owa.html">OWA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="verificacion.html">Verificación de capas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tabulacion_3geo.html">Tabular intersección entre 3 geometrías</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Cobertura por niveles areas</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#requerimientos-generales">Requerimientos generales</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#requerimientos-generales-de-los-insumos">Requerimientos generales de los insumos</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#geometria-a">Geometría A</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#geometria-b">Geometría B</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#geometria-c">Geometría C</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ejemplo">Ejemplo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#insumos">Insumos</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#abrir-el-codigo">1. Abrir el código</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ingresar-la-ruta-de-la-geometria-a">2. Ingresar la ruta de la geometria A</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ingresar-la-ruta-de-la-geometria-b">3. Ingresar la ruta de la geometria B</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ingresar-el-directorio-de-las-series-de-usv-geometria-c">4. Ingresar el directorio de las series de USV (geometría C)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ingresar-el-directorio-de-salida">5. Ingresar el directorio de salida</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ingresar-el-nombre-del-campo-id-de-la-capa-a">6. Ingresar el nombre del campo ID de la capa A</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ingresar-el-nombre-del-campo-de-las-categorias-usv">7. Ingresar el nombre del campo de las categorias USV</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ingresar-claves-de-las-tres-geometrias">8. Ingresar claves de las tres geometrías</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#bibliografia">Bibliografía</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#documentacion-dentro-del-codigo">Documentación dentro del código</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usvmunicipal.html">Cobertura de uso y tipo de suelo a nivel municipal</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Geoprocesamiento en python y qgis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Cobertura por niveles areas</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/nivel_geometrias.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="cobertura-por-niveles-areas">
+<h1>Cobertura por niveles areas<a class="headerlink" href="#cobertura-por-niveles-areas" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>El objetivo de esta herramienta es cuantificar el área según el tipo de clase
+de uso de suelo vegetación asociado a una geometría intermedia.</p>
+<p>para comprender mejor lo anterior se expresa el siguiente caso</p>
+<p>se quiere conocer a nivel de municipio (geometría A), el espacio designado como <strong>Área Natural Protegida</strong>
+(geometria B), en dicho espacio, se requiere cuantificar el tipo de cobertura por clase
+de la serie de uso de suelo y vegetación de INEGI (Geometría C).</p>
+<p>Por lo tanto, se tendrá como resultado una capa geografica a nivel municipio que en su tabla de atributos
+cuente con:</p>
+<ul class="simple">
+<li>Todos los campos de la capa original de municipios</li>
+<li>un campo del área total (expresado en hectáreas) del espacio designado como <strong>Área Natural Protegida</strong> perteneciente al municipio,</li>
+<li>campos nombrados como <strong>clase_#</strong> donde <strong>#</strong> corresponde al número de clase o cobertura asociado a la capa de uso de suelo y vegetación. Estos campos pueden contener el área por clase expresada en hectáreas, o bien, el porcentaje correspondiente al área total del espacio designado como <strong>Área Natural Protegida</strong> perteneciente al municipio.</li>
+</ul>
+<div class="section" id="requerimientos-generales">
+<h2>Requerimientos generales<a class="headerlink" href="#requerimientos-generales" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Para asegurar la ejecución correcta del código es importante
+verificar la instalación y funcionamiento de los siguientes elementos:</p>
+<ul class="simple">
+<li>Qgis 3.4 o superior</li>
+</ul>
+</div>
+<div class="section" id="requerimientos-generales-de-los-insumos">
+<h2>Requerimientos generales de los insumos<a class="headerlink" href="#requerimientos-generales-de-los-insumos" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Es importante que todas las capas vectoriales cumplan con las siguientes condiciones:</p>
+<ul class="simple">
+<li>Misma proyección UTM</li>
+<li>Sin problemas topólogicos</li>
+</ul>
+<div class="section" id="geometria-a">
+<h3>Geometría A<a class="headerlink" href="#geometria-a" title="Enlazar permanentemente con este título">¶</a></h3>
+<ul class="simple">
+<li>Tener un campo que contenga un identificador único para cada geometría (puede ser de tipo texto o entero)</li>
+</ul>
+</div>
+<div class="section" id="geometria-b">
+<h3>Geometría B<a class="headerlink" href="#geometria-b" title="Enlazar permanentemente con este título">¶</a></h3>
+<ul class="simple">
+<li>Tener un campo que contenga las diferentes categorias o tipos de geometria (puede ser de tipo texto o entero)</li>
+</ul>
+</div>
+<div class="section" id="geometria-c">
+<h3>Geometría C<a class="headerlink" href="#geometria-c" title="Enlazar permanentemente con este título">¶</a></h3>
+<ul>
+<li><p class="first">Tener el siguiente tipo de nombrado</p>
+<blockquote>
+<div><p><strong>usv_serie#_aaa.shp</strong></p>
+<p>Donde:</p>
+<ul class="simple">
+<li><strong>#</strong> representa el número de serie (1,2,3,4,5 o 6) <strong>obligatorio</strong></li>
+<li><strong>_aaa</strong> representa una abreviatura del lugar, para este ejemplo se ocupa  <strong>_yuc</strong></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Tener un campo de tipo entero que contenga las diferentes clases de cobertura empezando por 1, este campo debe estar presente en todas las capas de USV y debe llamarse de la misma forma</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="ejemplo">
+<h2>Ejemplo<a class="headerlink" href="#ejemplo" title="Enlazar permanentemente con este título">¶</a></h2>
+<div class="section" id="insumos">
+<h3>Insumos<a class="headerlink" href="#insumos" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Descargar los insumos para este ejemplo <a class="reference download internal" download="" href="_downloads/1f2f2f36cdbf1a9af7eff96a0c743b45/"><code class="xref download docutils literal notranslate"><span class="pre">aqui</span></code></a></p>
+<div class="section" id="abrir-el-codigo">
+<h4>1. Abrir el código<a class="headerlink" href="#abrir-el-codigo" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>Abrir el código <strong>owa_raster.py</strong> en Qgis 3.4 o superior,
+Para resolver cualquier duda al respecto, consultar la <a class="reference external" href="https://vichdzgeo.github.io/geo_lancis/ejecucion.html">guia</a></p>
+<img alt="_images/codigo2.PNG" src="_images/codigo2.PNG" />
+</div>
+<div class="section" id="ingresar-la-ruta-de-la-geometria-a">
+<h4>2. Ingresar la ruta de la geometria A<a class="headerlink" href="#ingresar-la-ruta-de-la-geometria-a" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>Se ingresa la ruta completa de la capa de <strong>municipios</strong> en la variable
+<strong>path_geometria_a</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">path_geometria_a</span> <span class="o">=</span> <span class="s1">&#39;C:/Dropbox (LANCIS)/SIG/desarrollo/sig_fomix/entregables/mun_region/muni_2018_utm16.shp&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="ingresar-la-ruta-de-la-geometria-b">
+<h4>3. Ingresar la ruta de la geometria B<a class="headerlink" href="#ingresar-la-ruta-de-la-geometria-b" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>Se ingresa la ruta completa de la capa de <strong>Áreas Naturales Protegidas</strong> en la variable
+<strong>path_geometria_b</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">path_geometria_b</span> <span class="o">=</span> <span class="s2">&quot;C:/Dropbox (LANCIS)/SIG/desarrollo/sig_fomix/insumos/ambiente/sds/anps_sds/anps.shp&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="ingresar-el-directorio-de-las-series-de-usv-geometria-c">
+<h4>4. Ingresar el directorio de las series de USV (geometría C)<a class="headerlink" href="#ingresar-el-directorio-de-las-series-de-usv-geometria-c" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>Se ingresa la ruta del directorio donde se encutran las capas
+de <strong>Uso de suelo y Vegetación ** en la variable
+**path_dir_usv</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">path_dir_usv</span> <span class="o">=</span> <span class="s2">&quot;C:/Dropbox (LANCIS)/SIG/desarrollo/sig_fomix/entregables/usv_v2/&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="ingresar-el-directorio-de-salida">
+<h4>5. Ingresar el directorio de salida<a class="headerlink" href="#ingresar-el-directorio-de-salida" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>Se ingresa la ruta del directorio de salida de los datos en la variable
+** path_salida**</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">path_salida</span> <span class="o">=</span> <span class="s2">&quot;C:/Dropbox (LANCIS)/SIG/desarrollo/sig_fomix/procesamiento/municipios_anp/&quot;</span>
+</pre></div>
+</div>
+<p>en esta carpeta estarán los resultados del script, tambien se conservan los datos
+intermedios o productos de las intersecciones realizadas para la consulta de las áreas
+en una subcarpeta llamada <strong>tmp</strong></p>
+</div>
+<div class="section" id="ingresar-el-nombre-del-campo-id-de-la-capa-a">
+<h4>6. Ingresar el nombre del campo ID de la capa A<a class="headerlink" href="#ingresar-el-nombre-del-campo-id-de-la-capa-a" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>se Ingresa el nombre del campo que contiene el identificador único
+para las geometrías en la variable <strong>campo_id_geometria_a</strong>, en este caso el nombre del campo  es <strong>cve_mun</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">campo_id_geomatria_a</span> <span class="o">=</span> <span class="s1">&#39;cve_mun&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="ingresar-el-nombre-del-campo-de-las-categorias-usv">
+<h4>7. Ingresar el nombre del campo de las categorias USV<a class="headerlink" href="#ingresar-el-nombre-del-campo-de-las-categorias-usv" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>Se ingresa el nombre del campo que contiene las categorias de USV en la
+variable ** campo_clase_usv**</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">campo_clase_usv</span> <span class="o">=</span> <span class="s1">&#39;id_clase2&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="ingresar-claves-de-las-tres-geometrias">
+<h4>8. Ingresar claves de las tres geometrías<a class="headerlink" href="#ingresar-claves-de-las-tres-geometrias" title="Enlazar permanentemente con este título">¶</a></h4>
+<p>Se declaran en una lista tres claves de las tres geometrías involucradas
+en la variable <strong>clave_capas</strong></p>
+<p>las claves son de tres caracteres y separadas por comas</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">clave_capas</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;mun&#39;</span><span class="p">,</span><span class="s1">&#39;anp&#39;</span><span class="p">,</span><span class="s1">&#39;usv&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="bibliografia">
+<h2>Bibliografía<a class="headerlink" href="#bibliografia" title="Enlazar permanentemente con este título">¶</a></h2>
+</div>
+<div class="section" id="documentacion-dentro-del-codigo">
+<h2>Documentación dentro del código<a class="headerlink" href="#documentacion-dentro-del-codigo" title="Enlazar permanentemente con este título">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="usvmunicipal.html" class="btn btn-neutral float-right" title="Cobertura de uso y tipo de suelo a nivel municipal" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tabulacion_3geo.html" class="btn btn-neutral float-left" title="Tabular intersección entre 3 geometrías" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Víctor Hernández
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

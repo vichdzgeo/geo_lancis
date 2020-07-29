@@ -13,23 +13,48 @@ import qgis
 def equidistante():
     lista_val =[0.0,0.20,0.4,0.6,0.8,1.0]
     return lista_val
+
 def weber_fechner(fp=2,min=0,max=1):
     dicc_e = {}
-    lista_val = [0,]
+    lista_val = [min,]
     categorias = 5
     pm = max - min 
     cats = numpy.power(fp, categorias)
     e0 = pm/cats
     for i in range(1 , categorias + 1):
-        dicc_e['e'+str(i)]= round((max - (numpy.power(fp,i) * e0)),3)
+        dicc_e['e'+str(i)]= min + (numpy.power(fp,i) * e0)
         
-
+    print (dicc_e)
     dicc_cortes ={}
     for i in range(1 , categorias + 1):
-        dicc_cortes['corte'+str(i)]= round(1 - dicc_e['e'+str(i)],3)
-        lista_val.append(round(1 - dicc_e['e'+str(i)],3))
+        #dicc_cortes['corte'+str(i)]= round(max - dicc_e['e'+str(i)],3)
+        lista_val.append( dicc_e['e'+str(i)])
+    
 
     return lista_val
+
+
+
+
+
+#def weber_fechner(fp=2,min=0,max=1):
+#    dicc_e = {}
+#    lista_val = []
+#    categorias = 5
+#    pm = max - min 
+#    cats = numpy.power(fp, categorias)
+#    e0 = pm/cats
+#    for i in range(1 , categorias + 1):
+#        dicc_e['e'+str(i)]= round((max - (numpy.power(fp,i) * e0)),3)
+#        
+#    print (dicc_e)
+#    dicc_cortes ={}
+#    for i in range(1 , categorias + 1):
+#        dicc_cortes['corte'+str(i)]= round(max - dicc_e['e'+str(i)],3)
+#        lista_val.append(round(max - dicc_e['e'+str(i)],3))
+#    print (e0)
+#    print (dicc_cortes)
+#    return lista_val
 def webber2(fp=2,minimo=0,maximo=1):
 
 
@@ -100,7 +125,7 @@ def areas_categorias(layer,campo,tipo_area="ha"):
 def asignar_estilo(campo, l, cortes=[0, 0.062, 0.125, 0.25, 0.5, 1.0]):
     myRangeList = []
     opacidad = 1
-    categorias_txt = ['MB','B','M','A','E']
+    categorias_txt = ['Muy baja','Baja','Moderada','Alta','Muy alta']
     #colores_cat = ['#730000','#ff5500','#ffff00','#4ce600','#267300']
     colores_cat = ['#267300','#4ce600','#ffff00','#ff5500','#730000']
     
@@ -133,6 +158,12 @@ def valores(areas):
     print (",".join(valores))
     return ",".join(valores)
 
+
+def max_min_vector(layer,campo):
+    idx=layer.fields().indexFromName(campo)
+    return layer.minimumValue(idx),layer.maximumValue(idx)
+    
+    
 layer = iface.activeLayer()
 
 campos = [field.name() for field in layer.fields()][2:13]
@@ -158,10 +189,14 @@ lista_fp = [1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2.0]
 #archivo.close()
 
 # para asignar el estilo de color 
-fp =1.5
-rango_wf = weber_fechner(fp)
+fp =1.8
+campo_s = 'vul_max_de'
+min,max =max_min_vector(layer,campo_s)
+print ('minimo : ',min,' maximo: ',max)
+rango_wf = weber_fechner(fp,min,max)
+
 #campo_s = 'fp'+str(fp).replace(".","")
-campo_s = '_vul'
+
 asignar_estilo(campo_s,layer,rango_wf)
 #
 #

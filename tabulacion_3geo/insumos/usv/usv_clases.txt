@@ -1,0 +1,19 @@
+1 - Agricultura de riego
+2 -Agricultura de temporal
+3 - Cuerpo de agua
+4 - Manglar
+5 - Pastizal
+6 - Selva baja
+7 - Selva mediana
+8 - Sin vegetación
+9 - Asentamiento humano
+10 - Vegetación de duna costera
+11 - Vegetación de petén
+12 - Vegetación secundaria de selva baja
+13 - Vegetación secundaria de selva mediana
+14 - Vegetación secundaria de manglar
+15 - Acuícola
+16 - Bosque cultivado/Palmar inducido
+17 - Tular
+18 - Vegetación halófila hidrófila
+19 - Sábana

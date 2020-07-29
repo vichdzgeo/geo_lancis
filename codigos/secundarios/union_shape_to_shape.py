@@ -13,8 +13,19 @@ def union_shape_to_shape(path_vector_base,path_vector_join,vector_id,bd_csv_id,p
     QgsProject.instance().addMapLayer(vector_base)
     #abre  el archivo csv
 
+    if path_vector_join.endswith('.shp'):
+        vector_join = QgsVectorLayer(path_vector_join, "", "ogr")
+        
+    elif path_vector_join.endswith('.csv'):
+
+        bd_csv_uri = "file:///" \
+                        + path_vector_join \
+                        + "?delimiter=%s&encoding=%s" % (",", "utf-8")
+        vector_join = QgsVectorLayer(bd_csv_uri, "", "delimitedtext")
+
+
     
-    vector_join = QgsVectorLayer(path_vector_join, "", "ogr")
+    
     QgsProject.instance().addMapLayer(vector_join)
 
     #Nombre de los campos de ID para relacionar las tablas
