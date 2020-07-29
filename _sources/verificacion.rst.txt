@@ -61,16 +61,16 @@ carpeta se guardan los 3 archivos shapefile  resultantes de la función **topolo
 
 estan nombrados de la siguiente manera:
 
-nombre_de_la_capa**_error**.shp 
+**nombrecapa_error**.shp 
 
 Capa de puntos que índica la posición en donde 2 o más poligonos no colindan adecuadamente
 o que su geometría puede causar problemas en algún análisis espacial
 
-nombre_de_la_capa**_invalido**.shp
+**nombrecapa_invalido**.shp
 
 Capa de poligonos que índica geométria inválida de la capa 
 
-nombre_de_la_capa**_valido**.shp 
+**nombrecapa_valido**.shp 
 
 Capa de poligonos que indica la geometría válida de la capa
 
@@ -78,8 +78,10 @@ Capa de poligonos que indica la geometría válida de la capa
 Imagen de la capa
 ^^^^^^^^^^^^^^^^^^^^
 
-El código genera una imagen de la capa con el mapa base de open street maps 
-sí y solo sí la capa tiene un puntaje de 10 en el criterio de **proyección**
+.. note::
+
+    El código genera una imagen de la capa con el mapa base de openstreetmap 
+    sí y solo sí la capa tiene un puntaje de 10 en el criterio de **proyección**
 
 
 

@@ -20,7 +20,10 @@ Geoprocesamiento en python y qgis's
    leesallee
    owa
    verificacion
+   tabulacion_3geo
+   nivel_geometrias
    usvmunicipal
+
 
 
 
