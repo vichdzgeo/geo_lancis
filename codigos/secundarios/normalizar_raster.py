@@ -16,6 +16,21 @@ import qgis.core
 from osgeo import gdal
 import gdal_calc
 import os
+import processing as pr 
+
+def raster_nodata(path_raster):
+    '''
+
+    '''
+    rlayer = QgsRasterLayer(path_raster,"raster")
+    extent = rlayer.extent()
+    provider = rlayer.dataProvider()
+    rows = rlayer.rasterUnitsPerPixelY()
+    cols = rlayer.rasterUnitsPerPixelX()
+    block = provider.block(1, extent,  rows, cols)
+    no_data = block.noDataValue()
+
+    return no_data
 def ecuacion_vulnerabilidad(n):
     '''
     Esta función expresa la ecuación para el cálculo de la vulnerabilidad
@@ -37,13 +52,13 @@ def ecuacion_vulnerabilidad(n):
     if n==2:
         ecuacion = 'pow(pow(A,(1-B)),(1+C))'
     return ecuacion
-def raster_min_max(rlayer):
+def raster_min_max(path_raster):
     '''
 
     Ejemplo de uso: 
     min, max = raster_min_max('/../raster.tif')
     '''
-    #rlayer = QgsRasterLayer(path_raster,"raster")
+    rlayer = QgsRasterLayer(path_raster,"raster")
 
     extent = rlayer.extent()
     provider = rlayer.dataProvider()
@@ -104,7 +119,7 @@ def crea_capa(ecuacion,rasters_input,salida):
         gdal_calc.Calc(calc=ecuacion, 
                             A=path_A, 
                             outfile=salida,
-                            NoDataValue=-3.40282e+38,
+                            NoDataValue=-9999.0,
                             quiet=True)
                             
     if total_raster == 2:
@@ -112,7 +127,7 @@ def crea_capa(ecuacion,rasters_input,salida):
                         A=path_A, 
                         B=path_B,
                         outfile=salida,
-                        NoDataValue=-3.40282e+38,
+                        NoDataValue=-9999.0,
                         quiet=True)
 
     if total_raster == 3:
@@ -121,7 +136,7 @@ def crea_capa(ecuacion,rasters_input,salida):
                             B=path_B,
                             C=path_C, 
                             outfile=salida,
-                            NoDataValue=-3.40282e+38,
+                            NoDataValue=-9999.0,
                             quiet=True)
                             
     if total_raster == 4:
@@ -131,7 +146,7 @@ def crea_capa(ecuacion,rasters_input,salida):
                         C=path_C, 
                         D=path_D,
                         outfile=salida,
-                        NoDataValue=-3.40282e+38,
+                        NoDataValue=-9999.0,
                         quiet=True)
 
     if total_raster == 5:
@@ -142,7 +157,7 @@ def crea_capa(ecuacion,rasters_input,salida):
                             D=path_D,
                             E=path_E, 
                             outfile=salida,
-                            NoDataValue=-3.40282e+38,
+                            NoDataValue=-9999.0,
                             quiet=True)
                             
     if total_raster == 6:
@@ -154,7 +169,7 @@ def crea_capa(ecuacion,rasters_input,salida):
                         E=path_E, 
                         F=path_F,
                         outfile=salida,
-                        NoDataValue=-3.40282e+38,
+                        NoDataValue=-9999.0,
                         quiet=True)
 
     if total_raster == 7:
@@ -167,7 +182,7 @@ def crea_capa(ecuacion,rasters_input,salida):
                             F=path_F,
                             G=path_G, 
                             outfile=salida,
-                            NoDataValue=-3.40282e+38,
+                            NoDataValue=-9999.0,
                             quiet=True)
                             
     if total_raster == 8:
@@ -181,7 +196,7 @@ def crea_capa(ecuacion,rasters_input,salida):
                         G=path_G, 
                         H=path_H,
                         outfile=salida,
-                        NoDataValue=-3.40282e+38,
+                        NoDataValue=-9999.0,
                         quiet=True)
                         
 def normalizar(rlayer):
@@ -195,15 +210,46 @@ def normalizar(rlayer):
     print (ecuacion)
     crea_capa(ecuacion,raster_inputs,path_salida)
     print ("finalizo el proceso")
-layer =qgis.utils.iface.activeLayer()
 
-print(layer.dataProvider().dataSourceUri())
 
-lista_vulnerabilidad =['G:/papiit/finales/tp_exposicion_total_n.tif',
-                    'G:/papiit/finales/tp_susceptibilidad_total_n.tif',
-                    'G:/papiit/finales/tp_resiliencia_total_n.tif']
-ec_vul = ecuacion_vulnerabilidad(2)
-salida ='G:/papiit/finales/tp_vulnerabilidad_exp_sus_res_n.tif'
-crea_capa(ec_vul,lista_vulnerabilidad,salida)
-#min,max = raster_min_max(layer)
-#normalizar(layer)
+def ideales(path_raster, path_raster_n):
+    min,max = raster_min_max(path_raster)
+    no_data =raster_nodata(path_raster)
+    ec_norm ='(A' + ') / (' + str(max) +')'  # llevar a ideal 
+    #ec_norm ='(A - '+str(min) + ') / (' + str(max)+'-'+str(min) +')'  # normalizar 
+    dicc ={        
+        'INPUT_A':path_raster,
+        'BAND_A':1,
+        'FORMULA':ec_norm,
+        'NO_DATA': no_data,
+        'RTYPE':5,
+        'OUTPUT':path_raster_n}
+    pr.run("gdal:rastercalculator",dicc)
+
+
+def lineal_decreciente(path_raster, path_raster_n):
+    min,max = raster_min_max(path_raster)
+    no_data =raster_nodata(path_raster)
+    xmax_menos_xmin = max-min
+    xmax_menos_xmin_xmax = xmax_menos_xmin / max
+    xmax_mas_xmin = max + min
+    xmax_mas_xmin_xmax = xmax_mas_xmin / max
+
+    ec_norm ='((-A * '+str(xmax_menos_xmin_xmax)+') / '+str(xmax_menos_xmin)+') + '+str(xmax_mas_xmin_xmax)  # llevar a ideal 
+    
+    dicc ={        
+        'INPUT_A':path_raster,
+        'BAND_A':1,
+        'FORMULA':ec_norm,
+        'NO_DATA': no_data,
+        'RTYPE':5,
+        'OUTPUT':path_raster_n}
+    pr.run("gdal:rastercalculator",dicc)
+
+
+layer =iface.activeLayer()
+salida = layer.source().split(".")[0]+'_ld.tif'
+
+lineal_decreciente(layer.source(),salida)
+
+

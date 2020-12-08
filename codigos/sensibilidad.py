@@ -138,7 +138,7 @@ def crea_capa(ecuacion,rasters_input,salida):
         gdal_calc.Calc(calc=ecuacion, 
                             A=path_A, 
                             outfile=salida,
-                            NoDataValue= 3.40282e+38,
+                            #NoDataValue= 3.40282e+38,
                             quiet=True)
                             
     if total_raster == 2:
@@ -146,7 +146,7 @@ def crea_capa(ecuacion,rasters_input,salida):
                         A=path_A, 
                         B=path_B,
                         outfile=salida,
-                        NoDataValue= 3.40282e+38,
+                        #NoDataValue= 3.40282e+38,
                         quiet=True)
 
     if total_raster == 3:
@@ -155,7 +155,7 @@ def crea_capa(ecuacion,rasters_input,salida):
                             B=path_B,
                             C=path_C, 
                             outfile=salida,
-                            NoDataValue= 3.40282e+38,
+                            #NoDataValue= 3.40282e+38,
                             quiet=True)
                             
     if total_raster == 4:
@@ -165,7 +165,7 @@ def crea_capa(ecuacion,rasters_input,salida):
                         C=path_C, 
                         D=path_D,
                         outfile=salida,
-                        NoDataValue= 3.40282e+38,
+                        #NoDataValue= 3.40282e+38,
                         quiet=True)
 
     if total_raster == 5:
@@ -176,7 +176,7 @@ def crea_capa(ecuacion,rasters_input,salida):
                             D=path_D,
                             E=path_E, 
                             outfile=salida,
-                            NoDataValue= 3.40282e+38,
+                            #NoDataValue= 3.40282e+38,
                             quiet=True)
                             
     if total_raster == 6:
@@ -188,7 +188,7 @@ def crea_capa(ecuacion,rasters_input,salida):
                         E=path_E, 
                         F=path_F,
                         outfile=salida,
-                        NoDataValue= 3.40282e+38,
+                       #NoDataValue= 3.40282e+38,
                         quiet=True)
 
     if total_raster == 7:
@@ -201,7 +201,7 @@ def crea_capa(ecuacion,rasters_input,salida):
                             F=path_F,
                             G=path_G, 
                             outfile=salida,
-                            NoDataValue= 3.40282e+38,
+                            #NoDataValue= 3.40282e+38,
                             quiet=True)
                             
     if total_raster == 8:
@@ -215,7 +215,7 @@ def crea_capa(ecuacion,rasters_input,salida):
                         G=path_G, 
                         H=path_H,
                         outfile=salida,
-                        NoDataValue= 3.40282e+38,
+                        #NoDataValue= 3.40282e+38,
                         quiet=True)
         
     if total_raster == 9:
@@ -230,7 +230,7 @@ def crea_capa(ecuacion,rasters_input,salida):
                         H=path_H,
                         I=path_I,
                         outfile=salida,
-                        NoDataValue= 3.40282e+38,
+                        #NoDataValue= 3.40282e+38,
                         quiet=True)
 
     if total_raster == 10:
@@ -246,7 +246,7 @@ def crea_capa(ecuacion,rasters_input,salida):
                         I=path_I,
                         J=path_J,
                         outfile=salida,
-                        NoDataValue= 3.40282e+38,
+                        #NoDataValue= 3.40282e+38,
                         quiet=True)
 
     if total_raster == 11:
@@ -263,7 +263,7 @@ def crea_capa(ecuacion,rasters_input,salida):
                         J=path_J,
                         K=path_K,
                         outfile=salida,
-                        NoDataValue= 3.40282e+38,
+                        #NoDataValue= 3.40282e+38,
                         quiet=True)
 
     if total_raster == 12:
@@ -281,7 +281,7 @@ def crea_capa(ecuacion,rasters_input,salida):
                         K=path_K,
                         L=path_L,
                         outfile=salida,
-                        NoDataValue= 3.40282e+38,
+                        #NoDataValue= 3.40282e+38,
                         quiet=True)
 
     if total_raster == 13:
@@ -300,7 +300,7 @@ def crea_capa(ecuacion,rasters_input,salida):
                         L=path_L,
                         M=path_M,
                         outfile=salida,
-                        NoDataValue= 3.40282e+38,
+                        #NoDataValue= 3.40282e+38,
                         quiet=True)
 
     if total_raster == 14:
@@ -320,7 +320,7 @@ def crea_capa(ecuacion,rasters_input,salida):
                         M=path_M,
                         N=path_N,
                         outfile=salida,
-                        NoDataValue= 3.40282e+38,
+                        #NoDataValue= 3.40282e+38,
                         quiet=True)
 
 
@@ -550,8 +550,8 @@ def analisis_sensibilidad(dicc,p_procesamiento):
 
 
     archivo = open(p_procesamiento+"analisis_sensibilidad.csv","w")
-    archivo.write("criterio,exp_media,sensibilidad_exp,sus_media,sensibilidad_sus,res_media,sensibilidad_res,vulnerabilidad,sensibilidad_vul\n")
-    archivo.write("total,"+str(round(exp_media_total,3))+",,"+str(round(sus_media_total,3))+",,"+str(round(res_media_total,3))+",,"+str(round(vulnerabilidad_total_media,3))+"\n")
+    archivo.write("criterio,vulnerabilidad,valor_sensibilidad\n")
+    archivo.write("all elements,"+str(round(exp_media_total,3))+",,"+str(round(sus_media_total,3))+",,"+str(round(res_media_total,3))+",,"+str(round(vulnerabilidad_total_media,3))+"\n")
         
     criterios = lista_criterios(dicc) #obtiene criterios del diccionario principal
     cont=0
@@ -599,12 +599,6 @@ def analisis_sensibilidad(dicc,p_procesamiento):
         sensibilidad_res_calculada = round((abs((res_media_total-res_media))/res_media_total),3)
         sensibilidad_calculada = round((abs((vulnerabilidad_total_media-vulnerabilidad_media))/vulnerabilidad_total_media),3)
         archivo.write(criterio+","+\
-                        str(exp_media)+","+\
-                        str(sensibilidad_exp_calculada)+","+\
-                        str(round(sus_media,3))+","+\
-                        str(sensibilidad_sus_calculada)+","+\
-                        str(round(res_media,3))+","+\
-                        str(sensibilidad_res_calculada)+","+\
                         str(round(vulnerabilidad_media,3))+","+\
                         str(sensibilidad_calculada)+"\n")
         

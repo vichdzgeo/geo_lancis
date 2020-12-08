@@ -186,7 +186,7 @@ El código tiene valores  predeterminados de alpha
 para cada valor en la lista, el código generará un mapa en el directorio 
 de salida 
 
-.. image:: ../../owa/images/salida.PNG
+.. image:: ../../owa/images/salida.png
 
 Bibliografía
 -----------------------------------

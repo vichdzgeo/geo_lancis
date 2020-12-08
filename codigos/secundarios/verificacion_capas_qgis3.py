@@ -292,7 +292,6 @@ def diagnostico_capas(path_shape,path_topologia):
         for key,value in diagnostico.items():
             if not key=='total_campos':
                 if isinstance(value, int) and not isinstance(value, tuple):
-                    
                     suma+=value
                 if isinstance(value, tuple):
                     suma+=value[0]
@@ -304,60 +303,60 @@ def diagnostico_capas(path_shape,path_topologia):
 
 
 
-path = "C:/Dropbox (LANCIS)/SIG/desarrollo/sig_fomix/insumos/poetcy/faltantes/"
-path_salida = "C:/Dropbox (LANCIS)/CARPETAS_TRABAJO/vhernandez/diagnostico/fomix_poetcy/csv_diagnostico/"
-path_rst = "C:/Dropbox (LANCIS)/CARPETAS_TRABAJO/vhernandez/diagnostico/fomix_poetcy/rst/"
-path_topologia = "C:/Dropbox (LANCIS)/CARPETAS_TRABAJO/vhernandez/diagnostico/fomix_poetcy/"
-bitacora = open("C:/Dropbox (LANCIS)/CARPETAS_TRABAJO/vhernandez/diagnostico/fomix_poetcy/bitacora_poetcy_faltantes.csv","w")
-criterios_diagnosticos = ["nombre",
-                            "metadatos",
-                            "proyeccion",
-                            "geometria_completa",
-                            "sobrelapados",
-                            "sin_atributo",
-                            "huecos",
-                            "nulos",
-                            "significado",
-                            "unidades",
-                            "codificados",
-                            "resolucion",
-                            "fecha",
-                            "linaje",
-                            "fuente",
-                            "nombre_proyeccion",
-                            "suma"]
-encabezado =''
-for criterio in criterios_diagnosticos:
-    encabezado+=(criterio+",")
-encabezado +="\n"
-bitacora.write(encabezado)
+# path = "C:/Dropbox (LANCIS)/SIG/desarrollo/sig_fomix/insumos/poetcy/faltantes/"
+# path_salida = "C:/Dropbox (LANCIS)/CARPETAS_TRABAJO/vhernandez/diagnostico/fomix_poetcy/csv_diagnostico/"
+# path_rst = "C:/Dropbox (LANCIS)/CARPETAS_TRABAJO/vhernandez/diagnostico/fomix_poetcy/rst/"
+# path_topologia = "C:/Dropbox (LANCIS)/CARPETAS_TRABAJO/vhernandez/diagnostico/fomix_poetcy/"
+# bitacora = open("C:/Dropbox (LANCIS)/CARPETAS_TRABAJO/vhernandez/diagnostico/fomix_poetcy/bitacora_poetcy_faltantes.csv","w")
+# criterios_diagnosticos = ["nombre",
+#                             "metadatos",
+#                             "proyeccion",
+#                             "geometria_completa",
+#                             "sobrelapados",
+#                             "sin_atributo",
+#                             "huecos",
+#                             "nulos",
+#                             "significado",
+#                             "unidades",
+#                             "codificados",
+#                             "resolucion",
+#                             "fecha",
+#                             "linaje",
+#                             "fuente",
+#                             "nombre_proyeccion",
+#                             "suma"]
+# encabezado =''
+# for criterio in criterios_diagnosticos:
+#     encabezado+=(criterio+",")
+# encabezado +="\n"
+# bitacora.write(encabezado)
 
 
-lista_shp=lista_shape(path)
+# lista_shp=lista_shape(path)
 
-for path_shape in lista_shp:
+# for path_shape in lista_shp:
     
-    print ("Procesando capa :",nombre_capa(path_shape))
-    linea = ''
-    diagnostico=diagnostico_capas(path_shape,path_topologia)
-    linea =str(diagnostico["nombre"])+","+\
-            str(diagnostico["metadatos"])+","+\
-            str(diagnostico["proyeccion"])+","+\
-            str(diagnostico["geometria_completa"])+","+\
-            str(diagnostico["sobrelapados"])+","+\
-            str(diagnostico["sin_atributo"])+","+\
-            str(diagnostico["huecos"])+","+\
-            str(diagnostico["nulos"])+","+\
-            str(diagnostico["significado"])+","+\
-            str(diagnostico["unidades"])+","+\
-            str(diagnostico["codificados"])+","+\
-            str(diagnostico["resolucion"])+","+\
-            str(diagnostico["fecha"])+","+\
-            str(diagnostico["linaje"])+","+\
-            str(diagnostico["fuente"])+","+\
-            str(diagnostico["nombre_proyeccion"])+","+\
-            str(diagnostico["suma"])+"\n"
+#     print ("Procesando capa :",nombre_capa(path_shape))
+#     linea = ''
+#     diagnostico=diagnostico_capas(path_shape,path_topologia)
+#     linea =str(diagnostico["nombre"])+","+\
+#             str(diagnostico["metadatos"])+","+\
+#             str(diagnostico["proyeccion"])+","+\
+#             str(diagnostico["geometria_completa"])+","+\
+#             str(diagnostico["sobrelapados"])+","+\
+#             str(diagnostico["sin_atributo"])+","+\
+#             str(diagnostico["huecos"])+","+\
+#             str(diagnostico["nulos"])+","+\
+#             str(diagnostico["significado"])+","+\
+#             str(diagnostico["unidades"])+","+\
+#             str(diagnostico["codificados"])+","+\
+#             str(diagnostico["resolucion"])+","+\
+#             str(diagnostico["fecha"])+","+\
+#             str(diagnostico["linaje"])+","+\
+#             str(diagnostico["fuente"])+","+\
+#             str(diagnostico["nombre_proyeccion"])+","+\
+#             str(diagnostico["suma"])+"\n"
     
-    bitacora.write(linea)
-bitacora.close()
+#     bitacora.write(linea)
+# bitacora.close()
 

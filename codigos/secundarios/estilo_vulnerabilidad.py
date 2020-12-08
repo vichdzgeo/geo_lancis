@@ -9,30 +9,50 @@ from qgis.analysis import *
 import string 
 import qgis.utils
 import processing 
+import numpy as np 
 
 
+def wf(fp=2, min=0, max=1, categories=5,sentido='directo'):
+    '''
+    Esta funcion regresa de cortes según el método de weber-fechner
 
-def wf(fp=2,min=0,max=1):
-    
-    if fp==1:
-        lista_val = [0,0.2,0.4,0.6,0.8,1.0]
-    else:
-        dicc_e = {}
-        lista_val = [0,]
-        categorias = 5
+    :param fp: factor de progresión 
+    :type fp: float
+
+    :param min: valor mínimo de la capa
+    :type min: float
+
+    :param max: valor máximo de la capa
+    :type max: float
+
+    :param categories: número de categorias
+    :type categories: int 
+
+    '''
+    dicc_e = {}
+    if sentido =='directo':
+        list_val = [min,]
         pm = max - min 
-        cats = numpy.power(fp, categorias)
+        cats = np.power(fp, categories)
         e0 = pm/cats
-        for i in range(1 , categorias + 1):
-            dicc_e['e'+str(i)]= round((max - (numpy.power(fp,i) * e0)),3)
+        for i in range(1 , categories + 1):
+            dicc_e['e'+str(i)]= min + (np.power(fp,i) * e0)
             
+        for i in range(1, categories + 1):
+            list_val.append(dicc_e['e'+str(i)])
+            
+    elif sentido =='inverso':
+        list_val = [max,]
+        pm = max - min 
+        cats = np.power(fp, categories)
+        e0 = pm/cats
+        for i in range(1 , categories + 1):
+            dicc_e['e'+str(i)]= max - (np.power(fp,i) * e0)
+            
+        for i in range(1, categories + 1):
+            list_val.append(dicc_e['e'+str(i)])
+    return list_val
 
-        dicc_cortes ={}
-        for i in range(1 , categorias + 1):
-            dicc_cortes['corte'+str(i)]= round(1 - dicc_e['e'+str(i)],3)
-            lista_val.append(round(1 - dicc_e['e'+str(i)],3))
-
-    return lista_val
 def progresiva(fp=2,minimo=0,maximo=1):
 
 
@@ -105,7 +125,7 @@ def rampa_raster(lista_val,raster,ind=1):
         QgsColorRampShader.ColorRampItem(lista_val[2], QColor(colDic['B']),'B:'+str(round(lista_val[1],3))+'-'+str(round(lista_val[2],3))), \
         QgsColorRampShader.ColorRampItem(lista_val[3], QColor(colDic['M']),'M:'+str(round(lista_val[2],3))+'-'+str(round(lista_val[3],3))), \
         QgsColorRampShader.ColorRampItem(lista_val[4], QColor(colDic['A']),'A:'+str(round(lista_val[3],3))+'-'+str(round(lista_val[4],3))), \
-        QgsColorRampShader.ColorRampItem(lista_val[5]+0.005, QColor(colDic['E']),'E:'+str(round(lista_val[4],3))+'-'+str(round(lista_val[5],3)))]
+        QgsColorRampShader.ColorRampItem(lista_val[5], QColor(colDic['E']),'E:'+str(round(lista_val[4],3))+'-'+str(round(lista_val[5],3)))]
      
     myRasterShader = QgsRasterShader()
     myColorRamp = QgsColorRampShader()
@@ -123,17 +143,17 @@ def rampa_raster(lista_val,raster,ind=1):
 
 layer =qgis.utils.iface.activeLayer()    
 ## para vulnerabilidad o capas integradas
-fp=1.7
+fp=2
 categorias=5
 minimo,maximo=raster_min_max(layer)
 #lista_val = progresiva(fp)
-lista_val = wf(fp)
+lista_val = wf(fp,minimo,maximo,categorias)
 #print (lista_val)
 for i in range(len(lista_val)):
     if i < 5:
         print ("categoria %d"%(i+1),round(lista_val[i],3)," - ",round(lista_val[i+1],3))
 
-rampa_raster(lista_val,layer)
+rampa_raster(lista_val,layer,1)
 
 ## para funciones de valor
 

@@ -1,9 +1,9 @@
 import math 
 layer = iface.activeLayer()
 extent = layer.extent()
-
-xmin, xmax,ymin,ymax = extent.xMinimum(), extent.xMaximum(),extent.yMinimum(),extent.yMaximum()
-
+#region_peninsula = '145399.882634,526940.882019,1979440.790516,2391757.031490'
+xmin, xmax,ymin,ymax = extent.xMinimum(), extent.xMaximum(),extent.yMinimum(),2391840
+#extension_peninsula = '145399.0,526999.0,1979440.0,2391840.0'
 def more_up(v_o):
     v_n = round(v_o)
     if v_n-v_o> 0:
@@ -17,10 +17,10 @@ extent_origin={'xmin':xmin,
                                     'ymax':ymax}
 
 for k,v in extent_origin.items():
-    print(k,v)
+    print(k,round(v,3))
     
 
-tam_pixel = 15
+tam_pixel = 100
 
 xmin_n = math.trunc(xmin)
 xmax_tp = more_up(xmax)
@@ -48,3 +48,8 @@ extent_magic={
                                     
 for k,v in extent_magic.items():
     print(k,v)
+region = "%f,%f,%f,%f" % (xmin_n, xmax_n, ymin_n, ymax_n)
+print ('region',region)
+print  ("with",(xmax_n- xmin_n)/tam_pixel)
+print  ("heith",(ymax_n- ymin_n)/tam_pixel)
+

@@ -1,16 +1,16 @@
 def permisible (cadena):
 
-    caracteres_permitidos = [' ','-','_',',',"  ",'á','é','í','ó','ú',]
-    caracteres_remplazo = ['','','','','','a','e','i','o','u']
-    str=cadena.lower()
+    caracteres_permitidos = [' ','-','_',',',"  ",'/','á','é','í','ó','ú',]
+    caracteres_remplazo = ['','','','','','','a','e','i','o','u']
+    str_txt=cadena.lower()
     for x in caracteres_permitidos:
-        if  x in str:
+        if  x in str_txt:
             
             for a,b in zip(caracteres_permitidos,caracteres_remplazo):
-                str=str.replace(a,b)
-                permisible(str)               
+                str_txt=str_txt.replace(a,b)
+                permisible(str_txt)               
         else:
-                return str
+                return str_txt
 
 def codificacion_contenido(vlayer):
   

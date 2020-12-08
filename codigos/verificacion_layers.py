@@ -7,7 +7,13 @@ import processing as pr
 from time import sleep 
 
 def mapa_base(): #carga en el mapa base de open street maps 
-    
+    '''
+    Esta función carga un mapa base de open steet maps al proyecto de qgis
+
+    :returns: mapa base
+    :rtype: basemap layer
+
+    '''
     urlWithParams = 'type=xyz&url=https://a.tile.openstreetmap.org/%7Bz%7D/%7Bx%7D/%7By%7D.png&zmax=19&zmin=0&crs=EPSG3857'
     rlayer = QgsRasterLayer(urlWithParams, 'OpenStreetMap', 'wms')  
     if rlayer.isValid():
@@ -16,6 +22,16 @@ def mapa_base(): #carga en el mapa base de open street maps
     else:
         print('invalid layer')
 def cargar_capa_canvas(path):
+    '''
+    Esta función carga una capa vectorial al proyecto de qgis
+
+    :param path: Ruta de la capa shape
+    :type path: str
+
+    :returns: layer
+    :rtype: QgsVectorLayer
+
+    '''
     name = nombre_capa(path)
     layer = QgsVectorLayer(path,name,"ogr")
     if layer.isValid():
@@ -25,11 +41,30 @@ def cargar_capa_canvas(path):
     else:
         print ("capa no valida")
 def nombre_capa(path_shape):  #infomación general
+    '''
+    Esta función regresa el nombre de la capa sin extensión .shp
+
+    :param path_shape: ruta de la capa vectorial con extensión shape
+    :type path_shape: str
+
+    :returns: nombre de la capa vectorial sin extesión
+    :rtype: str
+    '''
     nombre_capa=(path_shape.split("/")[-1:])[0].split(".")[0]
     return nombre_capa
 def remover_capa(layer):
+    '''
+    Esta función remueve una capa del proyecto qgis
+
+    :param layer: capa vectorial
+    :type layer: QgsVectorLayer
+    '''
     QgsProject.instance().removeMapLayer(layer)
 def genera_preview(path): #Genera un archivo png de la capa
+    '''
+    Esta función realiza una captura de pantalla en en función del extent 
+    de la capa, incluye un mapa base de open street map
+    '''
     base_map = mapa_base()
     lay = cargar_capa_canvas(path)
     codigo =int(lay.crs().authid()[5:])
@@ -108,7 +143,7 @@ def genera_preview(path): #Genera un archivo png de la capa
     layout = manager.layoutByName(layoutName)
     exporter = QgsLayoutExporter(layout)
     
-    fn = lay.dataProvider().dataSourceUri().split(".")[0]+'.png'
+    fn = lay.dataProvider().dataSourceUri().split(".")[0]+'imagenvvv.png'
     exporter.exportToImage(fn,QgsLayoutExporter.ImageExportSettings())
     #exporter.exportToPdf(fn,QgsLayoutExporter.PdfExportSettings())
 
@@ -116,13 +151,29 @@ def genera_preview(path): #Genera un archivo png de la capa
     remover_capa(base_map)
 
 ##########################################################################
-
-
 def nombre_capa(path_shape):  #infomación general
+    '''
+    Esta función regresa el nombre de una capa con extensión .shp
+
+    :param path_shape: Ruta de la capa shape
+    :type path_shape: str
+
+    :returns: nombre de la capa shape con extensión
+    :rtype: str
+    '''
     nombre_capa=(path_shape.split("/")[-1:])[0]
     return nombre_capa
-    
 def lista_shape(path):
+    '''
+    Esta función busca dentro de un directorio especificado todas las capas con extensión **shp**
+    y regresa una lista con la ruta de cada una de ellas.
+
+    :param path: ruta del direcctorio que contiene las capas shape
+    :type path: str
+
+    :returns: lista con la ruta de cada capa localizada en el directorio y subdirectorios
+    :rtype: list 
+    '''
     lista_shp=[]
     for root, dirs, files in os.walk(path):
         for name in files:
@@ -132,6 +183,14 @@ def lista_shape(path):
                 lista_shp.append(ruta)
     return lista_shp
 def busca_prj(path_shape):
+    '''
+    Esta función busca dentro de la misma ruta del archivo shp, un archivo prj, este archivo
+    contiene los datos de proyección cartográfica asociados.
+
+    :param path_shape: ruta de la capa shapefile
+    :type path_shape: str
+    
+    '''
     path_directorio = "/".join(path_shape.split("/")[:-1])+"/"
     directorio = (path_directorio.replace("\\","/")+"/").replace("//","/")
     fileNames=[]
@@ -166,6 +225,7 @@ def topologia(vlayer,path_topologia):
         dir_topo = path_topologia+"/topologia"
         if "topologia" not in os.listdir(path_topologia):
             os.mkdir(dir_topo)
+        path_shape = vlayer.source()
         nombre_capa = path_shape.split("/")[-1:][0].split(".")[0]
         p_val = dir_topo+"/"+nombre_capa+"_valido.shp"
         p_error = dir_topo+"/"+nombre_capa+"_error.shp"
@@ -283,71 +343,87 @@ def sin_geometria(vlayer):
     if lena >0:
         identificador=0
     return identificador
+def permissible (cadena):
+
+    caracteres_permitidos = [' ','-','_',',',"  ",'/',"'",'á','é','í','ó','ú']
+    caracteres_remplazo = ['','','','','','','','a','e','i','o','u']
+    str_txt=cadena.lower()
+    for x in caracteres_permitidos:
+        if  x in str_txt:
+            
+            for a,b in zip(caracteres_permitidos,caracteres_remplazo):
+                str_txt=str_txt.replace(a,b)
+                permissible(str_txt)               
+        else:
+                return str_txt
 def codificacion_contenido(vlayer):
     total = int(vlayer.featureCount())
-    campos = [field.name() for field in vlayer.fields() if field.typeName()=="String"]
-    dicc_campos={}
-    for campo in campos:
-        dicc_campos[campo]={'valido':0,'invalido':0,'como_txt':0,'vacio':0}
-    
-    for pol in vlayer.getFeatures():
-        for campo in campos:
-            if not pol[campo]:
-                 if pol[campo]==NULL:
-                     cadena=''
-                     dicc_campos[campo]['vacio']+=1
-            else:
-                cadena=pol[campo]
+    if total !=0:
+        campos = [field.name() for field in vlayer.fields() if field.typeName()=="String"]
+        if len(campos)!=0:
+            dicc_campos={}
+            for campo in campos:
+                dicc_campos[campo]={'valido':0,'invalido':0,'como_txt':0,'vacio':0}
             
-            permisible=(((cadena.replace(" ","")).replace(".","")).replace("-","")).replace("/","")
-              
-            num=666
-            alfanum=999
-            if cadena.replace(".","").isdigit():
-                num =1
-            elif permisible.isalnum():
-                alfanum =2
+            for pol in vlayer.getFeatures():
+                for campo in campos:
+                    if not pol[campo]:
+                        if pol[campo]==NULL:
+                            cadena=''
+                            dicc_campos[campo]['vacio']+=1
+                    else:
+                        cadena=pol[campo]
+                    
+                    permisible=permissible(cadena)
+                    
+                    num=666
+                    alfanum=999
+                    if cadena.replace(".","").isdigit():
+                        num =1
+                    elif permisible.isalnum():
+                        alfanum =2
 
-            status =''
-            if num==1:
-                status="numero codificado como texto"
-                dicc_campos[campo]['como_txt']+=1
-            elif alfanum==2:
-                status="codificado correctamente"
-                dicc_campos[campo]['valido']+=1
-            else:
-                status="error en la codificacion"
-                dicc_campos[campo]['invalido']+=1
-    valor=0
-    campos_mal = []
-    campos_texto =[]
-    
-    for key,value in dicc_campos.items():
-        valor+=((value['valido']*100)/total)
-        if value['invalido'] >0 :
-            permisible=(((key.replace(" ","")).replace("_","")).replace("-","")).replace("/","")
-            if permisible.isalnum():
-                campos_mal.append(key)
-            else:
-                campos_mal.append("error detectado")
-        if value['como_txt']>0:
-            permisible=(((key.replace(" ","")).replace("_","")).replace("-","")).replace("/","")
-            if permisible.isalnum():
-                campos_texto.append(key)
-            else:
-                campos_texto.append("error detectado")
+                    status =''
+                    if num==1:
+                        status="numero codificado como texto"
+                        dicc_campos[campo]['como_txt']+=1
+                    elif alfanum==2:
+                        status="codificado correctamente"
+                        dicc_campos[campo]['valido']+=1
+                    else:
+                        status="error en la codificacion"
+                        dicc_campos[campo]['invalido']+=1
+            valor=0
+            campos_mal = []
+            campos_texto =[]
+            
+            for key,value in dicc_campos.items():
+                valor+=((value['valido']*100)/total)
+                if value['invalido'] >0 :
+                    permisible=(((key.replace(" ","")).replace("_","")).replace("-","")).replace("/","")
+                    if permisible.isalnum():
+                        campos_mal.append(key)
+                    else:
+                        campos_mal.append("error detectado")
+                if value['como_txt']>0:
+                    permisible=(((key.replace(" ","")).replace("_","")).replace("-","")).replace("/","")
+                    if permisible.isalnum():
+                        campos_texto.append(key)
+                    else:
+                        campos_texto.append("error detectado")
 
+                
+                
+                #print (key,"el ",((value['correcto']*100)/total),"por ciento de los datos esta codificado correctamente")
+            valor_final = valor
+            indicador=0
+            if valor_final ==len(campos)*100:
+                indicador=10
+            total = len(campos_mal)+len(campos_texto)
+            c_mal = campos_mal +campos_texto
         
-        
-        #print (key,"el ",((value['correcto']*100)/total),"por ciento de los datos esta codificado correctamente")
-    valor_final = valor
-    indicador=0
-    if valor_final ==len(campos)*100:
-        indicador=10
-    total = len(campos_mal)+len(campos_texto)
-    c_mal = campos_mal +campos_texto
-    
-    return indicador
+            return indicador
+    return 10
 def diagnostico_capas(path_shape):
     path_topologia=carpeta_tmp(path_shape)
     suma=0
@@ -405,7 +481,6 @@ def diagnostico_capas(path_shape):
         
         return diagnostico
     return diagnostico
-
 def carpeta_tmp(path_shape):
     carpeta= "tmp"
     path_dir = "/".join(path_shape.split("/")[:-1])+"/"+carpeta
@@ -417,45 +492,46 @@ def carpeta_tmp(path_shape):
             raise
     
     return path_dir+"/"
+def verificacion_layers(path_dir):
+    
+    lista_shp=lista_shape(path_dir)
+    bitacora = open(path_dir+"verificacion.csv","w")
+    criterios_diagnosticos = ["nombre",
+                                "no_campos",
+                                "epsg",
+                                "metadatos",
+                                "proyeccion",
+                                "geometria_completa",
+                                "sobrelapados",
+                                "codificados",
+                                "nulos",
+                                "calificacion"]
+    encabezado =''
+    for criterio in criterios_diagnosticos:
+        encabezado+=(criterio+",")
+    encabezado +="\n"
+    bitacora.write(encabezado)
 
-#path_shape = "C:/Users/Victor/Downloads/jalisco/procesamiento/resultados16IVCAT_single.shp"
-path_dir = "C:/Dropbox (LANCIS)/SIG/insumos/agricultura/conabio/vector/produccion_miel/"
-lista_shp=lista_shape(path_dir)
-bitacora = open(path_dir+"verificacion.csv","w")
-criterios_diagnosticos = ["nombre",
-                            "no_campos",
-                            "epsg",
-                            "metadatos",
-                            "proyeccion",
-                            "geometria_completa",
-                            "sobrelapados",
-                            "codificados",
-                            "nulos",
-                            "calificacion"]
-encabezado =''
-for criterio in criterios_diagnosticos:
-    encabezado+=(criterio+",")
-encabezado +="\n"
-bitacora.write(encabezado)
-
-for path_shape in lista_shp:
-    linea = ''
-    diagnostico=diagnostico_capas(path_shape)
-    linea =str(diagnostico["nombre"])+","+\
-        str(diagnostico["total_campos"])+","+\
-        str(diagnostico["código proyeccion"])+","+\
-        str(diagnostico["metadatos"])+","+\
-        str(diagnostico["proyeccion"])+","+\
-        str(diagnostico["geometria_completa"])+","+\
-        str(diagnostico["sobrelapados"])+","+\
-        str(diagnostico["codificados"])+","+\
-        str(diagnostico["nulos"])+","+\
-        str(diagnostico["suma"])+"\n"
+    for path_shape in lista_shp:
+        linea = ''
+        diagnostico=diagnostico_capas(path_shape)
+        linea =str(diagnostico["nombre"])+","+\
+            str(diagnostico["total_campos"])+","+\
+            str(diagnostico["código proyeccion"])+","+\
+            str(diagnostico["metadatos"])+","+\
+            str(diagnostico["proyeccion"])+","+\
+            str(diagnostico["geometria_completa"])+","+\
+            str(diagnostico["sobrelapados"])+","+\
+            str(diagnostico["codificados"])+","+\
+            str(diagnostico["nulos"])+","+\
+            str(round(diagnostico["suma"]/6,1))+"\n"
 
 
-    bitacora.write(linea)
+        bitacora.write(linea)
 
-    if diagnostico['proyeccion']==10:
-         genera_preview(path_shape)
+        if diagnostico['proyeccion']==10:
+            genera_preview(path_shape)
 
-bitacora.close()
+    bitacora.close()
+path_dir = 'C:/Dropbox (LANCIS)/CARPETAS_TRABAJO/vhernandez/geo_lancis/verificacion/datos_prueba/'
+verificacion_layers(path_dir)
