@@ -147,7 +147,7 @@ def gdal_calculadora(ecuacion,path_a,salida):
 
 def funcion_valor(path_A,archivo_json,salida):
     data = leer_json(archivo_json)
-#    tipo = tipo_raster(path_A)
+    #    tipo = tipo_raster(path_A)
     tipo_funcion = data['function_name']
     # if tipo =='UInt16' or tipo =='Int16' or tipo =='Byte' or tipo =='Float64':
     #         path_A=raster_float(path_A)

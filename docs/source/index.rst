@@ -16,6 +16,7 @@ Geoprocesamiento en python y qgis's
    :maxdepth: 1
    :caption: Códigos:
     
+   apcsig
    analisis
    leesallee
    owa
