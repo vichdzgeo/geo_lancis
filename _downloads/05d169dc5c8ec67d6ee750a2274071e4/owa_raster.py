@@ -170,7 +170,7 @@ def calculo_owa(df,w,alpha=0.5): # 6 de 9
     :returns: nombre del campo, dataframe que contiene el valor de owa para el alpha dado
     :rtype: str, pandas data frame
     '''
-    campo_owa = 'owa_'+str(owa).replace(".","")
+    campo_owa = 'owa_'+str(alpha).replace(".","")
     df[campo_owa] = df.v.apply(lambda x: owa_df(x,w,alpha))
 
     df_owa=df.filter(['id',campo_owa])

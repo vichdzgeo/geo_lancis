@@ -36,7 +36,9 @@
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Índice" href="genindex.html" />
-    <link rel="search" title="Búsqueda" href="search.html" /> 
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="Cobertura por niveles areas" href="nivel_geometrias.html" />
+    <link rel="prev" title="Verificación de capas" href="verificacion.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -85,11 +87,37 @@
 <li class="toctree-l1"><a class="reference internal" href="ejecucion.html">¿Cómo ejecutar un código en Qgis?</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Códigos:</span></p>
-<ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="apcsig.html">Libreria de funciones para el análsis espacial multicriterio</a></li>
 <li class="toctree-l1"><a class="reference internal" href="analisis.html">Análisis de sensibilidad</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leesallee.html">Índice Lee-Sallee</a></li>
 <li class="toctree-l1"><a class="reference internal" href="owa.html">OWA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="verificacion.html">Verificación de capas</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tabular intersección entre 3 geometrías</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#requerimientos-generales">Requerimientos generales</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#requerimientos-generales-de-los-insumos">Requerimientos generales de los insumos</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#entidad-a">Entidad A</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#entidad-b">Entidad B</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#entidad-c">Entidad C</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ejemplo">Ejemplo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#datos-de-prueba">Datos de prueba</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#abrir-el-codigo">Abrir el código</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#indicar-la-ruta-de-los-insumos">1. Indicar la ruta de los insumos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#indicar-los-nombres-de-los-campos-id">2. Indicar los nombres de los campos id</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#agrega-identificadores-segun-el-tipo-de-geometria">4. Agrega identificadores según el tipo de geometría</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#indica-el-directorio-de-salida">4. Indica el directorio de salida</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ejecuta-el-script">5. Ejecuta el script</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ingresa-el-nombre-del-campo-identificador-de-la-geometria-b">6. Ingresa el nombre del campo identificador de la geometría B</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ingresar-el-numero-de-las-categorias-a-considerar">7. Ingresar el número de las categorías a considerar</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#elegir-entre-area-o-porcentaje">8.- Elegir entre área o porcentaje</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="nivel_geometrias.html">Cobertura por niveles areas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usvmunicipal.html">Cobertura de uso y tipo de suelo a nivel municipal</a></li>
 </ul>
@@ -238,7 +266,7 @@ Para resolver cualquier duda al respecto, consultar la <a class="reference exter
 <p>Indicar la ruta completa de los insumos según corresponda:</p>
 <div class="admonition warning">
 <p class="first admonition-title">Advertencia</p>
-<p class="last">verifica que se use “/” como separadador de espacio en lugar de “”</p>
+<p class="last">verifica que se use “/” como separadador de espacio en lugar de “'</p>
 </div>
 <div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">path_geometria_a</span> <span class="o">=</span> <span class="s1">&#39;C:/geo_lancis/tabulacion3geo/insumos/muni_2018_utm16.shp&#39;</span>
 <span class="n">path_geometria_b</span> <span class="o">=</span> <span class="s2">&quot;C:/geo_lancis/tabulacion3geo/insumos/degradacion_suelo_yuc.shp&quot;</span>
@@ -325,6 +353,15 @@ para este ejemplo se elige “area”</p>
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="nivel_geometrias.html" class="btn btn-neutral float-right" title="Cobertura por niveles areas" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="verificacion.html" class="btn btn-neutral float-left" title="Verificación de capas" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

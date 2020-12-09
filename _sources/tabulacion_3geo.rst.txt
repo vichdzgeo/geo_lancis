@@ -82,7 +82,7 @@ Indicar la ruta completa de los insumos según corresponda:
 
 .. warning:: 
 
-    verifica que se use '/' como separadador de espacio en lugar de '\'
+    verifica que se use '/' como separadador de espacio en lugar de '\\'
 
 .. code::
 
