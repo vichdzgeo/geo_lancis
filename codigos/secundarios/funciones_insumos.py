@@ -1,4 +1,5 @@
-import processing  as pr 
+import processing  as pr
+
 def calculadora_grass(path_capa, ecuacion,path_salida):
         '''
         Esta función aplica la máscara de la zona de estudio
@@ -413,7 +414,7 @@ def calcula_distancias_raster(path_r,path_mascara,path_salida,tipo_distancia = 0
             'd':None,
             'e':None,
             'f':None,
-            'expression':'(round(A/100.0,1)/10.0)*B',
+            'expression':'(round(A/100.0,1)/10.0)*B', #Expresión que convierte las distancias a kms con un decimal y aplica la mascara de la zona de estudio
             'output':path_salida,
             'GRASS_REGION_PARAMETER':region,
             'GRASS_REGION_CELLSIZE_PARAMETER':0,
