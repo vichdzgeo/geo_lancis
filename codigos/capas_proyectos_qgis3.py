@@ -46,8 +46,8 @@ def lista_projects(path_carpeta):
         
         for name in files:
             extension = os.path.splitext(name)
-            if extension[-1] == '.qgs':
-                lista.append(root+"/"+name)
+            if extension[-1] == '.qgs'and root == path_carpeta:
+                lista.append(root+name)
     return lista
     
 def total_geometrias(vlayer):
@@ -82,7 +82,7 @@ def nombre_proyeccion(vlayer):
 path_projects = 'C:/Dropbox (LANCIS)/SIG/desarrollo/sig_fomix/insumos/'
 
 lista_proyectos = lista_projects(path_projects)
-path_db_insumos = 'C:/analisis_insumos/insumos_fomix.csv'
+path_db_insumos = 'C:/analisis_insumos/insumos_fomix_enero.csv'
 db_insumos =open(path_db_insumos,"w")
 proyectos = lista_proyectos
 for proyecto in proyectos:
@@ -94,9 +94,9 @@ for proyecto in proyectos:
     names = [[categoria,
                         layer.name(),
                         layer.source(),
-                        tipo_geometria(layer),
-                        str(total_geometrias(layer)),
-                        nombre_proyeccion(layer),
+                        #tipo_geometria(layer),
+                        #str(total_geometrias(layer)),
+                        #nombre_proyeccion(layer),
                         extent_list(layer.extent())] for layer in QgsProject.instance().mapLayers().values()]
                         
     for capa in names:
