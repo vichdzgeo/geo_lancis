@@ -216,6 +216,20 @@ def agregar_categorias(path_v,campo,nuevo_int_cats='categorias',cont=1):
         reglas.write(str(i)+" = "+str(i)+" "+lista[i-1]+'\n')
     reglas.close()
     return path_tp_reglas,n_cats
+def extrae_categorias(path_v,salida,campo,categorias):
+    layer = QgsVectorLayer(path_v,"","ogr")
+    if len(categorias)==1:
+        query = "\""+campo+"\"="+str(categorias[0])
+    else:
+        query = ''
+        querys = []
+        for cat in categorias:        
+            querys.append( "\""+campo+"\"="+str(cat))
+        query = " OR ".join(querys)
+    layer.selectByExpression(query)
+    QgsVectorFileWriter.writeAsVectorFormat(layer, salida, "utf-8", layer.crs(), "ESRI Shapefile", onlySelected=True)
+
+
 
 def genera_reglas_txt(p_layer,campo_cat,campo_id):
     layer = QgsVectorLayer(p_layer,"","ogr")
@@ -375,8 +389,9 @@ def alinear_raster(path_raster,region,resolucion,path_salida,crs_destino='',tipo
     '''
     if tipo == 'int':
         v_tipo = 5 # valor para especificar entero a 32bits
-    else:
+    elif tipo == 'float':
         v_tipo =6 # valor para flotante 
+
     if crs_destino =='':
         crs_destino = QgsRasterLayer(path_raster,"").crs()
 
@@ -848,7 +863,7 @@ def remove_raster(path_r):
         nombre = nombre_capa(path_r)
         for name in files:
             extension = os.path.splitext(name)
-            if  nombre in extension[0] and nombre[0:3]==extension[0][0:3] :
+            if nombre in  extension[0]  and nombre[0:3]==extension[0][0:3] :
                 arch="/".join([root,name])
                 lista.append(arch)
     for arch in lista:
@@ -1044,6 +1059,7 @@ def calculadora_grass(path_capa, ecuacion,path_salida):
         'GRASS_RASTER_FORMAT_OPT':'',
         'GRASS_RASTER_FORMAT_META':''}
         pr.run("grass7:r.mapcalc.simple", dicc)
+
 def integra_localidades_caminos(path_lugar_n,w_lugar,path_d_camino_n,w_d_camino,d_max_lugar,salida):
 
         '''
