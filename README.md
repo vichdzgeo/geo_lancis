@@ -1,4 +1,4 @@
-# geo_lancis
+# Códigos en python y qgis para analásis espacial multicriterio
 
 
 ## Afiliación
