@@ -112,5 +112,5 @@ Bibliografía
 Documentación dentro del código
 ==================================
 
-.. .. automodule:: sensibilidad
-..     :members:
+.. automodule:: sensibilidad_por_remocion_capas
+    :members:

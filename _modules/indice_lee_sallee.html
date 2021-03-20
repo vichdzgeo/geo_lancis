@@ -1,0 +1,309 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="es" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="es" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>indice_lee_sallee &mdash; documentación de Documentación de Códigos en Python y Qgis - 1.0</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Documentación de Códigos en Python y Qgis
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Guias de uso:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ejecucion.html">¿Cómo ejecutar un código en Qgis?</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Códigos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../apcsig.html">Libreria de funciones para el análsis espacial multicriterio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../analisis.html">Análisis de sensibilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../leesallee.html">Índice Lee-Sallee</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../owa.html">OWA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../verificacion.html">Verificación de capas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tabulacion_3geo.html">Tabular intersección entre 3 geometrías</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nivel_geometrias.html">Cobertura por niveles areas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usvmunicipal.html">Cobertura de uso y tipo de suelo a nivel municipal</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Documentación de Códigos en Python y Qgis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Código de módulo</a> &raquo;</li>
+        
+      <li>indice_lee_sallee</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Código fuente para indice_lee_sallee</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span>  <span class="nn">qgis</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span>  <span class="nn">qgis.core</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">time</span> 
+<div class="viewcode-block" id="lista_shp"><a class="viewcode-back" href="../leesallee.html#indice_lee_sallee.lista_shp">[documentos]</a><span class="k">def</span> <span class="nf">lista_shp</span><span class="p">(</span><span class="n">path_carpeta</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+
+
+<span class="sd">    :param path_carpeta: ruta que contiene los archivos shape a procesar</span>
+<span class="sd">    :type path_carpeta: String</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">for</span> <span class="n">root</span><span class="p">,</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">path_carpeta</span><span class="p">):</span>
+        <span class="n">lista</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+            <span class="n">extension</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">extension</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;.shp&#39;</span><span class="p">:</span>
+                <span class="n">lista</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">extension</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">lista</span></div>
+
+
+
+
+
+<div class="viewcode-block" id="indice_lee_salee"><a class="viewcode-back" href="../leesallee.html#indice_lee_sallee.indice_lee_salee">[documentos]</a><span class="k">def</span> <span class="nf">indice_lee_salee</span><span class="p">(</span><span class="n">vlayer_base</span><span class="p">,</span><span class="n">vlayer_model</span><span class="p">,</span><span class="n">campo_categoria</span><span class="p">,</span><span class="n">categoria</span><span class="p">,</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;ageb_id&#39;</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+
+<span class="sd">    Esta función regresa el índice Lee-Sallee</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        lee\_sallee\_index =  \frac{A\cap B}{A\cup B}</span>
+
+<span class="sd">    :param vlayer_base: vector base</span>
+<span class="sd">    :type vlayer_base: QgsVectorLayer</span>
+
+<span class="sd">    :param vlayer_model: Vector modelo </span>
+<span class="sd">    :type vlayer_model: QgsVectorLayer</span>
+
+<span class="sd">    :param campo_categoria: Nombre del campo que tiene las categorias</span>
+<span class="sd">    :type campo_categoria: String</span>
+
+<span class="sd">    :param categoria: Número de categoria</span>
+<span class="sd">    :type categoria: int </span>
+
+<span class="sd">    :param id: nombre del campo identificador</span>
+<span class="sd">    :type id: String</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">union</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">interseccion</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">vlayer_base</span><span class="o">.</span><span class="n">getFeatures</span><span class="p">(),</span><span class="n">vlayer_model</span><span class="o">.</span><span class="n">getFeatures</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="n">campo_categoria</span><span class="p">]</span><span class="o">==</span><span class="n">categoria</span><span class="p">:</span>
+            <span class="n">union</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="nb">id</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">b</span><span class="p">[</span><span class="n">campo_categoria</span><span class="p">]</span><span class="o">==</span><span class="n">categoria</span><span class="p">:</span>
+            <span class="n">union</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="nb">id</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="n">campo_categoria</span><span class="p">]</span><span class="o">==</span><span class="n">categoria</span> <span class="ow">and</span> <span class="n">b</span><span class="p">[</span><span class="n">campo_categoria</span><span class="p">]</span><span class="o">==</span><span class="n">categoria</span><span class="p">:</span>
+            <span class="n">interseccion</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="nb">id</span><span class="p">])</span>
+
+    <span class="n">union_conjunto</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">union</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">union_conjunto</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+        <span class="n">indice_lee_count</span><span class="o">=</span><span class="mi">10</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">indice_lee_count</span> <span class="o">=</span> <span class="nb">round</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">interseccion</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">union_conjunto</span><span class="p">)),</span><span class="mi">4</span><span class="p">)</span>
+
+    <span class="n">area_interseccion</span> <span class="o">=</span><span class="mi">0</span>
+    <span class="n">area_union</span> <span class="o">=</span><span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">vlayer_base</span><span class="o">.</span><span class="n">getFeatures</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">ageb_union</span> <span class="ow">in</span> <span class="n">union_conjunto</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">i</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span><span class="o">==</span><span class="n">ageb_union</span><span class="p">:</span>
+                <span class="n">area_union</span> <span class="o">+=</span> <span class="n">i</span><span class="o">.</span><span class="n">geometry</span><span class="p">()</span><span class="o">.</span><span class="n">area</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">ageb_interseccion</span> <span class="ow">in</span> <span class="n">interseccion</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">i</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span><span class="o">==</span><span class="n">ageb_interseccion</span><span class="p">:</span>
+                <span class="n">area_interseccion</span> <span class="o">+=</span> <span class="n">i</span><span class="o">.</span><span class="n">geometry</span><span class="p">()</span><span class="o">.</span><span class="n">area</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">area_union</span> <span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+        <span class="n">indice_lee</span><span class="o">=</span><span class="mi">10</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">indice_lee</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">area_interseccion</span> <span class="o">/</span> <span class="n">area_union</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">indice_lee</span></div>
+    
+
+
+<span class="c1"># ## Cálculo del índice Lee Sallee</span>
+<span class="c1"># path_sig = &quot;C:/Dropbox (LANCIS)/SIG/desarrollo/sig_megadapt/procesamiento/stressing/indice_leesallee/shapes/equidistante/&quot;</span>
+<span class="c1"># #vlayer_base = QgsVectorLayer(path_sig + &#39;action_budget_bajo_asentamientos.shp&#39;,&quot;&quot;,&quot;ogr&quot;)</span>
+<span class="c1"># #vlayer_model = QgsVectorLayer(path_sig + &#39;system_budget_bajo_asentamientos.shp&#39;,&quot;&quot;,&quot;ogr&quot;)</span>
+<span class="c1"># #</span>
+<span class="c1"># #path = &quot;C:/Dropbox (LANCIS)/SIG/desarrollo/sig_megadapt/procesamiento/stressing/indice_leesallee/shapes/equidistante/&quot;</span>
+<span class="c1"># lista_nombres = lista_shp(path_sig)</span>
+<span class="c1"># list2=lista_nombres[:1]</span>
+<span class="c1"># path_csv = &#39;C:/Dropbox (LANCIS)/SIG/desarrollo/sig_megadapt/procesamiento/stressing/indice_leesallee/shapes/comparacion_equidistante_cat5.csv&#39;</span>
+
+<span class="c1"># matrix=open(path_csv,&quot;w&quot;)</span>
+<span class="c1"># matrix.write(&#39;esc,&#39;+&#39;,&#39;.join(lista_nombres)+&quot;\n&quot;)</span>
+<span class="c1"># print (time.strftime(&quot;%H:%M:%S&quot;))</span>
+<span class="c1"># for nombre_1 in lista_nombres:</span>
+<span class="c1">#     #print(&quot;comparando: &quot;,nombre_1)</span>
+<span class="c1">#     vlayer_base = QgsVectorLayer(path_sig + nombre_1+&#39;.shp&#39;,&quot;&quot;,&quot;ogr&quot;)</span>
+<span class="c1">#     renglon=nombre_1+&quot;,&quot;</span>
+<span class="c1">#     for nombre_2 in lista_nombres:</span>
+<span class="c1">#         vlayer_model = QgsVectorLayer(path_sig + nombre_2+&#39;.shp&#39;,&quot;&quot;,&quot;ogr&quot;)</span>
+
+<span class="c1">#         #print(nombre_1,&quot;con_este&quot;,nombre_2)</span>
+<span class="c1">#         index_lee = indice_lee_salee(vlayer_base,vlayer_model,&#39;cat_vul&#39;,5,id=&#39;ageb_id&#39;)</span>
+<span class="c1">#         renglon+=(str(index_lee)+&quot;,&quot;)</span>
+<span class="c1">#     renglon+=&#39;\n&#39;</span>
+<span class="c1">#     matrix.write(renglon)</span>
+<span class="c1"># print(&#39;fin&#39;)</span>
+<span class="c1"># matrix.close()</span>
+<span class="c1"># print (time.strftime(&quot;%H:%M:%S&quot;))</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Instituto de Ecología, Universidad Nacional Autónoma de México
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
