@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Análisis de sensibilidad &mdash; documentación de Documentación de Códigos en Python y Qgis - 1.0</title>
+  <title>Análisis de sensibilidad &mdash; documentación de Documentación de funciones y algoritmos en Python y Qgis para análsis espacial - 1.0</title>
   
 
   
@@ -52,7 +52,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> Documentación de Códigos en Python y Qgis
+            <a href="index.html" class="icon icon-home"> Documentación de funciones y algoritmos en Python y Qgis para análsis espacial
           
 
           
@@ -102,11 +102,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#bibliografia">Bibliografía</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-sensibilidad_por_remocion_capas">Documentación dentro del código</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#afiliacion">Afiliación</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#reconocimiento">Reconocimiento</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#documentacion-dentro-del-codigo">Documentación dentro del código</a></li>
 </ul>
 </li>
 </ul>
@@ -131,7 +127,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">Documentación de Códigos en Python y Qgis</a>
+          <a href="index.html">Documentación de funciones y algoritmos en Python y Qgis para análsis espacial</a>
         
       </nav>
 
@@ -260,199 +256,8 @@ ha procesado cada una de las capas.</p>
 <div class="section" id="bibliografia">
 <h3>Bibliografía<a class="headerlink" href="#bibliografia" title="Enlazar permanentemente con este título">¶</a></h3>
 </div>
-<div class="section" id="module-sensibilidad_por_remocion_capas">
-<span id="documentacion-dentro-del-codigo"></span><h3>Documentación dentro del código<a class="headerlink" href="#module-sensibilidad_por_remocion_capas" title="Enlazar permanentemente con este título">¶</a></h3>
-<p>#Autores
-Fidel Serrano, Víctor Hernández</p>
-<div class="section" id="afiliacion">
-<h4>Afiliación<a class="headerlink" href="#afiliacion" title="Enlazar permanentemente con este título">¶</a></h4>
-<p>Área de Planeación Colaborativa, Laboratorio Nacional de Ciencias de la Sostenibilidad, Instituto de Ecología, Universidad Nacional Autónoma de México</p>
-</div>
-<div class="section" id="reconocimiento">
-<h4>Reconocimiento<a class="headerlink" href="#reconocimiento" title="Enlazar permanentemente con este título">¶</a></h4>
-<p>Este trabajo fue realizado con financiamiento del Programa de Apoyo a Proyectos de Investigación e Innovación Tecnológica (PAPIIT IV100118)
-del proyecto Análisis integrado de sistemas socio-ambientales acoplados: desarrollo de capacidades para la evaluación de la vulnerabilidad costera.</p>
-<dl class="function">
-<dt id="sensibilidad_por_remocion_capas.crea_capa">
-<code class="descclassname">sensibilidad_por_remocion_capas.</code><code class="descname">crea_capa</code><span class="sig-paren">(</span><em>ecuacion</em>, <em>rasters_input</em>, <em>salida</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sensibilidad_por_remocion_capas.html#crea_capa"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sensibilidad_por_remocion_capas.crea_capa" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Esta función crea una capa mediante la calculadora raster
-de GDAL, esta función esta limitada hasta 14 variables en la ecuación.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
-<li><strong>ecuacion</strong> (<em>String</em>) – ecuación expresada en formato gdal,                    es este caso es la salida de la funcion <em>ecuacion_clp</em></li>
-<li><strong>rasters_input</strong> (<em>lista</em>) – lista de los paths de los archivos rasters, salida de la función <em>separa_ruta_pesos</em></li>
-<li><strong>salida</strong> (<em>String</em>) – ruta con extensión tiff de la salida</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="sensibilidad_por_remocion_capas.ecuacion_clp">
-<code class="descclassname">sensibilidad_por_remocion_capas.</code><code class="descname">ecuacion_clp</code><span class="sig-paren">(</span><em>pesos</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sensibilidad_por_remocion_capas.html#ecuacion_clp"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sensibilidad_por_remocion_capas.ecuacion_clp" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Esta función recibe una lista de pesos para regresar la ecuación
-en la estructura requerida por gdal para la combinación lineal ponderada.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><strong>pesos</strong> (<em>lista</em>) – lista de los pesos de las capas, salida de la función <em>separa_ruta_pesos</em></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="sensibilidad_por_remocion_capas.ecuacion_vulnerabilidad">
-<code class="descclassname">sensibilidad_por_remocion_capas.</code><code class="descname">ecuacion_vulnerabilidad</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sensibilidad_por_remocion_capas.html#ecuacion_vulnerabilidad"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sensibilidad_por_remocion_capas.ecuacion_vulnerabilidad" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Esta función expresa la ecuación para el cálculo de la vulnerabilidad</p>
-<div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}vulnerabilidad = \exp^{( 1 - sus)^{(1 + ca)}}\\| exp = Exposición
-| sus = Susceptibilidad
-| ca = Capacidad adaptativa\end{aligned}\end{align} \]</div>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Devuelve:</th><td class="field-body">str ecuacion</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="sensibilidad_por_remocion_capas.get_region">
-<code class="descclassname">sensibilidad_por_remocion_capas.</code><code class="descname">get_region</code><span class="sig-paren">(</span><em>path_layer</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sensibilidad_por_remocion_capas.html#get_region"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sensibilidad_por_remocion_capas.get_region" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Esta función regresa en forma de cadena de texto
-las coordenadas de la extensión de una capa raster</p>
-<p>param path_layer: ruta de la capa raster
-type path_layer: str</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="sensibilidad_por_remocion_capas.lista_criterios">
-<code class="descclassname">sensibilidad_por_remocion_capas.</code><code class="descname">lista_criterios</code><span class="sig-paren">(</span><em>dicc</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sensibilidad_por_remocion_capas.html#lista_criterios"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sensibilidad_por_remocion_capas.lista_criterios" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Esta función regresa una lista de los criterios de un diccionario</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><strong>dicc</strong> – Diccionario que contiene nombres, rutas y pesos para el</td>
-</tr>
-</tbody>
-</table>
-<p>análisis de vulnerabilidad / sensibilidad
-:type dicc: diccionario python</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="sensibilidad_por_remocion_capas.lista_pesos_ruta">
-<code class="descclassname">sensibilidad_por_remocion_capas.</code><code class="descname">lista_pesos_ruta</code><span class="sig-paren">(</span><em>dicc</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sensibilidad_por_remocion_capas.html#lista_pesos_ruta"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sensibilidad_por_remocion_capas.lista_pesos_ruta" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Funcion para sacar listas por subcriterio</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="sensibilidad_por_remocion_capas.media_raster">
-<code class="descclassname">sensibilidad_por_remocion_capas.</code><code class="descname">media_raster</code><span class="sig-paren">(</span><em>path_raster</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sensibilidad_por_remocion_capas.html#media_raster"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sensibilidad_por_remocion_capas.media_raster" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Esta función regresa el promedio de todos los pixeles válidos
-de un archivo raster</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><strong>path_raster</strong> (<em>String</em>) – Ruta del archivo raster</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="sensibilidad_por_remocion_capas.nombre_capa">
-<code class="descclassname">sensibilidad_por_remocion_capas.</code><code class="descname">nombre_capa</code><span class="sig-paren">(</span><em>path_capa</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sensibilidad_por_remocion_capas.html#nombre_capa"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sensibilidad_por_remocion_capas.nombre_capa" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Esta función regresa el nombre de una capa sin extensión</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><strong>path_capa</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(en Python versión 3.9)"><em>str</em></a>) – ruta de la capa</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="sensibilidad_por_remocion_capas.quita">
-<code class="descclassname">sensibilidad_por_remocion_capas.</code><code class="descname">quita</code><span class="sig-paren">(</span><em>dicc</em>, <em>key</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sensibilidad_por_remocion_capas.html#quita"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sensibilidad_por_remocion_capas.quita" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Esta función retira un elemento del diccionario y regresa un nuevo diccionario
-sin dicho elemento &lt;&lt;dicc_q&gt;&gt;.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
-<li><strong>dicc</strong> (<em>diccionario</em>) – Diccionario con la estructura requerida</li>
-<li><strong>key</strong> (<em>String</em>) – nombre de la variable a quitar</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="sensibilidad_por_remocion_capas.quita_reescala">
-<code class="descclassname">sensibilidad_por_remocion_capas.</code><code class="descname">quita_reescala</code><span class="sig-paren">(</span><em>dicc</em>, <em>key</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sensibilidad_por_remocion_capas.html#quita_reescala"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sensibilidad_por_remocion_capas.quita_reescala" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Función que integra las funciones quita y reescala y regresa
-un diccionario sin la variable y con los pesos reescalados.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
-<li><strong>dicc</strong> (<em>diccionario</em>) – Diccionario con la estructura requerida</li>
-<li><strong>key</strong> (<em>String</em>) – nombre de la variable a quitar</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="sensibilidad_por_remocion_capas.raster_min_max">
-<code class="descclassname">sensibilidad_por_remocion_capas.</code><code class="descname">raster_min_max</code><span class="sig-paren">(</span><em>path_raster</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sensibilidad_por_remocion_capas.html#raster_min_max"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sensibilidad_por_remocion_capas.raster_min_max" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Esta funcion regresa los valores maximos y minimos de una capa raster</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><strong>path_raster</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(en Python versión 3.9)"><em>str</em></a>) – ruta de la capa raster</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="sensibilidad_por_remocion_capas.reescala">
-<code class="descclassname">sensibilidad_por_remocion_capas.</code><code class="descname">reescala</code><span class="sig-paren">(</span><em>dicc_q</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sensibilidad_por_remocion_capas.html#reescala"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#sensibilidad_por_remocion_capas.reescala" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Esta función rescala un diccionario que se le a quitado un criterio
-y regresa el diccionario con los pesos rescalados</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><strong>dicc_q</strong> – salida de la función <em>quita</em></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</div>
+<div class="section" id="documentacion-dentro-del-codigo">
+<h3>Documentación dentro del código<a class="headerlink" href="#documentacion-dentro-del-codigo" title="Enlazar permanentemente con este título">¶</a></h3>
 </div>
 </div>
 </div>
@@ -477,7 +282,7 @@ y regresa el diccionario con los pesos rescalados</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2020, Instituto de Ecología, Universidad Nacional Autónoma de México
+        &copy; Copyright 2020, LANCIS, Instituto de Ecología, UNAM
 
     </p>
   </div>
