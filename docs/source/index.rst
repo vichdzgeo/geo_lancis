@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Documentación de funciones y algoritmos en Python y Qgis para análsis espacial
+Documentación de funciones y algoritmos en Python y Qgis para análisis espacial
 =====================================================================================
 
 Afiliación
