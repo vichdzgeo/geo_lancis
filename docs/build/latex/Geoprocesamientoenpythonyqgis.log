@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2019.11.20)  19 MAR 2021 13:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2019.11.20)  19 MAR 2021 20:22
 entering extended mode
 **./Geoprocesamientoenpythonyqgis.tex
 (Geoprocesamientoenpythonyqgis.tex
@@ -44,10 +44,8 @@ Package: fontenc 2018/08/11 v2.0j Standard LaTeX package
 ("C:\Program Files\MiKTeX 2.9\tex/latex/base\t1enc.def"
 File: t1enc.def 2018/08/11 v2.0j Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
-)
-! I can't write on file `Geoprocesamientoenpythonyqgis.pdf'.
-Please type another file name for output: codigos_papiit
-<<t1.cmap>>) ("C:\Program Files\MiKTeX 2.9\tex/latex/amsmath\amsmath.sty"
+)<<t1.cmap>>)
+("C:\Program Files\MiKTeX 2.9\tex/latex/amsmath\amsmath.sty"
 Package: amsmath 2019/04/01 v2.17c AMS math features
 \@mathmargin=\skip43
 
@@ -874,436 +872,262 @@ LaTeX Font Info:    Font shape `T1/phv/bx/sc' in size <10> not available
 
 ]
 Cap\'{\i }tulo 1.
+[1
+
+]
+LaTeX Info: Redefining \. on input line 91.
+LaTeX Info: Redefining \% on input line 91.
+ [2
+
+]
+Cap\'{\i }tulo 2.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 89.
-<qgis_interfaz.png, id=83, 1445.4pt x 880.79062pt>
-LaTeX Font Info:    Trying to load font information for T1+pcr on input line 95
-.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 97.
+<qgis_interfaz.png, id=48, 1445.4pt x 880.79062pt>
+LaTeX Font Info:    Trying to load font information for T1+pcr on input line 10
+6.
 ("C:\Program Files\MiKTeX 2.9\tex/latex/psnfss\t1pcr.fd"
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
 File: qgis_interfaz.png Graphic file (type png)
 <use qgis_interfaz.png>
-Package pdftex.def Info: qgis_interfaz.png  used on input line 95.
+Package pdftex.def Info: qgis_interfaz.png  used on input line 106.
 (pdftex.def)             Requested size: 469.75502pt x 286.25356pt.
- [1
-
- <./qgis_interfaz.png>]
-<consola_pyqgis.png, id=91, 1445.4pt x 880.79062pt>
+ [3]
+<consola_pyqgis.png, id=56, 1445.4pt x 880.79062pt>
 File: consola_pyqgis.png Graphic file (type png)
 <use consola_pyqgis.png>
-Package pdftex.def Info: consola_pyqgis.png  used on input line 102.
+Package pdftex.def Info: consola_pyqgis.png  used on input line 113.
 (pdftex.def)             Requested size: 469.75502pt x 286.25356pt.
-<consola_editor.png, id=92, 636.12656pt x 319.1925pt>
+LaTeX Info: Redefining \. on input line 120.
+LaTeX Info: Redefining \% on input line 120.
+ [4 <./qgis_interfaz.png> <./consola_pyqgis.png>]
+<consola_editor.png, id=62, 636.12656pt x 319.1925pt>
 File: consola_editor.png Graphic file (type png)
 <use consola_editor.png>
-Package pdftex.def Info: consola_editor.png  used on input line 109.
+Package pdftex.def Info: consola_editor.png  used on input line 120.
 (pdftex.def)             Requested size: 469.75502pt x 235.70682pt.
-LaTeX Info: Redefining \. on input line 118.
-LaTeX Info: Redefining \% on input line 118.
- [2 <./consola_pyqgis.png> <./consola_editor.png>]
-<consola_editor_interfaz.png, id=99, 1017.04968pt x 442.65375pt>
+<consola_editor_interfaz.png, id=63, 1017.04968pt x 442.65375pt>
 File: consola_editor_interfaz.png Graphic file (type png)
 <use consola_editor_interfaz.png>
-Package pdftex.def Info: consola_editor_interfaz.png  used on input line 118.
+Package pdftex.def Info: consola_editor_interfaz.png  used on input line 129.
 (pdftex.def)             Requested size: 469.75502pt x 204.45396pt.
-<abrir_script.PNG, id=100, 678.28406pt x 426.09187pt>
+<abrir_script.PNG, id=64, 678.28406pt x 426.09187pt>
 File: abrir_script.PNG Graphic file (type png)
 <use abrir_script.PNG>
-Package pdftex.def Info: abrir_script.PNG  used on input line 127.
+Package pdftex.def Info: abrir_script.PNG  used on input line 138.
 (pdftex.def)             Requested size: 469.75502pt x 295.09598pt.
-LaTeX Info: Redefining \. on input line 130.
-LaTeX Info: Redefining \% on input line 130.
- [3 <./consola_editor_interfaz.png>]
-LaTeX Info: Redefining \. on input line 130.
-LaTeX Info: Redefining \% on input line 130.
- [4 <./abrir_script.PNG>]
-Cap\'{\i }tulo 2.
-[5
-
-]
-LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <10> not available
-(Font)              Font shape `T1/pcr/b/n' tried instead on input line 192.
-LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <10> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 2.
-LaTeX Info: Redefining \. on input line 294.
-LaTeX Info: Redefining \% on input line 294.
- [6]
-Underfull \hbox (badness 10000) in paragraph at lines 351--351
-[]\T1/ptm/m/it/10 path_capa_a\T1/ptm/m/n/10 , \T1/ptm/m/it/10 path_capa_b\T1/pt
-m/m/n/10 , \T1/ptm/m/it/10 path_capa_c\T1/ptm/m/n/10 , \T1/ptm/m/it/10 ecua-cio
-n\T1/ptm/m/n/10 ,
- []
-
-LaTeX Info: Redefining \. on input line 428.
-LaTeX Info: Redefining \% on input line 428.
-[7]
-Underfull \hbox (badness 10000) in paragraph at lines 554--554
-[]\T1/ptm/m/it/10 layer_raster_lugar\T1/ptm/m/n/10 , \T1/ptm/m/it/10 path_camin
-os\T1/ptm/m/n/10 , \T1/ptm/m/it/10 cam-po_caminos\T1/ptm/m/n/10 ,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 554--554
-\T1/ptm/m/it/10 path_mascara\T1/ptm/m/n/10 , \T1/ptm/m/it/10 path_salida\T1/ptm
-/m/n/10 , \T1/ptm/m/it/10 re-gion_ext\T1/ptm/m/n/10 , \T1/ptm/m/it/10 an-cho_ex
-t=2292\T1/ptm/m/n/10 ,
- []
-
-LaTeX Info: Redefining \. on input line 556.
-LaTeX Info: Redefining \% on input line 556.
-[8]
-LaTeX Info: Redefining \. on input line 675.
-LaTeX Info: Redefining \% on input line 675.
- [9]
-LaTeX Info: Redefining \. on input line 808.
-LaTeX Info: Redefining \% on input line 808.
- [10]
-LaTeX Info: Redefining \. on input line 912.
-LaTeX Info: Redefining \% on input line 912.
- [11]
-LaTeX Info: Redefining \. on input line 912.
-LaTeX Info: Redefining \% on input line 912.
- [12
-
-]
-Cap\'{\i }tulo 3.
-[13]
-<crear_carpeta.JPG, id=267, 1167.61218pt x 804.75656pt>
+LaTeX Info: Redefining \. on input line 141.
+LaTeX Info: Redefining \% on input line 141.
+ [5 <./consola_editor.png> <./consola_editor_interfaz.png>]
+LaTeX Info: Redefining \. on input line 191.
+LaTeX Info: Redefining \% on input line 191.
+ [6 <./abrir_script.PNG>]
+<crear_carpeta.JPG, id=80, 1167.61218pt x 804.75656pt>
 File: crear_carpeta.JPG Graphic file (type jpg)
 <use crear_carpeta.JPG>
-Package pdftex.def Info: crear_carpeta.JPG  used on input line 983.
+Package pdftex.def Info: crear_carpeta.JPG  used on input line 265.
 (pdftex.def)             Requested size: 469.75502pt x 323.76341pt.
-<c_salida.JPG, id=268, 845.40843pt x 219.82124pt>
+LaTeX Info: Redefining \. on input line 267.
+LaTeX Info: Redefining \% on input line 267.
+ [7]
+<c_salida.JPG, id=93, 845.40843pt x 219.82124pt>
 File: c_salida.JPG Graphic file (type jpg)
 <use c_salida.JPG>
-Package pdftex.def Info: c_salida.JPG  used on input line 987.
+Package pdftex.def Info: c_salida.JPG  used on input line 269.
 (pdftex.def)             Requested size: 469.75502pt x 122.1431pt.
-LaTeX Info: Redefining \. on input line 993.
-LaTeX Info: Redefining \% on input line 993.
- [14 <./crear_carpeta.JPG> <./c_salida.JPG>]
-<diccionario.JPG, id=276, 1233.85968pt x 732.48656pt>
+LaTeX Info: Redefining \. on input line 288.
+LaTeX Info: Redefining \% on input line 288.
+ [8 <./crear_carpeta.JPG> <./c_salida.JPG>]
+<diccionario.JPG, id=102, 1233.85968pt x 732.48656pt>
 File: diccionario.JPG Graphic file (type jpg)
 <use diccionario.JPG>
-Package pdftex.def Info: diccionario.JPG  used on input line 1006.
+Package pdftex.def Info: diccionario.JPG  used on input line 288.
 (pdftex.def)             Requested size: 469.75502pt x 278.8731pt.
-LaTeX Font Info:    Trying to load font information for TS1+pcr on input line 1
-015.
-
-("C:\Program Files\MiKTeX 2.9\tex/latex/psnfss\ts1pcr.fd"
+LaTeX Font Info:    Trying to load font information for TS1+pcr on input line 2
+97.
+ ("C:\Program Files\MiKTeX 2.9\tex/latex/psnfss\ts1pcr.fd"
 File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
 )
-<ejecucion.JPG, id=277, 989.49675pt x 583.58025pt>
+<ejecucion.JPG, id=103, 989.49675pt x 583.58025pt>
 File: ejecucion.JPG Graphic file (type jpg)
 <use ejecucion.JPG>
-Package pdftex.def Info: ejecucion.JPG  used on input line 1025.
+Package pdftex.def Info: ejecucion.JPG  used on input line 307.
 (pdftex.def)             Requested size: 469.75502pt x 277.05211pt.
-LaTeX Info: Redefining \. on input line 1028.
-LaTeX Info: Redefining \% on input line 1028.
- [15 <./diccionario.JPG>]
-
-LaTeX Warning: Command \' invalid in math mode on input line 1083.
-
-Missing character: There is no ó in font cmr10!
-
-LaTeX Warning: Command \' invalid in math mode on input line 1083.
-
-Missing character: There is no ó in font cmr10!
-LaTeX Info: Redefining \. on input line 1083.
-LaTeX Info: Redefining \% on input line 1083.
-[16 <./ejecucion.JPG>]
-LaTeX Info: Redefining \. on input line 1223.
-LaTeX Info: Redefining \% on input line 1223.
- [17]
-LaTeX Info: Redefining \. on input line 1223.
-LaTeX Info: Redefining \% on input line 1223.
- [18
-
-]
-Cap\'{\i }tulo 4.
-<rutas.png, id=322, 1445.4pt x 880.79062pt>
+LaTeX Info: Redefining \. on input line 310.
+LaTeX Info: Redefining \% on input line 310.
+ [9 <./diccionario.JPG>]
+<rutas.png, id=112, 1445.4pt x 880.79062pt>
 File: rutas.png Graphic file (type png)
 <use rutas.png>
-Package pdftex.def Info: rutas.png  used on input line 1257.
+Package pdftex.def Info: rutas.png  used on input line 350.
 (pdftex.def)             Requested size: 469.75502pt x 286.25356pt.
-[19]
-LaTeX Info: Redefining \. on input line 1319.
-LaTeX Info: Redefining \% on input line 1319.
- [20 <./rutas.png>]
-Cap\'{\i }tulo 5.
-[21
-
-]
-<codigo1.PNG, id=346, 1156.32pt x 650.43pt>
+LaTeX Info: Redefining \. on input line 353.
+LaTeX Info: Redefining \% on input line 353.
+ [10 <./ejecucion.JPG>]
+LaTeX Info: Redefining \. on input line 388.
+LaTeX Info: Redefining \% on input line 388.
+ [11 <./rutas.png>]
+<codigo1.PNG, id=137, 1156.32pt x 650.43pt>
 File: codigo1.PNG Graphic file (type png)
 <use codigo1.PNG>
-Package pdftex.def Info: codigo1.PNG  used on input line 1412.
+Package pdftex.def Info: codigo1.PNG  used on input line 446.
 (pdftex.def)             Requested size: 469.75502pt x 264.23653pt.
-LaTeX Info: Redefining \. on input line 1415.
-LaTeX Info: Redefining \% on input line 1415.
- [22]
-LaTeX Info: Redefining \. on input line 1458.
-LaTeX Info: Redefining \% on input line 1458.
- [23 <./codigo1.PNG>]
-<salida.png, id=363, 1156.32pt x 625.1355pt>
+LaTeX Info: Redefining \. on input line 449.
+LaTeX Info: Redefining \% on input line 449.
+ [12]
+LaTeX Info: Redefining \. on input line 492.
+LaTeX Info: Redefining \% on input line 492.
+ [13 <./codigo1.PNG>]
+<salida.png, id=156, 1156.32pt x 625.1355pt>
 File: salida.png Graphic file (type png)
 <use salida.png>
-Package pdftex.def Info: salida.png  used on input line 1546.
+Package pdftex.def Info: salida.png  used on input line 580.
 (pdftex.def)             Requested size: 469.75502pt x 253.96066pt.
-LaTeX Info: Redefining \. on input line 1549.
-LaTeX Info: Redefining \% on input line 1549.
- [24]
-LaTeX Info: Redefining \. on input line 1559.
-LaTeX Info: Redefining \% on input line 1559.
- [25 <./salida.png>]
-LaTeX Info: Redefining \. on input line 1559.
-LaTeX Info: Redefining \% on input line 1559.
- [26
+LaTeX Info: Redefining \. on input line 583.
+LaTeX Info: Redefining \% on input line 583.
 
-]
-Cap\'{\i }tulo 6.
-<codigo3.PNG, id=381, 1081.641pt x 534.798pt>
+[14]
+LaTeX Info: Redefining \. on input line 636.
+LaTeX Info: Redefining \% on input line 636.
+ [15 <./salida.png>]
+<codigo3.PNG, id=181, 1081.641pt x 534.798pt>
 File: codigo3.PNG Graphic file (type png)
 <use codigo3.PNG>
-Package pdftex.def Info: codigo3.PNG  used on input line 1602.
+Package pdftex.def Info: codigo3.PNG  used on input line 636.
 (pdftex.def)             Requested size: 469.75502pt x 232.25987pt.
-[27]
-LaTeX Info: Redefining \. on input line 1644.
-LaTeX Info: Redefining \% on input line 1644.
- [28 <./codigo3.PNG>]
-LaTeX Info: Redefining \. on input line 1647.
-LaTeX Info: Redefining \% on input line 1647.
- [29]
-LaTeX Info: Redefining \. on input line 1647.
-LaTeX Info: Redefining \% on input line 1647.
- [30
-
-]
-Cap\'{\i }tulo 7.
-[31]
-Underfull \hbox (badness 10000) in paragraph at lines 1745--1745
+LaTeX Info: Redefining \. on input line 675.
+LaTeX Info: Redefining \% on input line 675.
+ [16 <./codigo3.PNG>]
+LaTeX Info: Redefining \. on input line 779.
+LaTeX Info: Redefining \% on input line 779.
+ [17]
+Underfull \hbox (badness 10000) in paragraph at lines 779--779
 []\T1/ptm/m/n/10 mu-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1745--1745
+Underfull \hbox (badness 10000) in paragraph at lines 779--779
 []\T1/ptm/m/n/10 de-gra-da-
  []
 
-<codigo2.PNG, id=421, 963.6pt x 542.025pt>
+<codigo2.PNG, id=202, 963.6pt x 542.025pt>
 File: codigo2.PNG Graphic file (type png)
 <use codigo2.PNG>
-Package pdftex.def Info: codigo2.PNG  used on input line 1755.
+Package pdftex.def Info: codigo2.PNG  used on input line 789.
 (pdftex.def)             Requested size: 469.75502pt x 264.23819pt.
-LaTeX Info: Redefining \. on input line 1758.
-LaTeX Info: Redefining \% on input line 1758.
-[32 <./codigo2.PNG>]
-LaTeX Info: Redefining \. on input line 1830.
-LaTeX Info: Redefining \% on input line 1830.
- [33]
-<campob.PNG, id=442, 963.6pt x 542.025pt>
+LaTeX Info: Redefining \. on input line 807.
+LaTeX Info: Redefining \% on input line 807.
+[18 <./codigo2.PNG>]
+<campob.PNG, id=211, 963.6pt x 542.025pt>
 File: campob.PNG Graphic file (type png)
 <use campob.PNG>
-Package pdftex.def Info: campob.PNG  used on input line 1830.
+Package pdftex.def Info: campob.PNG  used on input line 864.
 (pdftex.def)             Requested size: 469.75502pt x 264.23819pt.
-<categorias.PNG, id=443, 963.6pt x 542.025pt>
+LaTeX Info: Redefining \. on input line 867.
+LaTeX Info: Redefining \% on input line 867.
+ [19]
+<categorias.PNG, id=222, 963.6pt x 542.025pt>
 File: categorias.PNG Graphic file (type png)
 <use categorias.PNG>
-Package pdftex.def Info: categorias.PNG  used on input line 1850.
+Package pdftex.def Info: categorias.PNG  used on input line 884.
 (pdftex.def)             Requested size: 469.75502pt x 264.23819pt.
-LaTeX Info: Redefining \. on input line 1853.
-LaTeX Info: Redefining \% on input line 1853.
- [34 <./campob.PNG>]
-<area.PNG, id=449, 963.6pt x 542.025pt>
+LaTeX Info: Redefining \. on input line 887.
+LaTeX Info: Redefining \% on input line 887.
+ [20 <./campob.PNG>]
+<area.PNG, id=228, 963.6pt x 542.025pt>
 File: area.PNG Graphic file (type png)
 <use area.PNG>
-Package pdftex.def Info: area.PNG  used on input line 1859.
+Package pdftex.def Info: area.PNG  used on input line 893.
 (pdftex.def)             Requested size: 469.75502pt x 264.23819pt.
-LaTeX Info: Redefining \. on input line 1862.
-LaTeX Info: Redefining \% on input line 1862.
- [35 <./categorias.PNG> <./area.PNG>]
-LaTeX Info: Redefining \. on input line 1862.
-LaTeX Info: Redefining \% on input line 1862.
- [36
-
-]
-Cap\'{\i }tulo 8.
-[37]
-LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 1
-938.
+LaTeX Info: Redefining \. on input line 901.
+LaTeX Info: Redefining \% on input line 901.
+ [21 <./categorias.PNG> <./area.PNG>]
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 9
+72.
  ("C:\Program Files\MiKTeX 2.9\tex/latex/psnfss\ts1ptm.fd"
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
-<codigo.PNG, id=466, 963.6pt x 531.1845pt>
+LaTeX Info: Redefining \. on input line 978.
+LaTeX Info: Redefining \% on input line 978.
+ [22]
+<codigo.PNG, id=246, 963.6pt x 531.1845pt>
 File: codigo.PNG Graphic file (type png)
 <use codigo.PNG>
-Package pdftex.def Info: codigo.PNG  used on input line 1966.
+Package pdftex.def Info: codigo.PNG  used on input line 1000.
 (pdftex.def)             Requested size: 469.75502pt x 258.95341pt.
-LaTeX Info: Redefining \. on input line 1969.
-LaTeX Info: Redefining \% on input line 1969.
- [38]
-LaTeX Info: Redefining \. on input line 2014.
-LaTeX Info: Redefining \% on input line 2014.
- [39 <./codigo.PNG>]
-LaTeX Info: Redefining \. on input line 2052.
-LaTeX Info: Redefining \% on input line 2052.
- [40]
-Cap\'{\i }tulo 9.
-[41
-
-]
-Overfull \hbox (52.07031pt too wide) in paragraph at lines 2162--2162
+LaTeX Info: Redefining \. on input line 1023.
+LaTeX Info: Redefining \% on input line 1023.
+ [23 <./codigo.PNG>]
+LaTeX Info: Redefining \. on input line 1098.
+LaTeX Info: Redefining \% on input line 1098.
+ [24]
+Overfull \hbox (52.07031pt too wide) in paragraph at lines 1196--1196
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2162--2162
+Underfull \hbox (badness 10000) in paragraph at lines 1196--1196
 
  []
 
 
-Overfull \hbox (12.83084pt too wide) in paragraph at lines 2171--2171
+Overfull \hbox (12.83084pt too wide) in paragraph at lines 1205--1205
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2171--2171
+Underfull \hbox (badness 10000) in paragraph at lines 1205--1205
 
  []
 
-LaTeX Info: Redefining \. on input line 2217.
-LaTeX Info: Redefining \% on input line 2217.
-[42] [43
+LaTeX Info: Redefining \. on input line 1205.
+LaTeX Info: Redefining \% on input line 1205.
+[25] (Geoprocesamientoenpythonyqgis.ind)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1253.
+LaTeX Info: Redefining \. on input line 1253.
+LaTeX Info: Redefining \% on input line 1253.
+ [26]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1253.
 
-
-
-] (Geoprocesamientoenpythonyqgis.ind
-LaTeX Info: Redefining \. on input line 1.
-LaTeX Info: Redefining \% on input line 1.
- [44
-
-
-]
-Underfull \hbox (badness 10000) in paragraph at lines 24--26
-[]\T1/pcr/m/n/10 crea_capa() \T1/ptm/m/n/10 (\T1/ptm/m/it/10 en el mó-du-lo sen
--si-bi-li-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 37--39
-[]\T1/pcr/m/n/10 ecuacion_clp() \T1/ptm/m/n/10 (\T1/ptm/m/it/10 en el mó-du-lo 
-sen-si-bi-li-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 46--48
-[]\T1/pcr/m/n/10 get_region() \T1/ptm/m/n/10 (\T1/ptm/m/it/10 en el mó-du-lo se
-n-si-bi-li-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 51--52
-[]\T1/pcr/m/n/10 indice_lee_salee() \T1/ptm/m/n/10 (\T1/ptm/m/it/10 en el mó-du
--lo in-di-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 57--59
-[]\T1/pcr/m/n/10 lista_criterios() \T1/ptm/m/n/10 (\T1/ptm/m/it/10 en el mó-du-
-lo sen-si-bi-li-
- []
-
-
-Underfull \hbox (badness 7415) in paragraph at lines 59--61
-[]\T1/pcr/m/n/10 lista_pesos_ruta() \T1/ptm/m/n/10 (\T1/ptm/m/it/10 en el mó-du
--lo sen-si-bi-li-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 67--69
-[]\T1/pcr/m/n/10 media_raster() \T1/ptm/m/n/10 (\T1/ptm/m/it/10 en el mó-du-lo 
-sen-si-bi-li-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 72--74
-[]\T1/pcr/m/n/10 nombre_capa() \T1/ptm/m/n/10 (\T1/ptm/m/it/10 en el mó-du-lo s
-en-si-bi-li-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 79--81
-[]\T1/pcr/m/n/10 quita() \T1/ptm/m/n/10 (\T1/ptm/m/it/10 en el mó-du-lo sen-si-
-bi-li-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 81--83
-[]\T1/pcr/m/n/10 quita_reescala() \T1/ptm/m/n/10 (\T1/ptm/m/it/10 en el mó-du-l
-o sen-si-bi-li-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 87--89
-[]\T1/pcr/m/n/10 raster_min_max() \T1/ptm/m/n/10 (\T1/ptm/m/it/10 en el mó-du-l
-o sen-si-bi-li-
- []
-
-[45
-
-]
-Underfull \hbox (badness 10000) in paragraph at lines 92--94
-[]\T1/pcr/m/n/10 reescala() \T1/ptm/m/n/10 (\T1/ptm/m/it/10 en el mó-du-lo sen-
-si-bi-li-
- []
-
-LaTeX Info: Redefining \. on input line 108.
-LaTeX Info: Redefining \% on input line 108.
-[46
-
-])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2231.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 2231.
- (Geoprocesamientoenpythonyqgis.aux
+(Geoprocesamientoenpythonyqgis.aux
 LaTeX Info: Redefining \. on input line 24.
 LaTeX Info: Redefining \% on input line 24.
 )
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2231.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2231.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1253.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1253.
 
 Package rerunfilecheck Info: File `Geoprocesamientoenpythonyqgis.out' has not c
 hanged.
-(rerunfilecheck)             Checksum: DBCA2D70C4D03E96DB80AE158F696E1C;2143.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2231.
+(rerunfilecheck)             Checksum: 8CFF45E5F25D3ADD7A2A359B18D55F5C;209.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1253.
  ) 
 Here is how much of TeX's memory you used:
- 14688 strings out of 492450
- 208990 string characters out of 3129745
- 319595 words of memory out of 3000000
- 18491 multiletter control sequences out of 15000+200000
- 62997 words of font info for 79 fonts, out of 3000000 for 9000
+ 14549 strings out of 492450
+ 206322 string characters out of 3129745
+ 317593 words of memory out of 3000000
+ 18426 multiletter control sequences out of 15000+200000
+ 61639 words of font info for 75 fonts, out of 3000000 for 9000
  1142 hyphenation exceptions out of 8191
- 51i,17n,49p,641b,668s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 51i,17n,49p,641b,658s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Program Files/Mi
 KTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9
 /fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
 ype1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publ
 ic/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfon
 ts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr
-5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/
-Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program 
-Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Program Files/MiK
-TeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/f
-onts/type1/urw/courier/ucrb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/
-courier/ucrr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/courier/ucrro8a
-.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Progr
-am Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvbo8a.pfb><C:/Program Files/MiKT
-eX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
-ype1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/ut
-mr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on codigos_papiit.pdf (50 pages, 3208962 bytes).
+7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C
+:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Program
+ Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/Mi
+KTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/
+type1/urw/helvetic/uhvb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/helv
+etic/uhvbo8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.p
+fb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Fi
+les/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fo
+nts/type1/urw/times/utmri8a.pfb>
+Output written on Geoprocesamientoenpythonyqgis.pdf (30 pages, 3093290 bytes).
 PDF statistics:
- 675 PDF objects out of 1000 (max. 8388607)
- 189 named destinations out of 1000 (max. 500000)
- 199 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 356 PDF objects out of 1000 (max. 8388607)
+ 122 named destinations out of 1000 (max. 500000)
+ 127 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -18,7 +18,7 @@ INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\t1enc.def
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\t1enc.def
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\jknappen\ec\ecrm1000.tfm
 INPUT C:\Users\Victor\AppData\Roaming\MiKTeX\2.9\tex\latex\cmap\t1.cmap
-OUTPUT codigos_papiit.pdf
+OUTPUT Geoprocesamientoenpythonyqgis.pdf
 INPUT C:\Users\Victor\AppData\Roaming\MiKTeX\2.9\tex\latex\cmap\t1.cmap
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsmath.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsmath.sty
@@ -268,71 +268,54 @@ INPUT C:\Program Files\MiKTeX 2.9\fonts\vf\adobe\helvetic\phvbc8t.vf
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\adobe\helvetic\phvb8r.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\adobe\helvetic\phvb8r.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\adobe\helvetic\phvr8t.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\adobe\helvetic\phvb8t.tfm
-INPUT qgis_interfaz.png
-INPUT .\qgis_interfaz.png
-INPUT .\qgis_interfaz.png
-INPUT .\qgis_interfaz.png
-INPUT .\qgis_interfaz.png
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\t1pcr.fd
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\t1pcr.fd
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\adobe\courier\pcrr8t.tfm
-INPUT qgis_interfaz.png
-INPUT .\qgis_interfaz.png
 INPUT C:\Program Files\MiKTeX 2.9\fonts\vf\adobe\helvetic\phvr8t.vf
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\adobe\helvetic\phvr8r.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\vf\adobe\helvetic\phvb8t.vf
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\adobe\helvetic\phvb8r.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\vf\adobe\times\ptmr8t.vf
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\adobe\times\ptmr8r.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\vf\adobe\helvetic\phvb8t.vf
-INPUT consola_pyqgis.png
-INPUT .\consola_pyqgis.png
-INPUT .\consola_pyqgis.png
-INPUT .\consola_pyqgis.png
-INPUT .\consola_pyqgis.png
-INPUT consola_pyqgis.png
-INPUT .\consola_pyqgis.png
-INPUT consola_editor.png
-INPUT .\consola_editor.png
-INPUT .\consola_editor.png
-INPUT .\consola_editor.png
-INPUT .\consola_editor.png
-INPUT consola_editor.png
-INPUT .\consola_editor.png
-INPUT consola_editor_interfaz.png
-INPUT .\consola_editor_interfaz.png
-INPUT .\consola_editor_interfaz.png
-INPUT .\consola_editor_interfaz.png
-INPUT .\consola_editor_interfaz.png
-INPUT consola_editor_interfaz.png
-INPUT .\consola_editor_interfaz.png
-INPUT abrir_script.PNG
-INPUT .\abrir_script.PNG
-INPUT .\abrir_script.PNG
-INPUT .\abrir_script.PNG
-INPUT .\abrir_script.PNG
-INPUT abrir_script.PNG
-INPUT .\abrir_script.PNG
-INPUT C:\Program Files\MiKTeX 2.9\fonts\vf\adobe\courier\pcrr8t.vf
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\adobe\courier\pcrr8r.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\adobe\courier\pcrb8t.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\adobe\times\ptmri8t.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\adobe\courier\pcrro8t.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\vf\adobe\courier\pcrb8t.vf
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\adobe\courier\pcrb8r.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\vf\adobe\times\ptmri8t.vf
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\adobe\times\ptmri8r.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\vf\adobe\courier\pcrro8t.vf
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\adobe\courier\pcrro8r.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msam7.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msam5.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msbm7.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msbm5.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\adobe\helvetic\phvb8t.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\adobe\times\ptmr8t.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\adobe\helvetic\phvr8t.tfm
+INPUT qgis_interfaz.png
+INPUT .\qgis_interfaz.png
+INPUT .\qgis_interfaz.png
+INPUT .\qgis_interfaz.png
+INPUT .\qgis_interfaz.png
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\t1pcr.fd
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\t1pcr.fd
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\adobe\courier\pcrr8t.tfm
+INPUT qgis_interfaz.png
+INPUT .\qgis_interfaz.png
+INPUT C:\Program Files\MiKTeX 2.9\fonts\vf\adobe\helvetic\phvb8t.vf
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\adobe\helvetic\phvb8r.tfm
+INPUT consola_pyqgis.png
+INPUT .\consola_pyqgis.png
+INPUT .\consola_pyqgis.png
+INPUT .\consola_pyqgis.png
+INPUT .\consola_pyqgis.png
+INPUT consola_pyqgis.png
+INPUT .\consola_pyqgis.png
+INPUT consola_editor.png
+INPUT .\consola_editor.png
+INPUT .\consola_editor.png
+INPUT .\consola_editor.png
+INPUT .\consola_editor.png
+INPUT consola_editor.png
+INPUT .\consola_editor.png
+INPUT consola_editor_interfaz.png
+INPUT .\consola_editor_interfaz.png
+INPUT .\consola_editor_interfaz.png
+INPUT .\consola_editor_interfaz.png
+INPUT .\consola_editor_interfaz.png
+INPUT consola_editor_interfaz.png
+INPUT .\consola_editor_interfaz.png
+INPUT abrir_script.PNG
+INPUT .\abrir_script.PNG
+INPUT .\abrir_script.PNG
+INPUT .\abrir_script.PNG
+INPUT .\abrir_script.PNG
+INPUT abrir_script.PNG
+INPUT .\abrir_script.PNG
 INPUT crear_carpeta.JPG
 INPUT .\crear_carpeta.JPG
 INPUT .\crear_carpeta.JPG
@@ -340,6 +323,8 @@ INPUT .\crear_carpeta.JPG
 INPUT .\crear_carpeta.JPG
 INPUT crear_carpeta.JPG
 INPUT .\crear_carpeta.JPG
+INPUT C:\Program Files\MiKTeX 2.9\fonts\vf\adobe\courier\pcrr8t.vf
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\adobe\courier\pcrr8r.tfm
 INPUT c_salida.JPG
 INPUT .\c_salida.JPG
 INPUT .\c_salida.JPG
@@ -357,6 +342,9 @@ INPUT .\diccionario.JPG
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\adobe\times\ptmr8t.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\adobe\courier\pcrr8t.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\adobe\courier\pcrr8t.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msam5.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msbm5.tfm
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ts1pcr.fd
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ts1pcr.fd
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\adobe\courier\pcrr8c.tfm
@@ -370,6 +358,9 @@ INPUT .\ejecucion.JPG
 INPUT C:\Program Files\MiKTeX 2.9\fonts\vf\adobe\courier\pcrr8t.vf
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\adobe\courier\pcrr8r.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\vf\adobe\courier\pcrr8c.vf
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msam7.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msbm7.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\adobe\times\ptmr8t.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\adobe\times\ptmr8t.tfm
 INPUT rutas.png
@@ -409,6 +400,7 @@ INPUT .\codigo2.PNG
 INPUT .\codigo2.PNG
 INPUT codigo2.PNG
 INPUT .\codigo2.PNG
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\adobe\times\ptmri8t.tfm
 INPUT campob.PNG
 INPUT .\campob.PNG
 INPUT .\campob.PNG
@@ -416,6 +408,8 @@ INPUT .\campob.PNG
 INPUT .\campob.PNG
 INPUT campob.PNG
 INPUT .\campob.PNG
+INPUT C:\Program Files\MiKTeX 2.9\fonts\vf\adobe\times\ptmri8t.vf
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\adobe\times\ptmri8r.tfm
 INPUT categorias.PNG
 INPUT .\categorias.PNG
 INPUT .\categorias.PNG
@@ -433,14 +427,14 @@ INPUT .\area.PNG
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ts1ptm.fd
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ts1ptm.fd
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\adobe\times\ptmr8c.tfm
-INPUT codigo.PNG
-INPUT .\codigo.PNG
-INPUT .\codigo.PNG
-INPUT .\codigo.PNG
-INPUT .\codigo.PNG
-INPUT codigo.PNG
-INPUT .\codigo.PNG
 INPUT C:\Program Files\MiKTeX 2.9\fonts\vf\adobe\times\ptmr8c.vf
+INPUT codigo.PNG
+INPUT .\codigo.PNG
+INPUT .\codigo.PNG
+INPUT .\codigo.PNG
+INPUT .\codigo.PNG
+INPUT codigo.PNG
+INPUT .\codigo.PNG
 INPUT Geoprocesamientoenpythonyqgis.ind
 INPUT Geoprocesamientoenpythonyqgis.ind
 INPUT Geoprocesamientoenpythonyqgis.aux
@@ -457,8 +451,6 @@ INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi7.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi7.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr10.pfb
-INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr5.pfb
-INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr5.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr7.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr7.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmsy10.pfb
@@ -467,12 +459,8 @@ INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmsy5.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmsy5.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmsy7.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmsy7.pfb
-INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\urw\courier\ucrb8a.pfb
-INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\urw\courier\ucrb8a.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\urw\courier\ucrr8a.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\urw\courier\ucrr8a.pfb
-INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\urw\courier\ucrro8a.pfb
-INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\urw\courier\ucrro8a.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\urw\helvetic\uhvb8a.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\urw\helvetic\uhvb8a.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\urw\helvetic\uhvbo8a.pfb
