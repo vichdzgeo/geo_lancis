@@ -38,7 +38,7 @@
     <link rel="index" title="Índice" href="genindex.html" />
     <link rel="search" title="Búsqueda" href="search.html" />
     <link rel="next" title="Índice Lee-Sallee" href="leesallee.html" />
-    <link rel="prev" title="¿Cómo ejecutar un código en Qgis?" href="ejecucion.html" /> 
+    <link rel="prev" title="Libreria de funciones para el análsis espacial multicriterio" href="apcsig.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -88,6 +88,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Códigos:</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="apcsig.html">Libreria de funciones para el análsis espacial multicriterio</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Análisis de sensibilidad</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#requerimientos-generales">Requerimientos generales</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#requerimientos-generales-de-los-insumos">Requerimientos generales de los insumos</a></li>
@@ -109,6 +110,8 @@
 <li class="toctree-l1"><a class="reference internal" href="leesallee.html">Índice Lee-Sallee</a></li>
 <li class="toctree-l1"><a class="reference internal" href="owa.html">OWA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="verificacion.html">Verificación de capas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tabulacion_3geo.html">Tabular intersección entre 3 geometrías</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nivel_geometrias.html">Cobertura por niveles areas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usvmunicipal.html">Cobertura de uso y tipo de suelo a nivel municipal</a></li>
 </ul>
 
@@ -176,14 +179,7 @@
             
   <div class="section" id="analisis-de-sensibilidad">
 <h1>Análisis de sensibilidad<a class="headerlink" href="#analisis-de-sensibilidad" title="Enlazar permanentemente con este título">¶</a></h1>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-Aliquam at turpis lacus. Pellentesque vitae efficitur lacus.
-Proin eu lectus ultrices mauris viverra vehicula. Proin ante justo,
-ultrices eu leo ac, vulputate tristique sapien. Aenean vel enim a elit mollis commodo.
-Proin laoreet quis quam quis auctor. Vestibulum nec nisl pretium, bibendum ligula in,
-suscipit neque. Nunc placerat ac ipsum vel pellentesque. Phasellus lacinia cursus porttitor.
-Donec viverra faucibus nisl, non vestibulum quam posuere sit amet. Nulla a sodales urna.
-Donec vestibulum purus purus, iaculis pellentesque eros cursus quis. Maecenas ac maximus sem.</p>
+<p>La prueba de sensibilidad por remoción de capas mide la importancia de cada mapa que se utiliza en un índice cartográfico como el que resulta de la aplicación de la combinación lineal ponderada.</p>
 <p>Descargar el código de ejemplo</p>
 <p><a class="reference download internal" download="" href="_downloads/4872728f7eac43319b35383a75c90dcf/sensibilidad.py"><code class="xref download docutils literal notranslate"><span class="pre">sensibilidad.py</span></code></a>.</p>
 <div class="section" id="requerimientos-generales">
@@ -223,7 +219,7 @@ verificar la instalación y funcionamiento de los siguientes elementos:</p>
 para descargar los insumos hacer clic <a class="reference download internal" download="" href="_downloads/ff9bbfb1ac01138a89eafeefa05b5d27/insumos.zip"><code class="xref download docutils literal notranslate"><span class="pre">aqui</span></code></a> (2)guarde el archivo <strong>insumos.zip</strong>
 en la carpeta <strong>analisis_sensibilidad</strong>, posteriormente hacer clic derecho sobre el archivo  y elegir la opción (3)Extract to insumos</p>
 <img alt="_images/crear_carpeta.JPG" src="_images/crear_carpeta.JPG" />
-<p>Una vez terminado el proceso, crear en la carpeta <strong>analisis_sensibilidad</strong> una (4)c arpeta con el nombre <strong>salida</strong></p>
+<p>Una vez terminado el proceso, crear en la carpeta <strong>analisis_sensibilidad</strong> una (4) carpeta con el nombre <strong>salida</strong></p>
 <img alt="_images/c_salida.JPG" src="_images/c_salida.JPG" />
 </div>
 <div class="section" id="procedimiento">
@@ -277,7 +273,7 @@ ha procesado cada una de las capas.</p>
         <a href="leesallee.html" class="btn btn-neutral float-right" title="Índice Lee-Sallee" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="ejecucion.html" class="btn btn-neutral float-left" title="¿Cómo ejecutar un código en Qgis?" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="apcsig.html" class="btn btn-neutral float-left" title="Libreria de funciones para el análsis espacial multicriterio" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

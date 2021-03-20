@@ -1,10 +1,7 @@
 Índice Lee-Sallee
 #############################
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-Aliquam at turpis lacus. Pellentesque vitae efficitur lacus. 
-Proin eu lectus ultrices mauris viverra vehicula. Proin ante justo, 
-ultrices eu leo ac, vulputate tristique sapien. Aenean vel enim a elit mollis commodo.
+Para capas vectoriales
 
 .. math::
     lee\_sallee\_index =  \frac{A\cap B}{A\cup B}
