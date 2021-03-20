@@ -56,7 +56,7 @@ sys.path.insert(0,'C:/osgeo4~1/apps/qgis-ltr/python/plugins/processing/algs/qgis
 # sys.path.insert(0, 'C:/OSGEO4~1/apps/Python37/lib/site-packages/pywin32_system32')
 # -- Project information -----------------------------------------------------
 
-project = 'Documentación de funciones y algoritmos en Python y Qgis para análsis espacial'
+project = 'Documentación de funciones y algoritmos en Python y Qgis para análisis espacial'
 copyright = '2020, LANCIS, Instituto de Ecología, UNAM'
 author =  'APC-LANCIS,UNAM'
 
@@ -176,7 +176,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'Geoprocesamientoenpythonyqgis.tex', 'Documentación de funciones y algoritmos en Python y Qgis para análsis espacial',
+    (master_doc, 'Geoprocesamientoenpythonyqgis.tex', 'Documentación de funciones y algoritmos en Python y Qgis para análisis espacial',
      'APC-LANCIS,UNAM', 'manual'),
 ]
 
@@ -186,7 +186,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'geoprocesamientoenpythonyqgis', 'Documentación de funciones y algoritmos en Python y Qgis para análsis espacial',
+    (master_doc, 'geoprocesamientoenpythonyqgis', 'Documentación de funciones y algoritmos en Python y Qgis para análisis espacial',
      [author], 1)
 ]
 
@@ -197,7 +197,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'Geoprocesamientoenpythonyqgis', 'Documentación de funciones y algoritmos en Python y Qgis para análsis espacial',
+    (master_doc, 'Geoprocesamientoenpythonyqgis', 'Documentación de funciones y algoritmos en Python y Qgis para análisis espacial',
      author, 'Geoprocesamientoenpythonyqgis', 'One line description of project.',
      'Miscellaneous'),
 ]

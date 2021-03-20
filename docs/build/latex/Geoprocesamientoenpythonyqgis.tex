@@ -60,7 +60,7 @@
 
 
 
-\title{Documentación de funciones y algoritmos en Python y Qgis para análsis espacial}
+\title{Documentación de funciones y algoritmos en Python y Qgis para análisis espacial}
 \date{19 de marzo de 2021}
 \release{1.0}
 \author{APC-LANCIS,UNAM}
@@ -82,22 +82,19 @@
 \phantomsection\label{\detokenize{index::doc}}
 
 
-
-\chapter{Afiliación}
-\label{\detokenize{index:afiliacion}}
+\sphinxstylestrong{Afiliación}
 Área de Planeación Colaborativa, Laboratorio Nacional de Ciencias de la Sostenibilidad, Instituto de Ecología, Universidad Nacional Autónoma de México
 
+\sphinxstyleemphasis{Reconocimiento}
 
-\chapter{Reconocimiento}
-\label{\detokenize{index:reconocimiento}}
 Este trabajo fue realizado con financiamiento del Programa de Apoyo a Proyectos de Investigación e Innovación Tecnológica (PAPIIT IV100118)
 del proyecto Análisis integrado de sistemas socio-ambientales acoplados: desarrollo de capacidades para la evaluación de la vulnerabilidad costera.
 
 
-\section{¿Cómo ejecutar un código en Qgis?}
+\chapter{¿Cómo ejecutar un código en Qgis?}
 \label{\detokenize{ejecucion:como-ejecutar-un-codigo-en-qgis}}\label{\detokenize{ejecucion::doc}}
 
-\subsection{Paso \#1}
+\section{Paso \#1}
 \label{\detokenize{ejecucion:paso-1}}
 Ejecutar Qgis Desktop 3.XX, la ventana que se muestra es la que
 corresponde a la interfaz gráfica del programa, en la barra de tareas
@@ -106,21 +103,21 @@ hacer clic en el ícono correspondiente a \sphinxstylestrong{python} para abrir 
 \noindent\sphinxincludegraphics{{qgis_interfaz}.png}
 
 
-\subsection{paso \#2}
+\section{paso \#2}
 \label{\detokenize{ejecucion:paso-2}}
 En la parte inferior de la ventana se mostrará la consola de python
 
 \noindent\sphinxincludegraphics{{consola_pyqgis}.png}
 
 
-\subsection{paso \#3}
+\section{paso \#3}
 \label{\detokenize{ejecucion:paso-3}}
 Hacer clic en el ícono de \sphinxstylestrong{Editor}
 
 \noindent\sphinxincludegraphics{{consola_editor}.png}
 
 
-\subsection{paso \#4}
+\section{paso \#4}
 \label{\detokenize{ejecucion:paso-4}}
 Se despliega en el lado izquierdo un panel, el cual es el editor
 de código, cuenta con una barra de tareas, para abrir un script
@@ -129,7 +126,7 @@ dar clic en el ícono de \sphinxstylestrong{abrir archivo}
 \noindent\sphinxincludegraphics{{consola_editor_interfaz}.png}
 
 
-\subsection{paso \#5}
+\section{paso \#5}
 \label{\detokenize{ejecucion:paso-5}}
 Se abrirá una ventana que te permite usar el explorador de archivos
 para navegar y encontrar el archivo \sphinxstylestrong{.py}, elegir el script deseado y
@@ -138,12 +135,12 @@ dar clic en abrir.
 \noindent\sphinxincludegraphics{{abrir_script}.PNG}
 
 
-\section{Libreria de funciones para el análsis espacial multicriterio}
+\chapter{Libreria de funciones para el análsis espacial multicriterio}
 \label{\detokenize{apcsig:libreria-de-funciones-para-el-analsis-espacial-multicriterio}}\label{\detokenize{apcsig::doc}}
 En esta página encontrarás la documentación de las funciones que he creado en python y qgis 3.10 o superior
 
 
-\subsection{Requerimientos generales}
+\section{Requerimientos generales}
 \label{\detokenize{apcsig:requerimientos-generales}}
 Para asegurar la ejecución correcta del código es importante
 verificar la instalación y funcionamiento de los siguientes elementos:
@@ -183,15 +180,15 @@ string
 \end{itemize}
 
 
-\subsection{Descarga la libreria}
+\section{Descarga la libreria}
 \label{\detokenize{apcsig:descarga-la-libreria}}
 \sphinxcode{\sphinxupquote{apcsig.py}}.
 
 
-\subsection{Documentación}
+\section{Documentación}
 \label{\detokenize{apcsig:documentacion}}
 
-\section{Análisis de sensibilidad}
+\chapter{Análisis de sensibilidad}
 \label{\detokenize{analisis:analisis-de-sensibilidad}}\label{\detokenize{analisis::doc}}
 La prueba de sensibilidad por remoción de capas mide la importancia de cada mapa que se utiliza en un índice cartográfico como el que resulta de la aplicación de la combinación lineal ponderada.
 
@@ -200,7 +197,7 @@ Descargar el código de ejemplo
 \sphinxcode{\sphinxupquote{sensibilidad.py}}.
 
 
-\subsection{Requerimientos generales}
+\section{Requerimientos generales}
 \label{\detokenize{analisis:requerimientos-generales}}
 Para asegurar la ejecución correcta del código es importante
 verificar la instalación y funcionamiento de los siguientes elementos:
@@ -234,7 +231,7 @@ os
 \end{itemize}
 
 
-\subsection{Requerimientos generales de los insumos}
+\section{Requerimientos generales de los insumos}
 \label{\detokenize{analisis:requerimientos-generales-de-los-insumos}}
 Es importante que todas las capas raster cumplan con las siguientes condiciones:
 \begin{itemize}
@@ -253,10 +250,10 @@ Mismo valor de NoData
 \end{itemize}
 
 
-\subsection{Ejemplo}
+\section{Ejemplo}
 \label{\detokenize{analisis:ejemplo}}
 
-\subsubsection{Insumos}
+\subsection{Insumos}
 \label{\detokenize{analisis:insumos}}
 Crear una (1)carpeta en el directorio raíz o en la unidad C que se llame \sphinxstylestrong{analisis\_sensibilidad},
 para descargar los insumos hacer clic \sphinxcode{\sphinxupquote{aqui}} (2)guarde el archivo \sphinxstylestrong{insumos.zip}
@@ -269,16 +266,16 @@ Una vez terminado el proceso, crear en la carpeta \sphinxstylestrong{analisis\_s
 \noindent\sphinxincludegraphics{{c_salida}.JPG}
 
 
-\subsubsection{Procedimiento}
+\subsection{Procedimiento}
 \label{\detokenize{analisis:procedimiento}}
 
-\paragraph{1. Abrir el código}
+\subsubsection{1. Abrir el código}
 \label{\detokenize{analisis:abrir-el-codigo}}
 Abrir el código \sphinxstylestrong{sensibilidad.py} en Qgis 3.4 o superior,
 Para resolver cualquier duda al respecto, consultar la \sphinxhref{https://vichdzgeo.github.io/geo\_lancis/ejecucion.html}{guia}
 
 
-\paragraph{2. Actualizar el diccionario}
+\subsubsection{2. Actualizar el diccionario}
 \label{\detokenize{analisis:actualizar-el-diccionario}}
 Ingresar la (1) ponderación del compontente según corresponda (Exposición, Susceptibilidad, Resiliencia), posteriormente
 ingresar la (2)ponderación del subcomponente (biológico,físico),
@@ -288,7 +285,7 @@ repita los pasos siguiendo la estructura y hasta ingresar cada una de las capas.
 \noindent\sphinxincludegraphics{{diccionario}.JPG}
 
 
-\paragraph{3. Indicar el direcctorio de salida}
+\subsubsection{3. Indicar el direcctorio de salida}
 \label{\detokenize{analisis:indicar-el-direcctorio-de-salida}}
 Indicar el directorio donde guardarán los archivos necesarios para realizar el análisis de sensibilidad
 y el archivo  \sphinxstylestrong{analisis\_sensibilidad.csv} que contendrá los resultados.
@@ -298,7 +295,7 @@ y el archivo  \sphinxstylestrong{analisis\_sensibilidad.csv} que contendrá los 
 \end{sphinxVerbatim}
 
 
-\paragraph{4. Ejecutar el código}
+\subsubsection{4. Ejecutar el código}
 \label{\detokenize{analisis:ejecutar-el-codigo}}
 hacer clic en el (1) botón de ejecutar código, puede demorar 10 minutos o más dependiendo el procesador y
 memoria RAM que tenga el equipo en donde se ejecute, al concluir aparecerá en la (2) consola una lista que indica que
@@ -307,13 +304,13 @@ ha procesado cada una de las capas.
 \noindent\sphinxincludegraphics{{ejecucion}.JPG}
 
 
-\subsubsection{Bibliografía}
+\subsection{Bibliografía}
 \label{\detokenize{analisis:bibliografia}}
 
-\subsubsection{Documentación dentro del código}
+\subsection{Documentación dentro del código}
 \label{\detokenize{analisis:documentacion-dentro-del-codigo}}
 
-\section{Índice Lee-Sallee}
+\chapter{Índice Lee-Sallee}
 \label{\detokenize{leesallee:indice-lee-sallee}}\label{\detokenize{leesallee::doc}}
 Para capas vectoriales
 \begin{equation*}
@@ -324,15 +321,15 @@ descarga el código de ejemplo
 \sphinxcode{\sphinxupquote{indice\_lee\_sallee.py}}.
 
 
-\subsection{Ejemplo}
+\section{Ejemplo}
 \label{\detokenize{leesallee:ejemplo}}
 
-\subsubsection{Insumos}
+\subsection{Insumos}
 \label{\detokenize{leesallee:insumos}}
 Descarga los insumos para este ejemplo \sphinxcode{\sphinxupquote{aqui}}
 
 
-\subsubsection{Procedimiento}
+\subsection{Procedimiento}
 \label{\detokenize{leesallee:procedimiento}}
 Abre el código \sphinxstylestrong{indice\_lee\_sallee.py} en Qgis 3.4 o superior,
 Si tienes dudas de como hacerlo visualiza la \sphinxhref{https://vichdzgeo.github.io/geo\_lancis/ejecucion.html}{guia}
@@ -350,7 +347,7 @@ vlayer\_model es la capa vectorial que se ocupa como modelo
 \noindent\sphinxincludegraphics{{rutas}.png}
 
 
-\section{OWA}
+\chapter{OWA}
 \label{\detokenize{owa:owa}}\label{\detokenize{owa::doc}}
 OWA (Ordered Weighted Average) es un análisis de aptitud territorial basado en procedimientos de
 Sistemas de Información Geográfica (SIG) y evaluación multicriterio (Malczewski, 2006).
@@ -380,7 +377,7 @@ Descargar el código de ejemplo
 \sphinxcode{\sphinxupquote{owa\_raster.py}}.
 
 
-\subsection{Requerimientos generales}
+\section{Requerimientos generales}
 \label{\detokenize{owa:requerimientos-generales}}
 Para asegurar la ejecución correcta del código es importante
 verificar la instalación y funcionamiento de los siguientes elementos:
@@ -408,7 +405,7 @@ reduce
 \end{itemize}
 
 
-\subsection{Requerimientos generales de los insumos}
+\section{Requerimientos generales de los insumos}
 \label{\detokenize{owa:requerimientos-generales-de-los-insumos}}
 Es importante que todas las capas raster cumplan con las siguientes condiciones:
 \begin{itemize}
@@ -427,18 +424,18 @@ Mismo valor de NoData
 \end{itemize}
 
 
-\subsection{Ejemplo}
+\section{Ejemplo}
 \label{\detokenize{owa:ejemplo}}
 
-\subsubsection{Insumos}
+\subsection{Insumos}
 \label{\detokenize{owa:insumos}}
 Descargar los insumos para este ejemplo \sphinxcode{\sphinxupquote{aqui}}
 
 
-\subsubsection{Procedimiento}
+\subsection{Procedimiento}
 \label{\detokenize{owa:procedimiento}}
 
-\paragraph{1. Abrir el código}
+\subsubsection{1. Abrir el código}
 \label{\detokenize{owa:abrir-el-codigo}}
 Abrir el código \sphinxstylestrong{owa\_raster.py} en Qgis 3.4 o superior,
 Para resolver cualquier duda al respecto, consultar la \sphinxhref{https://vichdzgeo.github.io/geo\_lancis/ejecucion.html}{guia}
@@ -446,7 +443,7 @@ Para resolver cualquier duda al respecto, consultar la \sphinxhref{https://vichd
 \noindent\sphinxincludegraphics{{codigo1}.PNG}
 
 
-\paragraph{2. Actualizar el diccionario}
+\subsubsection{2. Actualizar el diccionario}
 \label{\detokenize{owa:actualizar-el-diccionario}}
 Ingresar las capas raster de entrada con sus respectivos pesos
 a la función mediante un diccionario. Es importante seguir la
@@ -483,7 +480,7 @@ La línea quedaría de la siguiente forma:
 \end{sphinxadmonition}
 
 
-\paragraph{3. Indicar la capa maestra}
+\subsubsection{3. Indicar la capa maestra}
 \label{\detokenize{owa:indicar-la-capa-maestra}}
 Para generar la salida en formato tiff se requiere conocer aspectos
 técnicos como número de columnas y renglones, tamaño de pixel, coordenadas
@@ -500,7 +497,7 @@ como ejemplo se toma la ruta de la \sphinxstylestrong{capa\_1}
 \end{sphinxVerbatim}
 
 
-\paragraph{4. Indicar el direcctorio de salida}
+\subsubsection{4. Indicar el direcctorio de salida}
 \label{\detokenize{owa:indicar-el-direcctorio-de-salida}}
 Indicar el directorio donde guardarán los mapas de salida.
 
@@ -511,7 +508,7 @@ por ejemplo:
 \end{sphinxVerbatim}
 
 
-\paragraph{5. Los valores de alpha}
+\subsubsection{5. Los valores de alpha}
 \label{\detokenize{owa:los-valores-de-alpha}}
 El código tiene valores  predeterminados de alpha
 
@@ -580,17 +577,17 @@ de salida
 \noindent\sphinxincludegraphics{{salida}.png}
 
 
-\subsection{Bibliografía}
+\section{Bibliografía}
 \label{\detokenize{owa:bibliografia}}
 Malczewski, J. (2006). Ordered weighted averaging with fuzzy quantifiers:
 GIS-based multicriteria evaluation for land-use suitability analysis.
 International Journal of Applied Earth Observation and Geoin-formation, 8 ,270-277.
 
 
-\subsection{Documentación dentro del código}
+\section{Documentación dentro del código}
 \label{\detokenize{owa:documentacion-dentro-del-codigo}}
 
-\section{Verificación de capas}
+\chapter{Verificación de capas}
 \label{\detokenize{verificacion:verificacion-de-capas}}\label{\detokenize{verificacion::doc}}
 Los puntos a verificar son los siguientes:
 \begin{enumerate}
@@ -622,13 +619,13 @@ Descargar el código de ejemplo
 \sphinxcode{\sphinxupquote{verificacion\_layers.py}}.
 
 
-\subsection{Requerimientos generales}
+\section{Requerimientos generales}
 \label{\detokenize{verificacion:requerimientos-generales}}
 
-\subsection{Ejemplo:}
+\section{Ejemplo:}
 \label{\detokenize{verificacion:ejemplo}}
 
-\subsubsection{1. Abrir el código}
+\subsection{1. Abrir el código}
 \label{\detokenize{verificacion:abrir-el-codigo}}
 Abrir el código \sphinxstylestrong{verificación\_layers.py} en Qgis 3.4 o superior,
 para resolver cualquier duda al respecto, consultar la \sphinxhref{https://vichdzgeo.github.io/geo\_lancis/ejecucion.html}{guia}
@@ -636,7 +633,7 @@ para resolver cualquier duda al respecto, consultar la \sphinxhref{https://vichd
 \noindent\sphinxincludegraphics{{codigo3}.PNG}
 
 
-\subsubsection{2. Indicar el directorio}
+\subsection{2. Indicar el directorio}
 \label{\detokenize{verificacion:indicar-el-directorio}}
 El código verifica todas las capas vectoriales contenidas en el directorio
 indicado en la variable \sphinxstylestrong{path\_dir}
@@ -646,10 +643,10 @@ indicado en la variable \sphinxstylestrong{path\_dir}
 \end{sphinxVerbatim}
 
 
-\subsubsection{Salidas}
+\subsection{Salidas}
 \label{\detokenize{verificacion:salidas}}
 
-\paragraph{Capas de topología}
+\subsubsection{Capas de topología}
 \label{\detokenize{verificacion:capas-de-topologia}}
 el código crea una carpeta llamada \sphinxstylestrong{temp}, dentro de ella otra carpeta llamada \sphinxstylestrong{topologia} en esta
 carpeta se guardan los 3 archivos shapefile  resultantes de la función \sphinxstylestrong{topologia}
@@ -670,7 +667,7 @@ Capa de poligonos que índica geométria inválida de la capa
 Capa de poligonos que indica la geometría válida de la capa
 
 
-\paragraph{Imagen de la capa}
+\subsubsection{Imagen de la capa}
 \label{\detokenize{verificacion:imagen-de-la-capa}}
 \begin{sphinxadmonition}{note}{Nota:}
 El código genera una imagen de la capa con el mapa base de openstreetmap
@@ -678,7 +675,7 @@ sí y solo sí la capa tiene un puntaje de 10 en el criterio de \sphinxstylestro
 \end{sphinxadmonition}
 
 
-\section{Tabular intersección entre 3 geometrías}
+\chapter{Tabular intersección entre 3 geometrías}
 \label{\detokenize{tabulacion_3geo:tabular-interseccion-entre-3-geometrias}}\label{\detokenize{tabulacion_3geo::doc}}
 Calcula la intersección de 3 capas y realiza una tabulación cruzada del área
 
@@ -688,7 +685,7 @@ el área total perteneciente a la entidad A y se cuantifica el área  por clase 
 La capa C es la serie de uso de suelo y vegetación de INEGI
 
 
-\subsection{Requerimientos generales}
+\section{Requerimientos generales}
 \label{\detokenize{tabulacion_3geo:requerimientos-generales}}
 Para asegurar la ejecución correcta del código es importante
 verificar la instalación y funcionamiento de los siguientes elementos:
@@ -703,7 +700,7 @@ Descargar el código de ejemplo
 \sphinxcode{\sphinxupquote{tabulacion\_3geo.py}}.
 
 
-\subsection{Requerimientos generales de los insumos}
+\section{Requerimientos generales de los insumos}
 \label{\detokenize{tabulacion_3geo:requerimientos-generales-de-los-insumos}}
 Es importante que todas las capas vectoriales cumplan con las siguientes condiciones:
 \begin{itemize}
@@ -716,7 +713,7 @@ Sin problemas topológicos
 \end{itemize}
 
 
-\subsubsection{Entidad A}
+\subsection{Entidad A}
 \label{\detokenize{tabulacion_3geo:entidad-a}}\begin{itemize}
 \item {} 
 Que cuente con un campo que contenga un identificador único para cada geométria
@@ -724,7 +721,7 @@ Que cuente con un campo que contenga un identificador único para cada geométri
 \end{itemize}
 
 
-\subsubsection{Entidad B}
+\subsection{Entidad B}
 \label{\detokenize{tabulacion_3geo:entidad-b}}\begin{itemize}
 \item {} 
 Que cuente con un campo dónde se especifiquen las categorias o clases
@@ -732,7 +729,7 @@ Que cuente con un campo dónde se especifiquen las categorias o clases
 \end{itemize}
 
 
-\subsubsection{Entidad C}
+\subsection{Entidad C}
 \label{\detokenize{tabulacion_3geo:entidad-c}}\begin{itemize}
 \item {} 
 Que cuente con un campo que contenga el número de clase correspondiente
@@ -743,10 +740,10 @@ Que el campo mencionado en el inciso anterior se llame igual para todas las seri
 \end{itemize}
 
 
-\subsection{Ejemplo}
+\section{Ejemplo}
 \label{\detokenize{tabulacion_3geo:ejemplo}}
 
-\subsubsection{Datos de prueba}
+\subsection{Datos de prueba}
 \label{\detokenize{tabulacion_3geo:datos-de-prueba}}
 Descargar los datos de prueba para este ejemplo \sphinxcode{\sphinxupquote{aqui}}
 
@@ -781,7 +778,7 @@ Directorio que contiene capas de USV de las 6 series de INEGI para el estado de 
 \sphinxattableend\end{savenotes}
 
 
-\paragraph{Abrir el código}
+\subsubsection{Abrir el código}
 \label{\detokenize{tabulacion_3geo:abrir-el-codigo}}
 Abrir el código \sphinxstylestrong{tabulacion\_3geo.py} en Qgis 3.4 o superior,
 Para resolver cualquier duda al respecto, consultar la \sphinxhref{https://vichdzgeo.github.io/geo\_lancis/ejecucion.html}{guia}
@@ -789,7 +786,7 @@ Para resolver cualquier duda al respecto, consultar la \sphinxhref{https://vichd
 \noindent\sphinxincludegraphics{{codigo2}.PNG}
 
 
-\paragraph{1. Indicar la ruta de los insumos}
+\subsubsection{1. Indicar la ruta de los insumos}
 \label{\detokenize{tabulacion_3geo:indicar-la-ruta-de-los-insumos}}
 Indicar la ruta completa de los insumos según corresponda:
 
@@ -804,7 +801,7 @@ verifica que se use “/” como separadador de espacio en lugar de “'
 \end{sphinxVerbatim}
 
 
-\paragraph{2. Indicar los nombres de los campos id}
+\subsubsection{2. Indicar los nombres de los campos id}
 \label{\detokenize{tabulacion_3geo:indicar-los-nombres-de-los-campos-id}}
 Para la geometría A se declara el nombre del campo identificador o clave
 
@@ -825,7 +822,7 @@ de clase para las series de USV
 \end{sphinxVerbatim}
 
 
-\paragraph{4. Agrega identificadores según el tipo de geometría}
+\subsubsection{4. Agrega identificadores según el tipo de geometría}
 \label{\detokenize{tabulacion_3geo:agrega-identificadores-segun-el-tipo-de-geometria}}
 En la variable \sphinxstylestrong{clave\_capas} agragar un identificador  para cada una de las
 categorias de tres caracteres.
@@ -835,7 +832,7 @@ categorias de tres caracteres.
 \end{sphinxVerbatim}
 
 
-\paragraph{4. Indica el directorio de salida}
+\subsubsection{4. Indica el directorio de salida}
 \label{\detokenize{tabulacion_3geo:indica-el-directorio-de-salida}}
 En esta ruta se escribirá la tabla resultado de la cruza adicionalmente se  crea una carpeta llamada \sphinxstylestrong{tmp} en la cúal se almacenán
 las cruzas ralizadas en el proceso.
@@ -845,12 +842,12 @@ las cruzas ralizadas en el proceso.
 \end{sphinxVerbatim}
 
 
-\paragraph{5. Ejecuta el script}
+\subsubsection{5. Ejecuta el script}
 \label{\detokenize{tabulacion_3geo:ejecuta-el-script}}
 Hacer clic en el botón de ejecutar y permanece atento a la consola.
 
 
-\paragraph{6. Ingresa el nombre del campo identificador de la geometría B}
+\subsubsection{6. Ingresa el nombre del campo identificador de la geometría B}
 \label{\detokenize{tabulacion_3geo:ingresa-el-nombre-del-campo-identificador-de-la-geometria-b}}
 Se mostrará en la consola la siguiente instrucción:
 
@@ -864,7 +861,7 @@ hacer clic en \sphinxstylestrong{OK}
 \noindent\sphinxincludegraphics{{campob}.PNG}
 
 
-\paragraph{7. Ingresar el número de las categorías a considerar}
+\subsubsection{7. Ingresar el número de las categorías a considerar}
 \label{\detokenize{tabulacion_3geo:ingresar-el-numero-de-las-categorias-a-considerar}}
 El script permite ingresar todas las categorías o solo algunas, las categorias
 indicadas serán reclasificadas como binario donde 1 es que fue considerada y 0 cero que no,
@@ -884,7 +881,7 @@ Puede ingresar todas las categorias escribiendo la palabra «TODAS»
 \noindent\sphinxincludegraphics{{categorias}.PNG}
 
 
-\paragraph{8.- Elegir entre área o porcentaje}
+\subsubsection{8.- Elegir entre área o porcentaje}
 \label{\detokenize{tabulacion_3geo:elegir-entre-area-o-porcentaje}}
 La cuantificación de las categorias de USV en el área de la geometría B perteneciente
 a una identidad de la geometría A, puede expresarse en área (hectáreas) o en porcentaje.
@@ -893,7 +890,7 @@ para este ejemplo se elige “area”
 \noindent\sphinxincludegraphics{{area}.PNG}
 
 
-\section{Cobertura por niveles areas}
+\chapter{Cobertura por niveles areas}
 \label{\detokenize{nivel_geometrias:cobertura-por-niveles-areas}}\label{\detokenize{nivel_geometrias::doc}}
 El objetivo de esta herramienta es cuantificar el área según el tipo de clase
 de uso de suelo vegetación asociado a una geometría intermedia.
@@ -919,7 +916,7 @@ campos nombrados como \sphinxstylestrong{clase\_\#} donde \sphinxstylestrong{\#}
 \end{itemize}
 
 
-\subsection{Requerimientos generales}
+\section{Requerimientos generales}
 \label{\detokenize{nivel_geometrias:requerimientos-generales}}
 Para asegurar la ejecución correcta del código es importante
 verificar la instalación y funcionamiento de los siguientes elementos:
@@ -930,7 +927,7 @@ Qgis 3.4 o superior
 \end{itemize}
 
 
-\subsection{Requerimientos generales de los insumos}
+\section{Requerimientos generales de los insumos}
 \label{\detokenize{nivel_geometrias:requerimientos-generales-de-los-insumos}}
 Es importante que todas las capas vectoriales cumplan con las siguientes condiciones:
 \begin{itemize}
@@ -943,7 +940,7 @@ Sin problemas topólogicos
 \end{itemize}
 
 
-\subsubsection{Geometría A}
+\subsection{Geometría A}
 \label{\detokenize{nivel_geometrias:geometria-a}}\begin{itemize}
 \item {} 
 Tener un campo que contenga un identificador único para cada geometría (puede ser de tipo texto o entero)
@@ -951,7 +948,7 @@ Tener un campo que contenga un identificador único para cada geometría (puede 
 \end{itemize}
 
 
-\subsubsection{Geometría B}
+\subsection{Geometría B}
 \label{\detokenize{nivel_geometrias:geometria-b}}\begin{itemize}
 \item {} 
 Tener un campo que contenga las diferentes categorias o tipos de geometria (puede ser de tipo texto o entero)
@@ -959,7 +956,7 @@ Tener un campo que contenga las diferentes categorias o tipos de geometria (pued
 \end{itemize}
 
 
-\subsubsection{Geometría C}
+\subsection{Geometría C}
 \label{\detokenize{nivel_geometrias:geometria-c}}\begin{itemize}
 \item {} 
 Tener el siguiente tipo de nombrado
@@ -984,15 +981,15 @@ Tener un campo de tipo entero que contenga las diferentes clases de cobertura em
 \end{itemize}
 
 
-\subsection{Ejemplo}
+\section{Ejemplo}
 \label{\detokenize{nivel_geometrias:ejemplo}}
 
-\subsubsection{Insumos}
+\subsection{Insumos}
 \label{\detokenize{nivel_geometrias:insumos}}
 Descargar los insumos para este ejemplo \sphinxcode{\sphinxupquote{aqui}}
 
 
-\paragraph{1. Abrir el código}
+\subsubsection{1. Abrir el código}
 \label{\detokenize{nivel_geometrias:abrir-el-codigo}}
 Abrir el código \sphinxstylestrong{owa\_raster.py} en Qgis 3.4 o superior,
 Para resolver cualquier duda al respecto, consultar la \sphinxhref{https://vichdzgeo.github.io/geo\_lancis/ejecucion.html}{guia}
@@ -1000,7 +997,7 @@ Para resolver cualquier duda al respecto, consultar la \sphinxhref{https://vichd
 \noindent\sphinxincludegraphics{{codigo}.PNG}
 
 
-\paragraph{2. Ingresar la ruta de la geometria A}
+\subsubsection{2. Ingresar la ruta de la geometria A}
 \label{\detokenize{nivel_geometrias:ingresar-la-ruta-de-la-geometria-a}}
 Se ingresa la ruta completa de la capa de \sphinxstylestrong{municipios} en la variable
 \sphinxstylestrong{path\_geometria\_a}
@@ -1010,7 +1007,7 @@ Se ingresa la ruta completa de la capa de \sphinxstylestrong{municipios} en la v
 \end{sphinxVerbatim}
 
 
-\paragraph{3. Ingresar la ruta de la geometria B}
+\subsubsection{3. Ingresar la ruta de la geometria B}
 \label{\detokenize{nivel_geometrias:ingresar-la-ruta-de-la-geometria-b}}
 Se ingresa la ruta completa de la capa de \sphinxstylestrong{Áreas Naturales Protegidas} en la variable
 \sphinxstylestrong{path\_geometria\_b}
@@ -1020,7 +1017,7 @@ Se ingresa la ruta completa de la capa de \sphinxstylestrong{Áreas Naturales Pr
 \end{sphinxVerbatim}
 
 
-\paragraph{4. Ingresar el directorio de las series de USV (geometría C)}
+\subsubsection{4. Ingresar el directorio de las series de USV (geometría C)}
 \label{\detokenize{nivel_geometrias:ingresar-el-directorio-de-las-series-de-usv-geometria-c}}
 Se ingresa la ruta del directorio donde se encutran las capas
 de \sphinxstylestrong{Uso de suelo y Vegetación ** en la variable
@@ -1031,7 +1028,7 @@ de \sphinxstylestrong{Uso de suelo y Vegetación ** en la variable
 \end{sphinxVerbatim}
 
 
-\paragraph{5. Ingresar el directorio de salida}
+\subsubsection{5. Ingresar el directorio de salida}
 \label{\detokenize{nivel_geometrias:ingresar-el-directorio-de-salida}}
 Se ingresa la ruta del directorio de salida de los datos en la variable
 ** path\_salida**
@@ -1045,7 +1042,7 @@ intermedios o productos de las intersecciones realizadas para la consulta de las
 en una subcarpeta llamada \sphinxstylestrong{tmp}
 
 
-\paragraph{6. Ingresar el nombre del campo ID de la capa A}
+\subsubsection{6. Ingresar el nombre del campo ID de la capa A}
 \label{\detokenize{nivel_geometrias:ingresar-el-nombre-del-campo-id-de-la-capa-a}}
 se Ingresa el nombre del campo que contiene el identificador único
 para las geometrías en la variable \sphinxstylestrong{campo\_id\_geometria\_a}, en este caso el nombre del campo  es \sphinxstylestrong{cve\_mun}
@@ -1055,7 +1052,7 @@ para las geometrías en la variable \sphinxstylestrong{campo\_id\_geometria\_a},
 \end{sphinxVerbatim}
 
 
-\paragraph{7. Ingresar el nombre del campo de las categorias USV}
+\subsubsection{7. Ingresar el nombre del campo de las categorias USV}
 \label{\detokenize{nivel_geometrias:ingresar-el-nombre-del-campo-de-las-categorias-usv}}
 Se ingresa el nombre del campo que contiene las categorias de USV en la
 variable ** campo\_clase\_usv**
@@ -1065,7 +1062,7 @@ variable ** campo\_clase\_usv**
 \end{sphinxVerbatim}
 
 
-\paragraph{8. Ingresar claves de las tres geometrías}
+\subsubsection{8. Ingresar claves de las tres geometrías}
 \label{\detokenize{nivel_geometrias:ingresar-claves-de-las-tres-geometrias}}
 Se declaran en una lista tres claves de las tres geometrías involucradas
 en la variable \sphinxstylestrong{clave\_capas}
@@ -1077,13 +1074,13 @@ las claves son de tres caracteres y separadas por comas
 \end{sphinxVerbatim}
 
 
-\subsection{Bibliografía}
+\section{Bibliografía}
 \label{\detokenize{nivel_geometrias:bibliografia}}
 
-\subsection{Documentación dentro del código}
+\section{Documentación dentro del código}
 \label{\detokenize{nivel_geometrias:documentacion-dentro-del-codigo}}
 
-\section{Cobertura de uso y tipo de suelo a nivel municipal}
+\chapter{Cobertura de uso y tipo de suelo a nivel municipal}
 \label{\detokenize{usvmunicipal:cobertura-de-uso-y-tipo-de-suelo-a-nivel-municipal}}\label{\detokenize{usvmunicipal::doc}}
 Objetivo:
 

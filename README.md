@@ -1,4 +1,4 @@
-# Códigos en python y qgis para analásis espacial multicriterio
+# Documentación de funciones y algoritmos en Python y Qgis para análisis espacial
 
 
 ## Afiliación
