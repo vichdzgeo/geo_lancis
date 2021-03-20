@@ -56,9 +56,9 @@ sys.path.insert(0,'C:/osgeo4~1/apps/qgis-ltr/python/plugins/processing/algs/qgis
 # sys.path.insert(0, 'C:/OSGEO4~1/apps/Python37/lib/site-packages/pywin32_system32')
 # -- Project information -----------------------------------------------------
 
-project = 'Geoprocesamiento en python y qgis'
-copyright = '2020, Víctor Hernández'
-author = 'Víctor Hernández'
+project = 'Documentación de Códigos en Python y Qgis'
+copyright = '2020, Instituto de Ecología, Universidad Nacional Autónoma de México'
+author =  'Área de Planeación Colaborativa, Laboratorio Nacional de Ciencias de la Sostenibilidad'
 
 # The short X.Y version
 version = ''
@@ -78,6 +78,7 @@ release = '1.0'
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.doctest',
+    'rst2pdf',
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
     'sphinx.ext.coverage',
@@ -175,7 +176,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'Geoprocesamientoenpythonyqgis.tex', 'Geoprocesamiento en python y qgis Documentation',
+    (master_doc, 'Geoprocesamientoenpythonyqgis.tex', 'Documentación de Códigos en Python y Qgis',
      'Víctor Hernández', 'manual'),
 ]
 
@@ -185,7 +186,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'geoprocesamientoenpythonyqgis', 'Geoprocesamiento en python y qgis Documentation',
+    (master_doc, 'geoprocesamientoenpythonyqgis', 'Documentación de Códigos en Python y Qgis',
      [author], 1)
 ]
 
@@ -196,7 +197,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'Geoprocesamientoenpythonyqgis', 'Geoprocesamiento en python y qgis Documentation',
+    (master_doc, 'Geoprocesamientoenpythonyqgis', 'Documentación de Códigos en Python y Qgis',
      author, 'Geoprocesamientoenpythonyqgis', 'One line description of project.',
      'Miscellaneous'),
 ]

@@ -6,6 +6,17 @@ from osgeo import gdal
 from osgeo import osr
 
 
+def csv_to_dicc_owa(path_csv):
+    datos = pd.read_csv(path_datos).round(3)
+    criterios,rutas,pesos = list(datos['nombre']),list(datos['ruta']),list(datos['w'])
+    dicc ={}
+    total_capas = len(criterios)
+    n_capa =1
+    for a,b,c in zip(criterios,rutas,pesos):
+        dicc['capa_'+str(n_capa)]={'ruta':b,'w':c}
+        c_capa+=1
+    return dicc
+
 def insumos_base(dicc): # 1 de 9
     '''
     Esta función recibe un diccionario y regresa una
@@ -147,8 +158,21 @@ def insumo_owa(capas,pesos): # 5 de 9
         matrix_v['v']=matrix_v.apply(lambda x: [x['r1'],x['r2'],x['r3'],x['r4'],x['r5'],x['r6'],x['r7'],x['r8'],x['r9']],axis = 1)
     elif no_capas==10:
         matrix_v['v']=matrix_v.apply(lambda x: [x['r1'],x['r2'],x['r3'],x['r4'],x['r5'],x['r6'],x['r7'],x['r8'],x['r9'],x['r10']],axis = 1)
-    
-    
+    elif no_capas==11:
+        matrix_v['v']=matrix_v.apply(lambda x: [x['r1'],x['r2'],x['r3'],x['r4'],x['r5'],x['r6'],x['r7'],x['r8'],x['r9'],x['r10'],x['r11']],axis = 1)
+    elif no_capas==12:
+        matrix_v['v']=matrix_v.apply(lambda x: [x['r1'],x['r2'],x['r3'],x['r4'],x['r5'],x['r6'],x['r7'],x['r8'],x['r9'],x['r10'],x['r11'],x['r12']],axis = 1)
+    elif no_capas==13:
+        matrix_v['v']=matrix_v.apply(lambda x: [x['r1'],x['r2'],x['r3'],x['r4'],x['r5'],x['r6'],x['r7'],x['r8'],x['r9'],x['r10'],x['r11'],x['r12'],x['r13']],axis = 1)
+    elif no_capas==14:
+        matrix_v['v']=matrix_v.apply(lambda x: [x['r1'],x['r2'],x['r3'],x['r4'],x['r5'],x['r6'],x['r7'],x['r8'],x['r9'],x['r10'],x['r11'],x['r12'],x['r13'],x['r14']],axis = 1)
+    elif no_capas==15:
+        matrix_v['v']=matrix_v.apply(lambda x: [x['r1'],x['r2'],x['r3'],x['r4'],x['r5'],x['r6'],x['r7'],x['r8'],x['r9'],x['r10'],x['r11'],x['r12'],x['r13'],x['r14'],x['r15']],axis = 1)
+    elif no_capas==16:
+        matrix_v['v']=matrix_v.apply(lambda x: [x['r1'],x['r2'],x['r3'],x['r4'],x['r5'],x['r6'],x['r7'],x['r8'],x['r9'],x['r10'],x['r11'],x['r12'],x['r13'],x['r14'],x['r15'],x['r16']],axis = 1)
+    elif no_capas==17:
+        matrix_v['v']=matrix_v.apply(lambda x: [x['r1'],x['r2'],x['r3'],x['r4'],x['r5'],x['r6'],x['r7'],x['r8'],x['r9'],x['r10'],x['r11'],x['r12'],x['r13'],x['r14'],x['r15'],x['r16'],x['r17']],axis = 1)
+
     m2=matrix_v.filter(['id','v'])
     return m2
 #----------------------------------------------------#
@@ -361,7 +385,7 @@ dicc_capas = {'capa_1':{'ruta':path_insumos +"procesamiento/carreteras/fv_carret
 ### Ruta de capa maestra, puede ser cualquiera de los insumos ###
 path_capa_maestra=path_insumos +"procesamiento/localidades_costeras/fv_localidades_costeras.tif"
 ## Ruta del directorio donde se almacenarán las salidas 
-path_salida = path_insumos+"procesamiento/owa_dev/"
+path_salida = "C:/Dropbox (LANCIS)/SIG/desarrollo/sig_fomix/procesamiento/pruebas/owa/"
 
 capas, w = insumos_base(dicc_capas)
 ## lista de valores que toma alpha, para cada valor genera una salida

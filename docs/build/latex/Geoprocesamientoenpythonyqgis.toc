@@ -5,78 +5,82 @@
 \contentsline {section}{\numberline {1.3}paso \#3}{2}{section.1.3}%
 \contentsline {section}{\numberline {1.4}paso \#4}{3}{section.1.4}%
 \contentsline {section}{\numberline {1.5}paso \#5}{3}{section.1.5}%
-\contentsline {chapter}{\numberline {2}Análisis de sensibilidad}{5}{chapter.2}%
+\contentsline {chapter}{\numberline {2}Libreria de funciones para el análsis espacial multicriterio}{5}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Requerimientos generales}{5}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Requerimientos generales de los insumos}{6}{section.2.2}%
-\contentsline {section}{\numberline {2.3}Ejemplo}{6}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}Insumos}{6}{subsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.3.2}Procedimiento}{7}{subsection.2.3.2}%
-\contentsline {subsubsection}{1. Abrir el código}{7}{subsubsection*.3}%
-\contentsline {subsubsection}{2. Actualizar el diccionario}{7}{subsubsection*.4}%
-\contentsline {subsubsection}{3. Indicar el direcctorio de salida}{8}{subsubsection*.5}%
-\contentsline {subsubsection}{4. Ejecutar el código}{8}{subsubsection*.6}%
-\contentsline {subsection}{\numberline {2.3.3}Bibliografía}{8}{subsection.2.3.3}%
-\contentsline {subsection}{\numberline {2.3.4}Documentación dentro del código}{8}{subsection.2.3.4}%
-\contentsline {chapter}{\numberline {3}Índice Lee-Sallee}{9}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Ejemplo}{9}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}Insumos}{9}{subsection.3.1.1}%
-\contentsline {subsection}{\numberline {3.1.2}Procedimiento}{9}{subsection.3.1.2}%
-\contentsline {chapter}{\numberline {4}OWA}{11}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Requerimientos generales}{11}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Requerimientos generales de los insumos}{12}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Ejemplo}{12}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Insumos}{12}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}Procedimiento}{12}{subsection.4.3.2}%
-\contentsline {subsubsection}{1. Abrir el código}{12}{subsubsection*.10}%
-\contentsline {subsubsection}{2. Actualizar el diccionario}{13}{subsubsection*.11}%
-\contentsline {subsubsection}{3. Indicar la capa maestra}{14}{subsubsection*.12}%
-\contentsline {subsubsection}{4. Indicar el direcctorio de salida}{14}{subsubsection*.13}%
-\contentsline {subsubsection}{5. Los valores de alpha}{14}{subsubsection*.14}%
-\contentsline {section}{\numberline {4.4}Bibliografía}{15}{section.4.4}%
-\contentsline {section}{\numberline {4.5}Documentación dentro del código}{15}{section.4.5}%
-\contentsline {chapter}{\numberline {5}Verificación de capas}{17}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Requerimientos generales}{17}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Ejemplo:}{17}{section.5.2}%
-\contentsline {subsection}{\numberline {5.2.1}1. Abrir el código}{17}{subsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.2.2}2. Indicar el directorio}{18}{subsection.5.2.2}%
-\contentsline {subsection}{\numberline {5.2.3}Salidas}{18}{subsection.5.2.3}%
-\contentsline {subsubsection}{Capas de topología}{18}{subsubsection*.15}%
-\contentsline {subsubsection}{Imagen de la capa}{18}{subsubsection*.16}%
-\contentsline {chapter}{\numberline {6}Tabular intersección entre 3 geometrías}{21}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Requerimientos generales}{21}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Requerimientos generales de los insumos}{21}{section.6.2}%
-\contentsline {subsection}{\numberline {6.2.1}Entidad A}{21}{subsection.6.2.1}%
-\contentsline {subsection}{\numberline {6.2.2}Entidad B}{22}{subsection.6.2.2}%
-\contentsline {subsection}{\numberline {6.2.3}Entidad C}{22}{subsection.6.2.3}%
-\contentsline {section}{\numberline {6.3}Ejemplo}{22}{section.6.3}%
-\contentsline {subsection}{\numberline {6.3.1}Datos de prueba}{22}{subsection.6.3.1}%
-\contentsline {subsubsection}{Abrir el código}{22}{subsubsection*.17}%
-\contentsline {subsubsection}{1. Indicar la ruta de los insumos}{23}{subsubsection*.18}%
-\contentsline {subsubsection}{2. Indicar los nombres de los campos id}{23}{subsubsection*.19}%
-\contentsline {subsubsection}{4. Agrega identificadores según el tipo de geometría}{23}{subsubsection*.20}%
-\contentsline {subsubsection}{4. Indica el directorio de salida}{23}{subsubsection*.21}%
-\contentsline {subsubsection}{5. Ejecuta el script}{23}{subsubsection*.22}%
-\contentsline {subsubsection}{6. Ingresa el nombre del campo identificador de la geometría B}{23}{subsubsection*.23}%
-\contentsline {subsubsection}{7. Ingresar el número de las categorías a considerar}{24}{subsubsection*.24}%
-\contentsline {subsubsection}{8.- Elegir entre área o porcentaje}{25}{subsubsection*.25}%
-\contentsline {chapter}{\numberline {7}Cobertura por niveles areas}{27}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Requerimientos generales}{27}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Requerimientos generales de los insumos}{27}{section.7.2}%
-\contentsline {subsection}{\numberline {7.2.1}Geometría A}{28}{subsection.7.2.1}%
-\contentsline {subsection}{\numberline {7.2.2}Geometría B}{28}{subsection.7.2.2}%
-\contentsline {subsection}{\numberline {7.2.3}Geometría C}{28}{subsection.7.2.3}%
-\contentsline {section}{\numberline {7.3}Ejemplo}{28}{section.7.3}%
-\contentsline {subsection}{\numberline {7.3.1}Insumos}{28}{subsection.7.3.1}%
-\contentsline {subsubsection}{1. Abrir el código}{28}{subsubsection*.26}%
-\contentsline {subsubsection}{2. Ingresar la ruta de la geometria A}{29}{subsubsection*.27}%
-\contentsline {subsubsection}{3. Ingresar la ruta de la geometria B}{29}{subsubsection*.28}%
-\contentsline {subsubsection}{4. Ingresar el directorio de las series de USV (geometría C)}{29}{subsubsection*.29}%
-\contentsline {subsubsection}{5. Ingresar el directorio de salida}{29}{subsubsection*.30}%
-\contentsline {subsubsection}{6. Ingresar el nombre del campo ID de la capa A}{30}{subsubsection*.31}%
-\contentsline {subsubsection}{7. Ingresar el nombre del campo de las categorias USV}{30}{subsubsection*.32}%
-\contentsline {subsubsection}{8. Ingresar claves de las tres geometrías}{30}{subsubsection*.33}%
-\contentsline {section}{\numberline {7.4}Bibliografía}{30}{section.7.4}%
-\contentsline {section}{\numberline {7.5}Documentación dentro del código}{30}{section.7.5}%
-\contentsline {chapter}{\numberline {8}Cobertura de uso y tipo de suelo a nivel municipal}{31}{chapter.8}%
-\contentsline {chapter}{Índice de Módulos Python}{33}{section*.34}%
-\contentsline {chapter}{Índice}{35}{section*.35}%
+\contentsline {section}{\numberline {2.2}Descarga la libreria}{5}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Documentación}{6}{section.2.3}%
+\contentsline {chapter}{\numberline {3}Análisis de sensibilidad}{13}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Requerimientos generales}{13}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Requerimientos generales de los insumos}{13}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Ejemplo}{14}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Insumos}{14}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Procedimiento}{15}{subsection.3.3.2}%
+\contentsline {subsubsection}{1. Abrir el código}{15}{subsubsection*.34}%
+\contentsline {subsubsection}{2. Actualizar el diccionario}{15}{subsubsection*.35}%
+\contentsline {subsubsection}{3. Indicar el direcctorio de salida}{15}{subsubsection*.36}%
+\contentsline {subsubsection}{4. Ejecutar el código}{15}{subsubsection*.37}%
+\contentsline {subsection}{\numberline {3.3.3}Bibliografía}{16}{subsection.3.3.3}%
+\contentsline {subsection}{\numberline {3.3.4}Documentación dentro del código}{16}{subsection.3.3.4}%
+\contentsline {chapter}{\numberline {4}Índice Lee-Sallee}{19}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Ejemplo}{19}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Insumos}{19}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Procedimiento}{19}{subsection.4.1.2}%
+\contentsline {chapter}{\numberline {5}OWA}{21}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Requerimientos generales}{21}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Requerimientos generales de los insumos}{22}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Ejemplo}{22}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Insumos}{22}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Procedimiento}{22}{subsection.5.3.2}%
+\contentsline {subsubsection}{1. Abrir el código}{22}{subsubsection*.53}%
+\contentsline {subsubsection}{2. Actualizar el diccionario}{23}{subsubsection*.54}%
+\contentsline {subsubsection}{3. Indicar la capa maestra}{24}{subsubsection*.55}%
+\contentsline {subsubsection}{4. Indicar el direcctorio de salida}{24}{subsubsection*.56}%
+\contentsline {subsubsection}{5. Los valores de alpha}{24}{subsubsection*.57}%
+\contentsline {section}{\numberline {5.4}Bibliografía}{25}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Documentación dentro del código}{25}{section.5.5}%
+\contentsline {chapter}{\numberline {6}Verificación de capas}{27}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Requerimientos generales}{27}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Ejemplo:}{27}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}1. Abrir el código}{27}{subsection.6.2.1}%
+\contentsline {subsection}{\numberline {6.2.2}2. Indicar el directorio}{28}{subsection.6.2.2}%
+\contentsline {subsection}{\numberline {6.2.3}Salidas}{28}{subsection.6.2.3}%
+\contentsline {subsubsection}{Capas de topología}{28}{subsubsection*.58}%
+\contentsline {subsubsection}{Imagen de la capa}{28}{subsubsection*.59}%
+\contentsline {chapter}{\numberline {7}Tabular intersección entre 3 geometrías}{31}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Requerimientos generales}{31}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Requerimientos generales de los insumos}{31}{section.7.2}%
+\contentsline {subsection}{\numberline {7.2.1}Entidad A}{31}{subsection.7.2.1}%
+\contentsline {subsection}{\numberline {7.2.2}Entidad B}{32}{subsection.7.2.2}%
+\contentsline {subsection}{\numberline {7.2.3}Entidad C}{32}{subsection.7.2.3}%
+\contentsline {section}{\numberline {7.3}Ejemplo}{32}{section.7.3}%
+\contentsline {subsection}{\numberline {7.3.1}Datos de prueba}{32}{subsection.7.3.1}%
+\contentsline {subsubsection}{Abrir el código}{32}{subsubsection*.60}%
+\contentsline {subsubsection}{1. Indicar la ruta de los insumos}{33}{subsubsection*.61}%
+\contentsline {subsubsection}{2. Indicar los nombres de los campos id}{33}{subsubsection*.62}%
+\contentsline {subsubsection}{4. Agrega identificadores según el tipo de geometría}{33}{subsubsection*.63}%
+\contentsline {subsubsection}{4. Indica el directorio de salida}{33}{subsubsection*.64}%
+\contentsline {subsubsection}{5. Ejecuta el script}{33}{subsubsection*.65}%
+\contentsline {subsubsection}{6. Ingresa el nombre del campo identificador de la geometría B}{33}{subsubsection*.66}%
+\contentsline {subsubsection}{7. Ingresar el número de las categorías a considerar}{34}{subsubsection*.67}%
+\contentsline {subsubsection}{8.- Elegir entre área o porcentaje}{35}{subsubsection*.68}%
+\contentsline {chapter}{\numberline {8}Cobertura por niveles areas}{37}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Requerimientos generales}{37}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Requerimientos generales de los insumos}{37}{section.8.2}%
+\contentsline {subsection}{\numberline {8.2.1}Geometría A}{38}{subsection.8.2.1}%
+\contentsline {subsection}{\numberline {8.2.2}Geometría B}{38}{subsection.8.2.2}%
+\contentsline {subsection}{\numberline {8.2.3}Geometría C}{38}{subsection.8.2.3}%
+\contentsline {section}{\numberline {8.3}Ejemplo}{38}{section.8.3}%
+\contentsline {subsection}{\numberline {8.3.1}Insumos}{38}{subsection.8.3.1}%
+\contentsline {subsubsection}{1. Abrir el código}{38}{subsubsection*.69}%
+\contentsline {subsubsection}{2. Ingresar la ruta de la geometria A}{39}{subsubsection*.70}%
+\contentsline {subsubsection}{3. Ingresar la ruta de la geometria B}{39}{subsubsection*.71}%
+\contentsline {subsubsection}{4. Ingresar el directorio de las series de USV (geometría C)}{39}{subsubsection*.72}%
+\contentsline {subsubsection}{5. Ingresar el directorio de salida}{39}{subsubsection*.73}%
+\contentsline {subsubsection}{6. Ingresar el nombre del campo ID de la capa A}{40}{subsubsection*.74}%
+\contentsline {subsubsection}{7. Ingresar el nombre del campo de las categorias USV}{40}{subsubsection*.75}%
+\contentsline {subsubsection}{8. Ingresar claves de las tres geometrías}{40}{subsubsection*.76}%
+\contentsline {section}{\numberline {8.4}Bibliografía}{40}{section.8.4}%
+\contentsline {section}{\numberline {8.5}Documentación dentro del código}{40}{section.8.5}%
+\contentsline {chapter}{\numberline {9}Cobertura de uso y tipo de suelo a nivel municipal}{41}{chapter.9}%
+\contentsline {chapter}{Índice de Módulos Python}{43}{section*.77}%
+\contentsline {chapter}{Índice}{45}{section*.78}%

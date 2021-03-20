@@ -1,14 +1,7 @@
 Análisis de sensibilidad
 #############################
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-Aliquam at turpis lacus. Pellentesque vitae efficitur lacus. 
-Proin eu lectus ultrices mauris viverra vehicula. Proin ante justo, 
-ultrices eu leo ac, vulputate tristique sapien. Aenean vel enim a elit mollis commodo. 
-Proin laoreet quis quam quis auctor. Vestibulum nec nisl pretium, bibendum ligula in, 
-suscipit neque. Nunc placerat ac ipsum vel pellentesque. Phasellus lacinia cursus porttitor. 
-Donec viverra faucibus nisl, non vestibulum quam posuere sit amet. Nulla a sodales urna. 
-Donec vestibulum purus purus, iaculis pellentesque eros cursus quis. Maecenas ac maximus sem.
+La prueba de sensibilidad por remoción de capas mide la importancia de cada mapa que se utiliza en un índice cartográfico como el que resulta de la aplicación de la combinación lineal ponderada.
 
 Descargar el código de ejemplo 
 
@@ -57,7 +50,7 @@ en la carpeta **analisis_sensibilidad**, posteriormente hacer clic derecho sobre
 
 .. image:: ../../analisis_sensibilidad/images/crear_carpeta.JPG
 
-Una vez terminado el proceso, crear en la carpeta **analisis_sensibilidad** una (4)c arpeta con el nombre **salida**
+Una vez terminado el proceso, crear en la carpeta **analisis_sensibilidad** una (4) carpeta con el nombre **salida**
 
 
 .. image:: ../../analisis_sensibilidad/images/c_salida.JPG

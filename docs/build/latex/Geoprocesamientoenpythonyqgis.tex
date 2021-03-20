@@ -60,8 +60,8 @@
 
 
 
-\title{Geoprocesamiento en python y qgis Documentation}
-\date{26 de agosto de 2020}
+\title{Geoprocesamiento en python y qgis}
+\date{19 de marzo de 2021}
 \release{1.0}
 \author{Víctor Hernández}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -127,16 +127,791 @@ dar clic en abrir.
 \noindent\sphinxincludegraphics{{abrir_script}.PNG}
 
 
+\chapter{Libreria de funciones para el análsis espacial multicriterio}
+\label{\detokenize{apcsig:libreria-de-funciones-para-el-analsis-espacial-multicriterio}}\label{\detokenize{apcsig::doc}}
+En esta página encontrarás la documentación de las funciones que he creado en python y qgis 3.10 o superior
+
+
+\section{Requerimientos generales}
+\label{\detokenize{apcsig:requerimientos-generales}}
+Para asegurar la ejecución correcta del código es importante
+verificar la instalación y funcionamiento de los siguientes elementos:
+\begin{itemize}
+\item {} 
+Qgis 3.10 o superior con Grass y librerías de Osgeo4W
+
+\item {} 
+Librerías python:
+
+\end{itemize}
+\begin{itemize}
+\item {} 
+Numpy
+
+\item {} 
+Pandas
+
+\item {} 
+GDAL
+
+\item {} 
+reduce
+
+\item {} 
+os
+
+\item {} 
+copy
+
+\item {} 
+pprint
+
+\item {} 
+string
+
+\end{itemize}
+
+
+\section{Descarga la libreria}
+\label{\detokenize{apcsig:descarga-la-libreria}}
+\sphinxcode{\sphinxupquote{apcsig.py}}.
+
+
+\section{Documentación}
+\label{\detokenize{apcsig:module-apcsig}}\label{\detokenize{apcsig:documentacion}}\index{apcsig (módulo)@\spxentry{apcsig}\spxextra{módulo}}
+Autor: Víctor Hernández D.
+
+Correo: \sphinxhref{mailto:victor.hernandez@iecologia.unam.mx}{victor.hernandez@iecologia.unam.mx}
+
+user\_github: @vichdzgeo
+
+Colaboladores: LANCIS - UNAM
+\index{agregar\_categorias() (en el módulo apcsig)@\spxentry{agregar\_categorias()}\spxextra{en el módulo apcsig}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{apcsig:apcsig.agregar_categorias}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{apcsig.}}\sphinxbfcode{\sphinxupquote{agregar\_categorias}}}{\emph{path\_v}, \emph{campo}, \emph{nuevo\_int\_cats='categorias'}, \emph{cont=1}}{}
+Esta función reclasifica una capa en enteros consecutivos en función de las categorias únicas de un 
+campo en especificico, como subproducto genera un archivo csv con las categorias.
+\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{path\_v}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} ruta de capa vectorial
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{campo}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} nombre del campo que contiene las categorias
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{nuevo\_int\_cats}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} nombre del campo a crear, el cúal contendrá las categorias en enteros
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{cont}} (\sphinxhref{https://docs.python.org/3/library/functions.html\#int}{\sphinxstyleliteralemphasis{\sphinxupquote{int}}}) \textendash{} contador para empezar la numeración en el número indicado, por defecto es 1
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{alinear\_raster() (en el módulo apcsig)@\spxentry{alinear\_raster()}\spxextra{en el módulo apcsig}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{apcsig:apcsig.alinear_raster}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{apcsig.}}\sphinxbfcode{\sphinxupquote{alinear\_raster}}}{\emph{path\_raster}, \emph{region}, \emph{resolucion}, \emph{path\_salida}, \emph{crs\_destino=''}, \emph{tipo='int'}}{}
+Esta función alinea un raster dada una región y el tamaño de pixel 
+:param path\_raster: ruta de la capa a alinear
+:type path\_raster: str
+\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{region}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} coordenadas de la región del estudio  xmin,xmax,ymin,ymax
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{resolucion}} (\sphinxhref{https://docs.python.org/3/library/functions.html\#int}{\sphinxstyleliteralemphasis{\sphinxupquote{int}}}) \textendash{} tamaño de pixel
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{path\_salida}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} ruta de la capa de salida con extension tif
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{crs\_destino}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} nombre del código EPSG,
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{tipo}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} tipo de dato, use “int” para entero o “float” para flotante, por default es entero
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{aplica\_mascara() (en el módulo apcsig)@\spxentry{aplica\_mascara()}\spxextra{en el módulo apcsig}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{apcsig:apcsig.aplica_mascara}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{apcsig.}}\sphinxbfcode{\sphinxupquote{aplica\_mascara}}}{\emph{path\_mascara}, \emph{path\_capa}, \emph{path\_salida}, \emph{region}}{}
+Esta función aplica la máscara de la zona de estudio a una capa raster, 
+es importante que la capa a la cual se aplicará la máscara este previamente alineada
+\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{path\_mascara}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} ruta de la mascara en formato tiff
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{path\_capa}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} ruta de la capa a la cual se requiere aplicar la máscara
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{path\_salida}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} ruta de la capa resultado de aplicar la máscara
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{region}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} coordenadas de la región del estudio  xmin,xmax,ymin,ymax
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{asignar\_nulls() (en el módulo apcsig)@\spxentry{asignar\_nulls()}\spxextra{en el módulo apcsig}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{apcsig:apcsig.asignar_nulls}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{apcsig.}}\sphinxbfcode{\sphinxupquote{asignar\_nulls}}}{\emph{map}, \emph{output}, \emph{valor\_huecos=0}}{}
+Esta función asigna un valor  a los no\_data de la capa
+\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{map}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} ruta de la capa raster
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{region}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} coordenadas de la región del estudio  xmin,xmax,ymin,ymax
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+:param output:ruta de la capa resultante
+:type output: str
+\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode
+\sphinxstyleliteralstrong{\sphinxupquote{valor\_huecos}} (\sphinxhref{https://docs.python.org/3/library/functions.html\#int}{\sphinxstyleliteralemphasis{\sphinxupquote{int}}}) \textendash{} número que tendrán los pixeles nulos
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{calculadora\_grass() (en el módulo apcsig)@\spxentry{calculadora\_grass()}\spxextra{en el módulo apcsig}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{apcsig:apcsig.calculadora_grass}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{apcsig.}}\sphinxbfcode{\sphinxupquote{calculadora\_grass}}}{\emph{path\_capa}, \emph{ecuacion}, \emph{path\_salida}}{}
+Esta función aplica la máscara de la zona de estudio
+\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{path\_mascara}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} ruta de la mascara en formato tiff
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{path\_capa}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} ruta de la capa a la cual se requiere aplicar la máscara
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{path\_salida}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} ruta de la capa resultado de aplicar la máscara
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{region}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} coordenadas de la región del estudio  xmin,xmax,ymin,ymax
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{calculadora\_grass\_2capas() (en el módulo apcsig)@\spxentry{calculadora\_grass\_2capas()}\spxextra{en el módulo apcsig}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{apcsig:apcsig.calculadora_grass_2capas}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{apcsig.}}\sphinxbfcode{\sphinxupquote{calculadora\_grass\_2capas}}}{\emph{path\_capa\_a}, \emph{path\_capa\_b}, \emph{ecuacion}, \emph{path\_salida}}{}
+Esta función aplica la máscara de la zona de estudio
+\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{path\_mascara}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} ruta de la mascara en formato tiff
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{path\_capa}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} ruta de la capa a la cual se requiere aplicar la máscara
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{path\_salida}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} ruta de la capa resultado de aplicar la máscara
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{region}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} coordenadas de la región del estudio  xmin,xmax,ymin,ymax
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{calculadora\_grass\_3capas() (en el módulo apcsig)@\spxentry{calculadora\_grass\_3capas()}\spxextra{en el módulo apcsig}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{apcsig:apcsig.calculadora_grass_3capas}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{apcsig.}}\sphinxbfcode{\sphinxupquote{calculadora\_grass\_3capas}}}{\emph{path\_capa\_a}, \emph{path\_capa\_b}, \emph{path\_capa\_c}, \emph{ecuacion}, \emph{path\_salida}}{}
+Esta función aplica la máscara de la zona de estudio
+\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{path\_mascara}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} ruta de la mascara en formato tiff
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{path\_capa}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} ruta de la capa a la cual se requiere aplicar la máscara
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{path\_salida}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} ruta de la capa resultado de aplicar la máscara
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{region}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} coordenadas de la región del estudio  xmin,xmax,ymin,ymax
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{campos\_mayusculas() (en el módulo apcsig)@\spxentry{campos\_mayusculas()}\spxextra{en el módulo apcsig}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{apcsig:apcsig.campos_mayusculas}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{apcsig.}}\sphinxbfcode{\sphinxupquote{campos\_mayusculas}}}{\emph{path\_shape}}{}
+Esta función renombra los campos en mayusculas
+\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode
+\sphinxstyleliteralstrong{\sphinxupquote{path\_shape}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} Ruta de la capa vectorial
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{campos\_minusculas() (en el módulo apcsig)@\spxentry{campos\_minusculas()}\spxextra{en el módulo apcsig}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{apcsig:apcsig.campos_minusculas}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{apcsig.}}\sphinxbfcode{\sphinxupquote{campos\_minusculas}}}{\emph{path\_shape}}{}
+Esta función renombra los campos en minúsculas
+\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode
+\sphinxstyleliteralstrong{\sphinxupquote{path\_shape}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} Ruta de la capa vectorial
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{capa\_binaria() (en el módulo apcsig)@\spxentry{capa\_binaria()}\spxextra{en el módulo apcsig}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{apcsig:apcsig.capa_binaria}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{apcsig.}}\sphinxbfcode{\sphinxupquote{capa\_binaria}}}{\emph{path\_v}, \emph{campo\_cat='presencia'}, \emph{valor=1}}{}
+Esta función crea un campo llamado presencia y asigna 
+a cada elemento el valor de 1
+\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{path\_v}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} ruta de la capa vectorial
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{campo\_cat}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} nombre del campo a crear, por default es presencia
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{categorias\_campo\_csv() (en el módulo apcsig)@\spxentry{categorias\_campo\_csv()}\spxextra{en el módulo apcsig}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{apcsig:apcsig.categorias_campo_csv}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{apcsig.}}\sphinxbfcode{\sphinxupquote{categorias\_campo\_csv}}}{\emph{path\_shape}, \emph{campo}}{}
+Esta función extrae las categorias únicas de un campo dado de una capa vectorial, el 
+archivo csv se guarda en la misma ruta de la capa vectorial y es nombrado como : \sphinxstylestrong{categorias\_campo\_nombre\_capa.csv}
+
+\begin{sphinxadmonition}{note}{Nota:}
+En dado caso que el nombre de la categoria contenga el símbolo de “,” está función la remplaza por “;” para evitar errores en la escritura del archivo csv
+\end{sphinxadmonition}
+\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{path\_shape}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} ruta de la capa vectorial
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{campo}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} nombre del campo que contiene las categorias
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{clasificar\_shape() (en el módulo apcsig)@\spxentry{clasificar\_shape()}\spxextra{en el módulo apcsig}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{apcsig:apcsig.clasificar_shape}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{apcsig.}}\sphinxbfcode{\sphinxupquote{clasificar\_shape}}}{\emph{path\_v}, \emph{clasificador}, \emph{l\_field}, \emph{campo\_cat=''}, \emph{fp=2}, \emph{categories=5}}{}
+Funcion integradora para clasificar la capa vectorial
+\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{path\_v}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} ruta de la capa vectorial
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{clasificador}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} nombre del clasificador
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{fp}} (\sphinxhref{https://docs.python.org/3/library/functions.html\#float}{\sphinxstyleliteralemphasis{\sphinxupquote{float}}}) \textendash{} factor de progresión
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{categories}} (\sphinxhref{https://docs.python.org/3/library/functions.html\#int}{\sphinxstyleliteralemphasis{\sphinxupquote{int}}}) \textendash{} número de categorias
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{crea\_capa\_raster() (en el módulo apcsig)@\spxentry{crea\_capa\_raster()}\spxextra{en el módulo apcsig}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{apcsig:apcsig.crea_capa_raster}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{apcsig.}}\sphinxbfcode{\sphinxupquote{crea\_capa\_raster}}}{\emph{ecuacion}, \emph{rasters\_input}, \emph{salida}, \emph{decimales=3}}{}
+Esta función crea una capa mediante la calculadora raster
+de GDAL, esta función esta limitada hasta 14 variables en la ecuación.
+\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{ecuacion}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} ecuación expresada en formato gdal,
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{rasters\_input}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#list}{\sphinxstyleliteralemphasis{\sphinxupquote{list}}}) \textendash{} lista de los paths de los archivos rasters
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{salida}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} ruta con extensión tiff de la salida
+
+\end{itemize}
+
+\item[{Devuelve}] \leavevmode
+Capa raster de tipo flotante, los valores de la capa son redondeados a 3 decimales
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{crear\_campo() (en el módulo apcsig)@\spxentry{crear\_campo()}\spxextra{en el módulo apcsig}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{apcsig:apcsig.crear_campo}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{apcsig.}}\sphinxbfcode{\sphinxupquote{crear\_campo}}}{\emph{path\_vector}, \emph{nombre\_campo}, \emph{tipo}}{}
+Esta funcion crea un campo segun el tipo especificado.
+Parametros:
+:param path\_vector: La ruta del archivo shapefile al cual se le quiere                         agregar el campo
+:type path\_vector: String
+\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{nombre\_campo}} (\sphinxstyleliteralemphasis{\sphinxupquote{Sting}}) \textendash{} Nombre del campo nuevo
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{tipo}} \textendash{} es el tipo de campo que se quiere crear
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+Int: para crear un campo tipo entero
+Double: para crear un campo tipo doble o flotante
+String: para crear un campo tipo texto
+Date: para crear un campo tipo fecha
+:type tipo: String
+
+\end{fulllineitems}
+
+\index{cuantiles\_s() (en el módulo apcsig)@\spxentry{cuantiles\_s()}\spxextra{en el módulo apcsig}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{apcsig:apcsig.cuantiles_s}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{apcsig.}}\sphinxbfcode{\sphinxupquote{cuantiles\_s}}}{\emph{path\_v}, \emph{quantil}, \emph{field}, \emph{min}, \emph{max}}{}
+Esta función regresa la lista de cortes según el cualtil 
+deseado de los valores de un campo de la capa vectorial de entrada
+\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{path\_v}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} ruta de la capa vectorial
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{quantil}} (\sphinxhref{https://docs.python.org/3/library/functions.html\#int}{\sphinxstyleliteralemphasis{\sphinxupquote{int}}}) \textendash{} cuantil
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{field}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} nombre del campo
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{min}} (\sphinxhref{https://docs.python.org/3/library/functions.html\#float}{\sphinxstyleliteralemphasis{\sphinxupquote{float}}}) \textendash{} valor mínimo de la capa
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{max}} (\sphinxhref{https://docs.python.org/3/library/functions.html\#float}{\sphinxstyleliteralemphasis{\sphinxupquote{float}}}) \textendash{} valor máximo de la capa
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{distancia\_caminos\_lugar() (en el módulo apcsig)@\spxentry{distancia\_caminos\_lugar()}\spxextra{en el módulo apcsig}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{apcsig:apcsig.distancia_caminos_lugar}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{apcsig.}}\sphinxbfcode{\sphinxupquote{distancia\_caminos\_lugar}}}{\emph{layer\_raster\_lugar}, \emph{path\_caminos}, \emph{campo\_caminos}, \emph{path\_mascara}, \emph{path\_salida}, \emph{region\_ext}, \emph{ancho\_ext=2292}, \emph{alto\_ext=2284}, \emph{remover=1}}{}
+Esta función genera una capa de distancia a caminos y agrega distancia cero a aquellos pixeles que se sobreponen con el área del lugar
+
+\end{fulllineitems}
+
+\index{ecuacion\_clp() (en el módulo apcsig)@\spxentry{ecuacion\_clp()}\spxextra{en el módulo apcsig}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{apcsig:apcsig.ecuacion_clp}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{apcsig.}}\sphinxbfcode{\sphinxupquote{ecuacion\_clp}}}{\emph{pesos}}{}
+Esta función recibe una lista de pesos para regresar la ecuación
+en la estructura requerida por gdal para la combinación lineal ponderada.
+
+\sphinxstylestrong{ejemplo:}
+\begin{equation*}
+\begin{split}ecuacion = A*0.40 + B*0.25 + C*0.15 +D*0.20\end{split}
+\end{equation*}\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode
+\sphinxstyleliteralstrong{\sphinxupquote{pesos}} (\sphinxstyleliteralemphasis{\sphinxupquote{lista}}) \textendash{} lista de los pesos de las capas, salida de la función
+
+\item[{Devuelve}] \leavevmode
+ecuación en formato gdal para ser ingresada a la funcion crea\_capa\_raster
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{equidistantes() (en el módulo apcsig)@\spxentry{equidistantes()}\spxextra{en el módulo apcsig}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{apcsig:apcsig.equidistantes}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{apcsig.}}\sphinxbfcode{\sphinxupquote{equidistantes}}}{\emph{categories=5}, \emph{min=0}, \emph{max=1}}{}
+Esta función regresa la lista de cortes equidistantes según el número 
+de categorias y el valor minimo y maximo ingresados.
+\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{categories}} (\sphinxhref{https://docs.python.org/3/library/functions.html\#int}{\sphinxstyleliteralemphasis{\sphinxupquote{int}}}) \textendash{} número de categorias
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{min}} (\sphinxhref{https://docs.python.org/3/library/functions.html\#float}{\sphinxstyleliteralemphasis{\sphinxupquote{float}}}) \textendash{} valor mínimo de la capa
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{max}} (\sphinxhref{https://docs.python.org/3/library/functions.html\#float}{\sphinxstyleliteralemphasis{\sphinxupquote{float}}}) \textendash{} valor máximo de la capa
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{get\_region() (en el módulo apcsig)@\spxentry{get\_region()}\spxextra{en el módulo apcsig}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{apcsig:apcsig.get_region}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{apcsig.}}\sphinxbfcode{\sphinxupquote{get\_region}}}{\emph{path\_layer}}{}
+Esta función extrae la región o extensión de una capa raster así como el número de columnas y renglones
+\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode
+\sphinxstyleliteralstrong{\sphinxupquote{path\_layer}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} ruta de la capa raster
+
+\item[{Devuelve}] \leavevmode
+en forma de lista {[}1,2,3{]} {[}1{]} las coordenadas de la extensión de una capa raster xmin,xmax,ymin,ymax ; {[}2{]}. ancho de una capa raster (número de columnas) y {[}3{]}. alto de una capa raster (número de renglones)
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{integra\_localidades\_caminos() (en el módulo apcsig)@\spxentry{integra\_localidades\_caminos()}\spxextra{en el módulo apcsig}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{apcsig:apcsig.integra_localidades_caminos}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{apcsig.}}\sphinxbfcode{\sphinxupquote{integra\_localidades\_caminos}}}{\emph{path\_lugar\_n}, \emph{w\_lugar}, \emph{path\_d\_camino\_n}, \emph{w\_d\_camino}, \emph{d\_max\_lugar}, \emph{salida}}{}
+Esta función aplica la máscara de la zona de estudio
+\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{path\_mascara}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} ruta de la mascara en formato tiff
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{path\_capa}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} ruta de la capa a la cual se requiere aplicar la máscara
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{path\_salida}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} ruta de la capa resultado de aplicar la máscara
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{region}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} coordenadas de la región del estudio  xmin,xmax,ymin,ymax
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{llenar\_campos\_nulos() (en el módulo apcsig)@\spxentry{llenar\_campos\_nulos()}\spxextra{en el módulo apcsig}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{apcsig:apcsig.llenar_campos_nulos}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{apcsig.}}\sphinxbfcode{\sphinxupquote{llenar\_campos\_nulos}}}{\emph{path\_vector}, \emph{valor=-9999}}{}~\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{path\_vector}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} Ruta de la capa vectorial
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{valor}} \textendash{} valor numérico para rellenar los campos vacios por default se establece -9999
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{max\_min\_vector() (en el módulo apcsig)@\spxentry{max\_min\_vector()}\spxextra{en el módulo apcsig}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{apcsig:apcsig.max_min_vector}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{apcsig.}}\sphinxbfcode{\sphinxupquote{max\_min\_vector}}}{\emph{layer}, \emph{campo}}{}
+Esta función regresa el maximo y minimo del campo
+elegido de la capa vectorial de entrada
+\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{layer}} (\sphinxstyleliteralemphasis{\sphinxupquote{QgsLayer}}) \textendash{} capa vectorial
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{campo}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} nombre del campo
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{normailiza() (en el módulo apcsig)@\spxentry{normailiza()}\spxextra{en el módulo apcsig}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{apcsig:apcsig.normailiza}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{apcsig.}}\sphinxbfcode{\sphinxupquote{normailiza}}}{\emph{path\_raster}, \emph{path\_raster\_n}, \emph{modo='ideales'}}{}
+Esta función normaliza una capa raster, se puede elegir entre dos tipos de normalización.
+\begin{enumerate}
+\def\theenumi{\arabic{enumi}}
+\def\labelenumi{\theenumi )}
+\makeatletter\def\p@enumii{\p@enumi \theenumi )}\makeatother
+\item {} 
+ideales: La capa ráster se divide entre el valor máximo como resultado se tiene una capa con un máximo de 1 pero el valor mínimo no necesariamente será 0
+
+\end{enumerate}
+\begin{equation*}
+\begin{split}ideales=\frac{A}{A.max}\end{split}
+\end{equation*}
+2) lineal: la capa ráster resultante tendra como valor máximo 1 y como valor mínimo 0
+el 1 representará el maximo de la capa de entrada y el 0 representa el valor mínimo de la 
+capa de entrada
+\begin{equation*}
+\begin{split}lineal=\frac{A -A.min}{A.max - A.min}\end{split}
+\end{equation*}
+\end{fulllineitems}
+
+\index{nulls() (en el módulo apcsig)@\spxentry{nulls()}\spxextra{en el módulo apcsig}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{apcsig:apcsig.nulls}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{apcsig.}}\sphinxbfcode{\sphinxupquote{nulls}}}{\emph{map}, \emph{output}, \emph{valor\_huecos=0}}{}
+Esta función asigna un valor  a los no\_data de la capa
+\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{map}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} ruta de la capa raster
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{region}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} coordenadas de la región del estudio  xmin,xmax,ymin,ymax
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+:param output:ruta de la capa resultante
+:type output: str
+\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode
+\sphinxstyleliteralstrong{\sphinxupquote{valor\_huecos}} (\sphinxhref{https://docs.python.org/3/library/functions.html\#int}{\sphinxstyleliteralemphasis{\sphinxupquote{int}}}) \textendash{} número que tendrán los pixeles nulos
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{raster\_min\_max() (en el módulo apcsig)@\spxentry{raster\_min\_max()}\spxextra{en el módulo apcsig}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{apcsig:apcsig.raster_min_max}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{apcsig.}}\sphinxbfcode{\sphinxupquote{raster\_min\_max}}}{\emph{path\_raster}}{}
+Esta funcion regresa los valores maximos y minimos de una capa raster
+\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode
+\sphinxstyleliteralstrong{\sphinxupquote{path\_raster}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} ruta de la capa raster
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{rasterizar\_vector() (en el módulo apcsig)@\spxentry{rasterizar\_vector()}\spxextra{en el módulo apcsig}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{apcsig:apcsig.rasterizar_vector}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{apcsig.}}\sphinxbfcode{\sphinxupquote{rasterizar\_vector}}}{\emph{path\_vector}, \emph{n\_campo}, \emph{region}, \emph{path\_salida}, \emph{tipo='int'}, \emph{ancho=0}, \emph{alto=0}}{}
+Esta función rasteriza una capa vectorial a partir de un campo de tipo numérico y dada una región 
+y el numero de columnas (ancho) y el numero de renglones (alto)
+\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{path\_vector}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} ruta de la capa vectorial
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{n\_campo}} (\sphinxstyleliteralemphasis{\sphinxupquote{srt}}) \textendash{} nombre del campo que contiene los id de las categorias
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{region}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} coordenadas de la región del estudio  xmin,xmax,ymin,ymax
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{path\_salida}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} ruta de la capa de salida con extension tif
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{tipo}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} tipo de dato, use “int” para entero o “float” para flotante, por default es entero
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{reclasifica\_capa() (en el módulo apcsig)@\spxentry{reclasifica\_capa()}\spxextra{en el módulo apcsig}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{apcsig:apcsig.reclasifica_capa}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{apcsig.}}\sphinxbfcode{\sphinxupquote{reclasifica\_capa}}}{\emph{capa}, \emph{region}, \emph{reglas}, \emph{salida}}{}
+Esta función permite reclasificar una capa raster y genera un archivo 
+xml el cúal contiene el nombre de las categorias.
+\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{capa}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} ruta de capa de entrada
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{region}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} coordenadas de la región del estudio  xmin,xmax,ymin,ymax
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{reglas}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} ruta del archivo txt que contiene las reglas de clasificación
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{salida}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} ruta de la capa de salida reclasificada
+
+\end{itemize}
+
+\item[{Retuns}] \leavevmode
+Capa raster clasificada y archivo xml
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{redondea\_raster() (en el módulo apcsig)@\spxentry{redondea\_raster()}\spxextra{en el módulo apcsig}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{apcsig:apcsig.redondea_raster}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{apcsig.}}\sphinxbfcode{\sphinxupquote{redondea\_raster}}}{\emph{path\_raster}, \emph{salida}, \emph{no\_decimales=3}}{}
+Esta función redondea una capa raster de tipo flotante en el número de decimales indicado
+\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{path\_raster}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} ruta de la capa raster
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{no\_decimales}} \textendash{} número de decimales a los que se va a redondear la capa, por default es 3
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{salida}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} ruta de la capa de salida
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{remove\_raster() (en el módulo apcsig)@\spxentry{remove\_raster()}\spxextra{en el módulo apcsig}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{apcsig:apcsig.remove_raster}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{apcsig.}}\sphinxbfcode{\sphinxupquote{remove\_raster}}}{\emph{path\_r}}{}
+Esta función elimina una capa del sistema
+\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode
+\sphinxstyleliteralstrong{\sphinxupquote{path\_r}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} ruta de la capa
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{tipo\_clasificador\_s() (en el módulo apcsig)@\spxentry{tipo\_clasificador\_s()}\spxextra{en el módulo apcsig}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{apcsig:apcsig.tipo_clasificador_s}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{apcsig.}}\sphinxbfcode{\sphinxupquote{tipo\_clasificador\_s}}}{\emph{clasificador}, \emph{path\_v}, \emph{l\_field}, \emph{campo\_cat=''}, \emph{fp=2}, \emph{categories=5}, \emph{min=0}, \emph{max=1}}{}~\begin{description}
+\item[{Esta función integra los modos de clasificación, weber-fechner, progresiva,}] \leavevmode
+cuartiles, quintiles, deciles o equidistante
+
+param clasificador: tipo de clasificador (progresiva, cuartiles, quintiles, deciles, equidistante)
+type clasificador: str
+\begin{quote}\begin{description}
+\item[{param path\_v}] \leavevmode
+ruta de la capa vectorial
+
+\item[{type path\_v}] \leavevmode
+str
+
+\item[{param l\_field}] \leavevmode
+nombre del campo
+
+\item[{type l\_field}] \leavevmode
+str
+
+\item[{param fp}] \leavevmode
+factor de progresión
+
+\item[{type fp}] \leavevmode
+float
+
+\item[{param categories}] \leavevmode
+número de categorias
+
+\item[{type categories}] \leavevmode
+int
+
+\item[{param min}] \leavevmode
+valor mínimo de la capa
+
+\item[{type min}] \leavevmode
+float
+
+\item[{param max}] \leavevmode
+valor máximo de la capa
+
+\item[{type max}] \leavevmode
+float
+
+\end{description}\end{quote}
+
+\end{description}
+
+\end{fulllineitems}
+
+\index{vcopia() (en el módulo apcsig)@\spxentry{vcopia()}\spxextra{en el módulo apcsig}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{apcsig:apcsig.vcopia}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{apcsig.}}\sphinxbfcode{\sphinxupquote{vcopia}}}{\emph{path\_vector}, \emph{path\_salida}}{}
+Crea una copia de la capa a partir de la ruta de la capa,
+la capa es creada con el mismo sistema de referencia que el origen.
+\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{path\_vector}} (\sphinxstyleliteralemphasis{\sphinxupquote{String}}) \textendash{} ruta de la capa original
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{path\_salida}} (\sphinxstyleliteralemphasis{\sphinxupquote{String}}) \textendash{} ruta de donde sera almacenada la capa
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+
+
 \chapter{Análisis de sensibilidad}
 \label{\detokenize{analisis:analisis-de-sensibilidad}}\label{\detokenize{analisis::doc}}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-Aliquam at turpis lacus. Pellentesque vitae efficitur lacus.
-Proin eu lectus ultrices mauris viverra vehicula. Proin ante justo,
-ultrices eu leo ac, vulputate tristique sapien. Aenean vel enim a elit mollis commodo.
-Proin laoreet quis quam quis auctor. Vestibulum nec nisl pretium, bibendum ligula in,
-suscipit neque. Nunc placerat ac ipsum vel pellentesque. Phasellus lacinia cursus porttitor.
-Donec viverra faucibus nisl, non vestibulum quam posuere sit amet. Nulla a sodales urna.
-Donec vestibulum purus purus, iaculis pellentesque eros cursus quis. Maecenas ac maximus sem.
+La prueba de sensibilidad por remoción de capas mide la importancia de cada mapa que se utiliza en un índice cartográfico como el que resulta de la aplicación de la combinación lineal ponderada.
 
 Descargar el código de ejemplo
 
@@ -207,7 +982,7 @@ en la carpeta \sphinxstylestrong{analisis\_sensibilidad}, posteriormente hacer c
 
 \noindent\sphinxincludegraphics{{crear_carpeta}.JPG}
 
-Una vez terminado el proceso, crear en la carpeta \sphinxstylestrong{analisis\_sensibilidad} una (4)c arpeta con el nombre \sphinxstylestrong{salida}
+Una vez terminado el proceso, crear en la carpeta \sphinxstylestrong{analisis\_sensibilidad} una (4) carpeta con el nombre \sphinxstylestrong{salida}
 
 \noindent\sphinxincludegraphics{{c_salida}.JPG}
 
@@ -254,14 +1029,200 @@ ha procesado cada una de las capas.
 \label{\detokenize{analisis:bibliografia}}
 
 \subsection{Documentación dentro del código}
-\label{\detokenize{analisis:documentacion-dentro-del-codigo}}
+\label{\detokenize{analisis:module-sensibilidad_por_remocion_capas}}\label{\detokenize{analisis:documentacion-dentro-del-codigo}}\index{sensibilidad\_por\_remocion\_capas (módulo)@\spxentry{sensibilidad\_por\_remocion\_capas}\spxextra{módulo}}
+Autores: LANCIS -APC, Fidel Serrano,Victor Hernandez
+
+Qgis 3.4 o superior
+\index{crea\_capa() (en el módulo sensibilidad\_por\_remocion\_capas)@\spxentry{crea\_capa()}\spxextra{en el módulo sensibilidad\_por\_remocion\_capas}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{analisis:sensibilidad_por_remocion_capas.crea_capa}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{sensibilidad\_por\_remocion\_capas.}}\sphinxbfcode{\sphinxupquote{crea\_capa}}}{\emph{ecuacion}, \emph{rasters\_input}, \emph{salida}}{}
+Esta función crea una capa mediante la calculadora raster
+de GDAL, esta función esta limitada hasta 14 variables en la ecuación.
+\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{ecuacion}} (\sphinxstyleliteralemphasis{\sphinxupquote{String}}) \textendash{} ecuación expresada en formato gdal,                    es este caso es la salida de la funcion \sphinxstyleemphasis{ecuacion\_clp}
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{rasters\_input}} (\sphinxstyleliteralemphasis{\sphinxupquote{lista}}) \textendash{} lista de los paths de los archivos rasters, salida de la función \sphinxstyleemphasis{separa\_ruta\_pesos}
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{salida}} (\sphinxstyleliteralemphasis{\sphinxupquote{String}}) \textendash{} ruta con extensión tiff de la salida
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{ecuacion\_clp() (en el módulo sensibilidad\_por\_remocion\_capas)@\spxentry{ecuacion\_clp()}\spxextra{en el módulo sensibilidad\_por\_remocion\_capas}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{analisis:sensibilidad_por_remocion_capas.ecuacion_clp}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{sensibilidad\_por\_remocion\_capas.}}\sphinxbfcode{\sphinxupquote{ecuacion\_clp}}}{\emph{pesos}}{}
+Esta función recibe una lista de pesos para regresar la ecuación
+en la estructura requerida por gdal para la combinación lineal ponderada.
+\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode
+\sphinxstyleliteralstrong{\sphinxupquote{pesos}} (\sphinxstyleliteralemphasis{\sphinxupquote{lista}}) \textendash{} lista de los pesos de las capas, salida de la función \sphinxstyleemphasis{separa\_ruta\_pesos}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{ecuacion\_vulnerabilidad() (en el módulo sensibilidad\_por\_remocion\_capas)@\spxentry{ecuacion\_vulnerabilidad()}\spxextra{en el módulo sensibilidad\_por\_remocion\_capas}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{analisis:sensibilidad_por_remocion_capas.ecuacion_vulnerabilidad}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{sensibilidad\_por\_remocion\_capas.}}\sphinxbfcode{\sphinxupquote{ecuacion\_vulnerabilidad}}}{\emph{n}}{}
+Esta función expresa la ecuación para el cálculo de la vulnerabilidad
+\begin{align*}\!\begin{aligned}
+vulnerabilidad = \exp^{( 1 - sus)^{(1 + ca)}}\\
+| exp = Exposición
+| sus = Susceptibilidad
+| ca = Capacidad adaptativa\\
+\end{aligned}\end{align*}\begin{quote}\begin{description}
+\item[{Devuelve}] \leavevmode
+str ecuacion
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{get\_region() (en el módulo sensibilidad\_por\_remocion\_capas)@\spxentry{get\_region()}\spxextra{en el módulo sensibilidad\_por\_remocion\_capas}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{analisis:sensibilidad_por_remocion_capas.get_region}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{sensibilidad\_por\_remocion\_capas.}}\sphinxbfcode{\sphinxupquote{get\_region}}}{\emph{path\_layer}}{}
+Esta función regresa en forma de cadena de texto
+las coordenadas de la extensión de una capa raster
+
+param path\_layer: ruta de la capa raster
+type path\_layer: str
+
+\end{fulllineitems}
+
+\index{lista\_criterios() (en el módulo sensibilidad\_por\_remocion\_capas)@\spxentry{lista\_criterios()}\spxextra{en el módulo sensibilidad\_por\_remocion\_capas}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{analisis:sensibilidad_por_remocion_capas.lista_criterios}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{sensibilidad\_por\_remocion\_capas.}}\sphinxbfcode{\sphinxupquote{lista\_criterios}}}{\emph{dicc}}{}
+Esta función regresa una lista de los criterios de un diccionario
+\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode
+\sphinxstyleliteralstrong{\sphinxupquote{dicc}} \textendash{} Diccionario que contiene nombres, rutas y pesos para el
+
+\end{description}\end{quote}
+
+análisis de vulnerabilidad / sensibilidad
+:type dicc: diccionario python
+
+\end{fulllineitems}
+
+\index{lista\_pesos\_ruta() (en el módulo sensibilidad\_por\_remocion\_capas)@\spxentry{lista\_pesos\_ruta()}\spxextra{en el módulo sensibilidad\_por\_remocion\_capas}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{analisis:sensibilidad_por_remocion_capas.lista_pesos_ruta}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{sensibilidad\_por\_remocion\_capas.}}\sphinxbfcode{\sphinxupquote{lista\_pesos\_ruta}}}{\emph{dicc}}{}
+Funcion para sacar listas por subcriterio
+
+\end{fulllineitems}
+
+\index{media\_raster() (en el módulo sensibilidad\_por\_remocion\_capas)@\spxentry{media\_raster()}\spxextra{en el módulo sensibilidad\_por\_remocion\_capas}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{analisis:sensibilidad_por_remocion_capas.media_raster}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{sensibilidad\_por\_remocion\_capas.}}\sphinxbfcode{\sphinxupquote{media\_raster}}}{\emph{path\_raster}}{}
+Esta función regresa el promedio de todos los pixeles válidos
+de un archivo raster
+\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode
+\sphinxstyleliteralstrong{\sphinxupquote{path\_raster}} (\sphinxstyleliteralemphasis{\sphinxupquote{String}}) \textendash{} Ruta del archivo raster
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{nombre\_capa() (en el módulo sensibilidad\_por\_remocion\_capas)@\spxentry{nombre\_capa()}\spxextra{en el módulo sensibilidad\_por\_remocion\_capas}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{analisis:sensibilidad_por_remocion_capas.nombre_capa}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{sensibilidad\_por\_remocion\_capas.}}\sphinxbfcode{\sphinxupquote{nombre\_capa}}}{\emph{path\_capa}}{}
+Esta función regresa el nombre de una capa sin extensión
+\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode
+\sphinxstyleliteralstrong{\sphinxupquote{path\_capa}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} ruta de la capa
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{quita() (en el módulo sensibilidad\_por\_remocion\_capas)@\spxentry{quita()}\spxextra{en el módulo sensibilidad\_por\_remocion\_capas}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{analisis:sensibilidad_por_remocion_capas.quita}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{sensibilidad\_por\_remocion\_capas.}}\sphinxbfcode{\sphinxupquote{quita}}}{\emph{dicc}, \emph{key}}{}
+Esta función retira un elemento del diccionario y regresa un nuevo diccionario
+sin dicho elemento \textless{}\textless{}dicc\_q\textgreater{}\textgreater{}.
+\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{dicc}} (\sphinxstyleliteralemphasis{\sphinxupquote{diccionario}}) \textendash{} Diccionario con la estructura requerida
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{key}} (\sphinxstyleliteralemphasis{\sphinxupquote{String}}) \textendash{} nombre de la variable a quitar
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{quita\_reescala() (en el módulo sensibilidad\_por\_remocion\_capas)@\spxentry{quita\_reescala()}\spxextra{en el módulo sensibilidad\_por\_remocion\_capas}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{analisis:sensibilidad_por_remocion_capas.quita_reescala}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{sensibilidad\_por\_remocion\_capas.}}\sphinxbfcode{\sphinxupquote{quita\_reescala}}}{\emph{dicc}, \emph{key}}{}
+Función que integra las funciones quita y reescala y regresa
+un diccionario sin la variable y con los pesos reescalados.
+\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{dicc}} (\sphinxstyleliteralemphasis{\sphinxupquote{diccionario}}) \textendash{} Diccionario con la estructura requerida
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{key}} (\sphinxstyleliteralemphasis{\sphinxupquote{String}}) \textendash{} nombre de la variable a quitar
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{raster\_min\_max() (en el módulo sensibilidad\_por\_remocion\_capas)@\spxentry{raster\_min\_max()}\spxextra{en el módulo sensibilidad\_por\_remocion\_capas}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{analisis:sensibilidad_por_remocion_capas.raster_min_max}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{sensibilidad\_por\_remocion\_capas.}}\sphinxbfcode{\sphinxupquote{raster\_min\_max}}}{\emph{path\_raster}}{}
+Esta funcion regresa los valores maximos y minimos de una capa raster
+\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode
+\sphinxstyleliteralstrong{\sphinxupquote{path\_raster}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} ruta de la capa raster
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{reescala() (en el módulo sensibilidad\_por\_remocion\_capas)@\spxentry{reescala()}\spxextra{en el módulo sensibilidad\_por\_remocion\_capas}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{analisis:sensibilidad_por_remocion_capas.reescala}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{sensibilidad\_por\_remocion\_capas.}}\sphinxbfcode{\sphinxupquote{reescala}}}{\emph{dicc\_q}}{}
+Esta función rescala un diccionario que se le a quitado un criterio
+y regresa el diccionario con los pesos rescalados
+\begin{quote}\begin{description}
+\item[{Parámetros}] \leavevmode
+\sphinxstyleliteralstrong{\sphinxupquote{dicc\_q}} \textendash{} salida de la función \sphinxstyleemphasis{quita}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+
 
 \chapter{Índice Lee-Sallee}
 \label{\detokenize{leesallee:indice-lee-sallee}}\label{\detokenize{leesallee::doc}}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-Aliquam at turpis lacus. Pellentesque vitae efficitur lacus.
-Proin eu lectus ultrices mauris viverra vehicula. Proin ante justo,
-ultrices eu leo ac, vulputate tristique sapien. Aenean vel enim a elit mollis commodo.
+Para capas vectoriales
 \begin{equation*}
 \begin{split}lee\_sallee\_index =  \frac{A\cap B}{A\cup B}\end{split}
 \end{equation*}
@@ -448,7 +1409,7 @@ Descargar los insumos para este ejemplo \sphinxcode{\sphinxupquote{aqui}}
 Abrir el código \sphinxstylestrong{owa\_raster.py} en Qgis 3.4 o superior,
 Para resolver cualquier duda al respecto, consultar la \sphinxhref{https://vichdzgeo.github.io/geo\_lancis/ejecucion.html}{guia}
 
-\noindent\sphinxincludegraphics{{codigo}.PNG}
+\noindent\sphinxincludegraphics{{codigo1}.PNG}
 
 
 \subsubsection{2. Actualizar el diccionario}
@@ -582,7 +1543,7 @@ All
 para cada valor en la lista, el código generará un mapa en el directorio
 de salida
 
-\noindent\sphinxincludegraphics{{salida}.PNG}
+\noindent\sphinxincludegraphics{{salida}.png}
 
 
 \section{Bibliografía}
@@ -638,7 +1599,7 @@ Descargar el código de ejemplo
 Abrir el código \sphinxstylestrong{verificación\_layers.py} en Qgis 3.4 o superior,
 para resolver cualquier duda al respecto, consultar la \sphinxhref{https://vichdzgeo.github.io/geo\_lancis/ejecucion.html}{guia}
 
-\noindent\sphinxincludegraphics{{codigo1}.PNG}
+\noindent\sphinxincludegraphics{{codigo3}.PNG}
 
 
 \subsection{2. Indicar el directorio}
@@ -791,7 +1752,7 @@ Directorio que contiene capas de USV de las 6 series de INEGI para el estado de 
 Abrir el código \sphinxstylestrong{tabulacion\_3geo.py} en Qgis 3.4 o superior,
 Para resolver cualquier duda al respecto, consultar la \sphinxhref{https://vichdzgeo.github.io/geo\_lancis/ejecucion.html}{guia}
 
-\noindent\sphinxincludegraphics{{codigo3}.PNG}
+\noindent\sphinxincludegraphics{{codigo2}.PNG}
 
 
 \subsubsection{1. Indicar la ruta de los insumos}
@@ -1002,7 +1963,7 @@ Descargar los insumos para este ejemplo \sphinxcode{\sphinxupquote{aqui}}
 Abrir el código \sphinxstylestrong{owa\_raster.py} en Qgis 3.4 o superior,
 Para resolver cualquier duda al respecto, consultar la \sphinxhref{https://vichdzgeo.github.io/geo\_lancis/ejecucion.html}{guia}
 
-\noindent\sphinxincludegraphics{{codigo2}.PNG}
+\noindent\sphinxincludegraphics{{codigo}.PNG}
 
 
 \subsubsection{2. Ingresar la ruta de la geometria A}
@@ -1255,8 +2216,14 @@ ruta : SIGdesarrollosig\_fomixentregablesmunicipios\_usv
 \renewcommand{\indexname}{Índice de Módulos Python}
 \begin{sphinxtheindex}
 \let\bigletter\sphinxstyleindexlettergroup
+\bigletter{a}
+\item\relax\sphinxstyleindexentry{apcsig}\sphinxstyleindexpageref{apcsig:\detokenize{module-apcsig}}
+\indexspace
 \bigletter{i}
 \item\relax\sphinxstyleindexentry{indice\_lee\_sallee}\sphinxstyleindexpageref{leesallee:\detokenize{module-indice_lee_sallee}}
+\indexspace
+\bigletter{s}
+\item\relax\sphinxstyleindexentry{sensibilidad\_por\_remocion\_capas}\sphinxstyleindexpageref{analisis:\detokenize{module-sensibilidad_por_remocion_capas}}
 \end{sphinxtheindex}
 
 \renewcommand{\indexname}{Índice}

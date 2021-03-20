@@ -99,7 +99,7 @@ def asignar_estilo_raster(lista_val,raster,rampa = 'vr',ind=1,opacidad=1):
         
         lst = [ QgsColorRampShader.ColorRampItem(lista_val[1],QColor(colDic['MB']),'MB:'+str(round(lista_val[0],3))+'-'+str(round(lista_val[1],3))),\
                 QgsColorRampShader.ColorRampItem(lista_val[2], QColor(colDic['M']),'M:'+str(round(lista_val[1],3))+'-'+str(round(lista_val[2],3))), \
-                QgsColorRampShader.ColorRampItem(lista_val[3], QColor(colDic['MA']),'MA:'+str(round(lista_val[2],3))+'-'+str(round(lista_val[3],3)))]
+                QgsColorRampShader.ColorRampItem(lista_val[3]+0.001, QColor(colDic['MA']),'MA:'+str(round(lista_val[2],3))+'-'+str(round(lista_val[3],3)))]
         
         myRasterShader = QgsRasterShader()
         myColorRamp = QgsColorRampShader()
@@ -180,19 +180,20 @@ def asignar_estilo_raster(lista_val,raster,rampa = 'vr',ind=1,opacidad=1):
             print (" %d,"%(i+1),round(lista_val[i],3),",",round(lista_val[i+1],3))
     
 raster = iface.activeLayer()
-min,max = raster_min_max(raster)
-fp = 1.0
-categorias = 3
-intervalos = equidistantes(categorias,min,max)
-#intervalos = wf(fp,min,max,categorias,'directo')
-asignar_estilo_raster(intervalos,raster,'av',1)
+#min,max = raster_min_max(raster)
+min,max = 0,1
+fp = 1.3
+categorias = 5
+#intervalos = equidistantes(categorias,min,max)
+intervalos = wf(fp,min,max,categorias,'inverso')
+#asignar_estilo_raster(intervalos,raster,'av',1)
 
-#p_salida = "/".join(raster.source().split("/")[:-1])+"/cortes_"+raster.source().split("/")[-1][:3]+'_wf_'+str(fp).replace(".","_")+".csv"
-#archivo = open(p_salida,"w")
-#archivo.write("categoria,corte_inf,corte_sup,\n")
-#
-#for i in range(len(intervalos)):
-#    if i < len(intervalos)-1:
-#        cadena = (" %d,"%(i+1)+str(round(intervalos[i],3))+","+str(round(intervalos[i+1],3)))
-#        archivo.write(cadena+"\n")
-#archivo.close()
+p_salida = 'C:/Dropbox (LANCIS)/SIG/desarrollo/sig_papiit/entregables/aptitud_costera/turismo/sin_anp/cortes/'+'owa_cats_'+str(categorias)+'_wf_'+str(fp).replace(".","_")+".csv"
+archivo = open(p_salida,"w")
+archivo.write("categoria,corte_inf,corte_sup,\n")
+
+for i in range(len(intervalos)):
+    if i < len(intervalos)-1:
+        cadena = (" %d,"%(i+1)+str(round(intervalos[i],3))+","+str(round(intervalos[i+1],3)))
+        archivo.write(cadena+"\n")
+archivo.close()
