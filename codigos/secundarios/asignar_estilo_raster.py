@@ -1,6 +1,34 @@
 import numpy as np 
 
+def progressive(fp=2, min=0, max=1, categories=5):
+
+    # # Cortes de categories siguiendo Ley de Weber
+    # print '\n\t\t////Cortes de categories siguiendo Ley de Weber-Feshner////\n'
+    
+    numeroDeCortes = categories - 1
+    laSuma = 0
+
+    for i in range(categories) :
+        laSuma += ((fp) ** i)
+
+    cachito = max / laSuma
+
+    FuzzyCut = []
+
+    for i in range(numeroDeCortes) :
+        anterior = 0
+        if i > 0:
+            anterior = FuzzyCut[i - 1]
+
+        corte = anterior + fp ** i * cachito
+        FuzzyCut.append(corte)
+
+    FuzzyCut.insert(0,min)
+    FuzzyCut.append(max)
+    
+    return FuzzyCut
 def equidistantes (categories=5,min=0,max=1):
+    
     '''
     Esta función regresa la lista de cortes equidistantes según el número 
     de categorias y el valor minimo y maximo ingresados.
@@ -141,15 +169,16 @@ def asignar_estilo_raster(lista_val,raster,rampa = 'vr',ind=1,opacidad=1):
         raster.triggerRepaint()
 
     elif len(lista_val)==6:
-        if ind==1 and rampa == 'vr':
-            colDic = {'MB':'#fcf30a','B':'#fbb43b','M':'#f07424','A':'#dc1400','MA':'#820f34'}
-            #colDic = {'MB':'#267300','B':'#4ce600','M':'#ffff00','A':'#ff5500','MA':'#730000'}
+        if ind==1 and rampa == 'semaforo':
+            #colDic = {'MB':'#fcf30a','B':'#fbb43b','M':'#f07424','A':'#dc1400','MA':'#820f34'}
+            colDic = {'MB':'#267300','B':'#4ce600','M':'#ffff00','A':'#ff5500','MA':'#730000'}
         elif  ind==1 and rampa == 'av':
             colDic = {'MB':'#ffee7e','B':'#faaf3c','M':'#f35864','A':'#c9008c','MA':'#691e91'}
-        elif ind==-1 and rampa == 'vr':
+        elif ind==-1 and rampa == 'semaforo':
             colDic = {'MB':'#730000','B':'#ff5500','M':'#ffff00','A':'#4ce600','MA':'#267300'}
         elif ind==-1 and rampa == 'av':
             colDic = {'MB':'#691e91','B':'#c9008c','M':'#f35864','A':'#faaf3c','MA':'#ffee7e'}
+        
         
         lst = [ QgsColorRampShader.ColorRampItem(lista_val[1],QColor(colDic['MB']),'MB:'+str(round(lista_val[0],3))+'-'+str(round(lista_val[1],3))),\
                 QgsColorRampShader.ColorRampItem(lista_val[2], QColor(colDic['B']),'B:'+str(round(lista_val[1],3))+'-'+str(round(lista_val[2],3))), \
@@ -180,14 +209,17 @@ def asignar_estilo_raster(lista_val,raster,rampa = 'vr',ind=1,opacidad=1):
             print (" %d,"%(i+1),round(lista_val[i],3),",",round(lista_val[i+1],3))
     
 raster = iface.activeLayer()
-#min,max = raster_min_max(raster)
-min,max = 0,1
-fp = 1.3
+min,max = raster_min_max(raster)
+print(min,max)
+#min,max = 0,1
+fp = 1
 categorias = 5
 #intervalos = equidistantes(categorias,min,max)
-intervalos = wf(fp,min,max,categorias,'inverso')
-#asignar_estilo_raster(intervalos,raster,'av',1)
+#intervalos = wf(fp,min,max,categorias,'inverso')
+intervalos  = progressive(fp,min,max,categorias)
+#asignar_estilo_raster(intervalos,raster,'semaforo',-1)
 
+"""
 p_salida = 'C:/Dropbox (LANCIS)/SIG/desarrollo/sig_papiit/entregables/aptitud_costera/turismo/sin_anp/cortes/'+'owa_cats_'+str(categorias)+'_wf_'+str(fp).replace(".","_")+".csv"
 archivo = open(p_salida,"w")
 archivo.write("categoria,corte_inf,corte_sup,\n")
@@ -197,3 +229,4 @@ for i in range(len(intervalos)):
         cadena = (" %d,"%(i+1)+str(round(intervalos[i],3))+","+str(round(intervalos[i+1],3)))
         archivo.write(cadena+"\n")
 archivo.close()
+"""

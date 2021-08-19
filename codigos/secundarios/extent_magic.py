@@ -2,7 +2,7 @@ import math
 layer = iface.activeLayer()
 extent = layer.extent()
 #region_peninsula = '145399.882634,526940.882019,1979440.790516,2391757.031490'
-xmin, xmax,ymin,ymax = extent.xMinimum(), extent.xMaximum(),extent.yMinimum(),2391840
+xmin, xmax,ymin,ymax = extent.xMinimum(), extent.xMaximum(),extent.yMinimum(),extent.yMaximum()#2391840
 #extension_peninsula = '145399.0,526999.0,1979440.0,2391840.0'
 def more_up(v_o):
     v_n = round(v_o)

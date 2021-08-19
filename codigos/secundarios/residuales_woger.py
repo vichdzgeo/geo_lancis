@@ -19,10 +19,11 @@ def residuales_gower(path_csv_promedios,path_residuales):
     print (residuales)
     residuales.round(3).to_csv(path_residuales,index=False)
 
-
-promedios = pd.read_csv('C:/Dropbox (LANCIS)/CARPETAS_TRABAJO/vhernandez/pruebas_sigzonning/pca_yuc/bd_promedios_grupos.csv')
+path_promedios= "C:/Dropbox (LANCIS)/SIG/desarrollo/sig_fomix/procesamiento/analisis_aptitud/politetico_divisivo/grass/grupos_10m_sin_acu_pesca/bd_promedios_grupos.csv"
+promedios = pd.read_csv(path_promedios)
 print (promedios)
-criterios = list(promedios.columns)[1:]
+criterios = list(promedios.columns)[1:]#1
+print(criterios)
 promedios_c = promedios.filter(items=criterios).mean(axis=1)
 promedios_r = promedios.filter(items=criterios).mean(axis=0)
 promedios_prom = promedios.filter(items=criterios).to_numpy().mean()
@@ -34,12 +35,13 @@ for k,v in promedios.filter(items=criterios).items():
         residuales[k][k2]=residual
 
 print (residuales)
-#residuales.round(3).to_csv('C:/Dropbox (LANCIS)/CARPETAS_TRABAJO/vhernandez/pruebas_sigzonning/pca_bc/bd_residuales_grupos.csv',index=False)
+
+residuales.round(3).to_csv(path_promedios.replace("promedios","residuales"),index=False)
 residuales.round(3)
 N=len(residuales)
 ind = np.arange(N)
 #plt.figure()
-residuales.filter(items=criterios).plot(kind='bar',width=0.35)
+residuales.filter(items=criterios).plot(kind='bar',width=1)
 l_grupos = ["grupo "+str(i) for i in range(1,len(residuales)+1)]
 plt.xticks(ind, (l_grupos))
 plt.axhline(0, color='k')

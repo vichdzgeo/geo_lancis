@@ -59,7 +59,7 @@ def wf(fp=2,min=0,max=1,categorias=5):
     return lista_val
 
 
-def progresiva(fp=2,minimo=0,maximo=1):
+def progresiva(fp=2,minimo=0,maximo=1,categorias=5):
 
 
     ConjDifusos = ['MB', 'B', 'M', 'A', 'E']
@@ -68,7 +68,7 @@ def progresiva(fp=2,minimo=0,maximo=1):
 
     # print '\n\t\t////Cortes de categorias siguiendo Ley de Weber-Feshner////\n'
 
-    numcats = len(ConjDifusos)
+    numcats = categorias
     numeroDeCortes = numcats - 1
     laSuma = 0
 
@@ -96,7 +96,7 @@ def tipo_clasificador(clasificador,path_r,fp=2,categorias = 5,min=0,max=1):
 
     if clasificador.lower() == "progresiva":
         nombre =clasificador.lower()+"_"+str(fp).replace('.','_')
-        return progresiva(fp,min,max),nombre
+        return progresiva(fp,min,max,categorias),nombre
         
     elif clasificador.lower() == "wf" or clasificador.lower() == "weber-fechner":
         nombre =clasificador.lower()+"_"+str(fp).replace('.','_')
@@ -148,7 +148,7 @@ def clasifica_raster(path_capa,clasificador,fp=2,categorias=5,min=0,max=1):
     cortes,nombre = tipo_clasificador(clasificador,path_capa,fp,categorias,min,max)
     no_d = raster_nodata(path_capa)
     ecuacion = ecuacion_class(cortes)
-    path_salida = path_capa.split(".")[0]+"_"+nombre+".tif"
+    path_salida = path_capa.split(".")[0]+"_"+nombre+"_cats"+str(categorias)+".tif"
     dicc ={        
         'INPUT_A':path_capa,
         'BAND_A':1,
@@ -188,7 +188,7 @@ def cargar_raster(path_raster):
     elif 'deciles' in nombre:
         estilo = "C:/Users/Victor/Downloads/sigclassifier/rampa_deciles.qml"
     else:
-        estilo = "C:/Users/Victor/Downloads/sigclassifier/rampa_5cats.qml"
+        estilo = "C:/Users/Victor/Downloads/sigclassifier/rampa_3cats.qml"
     rlayer.loadNamedStyle(estilo)
     rlayer.triggerRepaint()
 
@@ -199,9 +199,11 @@ def cargar_raster(path_raster):
 #clasifica_raster(path_capa,"wf",1.7) # indice de riesgo
 #path_capa = 'C:/Dropbox (LANCIS)/SOFTWARE/plenumsoft/datos_prueba/sigclassifier/yucatan/tp_vulnerabilidad_exp_sus_res_n.tif'
 
-path_capa = 'C:/Dropbox (LANCIS)/SOFTWARE/plenumsoft/datos_prueba/sigindex/yuc_230420/clp_qgis_norm.tif'
-min,max=raster_min_max(path_capa)
-clasifica_raster(path_capa,"equidistante",categorias=10,min=min,max=max) # indice de fragilidad
+fps = [1.3,1.4,1.5,1.6,1.7,1.8,1.9,2.0]
+path_capa = iface.activeLayer().source()
+#min,max=raster_min_max(path_capa)
+for f in fps:
+    clasifica_raster(path_capa,"progresiva",fp=f,categorias=3,min=0,max=1) # indice de fragilidad
 #clasifica_raster(path_capa,"wf",1.2) # indice de vulnerabilidad costera
 
 #clasifica_raster(path_capa,"deciles")

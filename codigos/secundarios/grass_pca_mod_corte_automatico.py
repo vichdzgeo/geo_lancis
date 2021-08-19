@@ -209,10 +209,10 @@ def getPuntoDeCorte(data, numCategorias):
         #print ('var_b',var_b)
         d_sig=var_total-(li_var_a[i]+var_b) # al varlor de var_total le resta el valor de la suma  del valor de la lista  li_var_a en la posición i y el valor var_b
         li_d_sig.append(d_sig)  # se agrega a una lista el valor d_sig
-    print (li_d_sig)
+    #print (li_d_sig)
     m=max(li_d_sig)# se obtiene el valor maximo de la lista li_d_sig
     lugar_corte=[i for i, j in enumerate(li_d_sig) if j == m]  #obtiene la posicion o posiciones del valor maximo en la lista li_d_sig
-    delta_corte = abs((li_d_sig[lugar_corte[0]]-li_d_sig[lugar_corte[0]-1]))
+    #delta_corte = abs((li_d_sig[lugar_corte[0]]-li_d_sig[lugar_corte[0]-1]))
     
 
     if len(lugar_corte) == 1: # and delta_corte < 0.1: # si el lugar de corte solo contiene una posicion
@@ -228,7 +228,7 @@ def getPuntoDeCorte(data, numCategorias):
                         corte = f_v1
                         break
 
-    return corte,delta_corte
+    return corte
 
 
 def cortes_ab(capa_pca,corte_ant,capas):
@@ -313,7 +313,7 @@ def main():
 
     print(nombre_pca)
     data = stadistica(capa_pca,ruta)
-    corte_ant, delta  = getPuntoDeCorte(data,11)
+    corte_ant = getPuntoDeCorte(data,11)
 
     siguiente_corte(nombre_pca,corte_ant,capas,capa_pca,ruta)
     

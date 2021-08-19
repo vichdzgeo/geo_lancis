@@ -27,6 +27,29 @@ def nombre_capa(path_capa):
     nombre = path_capa.split("/")[-1].split(".")[0]
     return nombre
 
+def lista_archivos(path, n_ext='.tif'):
+    '''
+    Esta función busca dentro de un directorio especificado todas las capas con extensión **shp**
+    y regresa una lista con la ruta de cada una de ellas.
+
+    :param path: ruta del direcctorio que contiene las capas shape
+    :type path: str
+
+    :returns: lista con la ruta de cada capa localizada en el directorio y subdirectorios
+    :rtype: list 
+    '''
+    lista_shp=[]
+    for root, dirs, files in os.walk(path):
+        for name in files:
+            extension = os.path.splitext(name)
+            if extension[1] == n_ext:
+                ruta = (root.replace("\\","/")+"/").replace("//","/")+name
+                lista_shp.append(ruta)
+    return lista_shp
+
+
+
+
 ### FUNCIONES PARA CLASIFICAR  ########
 
 def progressive(fp=2, min=0, max=1, categories=5):
@@ -477,11 +500,12 @@ def agregar_categorias(path_v,campo,nuevo_int_cats='categorias',cont=1):
     print ('capa clasificada...')
     print ('generando archivo txt de categorias...')
     path_tp_reglas = "/".join(path_v.split("/")[:-1])+"/reglas_"+path_v.split("/")[-1].split(".")[0]+".txt"
-    reglas = open(path_tp_reglas,"w")
-    for i in range(1,cont):
-        reglas.write(str(i)+" = "+str(i)+" "+lista[i-1]+'\n')
-    reglas.close()
+#    reglas = open(path_tp_reglas,"w")
+#    for i in range(1,cont):
+#        reglas.write(str(i)+" = "+str(i)+" "+lista[i-1]+'\n')
+#    reglas.close()
     return path_tp_reglas,n_cats
+    
 def extrae_categorias(path_v,salida,campo,categorias):
     layer = QgsVectorLayer(path_v,"","ogr")
     if len(categorias)==1:
@@ -752,7 +776,7 @@ def ecuacion_clp(pesos):
         else:
             ecuacion+= (str(b)+str(' * ')+str(abc[a]))
     return ecuacion
-def normailiza(path_raster, path_raster_n,modo='ideales'):
+def normailiza(path_raster, path_raster_n,modo='ideales',decimales=3):
     '''
     Esta función normaliza una capa raster, se puede elegir entre dos tipos de normalización.
 
@@ -772,21 +796,17 @@ def normailiza(path_raster, path_raster_n,modo='ideales'):
     '''
 
     min,max = raster_min_max(path_raster)
-    
     no_data =raster_nodata(path_raster)
     if modo == 'ideales':
         ec_norm ='(A' + ') / (' + str(max) +')'  # llevar a ideal 
     elif modo == 'lineal':
         ec_norm ='(A - '+str(min) + ') / (' + str(max)+'-'+str(min) +')'  # normalizar 
-    dicc ={        
-        'INPUT_A':path_raster,
-        'BAND_A':1,
-        'FORMULA':ec_norm,
-        'NO_DATA': no_data,
-        'RTYPE':5,
-        'EXTRA':'--co="COMPRESS=LZW"',
-        'OUTPUT':path_raster_n}
-    pr.run("gdal:rastercalculator",dicc)
+    
+    calculadora_grass(path_raster, ec_norm,path_raster_n.split(".")[0]+"_raw.tif")
+    
+    redondea_raster(path_raster_n.split(".")[0]+"_raw.tif",path_raster_n,decimales)
+    remove_raster(path_raster_n.split(".")[0]+"_raw.tif")
+    
 def raster_min_max(path_raster):
     '''
     Esta funcion regresa los valores maximos y minimos de una capa raster
@@ -838,6 +858,7 @@ def redondea_raster(path_raster,salida,no_decimales=3):
                 'EXTRA':'--co=\"COMPRESS=LZW\"',
                 'OUTPUT':salida}
     pr.run("gdal:rastercalculator",dicc)
+    
 def crea_capa_raster(ecuacion,rasters_input,salida,decimales=3): 
 
     '''
@@ -868,6 +889,19 @@ def crea_capa_raster(ecuacion,rasters_input,salida,decimales=3):
     path_L=''
     path_M=''
     path_N=''
+    path_O=''
+    path_P=''
+    path_Q=''
+    path_R=''
+    path_S=''
+    path_T=''
+    path_U=''  
+    path_V=''
+    path_W=''
+    path_X=''
+    path_Y=''
+    path_Z=''
+
 
 
     total_raster = len(rasters_input)
@@ -901,6 +935,30 @@ def crea_capa_raster(ecuacion,rasters_input,salida,decimales=3):
             path_M=b
         elif a == 13:
             path_N=b
+        elif a == 14:
+            path_O=b
+        elif a == 15:
+            path_P=b
+        elif a == 16:
+            path_Q=b
+        elif a == 17:
+            path_R=b
+        elif a == 18:
+            path_S=b
+        elif a == 19:
+            path_T=b
+        elif a == 20:
+            path_U=b
+        elif a == 21:
+            path_V=b
+        elif a == 22:
+            path_W=b
+        elif a == 23:
+            path_X=b
+        elif a == 24:
+            path_Y=b
+        elif a == 25:
+            path_Z=b
     tp_salida =salida.split(".")[0]+"_raw.tif"
      
     if total_raster == 1:
@@ -1106,10 +1164,340 @@ def crea_capa_raster(ecuacion,rasters_input,salida,decimales=3):
                         #creation_options=["COMPRESS=LZW","PREDICTOR=3","TILED=YES"],
                         quiet=True)
 
+    if total_raster == 15:
+        gdal_calc.Calc(calc=ecuacion, 
+                        A=path_A, 
+                        B=path_B,
+                        C=path_C, 
+                        D=path_D,
+                        E=path_E, 
+                        F=path_F,
+                        G=path_G, 
+                        H=path_H,
+                        I=path_I,
+                        J=path_J,
+                        K=path_K,
+                        L=path_L,
+                        M=path_M,
+                        N=path_N,
+                        O=path_O,
+                        outfile=tp_salida,
+                        NoDataValue=-9999.0,
+                        #creation_options=["COMPRESS=LZW","PREDICTOR=3","TILED=YES"],
+                        quiet=True)
+
+    if total_raster == 16:
+        gdal_calc.Calc(calc=ecuacion, 
+                        A=path_A, 
+                        B=path_B,
+                        C=path_C, 
+                        D=path_D,
+                        E=path_E, 
+                        F=path_F,
+                        G=path_G, 
+                        H=path_H,
+                        I=path_I,
+                        J=path_J,
+                        K=path_K,
+                        L=path_L,
+                        M=path_M,
+                        N=path_N,
+                        O=path_O,
+                        P=path_P,
+                        outfile=tp_salida,
+                        NoDataValue=-9999.0,
+                        #creation_options=["COMPRESS=LZW","PREDICTOR=3","TILED=YES"],
+                        quiet=True)
+
+    if total_raster == 17:
+        gdal_calc.Calc(calc=ecuacion, 
+                        A=path_A, 
+                        B=path_B,
+                        C=path_C, 
+                        D=path_D,
+                        E=path_E, 
+                        F=path_F,
+                        G=path_G, 
+                        H=path_H,
+                        I=path_I,
+                        J=path_J,
+                        K=path_K,
+                        L=path_L,
+                        M=path_M,
+                        N=path_N,
+                        O=path_O,
+                        P=path_P,
+                        Q=path_Q,
+                        outfile=tp_salida,
+                        NoDataValue=-9999.0,
+                        #creation_options=["COMPRESS=LZW","PREDICTOR=3","TILED=YES"],
+                        quiet=True)
+
+    if total_raster == 18:
+        gdal_calc.Calc(calc=ecuacion, 
+                        A=path_A, 
+                        B=path_B,
+                        C=path_C, 
+                        D=path_D,
+                        E=path_E, 
+                        F=path_F,
+                        G=path_G, 
+                        H=path_H,
+                        I=path_I,
+                        J=path_J,
+                        K=path_K,
+                        L=path_L,
+                        M=path_M,
+                        N=path_N,
+                        O=path_O,
+                        P=path_P,
+                        Q=path_Q,
+                        R=path_R,
+                        outfile=tp_salida,
+                        NoDataValue=-9999.0,
+                        #creation_options=["COMPRESS=LZW","PREDICTOR=3","TILED=YES"],
+                        quiet=True)
+
+    if total_raster == 19:
+        gdal_calc.Calc(calc=ecuacion, 
+                        A=path_A, 
+                        B=path_B,
+                        C=path_C, 
+                        D=path_D,
+                        E=path_E, 
+                        F=path_F,
+                        G=path_G, 
+                        H=path_H,
+                        I=path_I,
+                        J=path_J,
+                        K=path_K,
+                        L=path_L,
+                        M=path_M,
+                        N=path_N,
+                        O=path_O,
+                        P=path_P,
+                        Q=path_Q,
+                        R=path_R,
+                        S=path_S,
+                        outfile=tp_salida,
+                        NoDataValue=-9999.0,
+                        #creation_options=["COMPRESS=LZW","PREDICTOR=3","TILED=YES"],
+                        quiet=True)
+
+    if total_raster == 20:
+        gdal_calc.Calc(calc=ecuacion, 
+                        A=path_A, 
+                        B=path_B,
+                        C=path_C, 
+                        D=path_D,
+                        E=path_E, 
+                        F=path_F,
+                        G=path_G, 
+                        H=path_H,
+                        I=path_I,
+                        J=path_J,
+                        K=path_K,
+                        L=path_L,
+                        M=path_M,
+                        N=path_N,
+                        O=path_O,
+                        P=path_P,
+                        Q=path_Q,
+                        R=path_R,
+                        S=path_S,
+                        T=path_T,
+                        outfile=tp_salida,
+                        NoDataValue=-9999.0,
+                        #creation_options=["COMPRESS=LZW","PREDICTOR=3","TILED=YES"],
+                        quiet=True)
+
+
+    if total_raster == 21:
+        gdal_calc.Calc(calc=ecuacion, 
+                        A=path_A, 
+                        B=path_B,
+                        C=path_C, 
+                        D=path_D,
+                        E=path_E, 
+                        F=path_F,
+                        G=path_G, 
+                        H=path_H,
+                        I=path_I,
+                        J=path_J,
+                        K=path_K,
+                        L=path_L,
+                        M=path_M,
+                        N=path_N,
+                        O=path_O,
+                        P=path_P,
+                        Q=path_Q,
+                        R=path_R,
+                        S=path_S,
+                        T=path_T,
+                        U=path_U,
+                        outfile=tp_salida,
+                        NoDataValue=-9999.0,
+                        #creation_options=["COMPRESS=LZW","PREDICTOR=3","TILED=YES"],
+                        quiet=True)
+
+    if total_raster == 22:
+        gdal_calc.Calc(calc=ecuacion, 
+                        A=path_A, 
+                        B=path_B,
+                        C=path_C, 
+                        D=path_D,
+                        E=path_E, 
+                        F=path_F,
+                        G=path_G, 
+                        H=path_H,
+                        I=path_I,
+                        J=path_J,
+                        K=path_K,
+                        L=path_L,
+                        M=path_M,
+                        N=path_N,
+                        O=path_O,
+                        P=path_P,
+                        Q=path_Q,
+                        R=path_R,
+                        S=path_S,
+                        T=path_T,
+                        U=path_U,
+                        V=path_V,
+                        outfile=tp_salida,
+                        NoDataValue=-9999.0,
+                        #creation_options=["COMPRESS=LZW","PREDICTOR=3","TILED=YES"],
+                        quiet=True)
+
+
+    if total_raster == 23:
+        gdal_calc.Calc(calc=ecuacion, 
+                        A=path_A, 
+                        B=path_B,
+                        C=path_C, 
+                        D=path_D,
+                        E=path_E, 
+                        F=path_F,
+                        G=path_G, 
+                        H=path_H,
+                        I=path_I,
+                        J=path_J,
+                        K=path_K,
+                        L=path_L,
+                        M=path_M,
+                        N=path_N,
+                        O=path_O,
+                        P=path_P,
+                        Q=path_Q,
+                        R=path_R,
+                        S=path_S,
+                        T=path_T,
+                        U=path_U,
+                        V=path_V,
+                        W=path_W,
+                        outfile=tp_salida,
+                        NoDataValue=-9999.0,
+                        #creation_options=["COMPRESS=LZW","PREDICTOR=3","TILED=YES"],
+                        quiet=True)
+
+    if total_raster == 24:
+        gdal_calc.Calc(calc=ecuacion, 
+                        A=path_A, 
+                        B=path_B,
+                        C=path_C, 
+                        D=path_D,
+                        E=path_E, 
+                        F=path_F,
+                        G=path_G, 
+                        H=path_H,
+                        I=path_I,
+                        J=path_J,
+                        K=path_K,
+                        L=path_L,
+                        M=path_M,
+                        N=path_N,
+                        O=path_O,
+                        P=path_P,
+                        Q=path_Q,
+                        R=path_R,
+                        S=path_S,
+                        T=path_T,
+                        U=path_U,
+                        V=path_V,
+                        W=path_W,
+                        X=path_X,
+                        outfile=tp_salida,
+                        NoDataValue=-9999.0,
+                        #creation_options=["COMPRESS=LZW","PREDICTOR=3","TILED=YES"],
+                        quiet=True)
+
+    if total_raster == 25:
+        gdal_calc.Calc(calc=ecuacion, 
+                        A=path_A, 
+                        B=path_B,
+                        C=path_C, 
+                        D=path_D,
+                        E=path_E, 
+                        F=path_F,
+                        G=path_G, 
+                        H=path_H,
+                        I=path_I,
+                        J=path_J,
+                        K=path_K,
+                        L=path_L,
+                        M=path_M,
+                        N=path_N,
+                        O=path_O,
+                        P=path_P,
+                        Q=path_Q,
+                        R=path_R,
+                        S=path_S,
+                        T=path_T,
+                        U=path_U,
+                        V=path_V,
+                        W=path_W,
+                        X=path_X,
+                        Y=path_Y,
+                        outfile=tp_salida,
+                        NoDataValue=-9999.0,
+                        #creation_options=["COMPRESS=LZW","PREDICTOR=3","TILED=YES"],
+                        quiet=True)
+    if total_raster == 26:
+        gdal_calc.Calc(calc=ecuacion, 
+                        A=path_A, 
+                        B=path_B,
+                        C=path_C, 
+                        D=path_D,
+                        E=path_E, 
+                        F=path_F,
+                        G=path_G, 
+                        H=path_H,
+                        I=path_I,
+                        J=path_J,
+                        K=path_K,
+                        L=path_L,
+                        M=path_M,
+                        N=path_N,
+                        O=path_O,
+                        P=path_P,
+                        Q=path_Q,
+                        R=path_R,
+                        S=path_S,
+                        T=path_T,
+                        U=path_U,
+                        V=path_V,
+                        W=path_W,
+                        X=path_X,
+                        Y=path_Y,
+                        Z=path_Z,
+                        outfile=tp_salida,
+                        NoDataValue=-9999.0,
+                        #creation_options=["COMPRESS=LZW","PREDICTOR=3","TILED=YES"],
+                        quiet=True)
+
+
     redondea_raster(tp_salida,salida,decimales)
     remove_raster(tp_salida)
-
-    print ("proceso terminado")
 def remove_raster(path_r):
     '''
     Esta función elimina una capa del sistema
@@ -1180,7 +1568,9 @@ def nulls(map,output,valor_huecos=0):
             'GRASS_REGION_CELLSIZE_PARAMETER':0}
     pr.run("grass7:r.null",dicc)
 def raster_1capa(path_a,ecuacion,salida,tipo = 'int'):
-    if tipo == 'int':
+    if tipo == 'byte':
+        r_type = 0
+    elif tipo == 'int':
         r_type = 4
     elif tipo == 'float':
         r_type = 5
@@ -1352,7 +1742,7 @@ def calculadora_grass(path_capa, ecuacion,path_salida):
         'GRASS_RASTER_FORMAT_OPT':'',
         'GRASS_RASTER_FORMAT_META':''}
         pr.run("grass7:r.mapcalc.simple", dicc)
-def calculadora_grass_2capas(path_capa_a,path_capa_b, ecuacion,path_salida):
+def calculadora_grass_2capas(path_capa_a,path_capa_b, ecuacion,path_salida,region):
         '''
         Esta función aplica la máscara de la zona de estudio
 
@@ -1369,7 +1759,7 @@ def calculadora_grass_2capas(path_capa_a,path_capa_b, ecuacion,path_salida):
         :param region: coordenadas de la región del estudio  xmin,xmax,ymin,ymax
         :type region: str
         '''
-        region = get_region(path_capa_a)
+#        region = get_region(path_capa_a)
 
         dicc = {'a':path_capa_a,
         'b':path_capa_b,
@@ -1384,7 +1774,7 @@ def calculadora_grass_2capas(path_capa_a,path_capa_b, ecuacion,path_salida):
         'GRASS_RASTER_FORMAT_OPT':'',
         'GRASS_RASTER_FORMAT_META':''}
         pr.run("grass7:r.mapcalc.simple", dicc)
-def calculadora_grass_3capas(path_capa_a,path_capa_b,path_capa_c, ecuacion,path_salida):
+def calculadora_grass_3capas(path_capa_a,path_capa_b,path_capa_c, ecuacion,path_salida,region):
         '''
         Esta función aplica la máscara de la zona de estudio
 
@@ -1401,12 +1791,45 @@ def calculadora_grass_3capas(path_capa_a,path_capa_b,path_capa_c, ecuacion,path_
         :param region: coordenadas de la región del estudio  xmin,xmax,ymin,ymax
         :type region: str
         '''
-        region = get_region(path_capa_a)
+       # region = get_region(path_capa_a)
 
         dicc = {'a':path_capa_a,
         'b':path_capa_b,
         'c':path_capa_c,
         'd':None,
+        'e':None,
+        'f':None,
+        'expression':ecuacion,
+        'output':path_salida,
+        'GRASS_REGION_PARAMETER':region[0],
+        'GRASS_REGION_CELLSIZE_PARAMETER':0,
+        'GRASS_RASTER_FORMAT_OPT':'',
+        'GRASS_RASTER_FORMAT_META':''}
+        pr.run("grass7:r.mapcalc.simple", dicc)
+        
+def calculadora_grass_4capas(lista_capas, ecuacion,path_salida):
+        '''
+        Esta función aplica la máscara de la zona de estudio
+
+        :param path_mascara: ruta de la mascara en formato tiff
+        :type path_mascara: str
+
+
+        :param path_capa: ruta de la capa a la cual se requiere aplicar la máscara
+        :type path_capa: str
+
+        :param path_salida: ruta de la capa resultado de aplicar la máscara
+        :type path_salida: str
+
+        :param region: coordenadas de la región del estudio  xmin,xmax,ymin,ymax
+        :type region: str
+        '''
+        region = get_region(lista_capas[0])
+
+        dicc = {'a':lista_capas[0],
+        'b':lista_capas[1],
+        'c':lista_capas[2],
+        'd':lista_capas[3],
         'e':None,
         'f':None,
         'expression':ecuacion,
@@ -1451,7 +1874,7 @@ def integra_localidades_caminos(path_lugar_n,w_lugar,path_d_camino_n,w_d_camino,
         pr.run("grass7:r.mapcalc.simple", dicc)
         print("proceso integra_localidades_caminos terminado")
 
-def areas_por_categorias(path_raster,path_salida):
+def areas_por_categorias(path_raster,path_salida,min= 0,max=5):
     min,max= raster_min_max(path_raster)
     raster_matrix =  gdalnumeric.LoadFile(path_raster)
     dicc = {}
@@ -1465,7 +1888,7 @@ def areas_por_categorias(path_raster,path_salida):
 
     archivo = open(path_salida,'w')
     print(dicc)
-    archivo.write("Categoría,Km²,Porcentaje del estado\n")
+    archivo.write("Categoría,km²,Porcentaje del estado\n")
     for i in range(int(min),int(max)+1):
         archivo.write(",".join([lista_cats[i],str(dicc[i]),str(round((dicc[i]/area_total)*100,0))])+"\n")
     archivo.close()
@@ -1474,7 +1897,15 @@ def areas_por_categorias(path_raster,path_salida):
     df_o = arch_csv.sort_index(ascending=False)
     print (df_o)
     df_o.to_excel( path_salida.split(".")[0]+".xlsx",index = False, header=True)
-
+def areas_por_categorias_colsulta(path_raster):
+    valores = categorias_unicas_raster(path_raster)#min,max= raster_min_max(path_raster)
+    raster_matrix =  gdalnumeric.LoadFile(path_raster)
+    dicc = {}
+    area_total = 0
+    for i in valores:
+        total_pixeles_cat = (raster_matrix == i).sum() 
+        print(i," | ",total_pixeles_cat)
+        
 def raster_nodata(path_raster):
 
     rlayer = QgsRasterLayer(path_raster,"raster")
@@ -1498,6 +1929,50 @@ def categorias_unicas_raster(path_raster):
 
     valores_unicos = list(np.unique(raster_matrix))
     valores_unicos.remove(v_nodata)
-    print ("total de cateogorias",len(valores_unicos))
+    print ("total de categorias",len(valores_unicos))
     return valores_unicos
 
+def raster_a_vector(path_raster,nombre_campo,path_vector):
+    dicc =  {'INPUT':path_raster,
+                    'BAND':1,
+                    'FIELD':nombre_campo,
+                    'EIGHT_CONNECTEDNESS':False,
+                    'EXTRA':'',
+                    'OUTPUT':path_vector}
+    pr.run("gdal:polygonize",dicc)
+    
+def max_raster(lista_capas, path_salida,mascara):
+    n_variables=len(lista_capas)
+    abc = list(string.ascii_uppercase)
+    ecuacion = "numpy.max(("+",".join(abc[:n_variables])+"),axis=0)"
+    crea_capa_raster(ecuacion,lista_capas,path_salida.split(".")[0]+"_join.tif",decimales=3)
+    
+    aplica_mascara(mascara, path_salida.split(".")[0]+"_join.tif", path_salida, get_region(mascara)[0])
+    remove_raster( path_salida.split(".")[0]+"_join.tif")
+    
+def criterios_ruta_pesos(dicc):
+    """ funcion para extraer a partir de  un diccionario, listas de criterios, rutas y pesos para la clp
+    """
+    criterios= []
+    rutas=[]
+    pesos=[]
+    for k,v in dicc.items():
+        criterios.append(k)
+        rutas.append(v['ruta'])
+        pesos.append(v['w'])
+    return criterios, rutas, pesos 
+    
+def ecuacion_class(cortes):
+    """
+    Función que escribe la ecuación de reclasificación a partir de un intervalo de cortes
+    
+    """
+    n_cortes = len(cortes)
+    ecuacion =''
+    for i in range(n_cortes):
+        if i < n_cortes-2: 
+            ecuacion+='logical_and(A>='+str(cortes[i])+',A<'+str(cortes[i+1])+')*'+str(i+1)+' + '
+        elif i== n_cortes-2 :
+            ecuacion+='logical_and(A>='+str(cortes[i])+', A<='+str(cortes[i+1])+')*'+str(i+1)
+    print (ecuacion)
+    return ecuacion
