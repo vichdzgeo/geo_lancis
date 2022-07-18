@@ -34,3 +34,4 @@ Documentación
 
 .. automodule:: apcsig
     :members:
+    :private-members:

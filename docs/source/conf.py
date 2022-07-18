@@ -16,7 +16,7 @@ import os
 import sys
 import pandas
 import plotly.express as px
-sys.path.insert(0, os.path.abspath('../../codigos/'))
+sys.path.insert(0, os.path.abspath('../../codigos_pub/'))
 
 
 
@@ -44,7 +44,7 @@ sys.path.insert(0,'C:/osgeo4~1/apps/qgis-ltr/python/plugins/processing/algs/qgis
 
 
 #***********removidas *****************#
-#sys.path.insert(0, 'C:/OSGEO4~1/apps/Python37/DLLs')
+sys.path.insert(0, 'C:/OSGEO4~1/apps/Python37/DLLs')
 #sys.path.insert(0, 'C:/OSGEO4~1/bin/gdalplugins')
 #sys.path.insert(0, 'C:/OSGEO4~1/apps/Python37/lib/site-packages/win32')
 #sys.path.insert(0, 'C:/OSGEO4~1/apps/Python37/lib/site-packages/win32/lib')

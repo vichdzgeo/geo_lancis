@@ -1,4 +1,0 @@
-nombre,no_campos,epsg,metadatos,proyeccion,geometria_completa,sobrelapados,codificados,nulos,calificacion,
-costa.shp,1,EPSG:32616,10,10,10,10,10,10,10.0
-localidades.shp,14,EPSG:32616,10,10,10,10,0,10,8.3
-ramsar.shp,6,EPSG:32616,0,10,10,10,0,10,6.7

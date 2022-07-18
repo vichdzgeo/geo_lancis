@@ -17,11 +17,58 @@ import qgis
 import qgis.core
 import numpy as np
 from osgeo import gdal
-import gdal_calc
 import os
 import processing as pr 
 import gdalnumeric
+import gdal_calc
 
+
+
+def corrige_geometria(path_v):
+    '''
+    Esta función corrige la geometría de una capa vectorial
+    por medio de la función nativa de qgis "fixgeometries", gerarando 
+    como resultado en la misma ruta, una capa con el mismo nombre pero con 
+    terminación "_fix.shp" 
+
+    Este procedimiento se implementa ya que se ha detectado que varios geoprocesos
+    vectoriales no funcionan de una manera óptima si las geometrías están corruptas.
+   
+    :param path_v: ruta del archivo shape
+    :type path_v: str
+
+    :returns: Ruta del archivo shape con la geometría corregida
+    :rtype: str 
+    '''
+    dicc =  {'INPUT':path_v,
+    'OUTPUT':path_v.split(".")[0]+"_fix."+path_v.split(".")[1]}
+    pr.run("native:fixgeometries",dicc)
+    return path_v.split(".")[0]+"_fix."+path_v.split(".")[1]
+
+
+def union (capa, overlay,salida):
+    dicc = {'INPUT':capa,
+                                    'OVERLAY':overlay,
+                                    'OUTPUT':salida}
+    pr.run("native:union", dicc)
+def diferencia(capa, overlay,salida):
+    dicc =     dicc = {'INPUT':capa,
+                                    'OVERLAY':overlay,
+                                    'OUTPUT':salida}
+    pr.run("native:difference", dicc)
+def single_poligonos(capa_a,salida):
+    dicc = {'INPUT':capa_a,
+                    'OUTPUT':salida}
+    pr.run("native:multiparttosingleparts", dicc)
+
+def interseccion(capa_a,capa_b,salida):
+    dicc =  {'INPUT':capa_a,
+                    'OVERLAY':capa_b,
+                    'INPUT_FIELDS':[],
+                    'OVERLAY_FIELDS':[],
+                    'OVERLAY_FIELDS_PREFIX':'',
+                    'OUTPUT':salida}
+    pr.run("native:intersection",dicc)
 ######## FUNCIONES GENERALES ###########
 def nombre_capa(path_capa):
     nombre = path_capa.split("/")[-1].split(".")[0]
@@ -42,12 +89,34 @@ def lista_archivos(path, n_ext='.tif'):
     for root, dirs, files in os.walk(path):
         for name in files:
             extension = os.path.splitext(name)
-            if extension[1] == n_ext:
+            if extension[1].lower() == n_ext:
                 ruta = (root.replace("\\","/")+"/").replace("//","/")+name
                 lista_shp.append(ruta)
     return lista_shp
 
+def reproyectar_a_utm(path_v,path_v_reprojected,zona_norte):
 
+    vlayer = QgsVectorLayer(path_v,"","ogr")
+    if zona_norte==11:
+        crs = QgsCoordinateReferenceSystem("EPSG:32611")
+        proyecta = QgsVectorFileWriter.writeAsVectorFormat(vlayer,path_v_reprojected,'utf-8',crs,"ESRI Shapefile")
+    elif zona_norte==12:
+        crs = QgsCoordinateReferenceSystem("EPSG:32612")
+        proyecta = QgsVectorFileWriter.writeAsVectorFormat(vlayer,path_v_reprojected,'utf-8',crs,"ESRI Shapefile")
+    elif zona_norte==13:
+        crs = QgsCoordinateReferenceSystem("EPSG:32613")
+        proyecta = QgsVectorFileWriter.writeAsVectorFormat(vlayer,path_v_reprojected,'utf-8',crs,"ESRI Shapefile")
+    elif zona_norte==14:
+        crs = QgsCoordinateReferenceSystem("EPSG:32614")
+        proyecta = QgsVectorFileWriter.writeAsVectorFormat(vlayer,path_v_reprojected,'utf-8',crs,"ESRI Shapefile")
+    elif zona_norte==15:
+        crs = QgsCoordinateReferenceSystem("EPSG:32615")
+        proyecta = QgsVectorFileWriter.writeAsVectorFormat(vlayer,path_v_reprojected,'utf-8',crs,"ESRI Shapefile")
+    elif zona_norte==16:
+        crs = QgsCoordinateReferenceSystem("EPSG:32616")
+        proyecta = QgsVectorFileWriter.writeAsVectorFormat(vlayer,path_v_reprojected,'utf-8',crs,"ESRI Shapefile")
+    else:
+        print ("error en el numero de zona")
 
 
 ### FUNCIONES PARA CLASIFICAR  ########
@@ -505,7 +574,7 @@ def agregar_categorias(path_v,campo,nuevo_int_cats='categorias',cont=1):
 #        reglas.write(str(i)+" = "+str(i)+" "+lista[i-1]+'\n')
 #    reglas.close()
     return path_tp_reglas,n_cats
-    
+   
 def extrae_categorias(path_v,salida,campo,categorias):
     layer = QgsVectorLayer(path_v,"","ogr")
     if len(categorias)==1:
@@ -651,6 +720,50 @@ def rasterizar_vector (path_vector,n_campo,region,path_salida,tipo='int',ancho =
         'INVERT':False,
         'OUTPUT':path_salida}
     pr.run("gdal:rasterize", dicc)
+def rasterizar_vector_directo(vector,n_campo,region,path_salida,tipo='int',ancho = 0,alto = 0):
+    '''
+    Esta función rasteriza una capa vectorial a partir de un campo de tipo numérico y dada una región 
+    y el numero de columnas (ancho) y el numero de renglones (alto)
+
+    :param path_vector: ruta de la capa vectorial
+    :type path_vector: str
+
+    :param n_campo: nombre del campo que contiene los id de las categorias 
+    :type  n_campo: srt
+
+    :param region: coordenadas de la región del estudio  xmin,xmax,ymin,ymax
+    :type region: str
+
+    :param path_salida: ruta de la capa de salida con extension tif
+    :type path_salida: str
+
+    :param tipo: tipo de dato, use 'int' para entero o 'float' para flotante, por default es entero
+    :type tipo: str
+
+    
+    '''
+
+    if tipo == 'int':
+        v_tipo = 4 # valor para especificar entero a 32 bits
+    elif tipo == 'float':
+        v_tipo =5 # valor para flotante 
+
+    dicc={
+        'INPUT':vector,
+        'FIELD':n_campo,
+        'BURN':0,
+        'UNITS':0,
+        'WIDTH':ancho, 
+        'HEIGHT':alto,
+        'EXTENT':region,
+        'NODATA':-9999.0,
+        'OPTIONS':'COMPRESS=LZW',
+        'DATA_TYPE':v_tipo,
+        'INIT':None,
+        'INVERT':False,
+        'OUTPUT':path_salida}
+    pr.run("gdal:rasterize", dicc)
+    
 def alinear_raster(path_raster,region,resolucion,path_salida,crs_destino='',tipo='int'):
     '''
     Esta función alinea un raster dada una región y el tamaño de pixel 
@@ -688,7 +801,7 @@ def alinear_raster(path_raster,region,resolucion,path_salida,crs_destino='',tipo
         'TARGET_RESOLUTION':resolucion,
         'OPTIONS':'COMPRESS=LZW',
         'DATA_TYPE':v_tipo,
-        'TARGET_EXTENT':region,
+        'TARGET_EXTENT':region[0],
         'TARGET_EXTENT_CRS':None,
         'MULTITHREADING':False,
         'OUTPUT':path_salida}
@@ -1627,6 +1740,46 @@ def reclasifica_capa(capa,region,reglas,salida):
                     'GRASS_RASTER_FORMAT_OPT':'',
                     'GRASS_RASTER_FORMAT_META':''}
     pr.run("grass7:r.reclass",dicc)
+
+def buffer_raster(path_r,distancia,path_salida,path_mascara):
+    region = get_region(path_mascara)
+    path_r_distancia = path_salida.split(".")[0]+"_temp.tif"
+    dicc= {'input':path_r,'distances':str(distancia),
+    'units':1,'-z':False,  #0 metros, 1 km
+    'output':path_r_distancia,
+    'GRASS_REGION_PARAMETER':get_region(path_r)[0],
+    'GRASS_REGION_CELLSIZE_PARAMETER':0,
+    'GRASS_RASTER_FORMAT_OPT':'',
+    'GRASS_RASTER_FORMAT_META':''}
+    pr.run("grass7:r.buffer", dicc)
+    dicc_it =  {'a':path_r_distancia,
+            'b':None,
+            'c':None,
+            'd':None,
+            'e':None,
+            'f':None,
+            'expression':'(A>0)*1',
+            'output':path_r_distancia,
+            'GRASS_REGION_PARAMETER':region[0],
+            'GRASS_REGION_CELLSIZE_PARAMETER':0,
+            'GRASS_RASTER_FORMAT_OPT':'','GRASS_RASTER_FORMAT_META':''}
+    pr.run("grass7:r.mapcalc.simple",dicc_it)
+    
+    nulls(path_r_distancia,path_r_distancia,valor_huecos=0)
+    dicc2 =  {'a':path_mascara,
+            'b':path_r_distancia,
+            'c':None,
+            'd':None,
+            'e':None,
+            'f':None,
+            'expression':'(B)*A',
+            'output':path_salida,
+            'GRASS_REGION_PARAMETER':region[0],
+            'GRASS_REGION_CELLSIZE_PARAMETER':0,
+            'GRASS_RASTER_FORMAT_OPT':'','GRASS_RASTER_FORMAT_META':''}
+    pr.run("grass7:r.mapcalc.simple",dicc2)
+    remove_raster(path_r_distancia)
+
 def calcula_distancias_raster(path_r,path_mascara,path_salida,tipo_distancia = 0,remover=0):
     region = get_region(path_mascara)
     path_r_distancia = path_r.split(".")[0]+"_tp_dis_mts.tif"

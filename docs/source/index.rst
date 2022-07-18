@@ -27,13 +27,14 @@ del proyecto Análisis integrado de sistemas socio-ambientales acoplados: desarr
    :caption: Códigos:
     
    apcsig
-   analisis
-   leesallee
-   owa
-   verificacion
-   tabulacion_3geo
-   nivel_geometrias
-   usvmunicipal
+   
+   .. analisis
+   .. leesallee
+   .. owa
+   .. verificacion
+   .. tabulacion_3geo
+   .. nivel_geometrias
+   .. usvmunicipal
 
 
 .. Indices and tables
