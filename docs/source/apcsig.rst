@@ -1,4 +1,4 @@
-Libreria de funciones para el análsis espacial multicriterio 
+Libreria de funciones para el análisis espacial multicriterio 
 #################################################################
 
 En esta página encontrarás la documentación de las funciones que he creado en python y qgis 3.10 o superior

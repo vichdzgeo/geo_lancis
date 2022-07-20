@@ -16,7 +16,7 @@ import os
 import sys
 import pandas
 import plotly.express as px
-sys.path.insert(0, os.path.abspath('../../codigos_pub/'))
+sys.path.insert(0, os.path.abspath('../../codigos/'))
 
 
 

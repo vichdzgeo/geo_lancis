@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Libreria de funciones para el análsis espacial multicriterio &mdash; documentación de Documentación de funciones y algoritmos en Python y Qgis para análisis espacial - 1.0</title>
+  <title>Libreria de funciones para el análisis espacial multicriterio &mdash; documentación de Documentación de funciones y algoritmos en Python y Qgis para análisis espacial - 1.0</title>
   
 
   
@@ -37,6 +37,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Índice" href="genindex.html" />
     <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="Verificación de capas" href="verificacion.html" />
     <link rel="prev" title="¿Cómo ejecutar un código en Qgis?" href="ejecucion.html" /> 
 </head>
 
@@ -87,12 +88,13 @@
 </ul>
 <p class="caption"><span class="caption-text">Códigos:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Libreria de funciones para el análsis espacial multicriterio</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Libreria de funciones para el análisis espacial multicriterio</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#requerimientos-generales">Requerimientos generales</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#descarga-la-libreria">Descarga la libreria</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-apcsig">Documentación</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="verificacion.html">Verificación de capas</a></li>
 </ul>
 
             
@@ -138,7 +140,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Libreria de funciones para el análsis espacial multicriterio</li>
+      <li>Libreria de funciones para el análisis espacial multicriterio</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -157,8 +159,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="libreria-de-funciones-para-el-analsis-espacial-multicriterio">
-<h1>Libreria de funciones para el análsis espacial multicriterio<a class="headerlink" href="#libreria-de-funciones-para-el-analsis-espacial-multicriterio" title="Enlazar permanentemente con este título">¶</a></h1>
+  <div class="section" id="libreria-de-funciones-para-el-analisis-espacial-multicriterio">
+<h1>Libreria de funciones para el análisis espacial multicriterio<a class="headerlink" href="#libreria-de-funciones-para-el-analisis-espacial-multicriterio" title="Enlazar permanentemente con este título">¶</a></h1>
 <p>En esta página encontrarás la documentación de las funciones que he creado en python y qgis 3.10 o superior</p>
 <div class="section" id="requerimientos-generales">
 <h2>Requerimientos generales<a class="headerlink" href="#requerimientos-generales" title="Enlazar permanentemente con este título">¶</a></h2>
@@ -195,7 +197,7 @@ verificar la instalación y funcionamiento de los siguientes elementos:</p>
 <dt id="apcsig.agregar_categorias">
 <code class="descclassname">apcsig.</code><code class="descname">agregar_categorias</code><span class="sig-paren">(</span><em>path_v</em>, <em>campo</em>, <em>nuevo_int_cats='categorias'</em>, <em>cont=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/apcsig.html#agregar_categorias"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#apcsig.agregar_categorias" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Esta función reclasifica una capa en enteros consecutivos en función de las categorias únicas de un 
-campo en especificico, como subproducto genera un archivo csv con las categorias.</p>
+campo en especifico, como subproducto genera un archivo csv con las categorias.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -251,6 +253,20 @@ es importante que la capa a la cual se aplicará la máscara este previamente al
 <li><strong>region</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(en Python versión 3.10)"><em>str</em></a>) – coordenadas de la región del estudio  xmin,xmax,ymin,ymax</li>
 </ul>
 </td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="apcsig.areas_por_categorias_colsulta">
+<code class="descclassname">apcsig.</code><code class="descname">areas_por_categorias_colsulta</code><span class="sig-paren">(</span><em>path_raster</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/apcsig.html#areas_por_categorias_colsulta"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#apcsig.areas_por_categorias_colsulta" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Ésta función imprime el número de pixeles por categoria de un archivo ráster</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><strong>path_raster</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(en Python versión 3.10)"><em>str</em></a>) – ruta del archivo ráster</td>
 </tr>
 </tbody>
 </table>
@@ -435,26 +451,6 @@ archivo csv se guarda en la misma ruta de la capa vectorial y es nombrado como :
 </dd></dl>
 
 <dl class="function">
-<dt id="apcsig.clasificar_shape">
-<code class="descclassname">apcsig.</code><code class="descname">clasificar_shape</code><span class="sig-paren">(</span><em>path_v</em>, <em>clasificador</em>, <em>l_field</em>, <em>campo_cat=''</em>, <em>fp=2</em>, <em>categories=5</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/apcsig.html#clasificar_shape"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#apcsig.clasificar_shape" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Funcion integradora para clasificar la capa vectorial</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
-<li><strong>path_v</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(en Python versión 3.10)"><em>str</em></a>) – ruta de la capa vectorial</li>
-<li><strong>clasificador</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(en Python versión 3.10)"><em>str</em></a>) – nombre del clasificador</li>
-<li><strong>fp</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(en Python versión 3.10)"><em>float</em></a>) – factor de progresión</li>
-<li><strong>categories</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(en Python versión 3.10)"><em>int</em></a>) – número de categorias</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
 <dt id="apcsig.corrige_geometria">
 <code class="descclassname">apcsig.</code><code class="descname">corrige_geometria</code><span class="sig-paren">(</span><em>path_v</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/apcsig.html#corrige_geometria"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#apcsig.corrige_geometria" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Esta función corrige la geometría de una capa vectorial
@@ -467,7 +463,7 @@ vectoriales no funcionan de una manera óptima si las geometrías están corrupt
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><strong>path_v</strong> – ruta del archivo shape</td>
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><strong>path_v</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(en Python versión 3.10)"><em>str</em></a>) – ruta del archivo shape</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Devuelve:</th><td class="field-body">Ruta del archivo shape con la geometría corregida</td>
 </tr>
@@ -535,8 +531,8 @@ Date: para crear un campo tipo fecha
 
 <dl class="function">
 <dt id="apcsig.cuantiles_s">
-<code class="descclassname">apcsig.</code><code class="descname">cuantiles_s</code><span class="sig-paren">(</span><em>path_v</em>, <em>quantil</em>, <em>field</em>, <em>min</em>, <em>max</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/apcsig.html#cuantiles_s"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#apcsig.cuantiles_s" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Esta función regresa la lista de cortes según el cualtil 
+<code class="descclassname">apcsig.</code><code class="descname">cuantiles_s</code><span class="sig-paren">(</span><em>path_v</em>, <em>quantil</em>, <em>field</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/apcsig.html#cuantiles_s"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#apcsig.cuantiles_s" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Esta función regresa la lista de cortes según el cuantil 
 deseado de los valores de un campo de la capa vectorial de entrada</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -546,8 +542,6 @@ deseado de los valores de un campo de la capa vectorial de entrada</p>
 <li><strong>path_v</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(en Python versión 3.10)"><em>str</em></a>) – ruta de la capa vectorial</li>
 <li><strong>quantil</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(en Python versión 3.10)"><em>int</em></a>) – cuantil</li>
 <li><strong>field</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(en Python versión 3.10)"><em>str</em></a>) – nombre del campo</li>
-<li><strong>min</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(en Python versión 3.10)"><em>float</em></a>) – valor mínimo de la capa</li>
-<li><strong>max</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(en Python versión 3.10)"><em>float</em></a>) – valor máximo de la capa</li>
 </ul>
 </td>
 </tr>
@@ -570,11 +564,22 @@ deseado de los valores de un campo de la capa vectorial de entrada</p>
 <dl class="function">
 <dt id="apcsig.ecuacion_clp">
 <code class="descclassname">apcsig.</code><code class="descname">ecuacion_clp</code><span class="sig-paren">(</span><em>pesos</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/apcsig.html#ecuacion_clp"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#apcsig.ecuacion_clp" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Esta función recibe una lista de pesos para regresar la ecuación
-en la estructura requerida por gdal para la combinación lineal ponderada.</p>
-<p><strong>ejemplo:</strong></p>
+<dd><p>Esta función recibe una lista de pesos para regresar la ecuación de la combinación líneal ponderada
+en la estructura requerida para la calculadora raster de gdal.</p>
+<p>La ecuación líneal ponderada (clp), donde i es el número de capas; x es la capa ráster y w es el peso asociado en el modelo multicriterio
+para esa capa ráster.</p>
 <div class="math notranslate nohighlight">
-\[ecuacion = A*0.40 + B*0.25 + C*0.15 +D*0.20\]</div>
+\[clp = \sum_{i=i}^{i=n}x_{i}*w_{i}\]</div>
+<p><strong>ejemplo:</strong></p>
+<p>El modelo multicriterio se compone cuatro criterios: <strong>A</strong>, <strong>B</strong>, <strong>C</strong> y <strong>D</strong> ;</p>
+<p>donde <strong>A</strong> tiene un peso de w=0.40 ; <strong>B</strong> tiene un peso de w=0.25, <strong>C</strong> tiene un peso de w=0.15 u <strong>D</strong> tiene un peso de w=0.20</p>
+<div class="math notranslate nohighlight">
+\[clp = A*0.40 + B*0.25 + C*0.15 +D*0.20\]</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">El orden de los valores en la lista de los pesos tiene que ser igual al orden de la lista de la variable rasters_input de la función
+crea_capa_raster</p>
+</div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -600,6 +605,26 @@ de categorias y el valor minimo y maximo ingresados.</p>
 <li><strong>categories</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(en Python versión 3.10)"><em>int</em></a>) – número de categorias</li>
 <li><strong>min</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(en Python versión 3.10)"><em>float</em></a>) – valor mínimo de la capa</li>
 <li><strong>max</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(en Python versión 3.10)"><em>float</em></a>) – valor máximo de la capa</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="apcsig.extrae_categorias">
+<code class="descclassname">apcsig.</code><code class="descname">extrae_categorias</code><span class="sig-paren">(</span><em>path_v</em>, <em>salida</em>, <em>campo</em>, <em>categorias</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/apcsig.html#extrae_categorias"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#apcsig.extrae_categorias" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Función que extrae elementos de un shapefile dada una lista de categorias.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
+<li><strong>path_v</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(en Python versión 3.10)"><em>str</em></a>) – ruta de la capa vectorial</li>
+<li><strong>salida</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(en Python versión 3.10)"><em>str</em></a>) – ruta de la capa vectorial con elementos de las categorias de interés.</li>
+<li><strong>campo</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(en Python versión 3.10)"><em>str</em></a>) – nombre del campo que contiene las categorias</li>
+<li><strong>categorias</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(en Python versión 3.10)"><em>list</em></a>) – lista de categorias</li>
 </ul>
 </td>
 </tr>
@@ -646,15 +671,15 @@ de categorias y el valor minimo y maximo ingresados.</p>
 <dl class="function">
 <dt id="apcsig.lista_archivos">
 <code class="descclassname">apcsig.</code><code class="descname">lista_archivos</code><span class="sig-paren">(</span><em>path</em>, <em>n_ext='.tif'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/apcsig.html#lista_archivos"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#apcsig.lista_archivos" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Esta función busca dentro de un directorio especificado todas las capas con extensión <strong>shp</strong>
-y regresa una lista con la ruta de cada una de ellas.</p>
+<dd><p>Ésta función busca dentro de un directorio todos los archivos con el tipo de extensión
+declarada.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(en Python versión 3.10)"><em>str</em></a>) – ruta del direcctorio que contiene las capas shape</td>
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(en Python versión 3.10)"><em>str</em></a>) – ruta del direcctorio que contiene los archivos</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Devuelve:</th><td class="field-body">lista con la ruta de cada capa localizada en el directorio y subdirectorios</td>
+<tr class="field-even field"><th class="field-name">Devuelve:</th><td class="field-body">lista con la ruta de cada archivo localizado en el directorio y subdirectorios</td>
 </tr>
 <tr class="field-odd field"><th class="field-name" colspan="2">Tipo del valor devuelto:</th></tr>
 <tr class="field-odd field"><td>&#160;</td><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(en Python versión 3.10)">list</a></td>
@@ -700,19 +725,19 @@ elegido de la capa vectorial de entrada</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="apcsig.normailiza">
-<code class="descclassname">apcsig.</code><code class="descname">normailiza</code><span class="sig-paren">(</span><em>path_raster</em>, <em>path_raster_n</em>, <em>modo='ideales'</em>, <em>decimales=3</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/apcsig.html#normailiza"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#apcsig.normailiza" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dt id="apcsig.normailiza_raster">
+<code class="descclassname">apcsig.</code><code class="descname">normailiza_raster</code><span class="sig-paren">(</span><em>path_raster</em>, <em>path_raster_n</em>, <em>modo='ideales'</em>, <em>decimales=3</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/apcsig.html#normailiza_raster"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#apcsig.normailiza_raster" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Esta función normaliza una capa raster, se puede elegir entre dos tipos de normalización.</p>
 <ol class="arabic simple">
 <li>ideales: La capa ráster se divide entre el valor máximo como resultado se tiene una capa con un máximo de 1 pero el valor mínimo no necesariamente será 0</li>
 </ol>
 <div class="math notranslate nohighlight">
-\[ideales=\frac{A}{A.max}\]</div>
+\[ideales=\frac{A}{max(A)}\]</div>
 <p>2) lineal: la capa ráster resultante tendra como valor máximo 1 y como valor mínimo 0
 el 1 representará el maximo de la capa de entrada y el 0 representa el valor mínimo de la 
 capa de entrada</p>
 <div class="math notranslate nohighlight">
-\[lineal=\frac{A -A.min}{A.max - A.min}\]</div>
+\[lineal=\frac{A -min(A)}{max(A) - min(A)}\]</div>
 </dd></dl>
 
 <dl class="function">
@@ -738,6 +763,53 @@ capa de entrada</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><strong>valor_huecos</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(en Python versión 3.10)"><em>int</em></a>) – número que tendrán los pixeles nulos</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="apcsig.progressive">
+<code class="descclassname">apcsig.</code><code class="descname">progressive</code><span class="sig-paren">(</span><em>fp=2</em>, <em>min=0</em>, <em>max=1</em>, <em>categories=5</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/apcsig.html#progressive"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#apcsig.progressive" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Función que reclasifica un rango de valores de 0 a 1 en n categorias 
+por el clasificador Progresiva.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>fp</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(en Python versión 3.10)"><em>int</em></a>) – Factor de progresión.</li>
+<li><strong>min</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(en Python versión 3.10)"><em>float</em></a>) – Valor mínimo del rango a clasificar.</li>
+<li><strong>max</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(en Python versión 3.10)"><em>float</em></a>) – Valor máximo del rango a clasificar.</li>
+<li><strong>categories</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(en Python versión 3.10)"><em>int</em></a>) – número de categorias</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Devuelve:</th><td class="field-body"><p class="first">lista con los intervalos de corte</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Tipo del valor devuelto:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(en Python versión 3.10)">list</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="apcsig.raster_a_vector">
+<code class="descclassname">apcsig.</code><code class="descname">raster_a_vector</code><span class="sig-paren">(</span><em>path_raster</em>, <em>nombre_campo</em>, <em>path_vector</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/apcsig.html#raster_a_vector"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#apcsig.raster_a_vector" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Función que transforma una capa ráster a vector.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
+<li><strong>de la capa raster</strong> (<em>path_raster:Ruta</em>) – </li>
+<li><strong>nombre_campo</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(en Python versión 3.10)"><em>int</em></a>) – Nombre del campo de la capa vectorial que contendrá los valores o categorias del ráster</li>
+<li><strong>path_vector</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(en Python versión 3.10)"><em>str</em></a>) – Ruta donde se almacenará la capa shapefile</li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>
@@ -859,54 +931,60 @@ xml el cúal contiene el nombre de las categorias.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="apcsig.tipo_clasificador_s">
-<code class="descclassname">apcsig.</code><code class="descname">tipo_clasificador_s</code><span class="sig-paren">(</span><em>clasificador</em>, <em>path_v</em>, <em>l_field</em>, <em>campo_cat=''</em>, <em>fp=2</em>, <em>categories=5</em>, <em>min=0</em>, <em>max=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/apcsig.html#tipo_clasificador_s"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#apcsig.tipo_clasificador_s" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><dl class="docutils">
-<dt>Esta función integra los modos de clasificación, weber-fechner, progresiva,</dt>
-<dd><p class="first">cuartiles, quintiles, deciles o equidistante</p>
-<p>param clasificador: tipo de clasificador (progresiva, cuartiles, quintiles, deciles, equidistante)
-type clasificador: str</p>
-<table class="last docutils field-list" frame="void" rules="none">
+<dt id="apcsig.reproyectar_a_utm">
+<code class="descclassname">apcsig.</code><code class="descname">reproyectar_a_utm</code><span class="sig-paren">(</span><em>path_v</em>, <em>path_v_reproyectado</em>, <em>zona_norte</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/apcsig.html#reproyectar_a_utm"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#apcsig.reproyectar_a_utm" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Función que reproyecta una capa shapefile a UTM/WGS84 para las zonas válidas de México.</p>
+<table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">param path_v:</th><td class="field-body">ruta de la capa vectorial</td>
+<tr class="field-odd field"><th class="field-name">Path_v:</th><td class="field-body">Ruta de la capa shapefile original.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">type path_v:</th><td class="field-body">str</td>
+<tr class="field-even field"><th class="field-name">Typy path_v:</th><td class="field-body">str</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">param l_field:</th><td class="field-body">nombre del campo</td>
-</tr>
-<tr class="field-even field"><th class="field-name">type l_field:</th><td class="field-body">str</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">param fp:</th><td class="field-body">factor de progresión</td>
-</tr>
-<tr class="field-even field"><th class="field-name">type fp:</th><td class="field-body">float</td>
-</tr>
-<tr class="field-odd field"><th class="field-name" colspan="2">param categories:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body">número de categorias</td>
-</tr>
-<tr class="field-even field"><th class="field-name" colspan="2">type categories:</th></tr>
-<tr class="field-even field"><td>&#160;</td><td class="field-body">int</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">param min:</th><td class="field-body">valor mínimo de la capa</td>
-</tr>
-<tr class="field-even field"><th class="field-name">type min:</th><td class="field-body">float</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">param max:</th><td class="field-body">valor máximo de la capa</td>
-</tr>
-<tr class="field-even field"><th class="field-name">type max:</th><td class="field-body">float</td>
+<tr class="field-odd field"><th class="field-name" colspan="2">Path_v_reproyectado:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Ruta y nombre de la capa shapefile que se exporatá con proyección UTM/WGS84.</td>
 </tr>
 </tbody>
 </table>
-</dd>
-</dl>
+<p>:type path_v_reproyectado:str</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Zona_norte:</th><td class="field-body">Número de zona UTM a la que se desea exportar la capa Shapefile (11 hasta la 16).</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="apcsig.single_poligonos">
+<code class="descclassname">apcsig.</code><code class="descname">single_poligonos</code><span class="sig-paren">(</span><em>path_v</em>, <em>salida</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/apcsig.html#single_poligonos"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#apcsig.single_poligonos" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Función que transforma una capa multipolígono a polígonos individuales.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first last simple">
+<li><strong>path_v</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(en Python versión 3.10)"><em>str</em></a>) – ruta de la capa vectorial multipoligono</li>
+<li><strong>salida</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(en Python versión 3.10)"><em>str</em></a>) – ruta de la capa vectorial de polígonos individuales</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Utilizar previamente la función corrige_geometria para la capa de entrada a ésta función.</p>
+</div>
 </dd></dl>
 
 <dl class="function">
 <dt id="apcsig.vcopia">
 <code class="descclassname">apcsig.</code><code class="descname">vcopia</code><span class="sig-paren">(</span><em>path_vector</em>, <em>path_salida</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/apcsig.html#vcopia"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#apcsig.vcopia" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Crea una copia de la capa a partir de la ruta de la capa,
-la capa es creada con el mismo sistema de referencia que el origen.</p>
+<dd><p>Crea una copia de la capa a partir de la ruta de la capa, 
+la capa es creada con el mismo sistema de referencia que el origen y codificada en UTF-8.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -915,6 +993,34 @@ la capa es creada con el mismo sistema de referencia que el origen.</p>
 <li><strong>path_vector</strong> (<em>String</em>) – ruta de la capa original</li>
 <li><strong>path_salida</strong> (<em>String</em>) – ruta de donde sera almacenada la capa</li>
 </ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="apcsig.wf">
+<code class="descclassname">apcsig.</code><code class="descname">wf</code><span class="sig-paren">(</span><em>fp=2</em>, <em>min=0</em>, <em>max=1</em>, <em>categories=5</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/apcsig.html#wf"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#apcsig.wf" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Función que reclasifica un rango de valores de 0 a 1 en  n categorias 
+por Weber-Fechner.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parámetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>fp</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(en Python versión 3.10)"><em>int</em></a>) – Factor de progresión.</li>
+<li><strong>min</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(en Python versión 3.10)"><em>float</em></a>) – Valor mínimo del rango a clasificar.</li>
+<li><strong>max</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(en Python versión 3.10)"><em>float</em></a>) – Valor máximo del rango a clasificar.</li>
+<li><strong>categories</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(en Python versión 3.10)"><em>int</em></a>) – número de categorias</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Devuelve:</th><td class="field-body"><p class="first">lista con los intervalos de corte</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Tipo del valor devuelto:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(en Python versión 3.10)">list</a></p>
 </td>
 </tr>
 </tbody>
@@ -931,6 +1037,8 @@ la capa es creada con el mismo sistema de referencia que el origen.</p>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="verificacion.html" class="btn btn-neutral float-right" title="Verificación de capas" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="ejecucion.html" class="btn btn-neutral float-left" title="¿Cómo ejecutar un código en Qgis?" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
