@@ -56,9 +56,9 @@ sys.path.insert(0, 'C:/OSGEO4~1/apps/Python37/DLLs')
 # sys.path.insert(0, 'C:/OSGEO4~1/apps/Python37/lib/site-packages/pywin32_system32')
 # -- Project information -----------------------------------------------------
 
-project = 'Documentación de funciones y algoritmos en Python y Qgis para análisis espacial'
-copyright = '2020, LANCIS, Instituto de Ecología, UNAM'
-author =  'APC-LANCIS,UNAM'
+project = 'Documentación de funciones y algoritmos en Python y QGIS para análisis espacial'
+copyright = 'Licencia Creative Commons Atribución-CompartirIgual 4.0 Internacional.'
+author =  'Víctor Hernández Díaz'
 
 # The short X.Y version
 version = ''
