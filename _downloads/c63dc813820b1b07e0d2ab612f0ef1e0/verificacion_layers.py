@@ -502,7 +502,7 @@ def verificacion_layers(path_dir):
                                 "metadatos",
                                 "proyeccion",
                                 "geometria_completa",
-                                "sobrelapados",
+                                "topologia",
                                 "codificados",
                                 "nulos",
                                 "calificacion"]

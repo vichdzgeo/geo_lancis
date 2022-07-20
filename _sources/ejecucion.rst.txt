@@ -2,9 +2,9 @@
 ####################################
 
 
-Paso #1
-********
-Ejecutar Qgis Desktop 3.XX, la ventana que se muestra es la que 
+Ejecutar QGIS
+****************
+Ejecutar QGIS Desktop 3.XX, la ventana que se muestra es la que 
 corresponde a la interfaz gráfica del programa, en la barra de tareas 
 hacer clic en el ícono correspondiente a **python** para abrir la consola
 
@@ -12,22 +12,22 @@ hacer clic en el ícono correspondiente a **python** para abrir la consola
 
 
 
-paso #2
-********
+Abrir la consola de Python
+****************************
 
 En la parte inferior de la ventana se mostrará la consola de python
 
 .. image:: ../../analisis_sensibilidad/images/consola_pyqgis.png
 
-paso #3
-********
+Abrir el editor de código
+***************************
 
 Hacer clic en el ícono de **Editor**
 
 .. image:: ../../analisis_sensibilidad/images/consola_editor.png
 
-paso #4
-********
+Abrir un archivo *.py
+*************************
 
 Se despliega en el lado izquierdo un panel, el cual es el editor 
 de código, cuenta con una barra de tareas, para abrir un script 
@@ -35,8 +35,6 @@ dar clic en el ícono de **abrir archivo**
 
 .. image:: ../../analisis_sensibilidad/images/consola_editor_interfaz.png
 
-paso #5
-*******
 
 Se abrirá una ventana que te permite usar el explorador de archivos 
 para navegar y encontrar el archivo **.py**, elegir el script deseado y 

@@ -31,7 +31,7 @@ del proyecto Análisis integrado de sistemas socio-ambientales acoplados: desarr
    .. analisis
    .. leesallee
    .. owa
-   .. verificacion
+   verificacion
    .. tabulacion_3geo
    .. nivel_geometrias
    .. usvmunicipal

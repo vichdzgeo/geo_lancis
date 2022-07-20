@@ -36,7 +36,8 @@
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Índice" href="genindex.html" />
-    <link rel="search" title="Búsqueda" href="search.html" /> 
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="prev" title="Libreria de funciones para el análisis espacial multicriterio" href="apcsig.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -85,8 +86,22 @@
 <li class="toctree-l1"><a class="reference internal" href="ejecucion.html">¿Cómo ejecutar un código en Qgis?</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Códigos:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="apcsig.html">Libreria de funciones para el análsis espacial multicriterio</a></li>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="apcsig.html">Libreria de funciones para el análisis espacial multicriterio</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Verificación de capas</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#requerimientos-generales">Requerimientos generales</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ejemplo">Ejemplo:</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#abrir-el-codigo">1. Abrir el código</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#indicar-el-directorio">2. Indicar el directorio</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#salidas">Salidas</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#capas-de-topologia">Capas de topología</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#imagen-de-la-capa">Imagen de la capa</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
             
@@ -157,7 +172,7 @@
 <ol class="arabic simple">
 <li>Proyección Que exista el archivo prj asociado</li>
 <li>Geometría completa  Que exista los mismos elementos geométricos que los contenidos en la tabla de atributos</li>
-<li>Sobrelapados Que la capa no cuente con errores topológicos</li>
+<li>Topología Que la capa no cuente con errores topológicos</li>
 <li>Nulos Que no existan campos vacios en la tabla de atributos</li>
 <li>Codificados Que no existan campos con caracteres espeaciales o extraños en su contenido o que datos numéricos esten declardos como texto</li>
 <li>Metadatos Que exista el archivo xml asociado a los metadatos geográficos</li>
@@ -173,7 +188,7 @@
 <h3>1. Abrir el código<a class="headerlink" href="#abrir-el-codigo" title="Enlazar permanentemente con este título">¶</a></h3>
 <p>Abrir el código <strong>verificación_layers.py</strong> en Qgis 3.4 o superior,
 para resolver cualquier duda al respecto, consultar la <a class="reference external" href="https://vichdzgeo.github.io/geo_lancis/ejecucion.html">guia</a></p>
-<img alt="_images/codigo3.PNG" src="_images/codigo3.PNG" />
+<img alt="_images/codigo.PNG" src="_images/codigo.PNG" />
 </div>
 <div class="section" id="indicar-el-directorio">
 <h3>2. Indicar el directorio<a class="headerlink" href="#indicar-el-directorio" title="Enlazar permanentemente con este título">¶</a></h3>
@@ -215,6 +230,13 @@ sí y solo sí la capa tiene un puntaje de 10 en el criterio de <strong>proyecci
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="apcsig.html" class="btn btn-neutral float-left" title="Libreria de funciones para el análisis espacial multicriterio" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

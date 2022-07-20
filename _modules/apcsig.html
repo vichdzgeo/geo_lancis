@@ -86,7 +86,8 @@
 </ul>
 <p class="caption"><span class="caption-text">Códigos:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../apcsig.html">Libreria de funciones para el análsis espacial multicriterio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apcsig.html">Libreria de funciones para el análisis espacial multicriterio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../verificacion.html">Verificación de capas</a></li>
 </ul>
 
             
@@ -187,16 +188,42 @@
 <span class="sd">    vectoriales no funcionan de una manera óptima si las geometrías están corruptas.</span>
 <span class="sd">   </span>
 <span class="sd">    :param path_v: ruta del archivo shape</span>
-<span class="sd">    :type path: str</span>
+<span class="sd">    :type path_v: str</span>
 
 <span class="sd">    :returns: Ruta del archivo shape con la geometría corregida</span>
-<span class="sd">    :rtype: str </span>
+<span class="sd">    :rtype: str</span>
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="n">dicc</span> <span class="o">=</span>  <span class="p">{</span><span class="s1">&#39;INPUT&#39;</span><span class="p">:</span><span class="n">path_v</span><span class="p">,</span>
     <span class="s1">&#39;OUTPUT&#39;</span><span class="p">:</span><span class="n">path_v</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="s2">&quot;_fix.&quot;</span><span class="o">+</span><span class="n">path_v</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]}</span>
     <span class="n">pr</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;native:fixgeometries&quot;</span><span class="p">,</span><span class="n">dicc</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">path_v</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="s2">&quot;_fix.&quot;</span><span class="o">+</span><span class="n">path_v</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span></div>
+<span class="k">def</span> <span class="nf">union</span> <span class="p">(</span><span class="n">capa</span><span class="p">,</span> <span class="n">overlay</span><span class="p">,</span><span class="n">salida</span><span class="p">):</span>
+    <span class="n">dicc</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;INPUT&#39;</span><span class="p">:</span><span class="n">capa</span><span class="p">,</span>
+                                    <span class="s1">&#39;OVERLAY&#39;</span><span class="p">:</span><span class="n">overlay</span><span class="p">,</span>
+                                    <span class="s1">&#39;OUTPUT&#39;</span><span class="p">:</span><span class="n">salida</span><span class="p">}</span>
+    <span class="n">pr</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;native:union&quot;</span><span class="p">,</span> <span class="n">dicc</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">diferencia</span><span class="p">(</span><span class="n">capa</span><span class="p">,</span> <span class="n">overlay</span><span class="p">,</span><span class="n">salida</span><span class="p">):</span>
+    <span class="n">dicc</span> <span class="o">=</span>     <span class="n">dicc</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;INPUT&#39;</span><span class="p">:</span><span class="n">capa</span><span class="p">,</span>
+                                    <span class="s1">&#39;OVERLAY&#39;</span><span class="p">:</span><span class="n">overlay</span><span class="p">,</span>
+                                    <span class="s1">&#39;OUTPUT&#39;</span><span class="p">:</span><span class="n">salida</span><span class="p">}</span>
+    <span class="n">pr</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;native:difference&quot;</span><span class="p">,</span> <span class="n">dicc</span><span class="p">)</span>
+<div class="viewcode-block" id="single_poligonos"><a class="viewcode-back" href="../apcsig.html#apcsig.single_poligonos">[documentos]</a><span class="k">def</span> <span class="nf">single_poligonos</span><span class="p">(</span><span class="n">path_v</span><span class="p">,</span><span class="n">salida</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Función que transforma una capa multipolígono a polígonos individuales.</span>
 
+<span class="sd">    :param path_v: ruta de la capa vectorial multipoligono</span>
+<span class="sd">    :type path_v: str</span>
+
+<span class="sd">    :param salida: ruta de la capa vectorial de polígonos individuales</span>
+<span class="sd">    :type salida: str</span>
+
+<span class="sd">    .. note:: </span>
+<span class="sd">        Utilizar previamente la función corrige_geometria para la capa de entrada a ésta función.</span>
+<span class="sd">        </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">dicc</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;INPUT&#39;</span><span class="p">:</span><span class="n">path_v</span><span class="p">,</span>
+                    <span class="s1">&#39;OUTPUT&#39;</span><span class="p">:</span><span class="n">salida</span><span class="p">}</span>
+    <span class="n">pr</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;native:multiparttosingleparts&quot;</span><span class="p">,</span> <span class="n">dicc</span><span class="p">)</span></div>
 <span class="k">def</span> <span class="nf">interseccion</span><span class="p">(</span><span class="n">capa_a</span><span class="p">,</span><span class="n">capa_b</span><span class="p">,</span><span class="n">salida</span><span class="p">):</span>
     <span class="n">dicc</span> <span class="o">=</span>  <span class="p">{</span><span class="s1">&#39;INPUT&#39;</span><span class="p">:</span><span class="n">capa_a</span><span class="p">,</span>
                     <span class="s1">&#39;OVERLAY&#39;</span><span class="p">:</span><span class="n">capa_b</span><span class="p">,</span>
@@ -209,55 +236,87 @@
 <span class="k">def</span> <span class="nf">nombre_capa</span><span class="p">(</span><span class="n">path_capa</span><span class="p">):</span>
     <span class="n">nombre</span> <span class="o">=</span> <span class="n">path_capa</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">nombre</span>
-
 <div class="viewcode-block" id="lista_archivos"><a class="viewcode-back" href="../apcsig.html#apcsig.lista_archivos">[documentos]</a><span class="k">def</span> <span class="nf">lista_archivos</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">n_ext</span><span class="o">=</span><span class="s1">&#39;.tif&#39;</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Esta función busca dentro de un directorio especificado todas las capas con extensión **shp**</span>
-<span class="sd">    y regresa una lista con la ruta de cada una de ellas.</span>
+<span class="sd">    Ésta función busca dentro de un directorio todos los archivos con el tipo de extensión</span>
+<span class="sd">    declarada.</span>
 
-<span class="sd">    :param path: ruta del direcctorio que contiene las capas shape</span>
+<span class="sd">    :param path: ruta del direcctorio que contiene los archivos</span>
 <span class="sd">    :type path: str</span>
 
-<span class="sd">    :returns: lista con la ruta de cada capa localizada en el directorio y subdirectorios</span>
+<span class="sd">    :returns: lista con la ruta de cada archivo localizado en el directorio y subdirectorios</span>
 <span class="sd">    :rtype: list </span>
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="n">lista_shp</span><span class="o">=</span><span class="p">[]</span>
     <span class="k">for</span> <span class="n">root</span><span class="p">,</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
             <span class="n">extension</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">extension</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">n_ext</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">extension</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">n_ext</span><span class="p">:</span>
                 <span class="n">ruta</span> <span class="o">=</span> <span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span><span class="p">,</span><span class="s2">&quot;/&quot;</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;/&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;//&quot;</span><span class="p">,</span><span class="s2">&quot;/&quot;</span><span class="p">)</span><span class="o">+</span><span class="n">name</span>
                 <span class="n">lista_shp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ruta</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">lista_shp</span></div>
+<div class="viewcode-block" id="reproyectar_a_utm"><a class="viewcode-back" href="../apcsig.html#apcsig.reproyectar_a_utm">[documentos]</a><span class="k">def</span> <span class="nf">reproyectar_a_utm</span><span class="p">(</span><span class="n">path_v</span><span class="p">,</span><span class="n">path_v_reproyectado</span><span class="p">,</span><span class="n">zona_norte</span><span class="p">):</span>
 
-<span class="k">def</span> <span class="nf">reproyectar_a_utm</span><span class="p">(</span><span class="n">path_v</span><span class="p">,</span><span class="n">path_v_reprojected</span><span class="p">,</span><span class="n">zona_norte</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Función que reproyecta una capa shapefile a UTM/WGS84 para las zonas válidas de México.</span>
+
+<span class="sd">    :path_v: Ruta de la capa shapefile original.</span>
+<span class="sd">    :typy path_v: str</span>
+
+<span class="sd">    :path_v_reproyectado: Ruta y nombre de la capa shapefile que se exporatá con proyección UTM/WGS84.</span>
+<span class="sd">    :type path_v_reproyectado:str </span>
+
+<span class="sd">    :zona_norte: Número de zona UTM a la que se desea exportar la capa Shapefile (11 hasta la 16).</span>
+<span class="sd">    :type zona_norte: int</span>
+
+
+<span class="sd">    &#39;&#39;&#39;</span>
 
     <span class="n">vlayer</span> <span class="o">=</span> <span class="n">QgsVectorLayer</span><span class="p">(</span><span class="n">path_v</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="s2">&quot;ogr&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">zona_norte</span><span class="o">==</span><span class="mi">11</span><span class="p">:</span>
         <span class="n">crs</span> <span class="o">=</span> <span class="n">QgsCoordinateReferenceSystem</span><span class="p">(</span><span class="s2">&quot;EPSG:32611&quot;</span><span class="p">)</span>
-        <span class="n">proyecta</span> <span class="o">=</span> <span class="n">QgsVectorFileWriter</span><span class="o">.</span><span class="n">writeAsVectorFormat</span><span class="p">(</span><span class="n">vlayer</span><span class="p">,</span><span class="n">path_v_reprojected</span><span class="p">,</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span><span class="n">crs</span><span class="p">,</span><span class="s2">&quot;ESRI Shapefile&quot;</span><span class="p">)</span>
+        <span class="n">proyecta</span> <span class="o">=</span> <span class="n">QgsVectorFileWriter</span><span class="o">.</span><span class="n">writeAsVectorFormat</span><span class="p">(</span><span class="n">vlayer</span><span class="p">,</span><span class="n">path_v_reproyectado</span><span class="p">,</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span><span class="n">crs</span><span class="p">,</span><span class="s2">&quot;ESRI Shapefile&quot;</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">zona_norte</span><span class="o">==</span><span class="mi">12</span><span class="p">:</span>
         <span class="n">crs</span> <span class="o">=</span> <span class="n">QgsCoordinateReferenceSystem</span><span class="p">(</span><span class="s2">&quot;EPSG:32612&quot;</span><span class="p">)</span>
-        <span class="n">proyecta</span> <span class="o">=</span> <span class="n">QgsVectorFileWriter</span><span class="o">.</span><span class="n">writeAsVectorFormat</span><span class="p">(</span><span class="n">vlayer</span><span class="p">,</span><span class="n">path_v_reprojected</span><span class="p">,</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span><span class="n">crs</span><span class="p">,</span><span class="s2">&quot;ESRI Shapefile&quot;</span><span class="p">)</span>
+        <span class="n">proyecta</span> <span class="o">=</span> <span class="n">QgsVectorFileWriter</span><span class="o">.</span><span class="n">writeAsVectorFormat</span><span class="p">(</span><span class="n">vlayer</span><span class="p">,</span><span class="n">path_v_reproyectado</span><span class="p">,</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span><span class="n">crs</span><span class="p">,</span><span class="s2">&quot;ESRI Shapefile&quot;</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">zona_norte</span><span class="o">==</span><span class="mi">13</span><span class="p">:</span>
         <span class="n">crs</span> <span class="o">=</span> <span class="n">QgsCoordinateReferenceSystem</span><span class="p">(</span><span class="s2">&quot;EPSG:32613&quot;</span><span class="p">)</span>
-        <span class="n">proyecta</span> <span class="o">=</span> <span class="n">QgsVectorFileWriter</span><span class="o">.</span><span class="n">writeAsVectorFormat</span><span class="p">(</span><span class="n">vlayer</span><span class="p">,</span><span class="n">path_v_reprojected</span><span class="p">,</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span><span class="n">crs</span><span class="p">,</span><span class="s2">&quot;ESRI Shapefile&quot;</span><span class="p">)</span>
+        <span class="n">proyecta</span> <span class="o">=</span> <span class="n">QgsVectorFileWriter</span><span class="o">.</span><span class="n">writeAsVectorFormat</span><span class="p">(</span><span class="n">vlayer</span><span class="p">,</span><span class="n">path_v_reproyectado</span><span class="p">,</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span><span class="n">crs</span><span class="p">,</span><span class="s2">&quot;ESRI Shapefile&quot;</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">zona_norte</span><span class="o">==</span><span class="mi">14</span><span class="p">:</span>
         <span class="n">crs</span> <span class="o">=</span> <span class="n">QgsCoordinateReferenceSystem</span><span class="p">(</span><span class="s2">&quot;EPSG:32614&quot;</span><span class="p">)</span>
-        <span class="n">proyecta</span> <span class="o">=</span> <span class="n">QgsVectorFileWriter</span><span class="o">.</span><span class="n">writeAsVectorFormat</span><span class="p">(</span><span class="n">vlayer</span><span class="p">,</span><span class="n">path_v_reprojected</span><span class="p">,</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span><span class="n">crs</span><span class="p">,</span><span class="s2">&quot;ESRI Shapefile&quot;</span><span class="p">)</span>
+        <span class="n">proyecta</span> <span class="o">=</span> <span class="n">QgsVectorFileWriter</span><span class="o">.</span><span class="n">writeAsVectorFormat</span><span class="p">(</span><span class="n">vlayer</span><span class="p">,</span><span class="n">path_v_reproyectado</span><span class="p">,</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span><span class="n">crs</span><span class="p">,</span><span class="s2">&quot;ESRI Shapefile&quot;</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">zona_norte</span><span class="o">==</span><span class="mi">15</span><span class="p">:</span>
         <span class="n">crs</span> <span class="o">=</span> <span class="n">QgsCoordinateReferenceSystem</span><span class="p">(</span><span class="s2">&quot;EPSG:32615&quot;</span><span class="p">)</span>
-        <span class="n">proyecta</span> <span class="o">=</span> <span class="n">QgsVectorFileWriter</span><span class="o">.</span><span class="n">writeAsVectorFormat</span><span class="p">(</span><span class="n">vlayer</span><span class="p">,</span><span class="n">path_v_reprojected</span><span class="p">,</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span><span class="n">crs</span><span class="p">,</span><span class="s2">&quot;ESRI Shapefile&quot;</span><span class="p">)</span>
+        <span class="n">proyecta</span> <span class="o">=</span> <span class="n">QgsVectorFileWriter</span><span class="o">.</span><span class="n">writeAsVectorFormat</span><span class="p">(</span><span class="n">vlayer</span><span class="p">,</span><span class="n">path_v_reproyectado</span><span class="p">,</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span><span class="n">crs</span><span class="p">,</span><span class="s2">&quot;ESRI Shapefile&quot;</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">zona_norte</span><span class="o">==</span><span class="mi">16</span><span class="p">:</span>
         <span class="n">crs</span> <span class="o">=</span> <span class="n">QgsCoordinateReferenceSystem</span><span class="p">(</span><span class="s2">&quot;EPSG:32616&quot;</span><span class="p">)</span>
-        <span class="n">proyecta</span> <span class="o">=</span> <span class="n">QgsVectorFileWriter</span><span class="o">.</span><span class="n">writeAsVectorFormat</span><span class="p">(</span><span class="n">vlayer</span><span class="p">,</span><span class="n">path_v_reprojected</span><span class="p">,</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span><span class="n">crs</span><span class="p">,</span><span class="s2">&quot;ESRI Shapefile&quot;</span><span class="p">)</span>
+        <span class="n">proyecta</span> <span class="o">=</span> <span class="n">QgsVectorFileWriter</span><span class="o">.</span><span class="n">writeAsVectorFormat</span><span class="p">(</span><span class="n">vlayer</span><span class="p">,</span><span class="n">path_v_reproyectado</span><span class="p">,</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span><span class="n">crs</span><span class="p">,</span><span class="s2">&quot;ESRI Shapefile&quot;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;error en el numero de zona&quot;</span><span class="p">)</span>
-
-
+        <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;error en el numero de zona&quot;</span><span class="p">)</span></div>
 <span class="c1">### FUNCIONES PARA CLASIFICAR  ########</span>
 
-<span class="k">def</span> <span class="nf">progressive</span><span class="p">(</span><span class="n">fp</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">categories</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+<div class="viewcode-block" id="progressive"><a class="viewcode-back" href="../apcsig.html#apcsig.progressive">[documentos]</a><span class="k">def</span> <span class="nf">progressive</span><span class="p">(</span><span class="n">fp</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">categories</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Función que reclasifica un rango de valores de 0 a 1 en n categorias </span>
+<span class="sd">    por el clasificador Progresiva.</span>
+
+<span class="sd">    :param fp: Factor de progresión.</span>
+<span class="sd">    :type fp: int</span>
+
+<span class="sd">    :param min: Valor mínimo del rango a clasificar.</span>
+<span class="sd">    :type min: float</span>
+
+<span class="sd">    :param max: Valor máximo del rango a clasificar.</span>
+<span class="sd">    :type max: float</span>
+
+<span class="sd">    :param categories: número de categorias</span>
+<span class="sd">    :type categories: int</span>
+
+<span class="sd">    :returns: lista con los intervalos de corte </span>
+<span class="sd">    :rtype: list </span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
 
     <span class="c1"># # Cortes de categories siguiendo Ley de Weber</span>
     <span class="c1"># print &#39;\n\t\t////Cortes de categories siguiendo Ley de Weber-Feshner////\n&#39;</span>
@@ -283,9 +342,28 @@
     <span class="n">FuzzyCut</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">min</span><span class="p">)</span>
     <span class="n">FuzzyCut</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">max</span><span class="p">)</span>
     
-    <span class="k">return</span> <span class="n">FuzzyCut</span>
+    <span class="k">return</span> <span class="n">FuzzyCut</span></div>
+<div class="viewcode-block" id="wf"><a class="viewcode-back" href="../apcsig.html#apcsig.wf">[documentos]</a><span class="k">def</span> <span class="nf">wf</span><span class="p">(</span><span class="n">fp</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="nb">max</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">categories</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
 
-<span class="k">def</span> <span class="nf">wf</span><span class="p">(</span><span class="n">fp</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="nb">max</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">categories</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Función que reclasifica un rango de valores de 0 a 1 en  n categorias </span>
+<span class="sd">    por Weber-Fechner.</span>
+
+<span class="sd">    :param fp: Factor de progresión.</span>
+<span class="sd">    :type fp: int</span>
+
+<span class="sd">    :param min: Valor mínimo del rango a clasificar.</span>
+<span class="sd">    :type min: float</span>
+
+<span class="sd">    :param max: Valor máximo del rango a clasificar.</span>
+<span class="sd">    :type max: float</span>
+
+<span class="sd">    :param categories: número de categorias</span>
+<span class="sd">    :type categories: int</span>
+
+<span class="sd">    :returns: lista con los intervalos de corte </span>
+<span class="sd">    :rtype: list </span>
+<span class="sd">    &#39;&#39;&#39;</span>     
     
     <span class="n">dicc_e</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">lista_val</span> <span class="o">=</span> <span class="p">[</span><span class="nb">min</span><span class="p">,]</span>
@@ -300,11 +378,11 @@
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span> <span class="p">,</span> <span class="n">categories</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
         <span class="n">lista_val</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">dicc_e</span><span class="p">[</span><span class="s1">&#39;e&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)])</span>
     <span class="nb">print</span> <span class="p">(</span><span class="n">lista_val</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">lista_val</span>
-<div class="viewcode-block" id="cuantiles_s"><a class="viewcode-back" href="../apcsig.html#apcsig.cuantiles_s">[documentos]</a><span class="k">def</span> <span class="nf">cuantiles_s</span><span class="p">(</span><span class="n">path_v</span><span class="p">,</span><span class="n">quantil</span><span class="p">,</span><span class="n">field</span><span class="p">,</span><span class="nb">min</span><span class="p">,</span><span class="nb">max</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">lista_val</span></div>
+<div class="viewcode-block" id="cuantiles_s"><a class="viewcode-back" href="../apcsig.html#apcsig.cuantiles_s">[documentos]</a><span class="k">def</span> <span class="nf">cuantiles_s</span><span class="p">(</span><span class="n">path_v</span><span class="p">,</span><span class="n">quantil</span><span class="p">,</span><span class="n">field</span><span class="p">):</span>
 
     <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Esta función regresa la lista de cortes según el cualtil </span>
+<span class="sd">    Esta función regresa la lista de cortes según el cuantil </span>
 <span class="sd">    deseado de los valores de un campo de la capa vectorial de entrada</span>
 
 <span class="sd">    :param path_v: ruta de la capa vectorial</span>
@@ -316,17 +394,13 @@
 <span class="sd">    :param field: nombre del campo</span>
 <span class="sd">    :type field: str</span>
 
-<span class="sd">    :param min: valor mínimo de la capa</span>
-<span class="sd">    :type min: float</span>
-
-<span class="sd">    :param max: valor máximo de la capa</span>
-<span class="sd">    :type max: float</span>
 <span class="sd">    &#39;&#39;&#39;</span>
 
     <span class="n">vlayer</span> <span class="o">=</span> <span class="n">QgsVectorLayer</span><span class="p">(</span><span class="n">path_v</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="s2">&quot;ogr&quot;</span><span class="p">)</span>
     <span class="n">no_geometry</span> <span class="o">=</span>  <span class="n">QgsFeatureRequest</span><span class="p">()</span><span class="o">.</span><span class="n">setFlags</span><span class="p">(</span><span class="n">QgsFeatureRequest</span><span class="o">.</span><span class="n">NoGeometry</span><span class="p">)</span>
     <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span><span class="p">[</span><span class="n">field</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">vlayer</span><span class="o">.</span><span class="n">getFeatures</span><span class="p">(</span><span class="n">no_geometry</span><span class="p">)]</span>
     <span class="n">array_val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+    <span class="nb">min</span><span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
     <span class="n">lista_val</span><span class="o">=</span><span class="p">[</span><span class="nb">min</span><span class="p">,]</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">quantil</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
         <span class="n">value</span><span class="o">=</span> <span class="n">i</span><span class="o">/</span><span class="n">quantil</span>
@@ -334,7 +408,6 @@
         <span class="n">lista_val</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cuantil_c</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">lista_val</span></div>
-
 <div class="viewcode-block" id="equidistantes"><a class="viewcode-back" href="../apcsig.html#apcsig.equidistantes">[documentos]</a><span class="k">def</span> <span class="nf">equidistantes</span> <span class="p">(</span><span class="n">categories</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="nb">max</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Esta función regresa la lista de cortes equidistantes según el número </span>
@@ -356,7 +429,6 @@
         <span class="n">valor</span> <span class="o">=</span> <span class="nb">min</span> <span class="o">+</span> <span class="p">(</span><span class="n">incremento</span> <span class="o">*</span> <span class="n">i</span><span class="p">)</span>
         <span class="n">lista_val</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">valor</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">lista_val</span></div>
-
 <div class="viewcode-block" id="max_min_vector"><a class="viewcode-back" href="../apcsig.html#apcsig.max_min_vector">[documentos]</a><span class="k">def</span> <span class="nf">max_min_vector</span><span class="p">(</span><span class="n">layer</span><span class="p">,</span><span class="n">campo</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Esta función regresa el maximo y minimo del campo</span>
@@ -372,96 +444,6 @@
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="n">idx</span><span class="o">=</span><span class="n">layer</span><span class="o">.</span><span class="n">fields</span><span class="p">()</span><span class="o">.</span><span class="n">indexFromName</span><span class="p">(</span><span class="n">campo</span><span class="p">)</span>
     <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">minimumValue</span><span class="p">(</span><span class="n">idx</span><span class="p">),</span><span class="mi">3</span><span class="p">),</span><span class="nb">round</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">maximumValue</span><span class="p">(</span><span class="n">idx</span><span class="p">),</span><span class="mi">3</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="tipo_clasificador_s"><a class="viewcode-back" href="../apcsig.html#apcsig.tipo_clasificador_s">[documentos]</a><span class="k">def</span> <span class="nf">tipo_clasificador_s</span><span class="p">(</span><span class="n">clasificador</span><span class="p">,</span> <span class="n">path_v</span><span class="p">,</span> <span class="n">l_field</span><span class="p">,</span><span class="n">campo_cat</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">fp</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">categories</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Esta función integra los modos de clasificación, weber-fechner, progresiva,</span>
-<span class="sd">        cuartiles, quintiles, deciles o equidistante</span>
-
-<span class="sd">        param clasificador: tipo de clasificador (progresiva, cuartiles, quintiles, deciles, equidistante)</span>
-<span class="sd">        type clasificador: str</span>
-
-<span class="sd">        :param path_v: ruta de la capa vectorial</span>
-<span class="sd">        :type path_v: str</span>
-<span class="sd">        </span>
-<span class="sd">        :param l_field: nombre del campo</span>
-<span class="sd">        :type l_field: str </span>
-
-<span class="sd">        :param fp: factor de progresión </span>
-<span class="sd">        :type fp: float</span>
-
-<span class="sd">        :param categories: número de categorias </span>
-<span class="sd">        :type categories: int </span>
-
-<span class="sd">        :param min: valor mínimo de la capa</span>
-<span class="sd">        :type min: float</span>
-
-<span class="sd">        :param max: valor máximo de la capa</span>
-<span class="sd">        :type max: float</span>
-
-
-<span class="sd">    &#39;&#39;&#39;</span>
-
-    <span class="k">if</span> <span class="n">clasificador</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;wf&quot;</span> <span class="ow">or</span> <span class="n">clasificador</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;weber-fechner&quot;</span><span class="p">:</span>
-        <span class="n">nombre</span> <span class="o">=</span><span class="s1">&#39;wf_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;_&quot;</span><span class="o">+</span><span class="n">campo_cat</span>
-        <span class="k">return</span> <span class="n">wf</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span><span class="nb">min</span><span class="p">,</span><span class="nb">max</span><span class="p">,</span><span class="n">categories</span><span class="p">),</span><span class="n">nombre</span>
-
-    <span class="k">elif</span> <span class="n">clasificador</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;progressive&quot;</span><span class="p">:</span>
-        <span class="n">nombre</span> <span class="o">=</span><span class="s1">&#39;ct_pg_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">progressive</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span><span class="nb">min</span><span class="p">,</span><span class="nb">max</span><span class="p">,</span><span class="n">categories</span><span class="p">),</span><span class="n">nombre</span>
-
-    <span class="k">elif</span> <span class="n">clasificador</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">==</span><span class="s1">&#39;cuartiles&#39;</span><span class="p">:</span>
-        <span class="n">nombre</span> <span class="o">=</span> <span class="s1">&#39;ct_cuartil&#39;</span>
-        <span class="k">return</span> <span class="n">cuantiles_s</span><span class="p">(</span><span class="n">path_v</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="n">l_field</span><span class="p">,</span><span class="nb">min</span><span class="p">,</span><span class="nb">max</span><span class="p">),</span><span class="n">nombre</span>
-    <span class="k">elif</span> <span class="n">clasificador</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">==</span><span class="s1">&#39;quintiles&#39;</span><span class="p">:</span>
-        <span class="n">nombre</span> <span class="o">=</span> <span class="s1">&#39;ct_quintil&#39;</span>
-        <span class="k">return</span> <span class="n">cuantiles_s</span><span class="p">(</span><span class="n">path_v</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="n">l_field</span><span class="p">,</span><span class="nb">min</span><span class="p">,</span><span class="nb">max</span><span class="p">),</span><span class="n">nombre</span>
-    <span class="k">elif</span> <span class="n">clasificador</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">==</span> <span class="s1">&#39;deciles&#39;</span><span class="p">:</span>
-        <span class="n">nombre</span> <span class="o">=</span> <span class="s1">&#39;ct_decil&#39;</span>
-        <span class="k">return</span> <span class="n">cuantiles_s</span><span class="p">(</span><span class="n">path_v</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="n">l_field</span><span class="p">,</span><span class="nb">min</span><span class="p">,</span><span class="nb">max</span><span class="p">),</span><span class="n">nombre</span>
-    <span class="k">elif</span> <span class="n">clasificador</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">==</span> <span class="s1">&#39;equidistante&#39;</span><span class="p">:</span>
-        <span class="n">nombre</span> <span class="o">=</span> <span class="s1">&#39;ct_equidis&#39;</span>
-        <span class="k">return</span> <span class="n">equidistantes</span><span class="p">(</span><span class="n">categories</span><span class="p">,</span> <span class="nb">min</span><span class="p">,</span> <span class="nb">max</span><span class="p">),</span><span class="n">nombre</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;error en el nombre de clasificacion&quot;</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="clasificar_shape"><a class="viewcode-back" href="../apcsig.html#apcsig.clasificar_shape">[documentos]</a><span class="k">def</span> <span class="nf">clasificar_shape</span><span class="p">(</span><span class="n">path_v</span><span class="p">,</span> <span class="n">clasificador</span><span class="p">,</span> <span class="n">l_field</span><span class="p">,</span> <span class="n">campo_cat</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="n">fp</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">categories</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
-
-    <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Funcion integradora para clasificar la capa vectorial</span>
-<span class="sd">    </span>
-<span class="sd">    :param path_v: ruta de la capa vectorial </span>
-<span class="sd">    :type path_v: str </span>
-
-<span class="sd">    :param clasificador: nombre del clasificador</span>
-<span class="sd">    :type clasificador: str</span>
-
-<span class="sd">    :param fp: factor de progresión </span>
-<span class="sd">    :type fp: float</span>
-<span class="sd">    </span>
-<span class="sd">    :param categories: número de categorias </span>
-<span class="sd">    :type categories: int </span>
-
-<span class="sd">    &#39;&#39;&#39;</span>
-    <span class="n">vlayer</span> <span class="o">=</span> <span class="n">QgsVectorLayer</span><span class="p">(</span><span class="n">path_v</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="s2">&quot;ogr&quot;</span><span class="p">)</span>
-    <span class="n">v_min</span><span class="p">,</span><span class="n">v_max</span> <span class="o">=</span><span class="n">max_min_vector</span><span class="p">(</span><span class="n">vlayer</span><span class="p">,</span><span class="n">l_field</span><span class="p">)</span>
-    <span class="n">cortes</span><span class="p">,</span><span class="n">nombre</span><span class="o">=</span> <span class="n">tipo_clasificador_s</span><span class="p">(</span><span class="n">clasificador</span><span class="p">,</span><span class="n">path_v</span><span class="p">,</span><span class="n">l_field</span><span class="p">,</span><span class="n">campo_cat</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span><span class="n">categories</span><span class="p">,</span><span class="nb">min</span><span class="o">=</span><span class="n">v_min</span><span class="p">,</span><span class="nb">max</span><span class="o">=</span><span class="n">v_max</span><span class="p">)</span>
-    <span class="n">campos</span> <span class="o">=</span> <span class="p">[</span><span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="p">()</span> <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">vlayer</span><span class="o">.</span><span class="n">fields</span><span class="p">()]</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">nombre</span> <span class="ow">in</span> <span class="n">campos</span><span class="p">:</span>
-        <span class="n">vlayer</span><span class="o">.</span><span class="n">dataProvider</span><span class="p">()</span><span class="o">.</span><span class="n">addAttributes</span><span class="p">([</span><span class="n">QgsField</span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span><span class="n">QVariant</span><span class="o">.</span><span class="n">Int</span><span class="p">)])</span>
-        <span class="n">vlayer</span><span class="o">.</span><span class="n">updateFields</span><span class="p">()</span>
-    
-    <span class="n">categories_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">categories</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cortes</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-        <span class="n">myMin</span> <span class="o">=</span> <span class="n">cortes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-        <span class="n">myMax</span> <span class="o">=</span> <span class="n">cortes</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
-            
-        <span class="n">vlayer</span><span class="o">.</span><span class="n">startEditing</span><span class="p">()</span>        
-        <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">vlayer</span><span class="o">.</span><span class="n">getFeatures</span><span class="p">():</span>
-            <span class="k">if</span> <span class="n">element</span><span class="p">[</span><span class="n">l_field</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">myMin</span> <span class="ow">and</span> <span class="n">element</span><span class="p">[</span><span class="n">l_field</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">myMax</span><span class="p">:</span>
-                <span class="n">element</span><span class="p">[</span><span class="n">nombre</span><span class="p">]</span><span class="o">=</span><span class="n">categories_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-                <span class="n">vlayer</span><span class="o">.</span><span class="n">updateFeature</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
-        <span class="n">vlayer</span><span class="o">.</span><span class="n">commitChanges</span><span class="p">()</span></div>
 
 <span class="c1">######## FUNCIONES A DATOS VECTORIALES ###########</span>
 
@@ -590,8 +572,8 @@
     <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Proceso terminado&quot;</span><span class="p">)</span></div>
 <div class="viewcode-block" id="vcopia"><a class="viewcode-back" href="../apcsig.html#apcsig.vcopia">[documentos]</a><span class="k">def</span> <span class="nf">vcopia</span><span class="p">(</span><span class="n">path_vector</span><span class="p">,</span> <span class="n">path_salida</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Crea una copia de la capa a partir de la ruta de la capa,</span>
-<span class="sd">    la capa es creada con el mismo sistema de referencia que el origen.</span>
+<span class="sd">    Crea una copia de la capa a partir de la ruta de la capa, </span>
+<span class="sd">    la capa es creada con el mismo sistema de referencia que el origen y codificada en UTF-8.</span>
 
 <span class="sd">    :param path_vector: ruta de la capa original</span>
 <span class="sd">    :type path_vector: String</span>
@@ -600,11 +582,11 @@
 <span class="sd">    :type path_salida: String</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">vlayer</span> <span class="o">=</span> <span class="n">QgsVectorLayer</span><span class="p">(</span><span class="n">path_vector</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;ogr&quot;</span><span class="p">)</span>
-    <span class="n">clonarv</span> <span class="o">=</span> <span class="n">QgsVectorFileWriter</span><span class="o">.</span><span class="n">writeAsVectorFormat</span><span class="p">(</span><span class="n">vlayer</span><span class="p">,</span>
-                                                      <span class="n">path_salida</span><span class="p">,</span>
+    <span class="n">QgsVectorFileWriter</span><span class="o">.</span><span class="n">writeAsVectorFormat</span><span class="p">(</span><span class="n">vlayer</span><span class="p">,</span> <span class="n">path_salida</span><span class="p">,</span>
                                                       <span class="s1">&#39;utf-8&#39;</span><span class="p">,</span>
                                                       <span class="n">vlayer</span><span class="o">.</span><span class="n">crs</span><span class="p">(),</span>
-                                                      <span class="s2">&quot;ESRI Shapefile&quot;</span><span class="p">)</span></div>
+                                                      <span class="s2">&quot;ESRI Shapefile&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">path_salida</span></div>
 <div class="viewcode-block" id="llenar_campos_nulos"><a class="viewcode-back" href="../apcsig.html#apcsig.llenar_campos_nulos">[documentos]</a><span class="k">def</span> <span class="nf">llenar_campos_nulos</span><span class="p">(</span><span class="n">path_vector</span><span class="p">,</span><span class="n">valor</span><span class="o">=-</span><span class="mi">9999</span><span class="p">):</span>
 
     <span class="sd">&#39;&#39;&#39;</span>
@@ -660,7 +642,7 @@
 <div class="viewcode-block" id="agregar_categorias"><a class="viewcode-back" href="../apcsig.html#apcsig.agregar_categorias">[documentos]</a><span class="k">def</span> <span class="nf">agregar_categorias</span><span class="p">(</span><span class="n">path_v</span><span class="p">,</span><span class="n">campo</span><span class="p">,</span><span class="n">nuevo_int_cats</span><span class="o">=</span><span class="s1">&#39;categorias&#39;</span><span class="p">,</span><span class="n">cont</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Esta función reclasifica una capa en enteros consecutivos en función de las categorias únicas de un </span>
-<span class="sd">    campo en especificico, como subproducto genera un archivo csv con las categorias.</span>
+<span class="sd">    campo en especifico, como subproducto genera un archivo csv con las categorias.</span>
 
 <span class="sd">    :param path_v: ruta de capa vectorial</span>
 <span class="sd">    :type path_v: str</span>
@@ -705,13 +687,30 @@
     <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;capa clasificada...&#39;</span><span class="p">)</span>
     <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;generando archivo txt de categorias...&#39;</span><span class="p">)</span>
     <span class="n">path_tp_reglas</span> <span class="o">=</span> <span class="s2">&quot;/&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path_v</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">+</span><span class="s2">&quot;/reglas_&quot;</span><span class="o">+</span><span class="n">path_v</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="s2">&quot;.txt&quot;</span>
-<span class="c1">#    reglas = open(path_tp_reglas,&quot;w&quot;)</span>
-<span class="c1">#    for i in range(1,cont):</span>
-<span class="c1">#        reglas.write(str(i)+&quot; = &quot;+str(i)+&quot; &quot;+lista[i-1]+&#39;\n&#39;)</span>
-<span class="c1">#    reglas.close()</span>
+    <span class="n">reglas</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">path_tp_reglas</span><span class="p">,</span><span class="s2">&quot;w&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">cont</span><span class="p">):</span>
+        <span class="n">reglas</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot; = &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot; &quot;</span><span class="o">+</span><span class="n">lista</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">reglas</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">path_tp_reglas</span><span class="p">,</span><span class="n">n_cats</span></div>
-   
-<span class="k">def</span> <span class="nf">extrae_categorias</span><span class="p">(</span><span class="n">path_v</span><span class="p">,</span><span class="n">salida</span><span class="p">,</span><span class="n">campo</span><span class="p">,</span><span class="n">categorias</span><span class="p">):</span>
+<div class="viewcode-block" id="extrae_categorias"><a class="viewcode-back" href="../apcsig.html#apcsig.extrae_categorias">[documentos]</a><span class="k">def</span> <span class="nf">extrae_categorias</span><span class="p">(</span><span class="n">path_v</span><span class="p">,</span><span class="n">salida</span><span class="p">,</span><span class="n">campo</span><span class="p">,</span><span class="n">categorias</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Función que extrae elementos de un shapefile dada una lista de categorias.</span>
+
+<span class="sd">    :param path_v: ruta de la capa vectorial</span>
+<span class="sd">    :type path_v: str</span>
+
+<span class="sd">    :param salida: ruta de la capa vectorial con elementos de las categorias de interés.</span>
+<span class="sd">    :type salida: str</span>
+
+<span class="sd">    :param campo: nombre del campo que contiene las categorias</span>
+<span class="sd">    :type campo: str</span>
+
+<span class="sd">    :param categorias: lista de categorias</span>
+<span class="sd">    :type categorias: list</span>
+
+
+
+<span class="sd">    &#39;&#39;&#39;</span>
     <span class="n">layer</span> <span class="o">=</span> <span class="n">QgsVectorLayer</span><span class="p">(</span><span class="n">path_v</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="s2">&quot;ogr&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">categorias</span><span class="p">)</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
         <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">&quot;</span><span class="o">+</span><span class="n">campo</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">categorias</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -722,7 +721,7 @@
             <span class="n">querys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">&quot;</span><span class="o">+</span><span class="n">campo</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">cat</span><span class="p">))</span>
         <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot; OR &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">querys</span><span class="p">)</span>
     <span class="n">layer</span><span class="o">.</span><span class="n">selectByExpression</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
-    <span class="n">QgsVectorFileWriter</span><span class="o">.</span><span class="n">writeAsVectorFormat</span><span class="p">(</span><span class="n">layer</span><span class="p">,</span> <span class="n">salida</span><span class="p">,</span> <span class="s2">&quot;utf-8&quot;</span><span class="p">,</span> <span class="n">layer</span><span class="o">.</span><span class="n">crs</span><span class="p">(),</span> <span class="s2">&quot;ESRI Shapefile&quot;</span><span class="p">,</span> <span class="n">onlySelected</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">QgsVectorFileWriter</span><span class="o">.</span><span class="n">writeAsVectorFormat</span><span class="p">(</span><span class="n">layer</span><span class="p">,</span> <span class="n">salida</span><span class="p">,</span> <span class="s2">&quot;utf-8&quot;</span><span class="p">,</span> <span class="n">layer</span><span class="o">.</span><span class="n">crs</span><span class="p">(),</span> <span class="s2">&quot;ESRI Shapefile&quot;</span><span class="p">,</span> <span class="n">onlySelected</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
 <span class="k">def</span> <span class="nf">genera_reglas_txt</span><span class="p">(</span><span class="n">p_layer</span><span class="p">,</span><span class="n">campo_cat</span><span class="p">,</span><span class="n">campo_id</span><span class="p">):</span>
     <span class="n">layer</span> <span class="o">=</span> <span class="n">QgsVectorLayer</span><span class="p">(</span><span class="n">p_layer</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="s2">&quot;ogr&quot;</span><span class="p">)</span>
     <span class="n">consulta</span> <span class="o">=</span> <span class="n">QgsFeatureRequest</span><span class="p">()</span><span class="o">.</span><span class="n">setFlags</span><span class="p">(</span><span class="n">QgsFeatureRequest</span><span class="o">.</span><span class="n">NoGeometry</span><span class="p">)</span>
@@ -899,7 +898,6 @@
         <span class="s1">&#39;INVERT&#39;</span><span class="p">:</span><span class="kc">False</span><span class="p">,</span>
         <span class="s1">&#39;OUTPUT&#39;</span><span class="p">:</span><span class="n">path_salida</span><span class="p">}</span>
     <span class="n">pr</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;gdal:rasterize&quot;</span><span class="p">,</span> <span class="n">dicc</span><span class="p">)</span></div>
-    
 <div class="viewcode-block" id="alinear_raster"><a class="viewcode-back" href="../apcsig.html#apcsig.alinear_raster">[documentos]</a><span class="k">def</span> <span class="nf">alinear_raster</span><span class="p">(</span><span class="n">path_raster</span><span class="p">,</span><span class="n">region</span><span class="p">,</span><span class="n">resolucion</span><span class="p">,</span><span class="n">path_salida</span><span class="p">,</span><span class="n">crs_destino</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="n">tipo</span><span class="o">=</span><span class="s1">&#39;int&#39;</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Esta función alinea un raster dada una región y el tamaño de pixel </span>
@@ -937,7 +935,7 @@
         <span class="s1">&#39;TARGET_RESOLUTION&#39;</span><span class="p">:</span><span class="n">resolucion</span><span class="p">,</span>
         <span class="s1">&#39;OPTIONS&#39;</span><span class="p">:</span><span class="s1">&#39;COMPRESS=LZW&#39;</span><span class="p">,</span>
         <span class="s1">&#39;DATA_TYPE&#39;</span><span class="p">:</span><span class="n">v_tipo</span><span class="p">,</span>
-        <span class="s1">&#39;TARGET_EXTENT&#39;</span><span class="p">:</span><span class="n">region</span><span class="p">,</span>
+        <span class="s1">&#39;TARGET_EXTENT&#39;</span><span class="p">:</span><span class="n">region</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
         <span class="s1">&#39;TARGET_EXTENT_CRS&#39;</span><span class="p">:</span><span class="kc">None</span><span class="p">,</span>
         <span class="s1">&#39;MULTITHREADING&#39;</span><span class="p">:</span><span class="kc">False</span><span class="p">,</span>
         <span class="s1">&#39;OUTPUT&#39;</span><span class="p">:</span><span class="n">path_salida</span><span class="p">}</span>
@@ -999,14 +997,33 @@
 <div class="viewcode-block" id="ecuacion_clp"><a class="viewcode-back" href="../apcsig.html#apcsig.ecuacion_clp">[documentos]</a><span class="k">def</span> <span class="nf">ecuacion_clp</span><span class="p">(</span><span class="n">pesos</span><span class="p">):</span>
 
     <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Esta función recibe una lista de pesos para regresar la ecuación</span>
-<span class="sd">    en la estructura requerida por gdal para la combinación lineal ponderada. </span>
+<span class="sd">    Esta función recibe una lista de pesos para regresar la ecuación de la combinación líneal ponderada</span>
+<span class="sd">    en la estructura requerida para la calculadora raster de gdal.</span>
+
+<span class="sd">    La ecuación líneal ponderada (clp), donde i es el número de capas; x es la capa ráster y w es el peso asociado en el modelo multicriterio</span>
+<span class="sd">    para esa capa ráster.</span>
+
+<span class="sd">    .. math:: </span>
+<span class="sd">    </span>
+<span class="sd">        clp = \sum_{i=i}^{i=n}x_{i}*w_{i}</span>
+
+<span class="sd">    </span>
 <span class="sd">    </span>
 <span class="sd">    **ejemplo:**</span>
 
+<span class="sd">    El modelo multicriterio se compone cuatro criterios: **A**, **B**, **C** y **D** ; </span>
+
+<span class="sd">    donde **A** tiene un peso de w=0.40 ; **B** tiene un peso de w=0.25, **C** tiene un peso de w=0.15 u **D** tiene un peso de w=0.20</span>
+
+<span class="sd">    </span>
 <span class="sd">    .. math::</span>
 
-<span class="sd">        ecuacion = A*0.40 + B*0.25 + C*0.15 +D*0.20</span>
+<span class="sd">        clp = A*0.40 + B*0.25 + C*0.15 +D*0.20</span>
+<span class="sd">    </span>
+<span class="sd">    .. note::</span>
+
+<span class="sd">        El orden de los valores en la lista de los pesos tiene que ser igual al orden de la lista de la variable rasters_input de la función</span>
+<span class="sd">        crea_capa_raster</span>
 
 <span class="sd">    :param pesos: lista de los pesos de las capas, salida de la función </span>
 <span class="sd">    :type pesos: lista</span>
@@ -1025,7 +1042,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">ecuacion</span><span class="o">+=</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="s1">&#39; * &#39;</span><span class="p">)</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">abc</span><span class="p">[</span><span class="n">a</span><span class="p">]))</span>
     <span class="k">return</span> <span class="n">ecuacion</span></div>
-<div class="viewcode-block" id="normailiza"><a class="viewcode-back" href="../apcsig.html#apcsig.normailiza">[documentos]</a><span class="k">def</span> <span class="nf">normailiza</span><span class="p">(</span><span class="n">path_raster</span><span class="p">,</span> <span class="n">path_raster_n</span><span class="p">,</span><span class="n">modo</span><span class="o">=</span><span class="s1">&#39;ideales&#39;</span><span class="p">,</span><span class="n">decimales</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+<div class="viewcode-block" id="normailiza_raster"><a class="viewcode-back" href="../apcsig.html#apcsig.normailiza_raster">[documentos]</a><span class="k">def</span> <span class="nf">normailiza_raster</span><span class="p">(</span><span class="n">path_raster</span><span class="p">,</span> <span class="n">path_raster_n</span><span class="p">,</span><span class="n">modo</span><span class="o">=</span><span class="s1">&#39;ideales&#39;</span><span class="p">,</span><span class="n">decimales</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Esta función normaliza una capa raster, se puede elegir entre dos tipos de normalización.</span>
 
@@ -1033,7 +1050,7 @@
 
 <span class="sd">    .. math:: </span>
 
-<span class="sd">        ideales=\\frac{A}{A.max}</span>
+<span class="sd">        ideales=\\frac{A}{max(A)}</span>
 <span class="sd">    </span>
 <span class="sd">    2) lineal: la capa ráster resultante tendra como valor máximo 1 y como valor mínimo 0</span>
 <span class="sd">    el 1 representará el maximo de la capa de entrada y el 0 representa el valor mínimo de la </span>
@@ -1041,7 +1058,7 @@
 
 <span class="sd">    .. math::</span>
 
-<span class="sd">        lineal=\\frac{A -A.min}{A.max - A.min}</span>
+<span class="sd">        lineal=\\frac{A -min(A)}{max(A) - min(A)}</span>
 <span class="sd">    &#39;&#39;&#39;</span>
 
     <span class="nb">min</span><span class="p">,</span><span class="nb">max</span> <span class="o">=</span> <span class="n">raster_min_max</span><span class="p">(</span><span class="n">path_raster</span><span class="p">)</span>
@@ -1055,7 +1072,6 @@
     
     <span class="n">redondea_raster</span><span class="p">(</span><span class="n">path_raster_n</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="s2">&quot;_raw.tif&quot;</span><span class="p">,</span><span class="n">path_raster_n</span><span class="p">,</span><span class="n">decimales</span><span class="p">)</span>
     <span class="n">remove_raster</span><span class="p">(</span><span class="n">path_raster_n</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="s2">&quot;_raw.tif&quot;</span><span class="p">)</span></div>
-    
 <div class="viewcode-block" id="raster_min_max"><a class="viewcode-back" href="../apcsig.html#apcsig.raster_min_max">[documentos]</a><span class="k">def</span> <span class="nf">raster_min_max</span><span class="p">(</span><span class="n">path_raster</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Esta funcion regresa los valores maximos y minimos de una capa raster</span>
@@ -1107,7 +1123,6 @@
                 <span class="s1">&#39;EXTRA&#39;</span><span class="p">:</span><span class="s1">&#39;--co=</span><span class="se">\&quot;</span><span class="s1">COMPRESS=LZW</span><span class="se">\&quot;</span><span class="s1">&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;OUTPUT&#39;</span><span class="p">:</span><span class="n">salida</span><span class="p">}</span>
     <span class="n">pr</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;gdal:rastercalculator&quot;</span><span class="p">,</span><span class="n">dicc</span><span class="p">)</span></div>
-    
 <div class="viewcode-block" id="crea_capa_raster"><a class="viewcode-back" href="../apcsig.html#apcsig.crea_capa_raster">[documentos]</a><span class="k">def</span> <span class="nf">crea_capa_raster</span><span class="p">(</span><span class="n">ecuacion</span><span class="p">,</span><span class="n">rasters_input</span><span class="p">,</span><span class="n">salida</span><span class="p">,</span><span class="n">decimales</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span> 
 
     <span class="sd">&#39;&#39;&#39;</span>
@@ -1768,7 +1783,6 @@
             <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">arch</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">PermissionError</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;no se elimino &#39;</span><span class="p">,</span><span class="n">arch</span><span class="p">)</span></div>
-
 <div class="viewcode-block" id="asignar_nulls"><a class="viewcode-back" href="../apcsig.html#apcsig.asignar_nulls">[documentos]</a><span class="k">def</span> <span class="nf">asignar_nulls</span><span class="p">(</span><span class="nb">map</span><span class="p">,</span><span class="n">output</span><span class="p">,</span><span class="n">valor_huecos</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Esta función asigna un valor  a los no_data de la capa</span>
@@ -1792,7 +1806,6 @@
             <span class="s1">&#39;GRASS_REGION_PARAMETER&#39;</span><span class="p">:</span><span class="n">region</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
             <span class="s1">&#39;GRASS_REGION_CELLSIZE_PARAMETER&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">}</span>
     <span class="n">pr</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;grass7:r.null&quot;</span><span class="p">,</span><span class="n">dicc</span><span class="p">)</span></div>
-
 <div class="viewcode-block" id="nulls"><a class="viewcode-back" href="../apcsig.html#apcsig.nulls">[documentos]</a><span class="k">def</span> <span class="nf">nulls</span><span class="p">(</span><span class="nb">map</span><span class="p">,</span><span class="n">output</span><span class="p">,</span><span class="n">valor_huecos</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Esta función asigna un valor  a los no_data de la capa</span>
@@ -1876,7 +1889,6 @@
                     <span class="s1">&#39;GRASS_RASTER_FORMAT_OPT&#39;</span><span class="p">:</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
                     <span class="s1">&#39;GRASS_RASTER_FORMAT_META&#39;</span><span class="p">:</span><span class="s1">&#39;&#39;</span><span class="p">}</span>
     <span class="n">pr</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;grass7:r.reclass&quot;</span><span class="p">,</span><span class="n">dicc</span><span class="p">)</span></div>
-
 <span class="k">def</span> <span class="nf">buffer_raster</span><span class="p">(</span><span class="n">path_r</span><span class="p">,</span><span class="n">distancia</span><span class="p">,</span><span class="n">path_salida</span><span class="p">,</span><span class="n">path_mascara</span><span class="p">):</span>
     <span class="n">region</span> <span class="o">=</span> <span class="n">get_region</span><span class="p">(</span><span class="n">path_mascara</span><span class="p">)</span>
     <span class="n">path_r_distancia</span> <span class="o">=</span> <span class="n">path_salida</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="s2">&quot;_temp.tif&quot;</span>
@@ -1915,7 +1927,6 @@
             <span class="s1">&#39;GRASS_RASTER_FORMAT_OPT&#39;</span><span class="p">:</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="s1">&#39;GRASS_RASTER_FORMAT_META&#39;</span><span class="p">:</span><span class="s1">&#39;&#39;</span><span class="p">}</span>
     <span class="n">pr</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;grass7:r.mapcalc.simple&quot;</span><span class="p">,</span><span class="n">dicc2</span><span class="p">)</span>
     <span class="n">remove_raster</span><span class="p">(</span><span class="n">path_r_distancia</span><span class="p">)</span>
-
 <span class="k">def</span> <span class="nf">calcula_distancias_raster</span><span class="p">(</span><span class="n">path_r</span><span class="p">,</span><span class="n">path_mascara</span><span class="p">,</span><span class="n">path_salida</span><span class="p">,</span><span class="n">tipo_distancia</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="n">remover</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
     <span class="n">region</span> <span class="o">=</span> <span class="n">get_region</span><span class="p">(</span><span class="n">path_mascara</span><span class="p">)</span>
     <span class="n">path_r_distancia</span> <span class="o">=</span> <span class="n">path_r</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="s2">&quot;_tp_dis_mts.tif&quot;</span>
@@ -2095,7 +2106,6 @@
         <span class="s1">&#39;GRASS_RASTER_FORMAT_OPT&#39;</span><span class="p">:</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
         <span class="s1">&#39;GRASS_RASTER_FORMAT_META&#39;</span><span class="p">:</span><span class="s1">&#39;&#39;</span><span class="p">}</span>
         <span class="n">pr</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;grass7:r.mapcalc.simple&quot;</span><span class="p">,</span> <span class="n">dicc</span><span class="p">)</span></div>
-        
 <div class="viewcode-block" id="calculadora_grass_4capas"><a class="viewcode-back" href="../apcsig.html#apcsig.calculadora_grass_4capas">[documentos]</a><span class="k">def</span> <span class="nf">calculadora_grass_4capas</span><span class="p">(</span><span class="n">lista_capas</span><span class="p">,</span> <span class="n">ecuacion</span><span class="p">,</span><span class="n">path_salida</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Esta función aplica la máscara de la zona de estudio</span>
@@ -2162,7 +2172,6 @@
         <span class="s1">&#39;GRASS_RASTER_FORMAT_META&#39;</span><span class="p">:</span><span class="s1">&#39;&#39;</span><span class="p">}</span>
         <span class="n">pr</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;grass7:r.mapcalc.simple&quot;</span><span class="p">,</span> <span class="n">dicc</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;proceso integra_localidades_caminos terminado&quot;</span><span class="p">)</span></div>
-
 <span class="k">def</span> <span class="nf">areas_por_categorias</span><span class="p">(</span><span class="n">path_raster</span><span class="p">,</span><span class="n">path_salida</span><span class="p">,</span><span class="nb">min</span><span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="nb">max</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
     <span class="nb">min</span><span class="p">,</span><span class="nb">max</span><span class="o">=</span> <span class="n">raster_min_max</span><span class="p">(</span><span class="n">path_raster</span><span class="p">)</span>
     <span class="n">raster_matrix</span> <span class="o">=</span>  <span class="n">gdalnumeric</span><span class="o">.</span><span class="n">LoadFile</span><span class="p">(</span><span class="n">path_raster</span><span class="p">)</span>
@@ -2186,15 +2195,19 @@
     <span class="n">df_o</span> <span class="o">=</span> <span class="n">arch_csv</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="nb">print</span> <span class="p">(</span><span class="n">df_o</span><span class="p">)</span>
     <span class="n">df_o</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span> <span class="n">path_salida</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="s2">&quot;.xlsx&quot;</span><span class="p">,</span><span class="n">index</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">areas_por_categorias_colsulta</span><span class="p">(</span><span class="n">path_raster</span><span class="p">):</span>
-    <span class="n">valores</span> <span class="o">=</span> <span class="n">categorias_unicas_raster</span><span class="p">(</span><span class="n">path_raster</span><span class="p">)</span><span class="c1">#min,max= raster_min_max(path_raster)</span>
+<div class="viewcode-block" id="areas_por_categorias_colsulta"><a class="viewcode-back" href="../apcsig.html#apcsig.areas_por_categorias_colsulta">[documentos]</a><span class="k">def</span> <span class="nf">areas_por_categorias_colsulta</span><span class="p">(</span><span class="n">path_raster</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Ésta función imprime el número de pixeles por categoria de un archivo ráster</span>
+
+<span class="sd">    :param path_raster: ruta del archivo ráster</span>
+<span class="sd">    :type path_raster: str</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">valores</span> <span class="o">=</span> <span class="n">categorias_unicas_raster</span><span class="p">(</span><span class="n">path_raster</span><span class="p">)</span>
     <span class="n">raster_matrix</span> <span class="o">=</span>  <span class="n">gdalnumeric</span><span class="o">.</span><span class="n">LoadFile</span><span class="p">(</span><span class="n">path_raster</span><span class="p">)</span>
-    <span class="n">dicc</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">area_total</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;categoria | no_pix</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">valores</span><span class="p">:</span>
         <span class="n">total_pixeles_cat</span> <span class="o">=</span> <span class="p">(</span><span class="n">raster_matrix</span> <span class="o">==</span> <span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> 
-        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="s2">&quot; | &quot;</span><span class="p">,</span><span class="n">total_pixeles_cat</span><span class="p">)</span>
-        
+        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="s2">&quot; | &quot;</span><span class="p">,</span><span class="n">total_pixeles_cat</span><span class="p">)</span></div>
 <span class="k">def</span> <span class="nf">raster_nodata</span><span class="p">(</span><span class="n">path_raster</span><span class="p">):</span>
 
     <span class="n">rlayer</span> <span class="o">=</span> <span class="n">QgsRasterLayer</span><span class="p">(</span><span class="n">path_raster</span><span class="p">,</span><span class="s2">&quot;raster&quot;</span><span class="p">)</span>
@@ -2210,7 +2223,6 @@
 
     
     <span class="k">return</span> <span class="n">no_data</span>
-    
 <span class="k">def</span> <span class="nf">categorias_unicas_raster</span><span class="p">(</span><span class="n">path_raster</span><span class="p">):</span>
     <span class="n">v_nodata</span> <span class="o">=</span> <span class="n">raster_nodata</span><span class="p">(</span><span class="n">path_raster</span><span class="p">)</span>
     <span class="n">raster_matrix</span> <span class="o">=</span> <span class="n">gdalnumeric</span><span class="o">.</span><span class="n">LoadFile</span><span class="p">(</span><span class="n">path_raster</span><span class="p">)</span>
@@ -2220,16 +2232,27 @@
     <span class="n">valores_unicos</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">v_nodata</span><span class="p">)</span>
     <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;total de categorias&quot;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">valores_unicos</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">valores_unicos</span>
+<div class="viewcode-block" id="raster_a_vector"><a class="viewcode-back" href="../apcsig.html#apcsig.raster_a_vector">[documentos]</a><span class="k">def</span> <span class="nf">raster_a_vector</span><span class="p">(</span><span class="n">path_raster</span><span class="p">,</span><span class="n">nombre_campo</span><span class="p">,</span><span class="n">path_vector</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Función que transforma una capa ráster a vector.</span>
 
-<span class="k">def</span> <span class="nf">raster_a_vector</span><span class="p">(</span><span class="n">path_raster</span><span class="p">,</span><span class="n">nombre_campo</span><span class="p">,</span><span class="n">path_vector</span><span class="p">):</span>
+<span class="sd">    :param path_raster:Ruta de la capa raster:</span>
+<span class="sd">    :type path_raster: str</span>
+
+<span class="sd">    :param nombre_campo: Nombre del campo de la capa vectorial que contendrá los valores o categorias del ráster</span>
+<span class="sd">    :type nombre_campo: int</span>
+
+<span class="sd">    :param path_vector: Ruta donde se almacenará la capa shapefile</span>
+<span class="sd">    :type path_vector: str</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
     <span class="n">dicc</span> <span class="o">=</span>  <span class="p">{</span><span class="s1">&#39;INPUT&#39;</span><span class="p">:</span><span class="n">path_raster</span><span class="p">,</span>
                     <span class="s1">&#39;BAND&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
                     <span class="s1">&#39;FIELD&#39;</span><span class="p">:</span><span class="n">nombre_campo</span><span class="p">,</span>
                     <span class="s1">&#39;EIGHT_CONNECTEDNESS&#39;</span><span class="p">:</span><span class="kc">False</span><span class="p">,</span>
                     <span class="s1">&#39;EXTRA&#39;</span><span class="p">:</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
                     <span class="s1">&#39;OUTPUT&#39;</span><span class="p">:</span><span class="n">path_vector</span><span class="p">}</span>
-    <span class="n">pr</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;gdal:polygonize&quot;</span><span class="p">,</span><span class="n">dicc</span><span class="p">)</span>
-    
+    <span class="n">pr</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;gdal:polygonize&quot;</span><span class="p">,</span><span class="n">dicc</span><span class="p">)</span></div>
 <span class="k">def</span> <span class="nf">max_raster</span><span class="p">(</span><span class="n">lista_capas</span><span class="p">,</span> <span class="n">path_salida</span><span class="p">,</span><span class="n">mascara</span><span class="p">):</span>
     <span class="n">n_variables</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">lista_capas</span><span class="p">)</span>
     <span class="n">abc</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">ascii_uppercase</span><span class="p">)</span>
@@ -2238,7 +2261,6 @@
     
     <span class="n">aplica_mascara</span><span class="p">(</span><span class="n">mascara</span><span class="p">,</span> <span class="n">path_salida</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="s2">&quot;_join.tif&quot;</span><span class="p">,</span> <span class="n">path_salida</span><span class="p">,</span> <span class="n">get_region</span><span class="p">(</span><span class="n">mascara</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
     <span class="n">remove_raster</span><span class="p">(</span> <span class="n">path_salida</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="s2">&quot;_join.tif&quot;</span><span class="p">)</span>
-    
 <div class="viewcode-block" id="criterios_ruta_pesos"><a class="viewcode-back" href="../apcsig.html#apcsig.criterios_ruta_pesos">[documentos]</a><span class="k">def</span> <span class="nf">criterios_ruta_pesos</span><span class="p">(</span><span class="n">dicc</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; funcion para extraer a partir de  un diccionario, listas de criterios, rutas y pesos para la clp</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -2250,7 +2272,6 @@
         <span class="n">rutas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="s1">&#39;ruta&#39;</span><span class="p">])</span>
         <span class="n">pesos</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="s1">&#39;w&#39;</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">criterios</span><span class="p">,</span> <span class="n">rutas</span><span class="p">,</span> <span class="n">pesos</span> </div>
-    
 <div class="viewcode-block" id="ecuacion_class"><a class="viewcode-back" href="../apcsig.html#apcsig.ecuacion_class">[documentos]</a><span class="k">def</span> <span class="nf">ecuacion_class</span><span class="p">(</span><span class="n">cortes</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Función que escribe la ecuación de reclasificación a partir de un intervalo de cortes</span>

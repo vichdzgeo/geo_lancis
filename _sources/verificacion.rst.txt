@@ -7,7 +7,7 @@ Los puntos a verificar son los siguientes:
 
 1. Proyección Que exista el archivo prj asociado
 2. Geometría completa  Que exista los mismos elementos geométricos que los contenidos en la tabla de atributos
-3. Sobrelapados Que la capa no cuente con errores topológicos
+3. Topología Que la capa no cuente con errores topológicos
 4. Nulos Que no existan campos vacios en la tabla de atributos
 5. Codificados Que no existan campos con caracteres espeaciales o extraños en su contenido o que datos numéricos esten declardos como texto
 6. Metadatos Que exista el archivo xml asociado a los metadatos geográficos

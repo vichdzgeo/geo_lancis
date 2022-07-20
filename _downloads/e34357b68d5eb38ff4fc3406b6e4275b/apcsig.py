@@ -38,13 +38,39 @@ def corrige_geometria(path_v):
     :type path_v: str
 
     :returns: Ruta del archivo shape con la geometría corregida
-    :rtype: str 
+    :rtype: str
     '''
     dicc =  {'INPUT':path_v,
     'OUTPUT':path_v.split(".")[0]+"_fix."+path_v.split(".")[1]}
     pr.run("native:fixgeometries",dicc)
     return path_v.split(".")[0]+"_fix."+path_v.split(".")[1]
+def union (capa, overlay,salida):
+    dicc = {'INPUT':capa,
+                                    'OVERLAY':overlay,
+                                    'OUTPUT':salida}
+    pr.run("native:union", dicc)
+def diferencia(capa, overlay,salida):
+    dicc =     dicc = {'INPUT':capa,
+                                    'OVERLAY':overlay,
+                                    'OUTPUT':salida}
+    pr.run("native:difference", dicc)
+def single_poligonos(path_v,salida):
+    '''
+    Función que transforma una capa multipolígono a polígonos individuales.
 
+    :param path_v: ruta de la capa vectorial multipoligono
+    :type path_v: str
+
+    :param salida: ruta de la capa vectorial de polígonos individuales
+    :type salida: str
+
+    .. note:: 
+        Utilizar previamente la función corrige_geometria para la capa de entrada a ésta función.
+        
+    '''
+    dicc = {'INPUT':path_v,
+                    'OUTPUT':salida}
+    pr.run("native:multiparttosingleparts", dicc)
 def interseccion(capa_a,capa_b,salida):
     dicc =  {'INPUT':capa_a,
                     'OVERLAY':capa_b,
@@ -57,55 +83,87 @@ def interseccion(capa_a,capa_b,salida):
 def nombre_capa(path_capa):
     nombre = path_capa.split("/")[-1].split(".")[0]
     return nombre
-
 def lista_archivos(path, n_ext='.tif'):
     '''
-    Esta función busca dentro de un directorio especificado todas las capas con extensión **shp**
-    y regresa una lista con la ruta de cada una de ellas.
+    Ésta función busca dentro de un directorio todos los archivos con el tipo de extensión
+    declarada.
 
-    :param path: ruta del direcctorio que contiene las capas shape
+    :param path: ruta del direcctorio que contiene los archivos
     :type path: str
 
-    :returns: lista con la ruta de cada capa localizada en el directorio y subdirectorios
+    :returns: lista con la ruta de cada archivo localizado en el directorio y subdirectorios
     :rtype: list 
     '''
     lista_shp=[]
     for root, dirs, files in os.walk(path):
         for name in files:
             extension = os.path.splitext(name)
-            if extension[1] == n_ext:
+            if extension[1].lower() == n_ext:
                 ruta = (root.replace("\\","/")+"/").replace("//","/")+name
                 lista_shp.append(ruta)
     return lista_shp
+def reproyectar_a_utm(path_v,path_v_reproyectado,zona_norte):
 
-def reproyectar_a_utm(path_v,path_v_reprojected,zona_norte):
+    '''
+    Función que reproyecta una capa shapefile a UTM/WGS84 para las zonas válidas de México.
+
+    :path_v: Ruta de la capa shapefile original.
+    :typy path_v: str
+
+    :path_v_reproyectado: Ruta y nombre de la capa shapefile que se exporatá con proyección UTM/WGS84.
+    :type path_v_reproyectado:str 
+
+    :zona_norte: Número de zona UTM a la que se desea exportar la capa Shapefile (11 hasta la 16).
+    :type zona_norte: int
+
+
+    '''
 
     vlayer = QgsVectorLayer(path_v,"","ogr")
     if zona_norte==11:
         crs = QgsCoordinateReferenceSystem("EPSG:32611")
-        proyecta = QgsVectorFileWriter.writeAsVectorFormat(vlayer,path_v_reprojected,'utf-8',crs,"ESRI Shapefile")
+        proyecta = QgsVectorFileWriter.writeAsVectorFormat(vlayer,path_v_reproyectado,'utf-8',crs,"ESRI Shapefile")
     elif zona_norte==12:
         crs = QgsCoordinateReferenceSystem("EPSG:32612")
-        proyecta = QgsVectorFileWriter.writeAsVectorFormat(vlayer,path_v_reprojected,'utf-8',crs,"ESRI Shapefile")
+        proyecta = QgsVectorFileWriter.writeAsVectorFormat(vlayer,path_v_reproyectado,'utf-8',crs,"ESRI Shapefile")
     elif zona_norte==13:
         crs = QgsCoordinateReferenceSystem("EPSG:32613")
-        proyecta = QgsVectorFileWriter.writeAsVectorFormat(vlayer,path_v_reprojected,'utf-8',crs,"ESRI Shapefile")
+        proyecta = QgsVectorFileWriter.writeAsVectorFormat(vlayer,path_v_reproyectado,'utf-8',crs,"ESRI Shapefile")
     elif zona_norte==14:
         crs = QgsCoordinateReferenceSystem("EPSG:32614")
-        proyecta = QgsVectorFileWriter.writeAsVectorFormat(vlayer,path_v_reprojected,'utf-8',crs,"ESRI Shapefile")
+        proyecta = QgsVectorFileWriter.writeAsVectorFormat(vlayer,path_v_reproyectado,'utf-8',crs,"ESRI Shapefile")
     elif zona_norte==15:
         crs = QgsCoordinateReferenceSystem("EPSG:32615")
-        proyecta = QgsVectorFileWriter.writeAsVectorFormat(vlayer,path_v_reprojected,'utf-8',crs,"ESRI Shapefile")
+        proyecta = QgsVectorFileWriter.writeAsVectorFormat(vlayer,path_v_reproyectado,'utf-8',crs,"ESRI Shapefile")
     elif zona_norte==16:
         crs = QgsCoordinateReferenceSystem("EPSG:32616")
-        proyecta = QgsVectorFileWriter.writeAsVectorFormat(vlayer,path_v_reprojected,'utf-8',crs,"ESRI Shapefile")
+        proyecta = QgsVectorFileWriter.writeAsVectorFormat(vlayer,path_v_reproyectado,'utf-8',crs,"ESRI Shapefile")
     else:
         print ("error en el numero de zona")
-
-
 ### FUNCIONES PARA CLASIFICAR  ########
 
 def progressive(fp=2, min=0, max=1, categories=5):
+
+    '''
+    Función que reclasifica un rango de valores de 0 a 1 en n categorias 
+    por el clasificador Progresiva.
+
+    :param fp: Factor de progresión.
+    :type fp: int
+
+    :param min: Valor mínimo del rango a clasificar.
+    :type min: float
+
+    :param max: Valor máximo del rango a clasificar.
+    :type max: float
+
+    :param categories: número de categorias
+    :type categories: int
+
+    :returns: lista con los intervalos de corte 
+    :rtype: list 
+
+    '''
 
     # # Cortes de categories siguiendo Ley de Weber
     # print '\n\t\t////Cortes de categories siguiendo Ley de Weber-Feshner////\n'
@@ -132,8 +190,27 @@ def progressive(fp=2, min=0, max=1, categories=5):
     FuzzyCut.append(max)
     
     return FuzzyCut
-
 def wf(fp=2,min=0,max=1,categories=5):
+
+    '''
+    Función que reclasifica un rango de valores de 0 a 1 en  n categorias 
+    por Weber-Fechner.
+
+    :param fp: Factor de progresión.
+    :type fp: int
+
+    :param min: Valor mínimo del rango a clasificar.
+    :type min: float
+
+    :param max: Valor máximo del rango a clasificar.
+    :type max: float
+
+    :param categories: número de categorias
+    :type categories: int
+
+    :returns: lista con los intervalos de corte 
+    :rtype: list 
+    '''     
     
     dicc_e = {}
     lista_val = [min,]
@@ -149,10 +226,10 @@ def wf(fp=2,min=0,max=1,categories=5):
         lista_val.append( dicc_e['e'+str(i)])
     print (lista_val)
     return lista_val
-def cuantiles_s(path_v,quantil,field,min,max):
+def cuantiles_s(path_v,quantil,field):
 
     '''
-    Esta función regresa la lista de cortes según el cualtil 
+    Esta función regresa la lista de cortes según el cuantil 
     deseado de los valores de un campo de la capa vectorial de entrada
 
     :param path_v: ruta de la capa vectorial
@@ -164,17 +241,13 @@ def cuantiles_s(path_v,quantil,field,min,max):
     :param field: nombre del campo
     :type field: str
 
-    :param min: valor mínimo de la capa
-    :type min: float
-
-    :param max: valor máximo de la capa
-    :type max: float
     '''
 
     vlayer = QgsVectorLayer(path_v,"","ogr")
     no_geometry =  QgsFeatureRequest().setFlags(QgsFeatureRequest.NoGeometry)
     values = [v[field] for v in vlayer.getFeatures(no_geometry)]
     array_val = np.array(values)
+    min= min(values)
     lista_val=[min,]
     for i in range(1,quantil+1):
         value= i/quantil
@@ -182,7 +255,6 @@ def cuantiles_s(path_v,quantil,field,min,max):
         lista_val.append(cuantil_c)
 
     return lista_val
-
 def equidistantes (categories=5,min=0,max=1):
     '''
     Esta función regresa la lista de cortes equidistantes según el número 
@@ -204,7 +276,6 @@ def equidistantes (categories=5,min=0,max=1):
         valor = min + (incremento * i)
         lista_val.append(valor)
     return lista_val
-
 def max_min_vector(layer,campo):
     '''
     Esta función regresa el maximo y minimo del campo
@@ -220,96 +291,6 @@ def max_min_vector(layer,campo):
     '''
     idx=layer.fields().indexFromName(campo)
     return round(layer.minimumValue(idx),3),round(layer.maximumValue(idx),3)
-
-def tipo_clasificador_s(clasificador, path_v, l_field,campo_cat='', fp=2, categories = 5, min=0, max=1):
-    '''
-    Esta función integra los modos de clasificación, weber-fechner, progresiva,
-        cuartiles, quintiles, deciles o equidistante
-
-        param clasificador: tipo de clasificador (progresiva, cuartiles, quintiles, deciles, equidistante)
-        type clasificador: str
-
-        :param path_v: ruta de la capa vectorial
-        :type path_v: str
-        
-        :param l_field: nombre del campo
-        :type l_field: str 
-
-        :param fp: factor de progresión 
-        :type fp: float
-
-        :param categories: número de categorias 
-        :type categories: int 
-
-        :param min: valor mínimo de la capa
-        :type min: float
-
-        :param max: valor máximo de la capa
-        :type max: float
-
-
-    '''
-
-    if clasificador.lower() == "wf" or clasificador.lower() == "weber-fechner":
-        nombre ='wf_'+str(fp).replace(".","")+"_"+campo_cat
-        return wf(fp,min,max,categories),nombre
-
-    elif clasificador.lower() == "progressive":
-        nombre ='ct_pg_'+str(fp).replace(".","")
-        return progressive(fp,min,max,categories),nombre
-
-    elif clasificador.lower()=='cuartiles':
-        nombre = 'ct_cuartil'
-        return cuantiles_s(path_v,4,l_field,min,max),nombre
-    elif clasificador.lower()=='quintiles':
-        nombre = 'ct_quintil'
-        return cuantiles_s(path_v,5,l_field,min,max),nombre
-    elif clasificador.lower()== 'deciles':
-        nombre = 'ct_decil'
-        return cuantiles_s(path_v,10,l_field,min,max),nombre
-    elif clasificador.lower()== 'equidistante':
-        nombre = 'ct_equidis'
-        return equidistantes(categories, min, max),nombre
-    else:
-        print ("error en el nombre de clasificacion")
-
-def clasificar_shape(path_v, clasificador, l_field, campo_cat='',fp=2, categories=5):
-
-    '''
-    Funcion integradora para clasificar la capa vectorial
-    
-    :param path_v: ruta de la capa vectorial 
-    :type path_v: str 
-
-    :param clasificador: nombre del clasificador
-    :type clasificador: str
-
-    :param fp: factor de progresión 
-    :type fp: float
-    
-    :param categories: número de categorias 
-    :type categories: int 
-
-    '''
-    vlayer = QgsVectorLayer(path_v,"","ogr")
-    v_min,v_max =max_min_vector(vlayer,l_field)
-    cortes,nombre= tipo_clasificador_s(clasificador,path_v,l_field,campo_cat, fp,categories,min=v_min,max=v_max)
-    campos = [field.name() for field in vlayer.fields()]
-    if not nombre in campos:
-        vlayer.dataProvider().addAttributes([QgsField(nombre,QVariant.Int)])
-        vlayer.updateFields()
-    
-    categories_list = [x for x in range(1,categories+1)]
-    for i in range(len(cortes)-1):
-        myMin = cortes[i]
-        myMax = cortes[i+1]
-            
-        vlayer.startEditing()        
-        for element in vlayer.getFeatures():
-            if element[l_field] >= myMin and element[l_field] <= myMax:
-                element[nombre]=categories_list[i]
-                vlayer.updateFeature(element)
-        vlayer.commitChanges()
 
 ######## FUNCIONES A DATOS VECTORIALES ###########
 
@@ -438,8 +419,8 @@ def campos_mayusculas(path_shape):
     print ("Proceso terminado")
 def vcopia(path_vector, path_salida):
     """
-    Crea una copia de la capa a partir de la ruta de la capa,
-    la capa es creada con el mismo sistema de referencia que el origen.
+    Crea una copia de la capa a partir de la ruta de la capa, 
+    la capa es creada con el mismo sistema de referencia que el origen y codificada en UTF-8.
 
     :param path_vector: ruta de la capa original
     :type path_vector: String
@@ -448,11 +429,11 @@ def vcopia(path_vector, path_salida):
     :type path_salida: String
     """
     vlayer = QgsVectorLayer(path_vector, "", "ogr")
-    clonarv = QgsVectorFileWriter.writeAsVectorFormat(vlayer,
-                                                      path_salida,
+    QgsVectorFileWriter.writeAsVectorFormat(vlayer, path_salida,
                                                       'utf-8',
                                                       vlayer.crs(),
                                                       "ESRI Shapefile")
+    return path_salida
 def llenar_campos_nulos(path_vector,valor=-9999):
 
     '''
@@ -508,7 +489,7 @@ def capa_binaria(path_v,campo_cat='presencia', valor = 1):
 def agregar_categorias(path_v,campo,nuevo_int_cats='categorias',cont=1):
     '''
     Esta función reclasifica una capa en enteros consecutivos en función de las categorias únicas de un 
-    campo en especificico, como subproducto genera un archivo csv con las categorias.
+    campo en especifico, como subproducto genera un archivo csv con las categorias.
 
     :param path_v: ruta de capa vectorial
     :type path_v: str
@@ -553,13 +534,30 @@ def agregar_categorias(path_v,campo,nuevo_int_cats='categorias',cont=1):
     print ('capa clasificada...')
     print ('generando archivo txt de categorias...')
     path_tp_reglas = "/".join(path_v.split("/")[:-1])+"/reglas_"+path_v.split("/")[-1].split(".")[0]+".txt"
-#    reglas = open(path_tp_reglas,"w")
-#    for i in range(1,cont):
-#        reglas.write(str(i)+" = "+str(i)+" "+lista[i-1]+'\n')
-#    reglas.close()
+    reglas = open(path_tp_reglas,"w")
+    for i in range(1,cont):
+        reglas.write(str(i)+" = "+str(i)+" "+lista[i-1]+'\n')
+    reglas.close()
     return path_tp_reglas,n_cats
-   
 def extrae_categorias(path_v,salida,campo,categorias):
+    '''
+    Función que extrae elementos de un shapefile dada una lista de categorias.
+
+    :param path_v: ruta de la capa vectorial
+    :type path_v: str
+
+    :param salida: ruta de la capa vectorial con elementos de las categorias de interés.
+    :type salida: str
+
+    :param campo: nombre del campo que contiene las categorias
+    :type campo: str
+
+    :param categorias: lista de categorias
+    :type categorias: list
+
+
+
+    '''
     layer = QgsVectorLayer(path_v,"","ogr")
     if len(categorias)==1:
         query = "\""+campo+"\"="+str(categorias[0])
@@ -747,7 +745,6 @@ def rasterizar_vector_directo(vector,n_campo,region,path_salida,tipo='int',ancho
         'INVERT':False,
         'OUTPUT':path_salida}
     pr.run("gdal:rasterize", dicc)
-    
 def alinear_raster(path_raster,region,resolucion,path_salida,crs_destino='',tipo='int'):
     '''
     Esta función alinea un raster dada una región y el tamaño de pixel 
@@ -785,7 +782,7 @@ def alinear_raster(path_raster,region,resolucion,path_salida,crs_destino='',tipo
         'TARGET_RESOLUTION':resolucion,
         'OPTIONS':'COMPRESS=LZW',
         'DATA_TYPE':v_tipo,
-        'TARGET_EXTENT':region,
+        'TARGET_EXTENT':region[0],
         'TARGET_EXTENT_CRS':None,
         'MULTITHREADING':False,
         'OUTPUT':path_salida}
@@ -847,14 +844,33 @@ def get_region(path_layer):
 def ecuacion_clp(pesos):
 
     '''
-    Esta función recibe una lista de pesos para regresar la ecuación
-    en la estructura requerida por gdal para la combinación lineal ponderada. 
+    Esta función recibe una lista de pesos para regresar la ecuación de la combinación líneal ponderada
+    en la estructura requerida para la calculadora raster de gdal.
+
+    La ecuación líneal ponderada (clp), donde i es el número de capas; x es la capa ráster y w es el peso asociado en el modelo multicriterio
+    para esa capa ráster.
+
+    .. math:: 
+    
+        clp = \sum_{i=i}^{i=n}x_{i}*w_{i}
+
+    
     
     **ejemplo:**
 
+    El modelo multicriterio se compone cuatro criterios: **A**, **B**, **C** y **D** ; 
+
+    donde **A** tiene un peso de w=0.40 ; **B** tiene un peso de w=0.25, **C** tiene un peso de w=0.15 u **D** tiene un peso de w=0.20
+
+    
     .. math::
 
-        ecuacion = A*0.40 + B*0.25 + C*0.15 +D*0.20
+        clp = A*0.40 + B*0.25 + C*0.15 +D*0.20
+    
+    .. note::
+
+        El orden de los valores en la lista de los pesos tiene que ser igual al orden de la lista de la variable rasters_input de la función
+        crea_capa_raster
 
     :param pesos: lista de los pesos de las capas, salida de la función 
     :type pesos: lista
@@ -873,7 +889,7 @@ def ecuacion_clp(pesos):
         else:
             ecuacion+= (str(b)+str(' * ')+str(abc[a]))
     return ecuacion
-def normailiza(path_raster, path_raster_n,modo='ideales',decimales=3):
+def normailiza_raster(path_raster, path_raster_n,modo='ideales',decimales=3):
     '''
     Esta función normaliza una capa raster, se puede elegir entre dos tipos de normalización.
 
@@ -881,7 +897,7 @@ def normailiza(path_raster, path_raster_n,modo='ideales',decimales=3):
 
     .. math:: 
 
-        ideales=\\frac{A}{A.max}
+        ideales=\\frac{A}{max(A)}
     
     2) lineal: la capa ráster resultante tendra como valor máximo 1 y como valor mínimo 0
     el 1 representará el maximo de la capa de entrada y el 0 representa el valor mínimo de la 
@@ -889,7 +905,7 @@ def normailiza(path_raster, path_raster_n,modo='ideales',decimales=3):
 
     .. math::
 
-        lineal=\\frac{A -A.min}{A.max - A.min}
+        lineal=\\frac{A -min(A)}{max(A) - min(A)}
     '''
 
     min,max = raster_min_max(path_raster)
@@ -903,7 +919,6 @@ def normailiza(path_raster, path_raster_n,modo='ideales',decimales=3):
     
     redondea_raster(path_raster_n.split(".")[0]+"_raw.tif",path_raster_n,decimales)
     remove_raster(path_raster_n.split(".")[0]+"_raw.tif")
-    
 def raster_min_max(path_raster):
     '''
     Esta funcion regresa los valores maximos y minimos de una capa raster
@@ -955,7 +970,6 @@ def redondea_raster(path_raster,salida,no_decimales=3):
                 'EXTRA':'--co=\"COMPRESS=LZW\"',
                 'OUTPUT':salida}
     pr.run("gdal:rastercalculator",dicc)
-    
 def crea_capa_raster(ecuacion,rasters_input,salida,decimales=3): 
 
     '''
@@ -1616,7 +1630,6 @@ def remove_raster(path_r):
             os.remove(arch)
         except PermissionError:
             print('no se elimino ',arch)
-
 def asignar_nulls(map,output,valor_huecos=0):
     '''
     Esta función asigna un valor  a los no_data de la capa
@@ -1640,7 +1653,6 @@ def asignar_nulls(map,output,valor_huecos=0):
             'GRASS_REGION_PARAMETER':region[0],
             'GRASS_REGION_CELLSIZE_PARAMETER':0}
     pr.run("grass7:r.null",dicc)
-
 def nulls(map,output,valor_huecos=0):
     '''
     Esta función asigna un valor  a los no_data de la capa
@@ -1724,7 +1736,6 @@ def reclasifica_capa(capa,region,reglas,salida):
                     'GRASS_RASTER_FORMAT_OPT':'',
                     'GRASS_RASTER_FORMAT_META':''}
     pr.run("grass7:r.reclass",dicc)
-
 def buffer_raster(path_r,distancia,path_salida,path_mascara):
     region = get_region(path_mascara)
     path_r_distancia = path_salida.split(".")[0]+"_temp.tif"
@@ -1763,7 +1774,6 @@ def buffer_raster(path_r,distancia,path_salida,path_mascara):
             'GRASS_RASTER_FORMAT_OPT':'','GRASS_RASTER_FORMAT_META':''}
     pr.run("grass7:r.mapcalc.simple",dicc2)
     remove_raster(path_r_distancia)
-
 def calcula_distancias_raster(path_r,path_mascara,path_salida,tipo_distancia = 0,remover=0):
     region = get_region(path_mascara)
     path_r_distancia = path_r.split(".")[0]+"_tp_dis_mts.tif"
@@ -1943,7 +1953,6 @@ def calculadora_grass_3capas(path_capa_a,path_capa_b,path_capa_c, ecuacion,path_
         'GRASS_RASTER_FORMAT_OPT':'',
         'GRASS_RASTER_FORMAT_META':''}
         pr.run("grass7:r.mapcalc.simple", dicc)
-        
 def calculadora_grass_4capas(lista_capas, ecuacion,path_salida):
         '''
         Esta función aplica la máscara de la zona de estudio
@@ -2010,7 +2019,6 @@ def integra_localidades_caminos(path_lugar_n,w_lugar,path_d_camino_n,w_d_camino,
         'GRASS_RASTER_FORMAT_META':''}
         pr.run("grass7:r.mapcalc.simple", dicc)
         print("proceso integra_localidades_caminos terminado")
-
 def areas_por_categorias(path_raster,path_salida,min= 0,max=5):
     min,max= raster_min_max(path_raster)
     raster_matrix =  gdalnumeric.LoadFile(path_raster)
@@ -2035,14 +2043,18 @@ def areas_por_categorias(path_raster,path_salida,min= 0,max=5):
     print (df_o)
     df_o.to_excel( path_salida.split(".")[0]+".xlsx",index = False, header=True)
 def areas_por_categorias_colsulta(path_raster):
-    valores = categorias_unicas_raster(path_raster)#min,max= raster_min_max(path_raster)
+    '''
+    Ésta función imprime el número de pixeles por categoria de un archivo ráster
+
+    :param path_raster: ruta del archivo ráster
+    :type path_raster: str
+    '''
+    valores = categorias_unicas_raster(path_raster)
     raster_matrix =  gdalnumeric.LoadFile(path_raster)
-    dicc = {}
-    area_total = 0
+    print('categoria | no_pix\n')
     for i in valores:
         total_pixeles_cat = (raster_matrix == i).sum() 
         print(i," | ",total_pixeles_cat)
-        
 def raster_nodata(path_raster):
 
     rlayer = QgsRasterLayer(path_raster,"raster")
@@ -2058,7 +2070,6 @@ def raster_nodata(path_raster):
 
     
     return no_data
-    
 def categorias_unicas_raster(path_raster):
     v_nodata = raster_nodata(path_raster)
     raster_matrix = gdalnumeric.LoadFile(path_raster)
@@ -2068,8 +2079,20 @@ def categorias_unicas_raster(path_raster):
     valores_unicos.remove(v_nodata)
     print ("total de categorias",len(valores_unicos))
     return valores_unicos
-
 def raster_a_vector(path_raster,nombre_campo,path_vector):
+    '''
+    Función que transforma una capa ráster a vector.
+
+    :param path_raster:Ruta de la capa raster:
+    :type path_raster: str
+
+    :param nombre_campo: Nombre del campo de la capa vectorial que contendrá los valores o categorias del ráster
+    :type nombre_campo: int
+
+    :param path_vector: Ruta donde se almacenará la capa shapefile
+    :type path_vector: str
+
+    '''
     dicc =  {'INPUT':path_raster,
                     'BAND':1,
                     'FIELD':nombre_campo,
@@ -2077,7 +2100,6 @@ def raster_a_vector(path_raster,nombre_campo,path_vector):
                     'EXTRA':'',
                     'OUTPUT':path_vector}
     pr.run("gdal:polygonize",dicc)
-    
 def max_raster(lista_capas, path_salida,mascara):
     n_variables=len(lista_capas)
     abc = list(string.ascii_uppercase)
@@ -2086,7 +2108,6 @@ def max_raster(lista_capas, path_salida,mascara):
     
     aplica_mascara(mascara, path_salida.split(".")[0]+"_join.tif", path_salida, get_region(mascara)[0])
     remove_raster( path_salida.split(".")[0]+"_join.tif")
-    
 def criterios_ruta_pesos(dicc):
     """ funcion para extraer a partir de  un diccionario, listas de criterios, rutas y pesos para la clp
     """
@@ -2098,7 +2119,6 @@ def criterios_ruta_pesos(dicc):
         rutas.append(v['ruta'])
         pesos.append(v['w'])
     return criterios, rutas, pesos 
-    
 def ecuacion_class(cortes):
     """
     Función que escribe la ecuación de reclasificación a partir de un intervalo de cortes
